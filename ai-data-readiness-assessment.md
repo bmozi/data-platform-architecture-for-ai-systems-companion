@@ -5,6 +5,10 @@ derived feature will influence one named AI use. The assessment helps a team
 say “fit for this use,” “not yet,” or “not for this purpose” without pretending
 that available data is universally AI-ready.
 
+If “AI-ready” is still an undefined goal, begin with
+[The AI-Ready Data Journey](AI-READY-DATA-JOURNEY.md). It explains how to move
+from accessible records to a maintained, use-specific readiness decision.
+
 ## Ten-minute first assessment
 
 Complete these six lines before the full review:

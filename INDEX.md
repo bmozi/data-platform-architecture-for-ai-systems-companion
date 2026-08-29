@@ -8,6 +8,7 @@
 - **A pipeline is green but trust is weak:** [Quality-Evidence Scorecard](quality-evidence-scorecard.md).
 - **I need to trace an answer:** [Provenance Requirements](provenance-requirements.md).
 - **Someone says the data is AI-ready:** [AI-Data Readiness Assessment](ai-data-readiness-assessment.md).
+- **I need to understand the whole readiness process:** [The AI-Ready Data Journey](AI-READY-DATA-JOURNEY.md).
 
 ## By role
 
@@ -21,5 +22,16 @@
   classification, retention, provenance, and prohibited uses.
 - **AI builder:** assess one retrieval, training, evaluation, or action use at a
   time and keep data fitness separate from model and action authority.
+
+Use [Role-Based Paths](ROLE-BASED-PATHS.md) for practitioner, architect, manager,
+and executive routes with a concrete handoff artifact.
+
+## Lead a decision
+
+- [Team Workshop](TEAM-WORKSHOP.md)
+- [Value and Evidence Ledger](VALUE-AND-EVIDENCE-LEDGER.md)
+- [Executive Decision Brief](EXECUTIVE-DECISION-BRIEF.md)
+- [Failure Lab](FAILURE-LAB.md)
+- [Pilot and Usability Route](PILOT-AND-USABILITY.md)
 
 See [BOOK-TO-COMPANION-MAP.md](BOOK-TO-COMPANION-MAP.md) for chapter routing.

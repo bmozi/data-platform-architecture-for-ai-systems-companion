@@ -12,6 +12,11 @@ model cannot show which version informed its answer, or a green pipeline
 produces information nobody will defend, the problem is data-platform
 architecture before it is storage selection.
 
+A data platform is the people, rules, and machinery that turn records into
+maintained information products for named uses—not merely the place data is
+stored. Start with [The AI-Ready Data Journey](AI-READY-DATA-JOURNEY.md) when
+the immediate question is what readiness means and how to reach it.
+
 This companion helps you produce a first reviewable result. It does not certify
 data, a platform, an AI use, or an organization as trusted, fair, lawful, or
 ready for production.
@@ -46,6 +51,15 @@ source, and stop-trust condition, then test one proposed AI use separately.
 Use [INDEX.md](INDEX.md) for role- and outcome-based routes and
 [BOOK-TO-COMPANION-MAP.md](BOOK-TO-COMPANION-MAP.md) to reconnect each tool to
 the book's reasoning.
+
+## Use it across roles
+
+[Role-Based Paths](ROLE-BASED-PATHS.md), the [Team Workshop](TEAM-WORKSHOP.md),
+and the [Executive Decision Brief](EXECUTIVE-DECISION-BRIEF.md) turn readiness
+from a data-team slogan into a cross-functional decision. Use the
+[Value and Evidence Ledger](VALUE-AND-EVIDENCE-LEDGER.md) to prioritize one
+valuable use, then exercise assumptions with the [Failure Lab](FAILURE-LAB.md)
+and [Pilot Route](PILOT-AND-USABILITY.md).
 
 ## Development boundary
 
