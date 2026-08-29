@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "title": "Architecting Data Platforms in the Age of AI Companion",
+  "book_repository": "https://github.com/bmozi/architecting-data-platforms-in-the-age-of-ai",
+  "source_commit": "28e7d9c",
+  "required_files": [
+    "README.md",
+    "START-HERE.md",
+    "INDEX.md",
+    "BOOK-TO-COMPANION-MAP.md",
+    "LICENSE-STATUS.md",
+    "PROVENANCE.md",
+    "VALIDATION.md"
+  ],
+  "gateway_assets": [
+    {
+      "path": "data-product-contract.md",
+      "first_pass": "Ten-minute first contract",
+      "required_language": ["Plain-language vocabulary", "Outside-team comprehension test"],
+      "examples": ["examples/northbridge-data-product-contract-v1.md"]
+    },
+    {
+      "path": "ai-data-readiness-assessment.md",
+      "first_pass": "Ten-minute first assessment",
+      "required_language": ["Plain-language vocabulary", "Outside-team comprehension test"],
+      "examples": ["examples/northbridge-ai-data-readiness-assessment-v1.md"]
+    }
+  ]
+}
