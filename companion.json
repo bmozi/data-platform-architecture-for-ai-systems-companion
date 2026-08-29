@@ -17,7 +17,12 @@
     "VALUE-AND-EVIDENCE-LEDGER.md",
     "EXECUTIVE-DECISION-BRIEF.md",
     "FAILURE-LAB.md",
-    "PILOT-AND-USABILITY.md"
+    "PILOT-AND-USABILITY.md",
+    "testing/ai-ready-data-reader-value-v1/README.md",
+    "testing/ai-ready-data-reader-value-v1/SHA256SUMS"
+  ],
+  "checksum_manifests": [
+    "testing/ai-ready-data-reader-value-v1/SHA256SUMS"
   ],
   "gateway_assets": [
     {
