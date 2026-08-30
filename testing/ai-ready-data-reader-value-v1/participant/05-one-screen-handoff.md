@@ -1,8 +1,8 @@
 # Stage A One-Screen Handoff
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.0
-**Status:** Blank Stage A transfer; open only after the revised-detail freeze
-record verifies
+**Packet:** DATA-RV-PILOT-001 version 1.2.1
+**Status:** Blank Stage A transfer; open only after the revised-detail detached
+verification record verifies
 
 Use short, plain answers that a person outside the data team can scan without
 verbal repair. Link the detailed records instead of copying them. Write
@@ -12,12 +12,17 @@ evidence cannot answer. Never invent a person, authority, or date.
 **Format rule:** keep this to one printed page or one screen and one line per
 field. Put depth in the linked artifacts, not in an attachment or verbal note.
 Complete it as `DATA-A-ONE-SCREEN-HANDOFF-v1.md` only after
-`DATA-A-REVISED-FREEZE-RECORD-v1.md` verifies.
+`DATA-A-REVISED-FREEZE-VERIFICATION-v1.md` verifies.
 
 - **Handoff artifact ID and version:**
+- **Handoff completion timestamp and timezone:**
+- **Handoff pre-hash state:** `HANDOFF COMPLETE`
+- **Post-hash handoff verification provenance:** see
+  `DATA-A-HANDOFF-FREEZE-VERIFICATION-v1.md`, created after this completed
+  handoff is hashed and its governing manifest verifies
 - **Linked initial artifact IDs, versions, and hashes:**
 - **Detached revised freeze record exact local filename/hash:**
-  `DATA-A-REVISED-FREEZE-RECORD-v1.md` /
+  `DATA-A-REVISED-FREEZE-VERIFICATION-v1.md` /
 - **Governing revised-artifact manifest exact local filename/hash:**
   `DATA-A-REVISED-ARTIFACTS-SHA256SUMS-v1.txt` /
 
@@ -56,8 +61,12 @@ detailed read-back.
 - **Immediate next action:**
 - **Review date or evidence-based trigger:**
 - **Separate model, action-authority, and release gates still unresolved:**
-- **Separate handoff freeze timestamp/timezone, ID/version, SHA-256, and
-  manifest reference:**
 
-Freeze this file after the detailed Stage A revision. Do not revise it during
-Stage B's initial read-back.
+Once every field above and the completion metadata are final, do not edit this
+file. Create `DATA-A-HANDOFF-SHA256SUMS-v1.txt` over this handoff only; the
+manifest never hashes itself or the later record. Verify the manifest, capture
+the observed timestamp/timezone, and only then create
+`DATA-A-HANDOFF-FREEZE-VERIFICATION-v1.md`. The handoff must not contain its
+own hash, the detached record's hash, or a future verification time. Stage B's
+sealed Phase 1 input manifest hashes the handoff, its governing manifest, and
+the detached record. Do not revise the handoff during Stage B read-back.

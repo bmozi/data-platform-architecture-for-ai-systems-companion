@@ -18,6 +18,132 @@ COMMIT_PATTERN = re.compile(r"^[0-9a-f]{7,40}$")
 CHECKSUM_PATTERN = re.compile(r"^([0-9a-f]{64})  (.+)$")
 
 
+def validate_temporal_freeze_protocol(errors: list[str]) -> int:
+    """Check packet 1.2.1's static temporal-order invariants."""
+
+    packet = ROOT / "testing/ai-ready-data-reader-value-v1"
+    relative_files = [
+        "README.md",
+        "participant/00-packet-route.md",
+        "participant/03-practitioner-workbook.md",
+        "participant/04-decision-owner-workbook.md",
+        "participant/05-one-screen-handoff.md",
+        "participant/06-revised-artifact-freeze-record.md",
+        "facilitator-only/01-facilitator-guide.md",
+        "facilitator-only/02-observation-and-scoring-rubric.md",
+        "facilitator-only/03-results-and-deviation-log.md",
+    ]
+    contents: dict[str, str] = {}
+    for relative in relative_files:
+        path = packet / relative
+        if not path.is_file():
+            errors.append(f"temporal protocol: missing {path.relative_to(ROOT)}")
+            continue
+        contents[relative] = path.read_text(encoding="utf-8")
+
+    combined = "\n".join(contents.values())
+    legacy = "DATA-A-REVISED-FREEZE-RECORD-v1.md"
+    if legacy in combined:
+        errors.append(f"temporal protocol: legacy record identity remains: {legacy}")
+
+    exact_identities = [
+        "DATA-A-REVISED-ARTIFACTS-SHA256SUMS-v1.txt",
+        "DATA-A-REVISED-FREEZE-VERIFICATION-v1.md",
+        "DATA-A-HANDOFF-SHA256SUMS-v1.txt",
+        "DATA-A-HANDOFF-FREEZE-VERIFICATION-v1.md",
+        "DATA-B-SECTION-1-SHA256SUMS-v1.txt",
+        "DATA-B-SECTION-1-FREEZE-VERIFICATION-v1.md",
+        "DATA-B-SECTION-2-SHA256SUMS-v1.txt",
+        "DATA-B-SECTION-2-FREEZE-VERIFICATION-v1.md",
+        "DATA-B-SECTIONS-3-5-SHA256SUMS-v1.txt",
+        "DATA-B-SECTIONS-3-5-FREEZE-VERIFICATION-v1.md",
+    ]
+    for identity in exact_identities:
+        if identity not in combined:
+            errors.append(f"temporal protocol: missing exact identity: {identity}")
+
+    required_by_file = {
+        "participant/00-packet-route.md": exact_identities,
+        "facilitator-only/01-facilitator-guide.md": exact_identities,
+        "facilitator-only/03-results-and-deviation-log.md": exact_identities,
+        "README.md": exact_identities,
+        "participant/04-decision-owner-workbook.md": exact_identities[4:],
+        "participant/05-one-screen-handoff.md": exact_identities[:4],
+    }
+    for relative, identities in required_by_file.items():
+        content = contents.get(relative, "")
+        for identity in identities:
+            if identity not in content:
+                errors.append(
+                    f"temporal protocol: {relative} lacks exact identity: {identity}"
+                )
+
+    for path in packet.rglob("*.md"):
+        content = path.read_text(encoding="utf-8")
+        for match in re.finditer(r"\*\*Packet:\*\* DATA-RV-PILOT-001 version ([^\s]+)", content):
+            if match.group(1) != "1.2.1":
+                errors.append(
+                    f"temporal protocol: packet version drift in "
+                    f"{path.relative_to(ROOT)}: {match.group(1)}"
+                )
+
+    guide = contents.get("facilitator-only/01-facilitator-guide.md", "")
+    ordered_anchors = [
+        "Finalize every governed artifact",
+        "Create the governing manifest",
+        "Verify that manifest",
+        "Only afterward create the detached record",
+    ]
+    positions = [guide.find(anchor) for anchor in ordered_anchors]
+    if any(position < 0 for position in positions) or positions != sorted(positions):
+        errors.append(
+            "temporal protocol: facilitator guide lacks the required ordered "
+            "complete -> manifest -> verify -> detached-record sequence"
+        )
+
+    workbook = contents.get("participant/04-decision-owner-workbook.md", "")
+    handoff = contents.get("participant/05-one-screen-handoff.md", "")
+    practitioner = contents.get("participant/03-practitioner-workbook.md", "")
+    stale_self_reference_fields = [
+        "Section 1 freeze timestamp and timezone:",
+        "Section 1 SHA-256 or manifest reference:",
+        "Section 2 freeze timestamp and timezone:",
+        "Section 2 SHA-256 or manifest reference:",
+        "Sections 3-5 freeze timestamp and timezone:",
+        "Sections 3-5 SHA-256 or manifest reference:",
+        "Separate handoff freeze timestamp/timezone",
+    ]
+    governed_templates = workbook + "\n" + handoff
+    for field in stale_self_reference_fields:
+        if field in governed_templates:
+            errors.append(f"temporal protocol: stale self-reference field: {field}")
+
+    future_handoff_fields = [
+        "One-screen handoff completion timestamp/timezone",
+        "Post-hash handoff verification provenance",
+        "## 8. Material feedback",
+    ]
+    for field in future_handoff_fields:
+        if field in practitioner:
+            errors.append(
+                "temporal protocol: revised workbook contains later handoff or "
+                f"feedback field: {field}"
+            )
+
+    template = contents.get("participant/06-revised-artifact-freeze-record.md", "")
+    template_anchors = [
+        "create an instance only after its governing",
+        "never lists or hashes itself or this later record",
+        "observed manifest verification timestamp/timezone",
+        "immutable replacement set",
+    ]
+    for anchor in template_anchors:
+        if anchor.casefold() not in template.casefold():
+            errors.append(f"temporal protocol: detached template lacks: {anchor}")
+
+    return len(relative_files)
+
+
 def markdown_links(path: Path):
     in_fence = False
     for number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), start=1):
@@ -169,6 +295,8 @@ def main() -> int:
                     f"{source.relative_to(ROOT)}:{line}: missing local link target: {raw}"
                 )
 
+    checked_protocol_files = validate_temporal_freeze_protocol(errors)
+
     if errors:
         for error in errors:
             print(error, file=sys.stderr)
@@ -178,7 +306,8 @@ def main() -> int:
     print(
         f"companion validation passed: {len(markdown_files)} Markdown files, "
         f"{checked_links} local links, {len(gateways)} gateway asset(s), "
-        f"{checked_checksums} checksum(s)"
+        f"{checked_checksums} checksum(s), "
+        f"{checked_protocol_files} temporal-protocol file(s)"
     )
     return 0
 

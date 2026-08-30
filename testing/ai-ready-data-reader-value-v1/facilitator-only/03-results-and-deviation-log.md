@@ -1,6 +1,6 @@
 # Results and Deviation Log
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.0
+**Packet:** DATA-RV-PILOT-001 version 1.2.1
 **Status:** Blank controlled record; no result exists
 
 ## Run identity
@@ -40,8 +40,11 @@ first substantive artifact.
 
 ## Revised-detail and Stage B transfer verification
 
-- Detached freeze record completed before handoff opened: yes / no / deviation
-- Detached record exact filename/hash: `DATA-A-REVISED-FREEZE-RECORD-v1.md` /
+- Revised manifest verified before detached record was created: yes / no /
+  deviation
+- Detached record completed before handoff opened: yes / no / deviation
+- Detached record exact filename/hash:
+  `DATA-A-REVISED-FREEZE-VERIFICATION-v1.md` /
 - Revised governing manifest exact filename/hash:
   `DATA-A-REVISED-ARTIFACTS-SHA256SUMS-v1.txt` /
 - Manifest verified and does not list/hash itself: yes / no / deviation
@@ -59,17 +62,29 @@ A rename, regenerated copy, summary, substitution, omission, missing record or
 manifest, mismatch, wrong pre-hash state, or missing detached `FROZEN` status
 for an included artifact stops detailed read-back.
 
-## Artifact freezes
+## Temporal freeze evidence
 
-| Freeze | Exact immutable filename | Artifact IDs and versions | Exact time and timezone | SHA-256 or manifest reference | Preserved location |
+For each scope, confirm this order from retained timestamps and immutable
+bytes: artifact completion -> governing manifest creation -> successful
+manifest verification -> detached-record creation. The next sealed phase or
+closing evidence manifest then hashes the artifact, governing manifest, and
+detached record. Record failures as deviations; do not fill missing history
+from recollection.
+
+| Scope | Exact artifact filename(s), ID/version, completion time/timezone, state, hash | Governing manifest filename/hash | Observed manifest verification time/timezone and result | Detached record filename/hash and completion time/timezone | Next phase/evidence manifest and preserved location |
 | --- | --- | --- | --- | --- | --- |
-| Stage A initial detailed artifact | | | | | |
-| Stage A revised detailed artifact | | | | | |
-| Stage A detached revised freeze record | `DATA-A-REVISED-FREEZE-RECORD-v1.md` | | | | |
-| Stage A one-screen handoff | `DATA-A-ONE-SCREEN-HANDOFF-v1.md` | | | | |
-| Stage B Section 1 one-screen scan | `DATA-B-SECTION-1-SCAN-v1.md` | | | | |
-| Stage B Section 2 detailed read-back | `DATA-B-SECTION-2-DETAIL-v1.md` | | | | |
-| Stage B Sections 3-5 decision and transfer | `DATA-B-SECTIONS-3-5-DECISION-v1.md` | | | | |
+| Stage A revised set | required revised files; optional only if used | `DATA-A-REVISED-ARTIFACTS-SHA256SUMS-v1.txt` / | | `DATA-A-REVISED-FREEZE-VERIFICATION-v1.md` / | |
+| Stage A handoff | `DATA-A-ONE-SCREEN-HANDOFF-v1.md`; `HANDOFF COMPLETE` | `DATA-A-HANDOFF-SHA256SUMS-v1.txt` / | | `DATA-A-HANDOFF-FREEZE-VERIFICATION-v1.md` / | Stage B Phase 1 input / |
+| Stage B Section 1 | `DATA-B-SECTION-1-SCAN-v1.md`; `SECTION 1 COMPLETE` | `DATA-B-SECTION-1-SHA256SUMS-v1.txt` / | | `DATA-B-SECTION-1-FREEZE-VERIFICATION-v1.md` / | Stage B Phase 2 input / |
+| Stage B Section 2 | `DATA-B-SECTION-2-DETAIL-v1.md`; `SECTION 2 COMPLETE` | `DATA-B-SECTION-2-SHA256SUMS-v1.txt` / | | `DATA-B-SECTION-2-FREEZE-VERIFICATION-v1.md` / | Stage B Phase 3 input / |
+| Stage B Sections 3-5 | `DATA-B-SECTIONS-3-5-DECISION-v1.md`; `SECTIONS 3-5 COMPLETE` | `DATA-B-SECTIONS-3-5-SHA256SUMS-v1.txt` / | | `DATA-B-SECTIONS-3-5-FREEZE-VERIFICATION-v1.md` / | Closing evidence / |
+
+- Every governing manifest excludes itself and its later detached record:
+  yes / no / deviation
+- Every governed artifact contains no own hash, future verification time, or
+  self-declared `FROZEN`: yes / no / deviation
+- Every next phase/evidence manifest hashes the artifact(s), governing manifest,
+  and detached record under literal filenames: yes / no / deviation
 
 ## Post-freeze corrections
 
@@ -77,7 +92,7 @@ Never overwrite a freeze. The planned live-update revision is not a correction
 of frozen revised bytes. Preserve both versions and record every later
 correction.
 
-| Correction ID | Reason | Correction timestamp/timezone | Exact old filename, ID/version, SHA-256, manifest | Exact new filename, ID/version, SHA-256, manifest | Replacement freeze record | Action/effect |
+| Correction ID | Reason | Correction timestamp/timezone | Preserved old artifact set, manifest, record | Exact new filename, ID/version, SHA-256 | Replacement governing manifest and detached record | Action/effect |
 | --- | --- | --- | --- | --- | --- | --- |
 | | | | | | | |
 
@@ -99,6 +114,17 @@ correction.
 | Time | Exact intervention | Level | Gate affected | Interpretation effect |
 | --- | --- | --- | --- | --- |
 | | | | | |
+
+## Material feedback after governed artifacts close
+
+Collect this feedback here after the handoff's detached record verifies. Do not
+reopen or append it to the governed practitioner workbook or handoff.
+
+- Explanation or prompt that changed the participant's thinking:
+- Term or field that was unclear:
+- Important decision the materials missed:
+- Unsupported confidence the materials encouraged:
+- What the participant says this exercise cannot establish:
 
 ## Gate results
 

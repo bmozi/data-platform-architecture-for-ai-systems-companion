@@ -1,6 +1,6 @@
 # Harbor Grove Scenario: Is This Information Ready for This AI Use?
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.0
+**Packet:** DATA-RV-PILOT-001 version 1.2.1
 **Status:** Fictional, prepared, and unrun
 
 Harbor Grove Housing operates eighteen fictional apartment buildings. Resident
@@ -70,8 +70,10 @@ The named use for this review is narrower:
 4. Keep source data, derived chunks/indexes, model behavior, agent review,
    action authority, and release as distinct decisions.
 5. State what must cause abstention or stop trust.
-6. After the live update, complete and freeze the one-screen practitioner
-   handoff without estimating savings or inventing an owner or date.
+6. After the live update and revised-set verification, complete the one-screen
+   practitioner handoff without estimating savings or inventing an owner or
+   date. The facilitator then hashes, verifies, and records its freeze in the
+   governed temporal order; do not predict that event inside the handoff.
 
 The facilitator will provide one live update after the first artifact is
 frozen.

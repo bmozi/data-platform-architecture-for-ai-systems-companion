@@ -1,65 +1,89 @@
-# Revised Artifact Freeze Record
+# Detached Freeze-Verification Record Template
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.0
-**Status:** Blank detached record; complete and verify before the one-screen
-handoff opens
+**Packet:** DATA-RV-PILOT-001 version 1.2.1
+**Status:** Blank detached template; create an instance only after its governing
+manifest has been verified
 
-This record governs the first revised artifact set created by the planned live
-update. That planned revision is not a correction of already frozen revised
-bytes.
+Use this template for the revised Stage A set, the handoff, Stage B Section 1,
+Stage B Section 2, and Stage B Sections 3-5. A completed instance records an
+observed verification event. It never predicts a future event and is never
+listed in the governing manifest whose verification it records.
 
-- Completed record exact local filename: `DATA-A-REVISED-FREEZE-RECORD-v1.md`
-- Freeze timestamp and timezone:
+## Select one exact record identity
+
+- Revised Stage A: `DATA-A-REVISED-FREEZE-VERIFICATION-v1.md`
+- Stage A handoff: `DATA-A-HANDOFF-FREEZE-VERIFICATION-v1.md`
+- Stage B Section 1: `DATA-B-SECTION-1-FREEZE-VERIFICATION-v1.md`
+- Stage B Section 2: `DATA-B-SECTION-2-FREEZE-VERIFICATION-v1.md`
+- Stage B Sections 3-5:
+  `DATA-B-SECTIONS-3-5-FREEZE-VERIFICATION-v1.md`
+
+## Observed verification event
+
+- Freeze scope and phase:
+- Completed record exact local filename:
+- Record ID/version:
+- Record completion timestamp/timezone, after manifest verification:
 - Governing manifest exact local filename:
-  `DATA-A-REVISED-ARTIFACTS-SHA256SUMS-v1.txt`
 - Governing manifest SHA-256:
-- Manifest verification timestamp and timezone:
-- Planned live-update revision complete: yes / no
+- Manifest verification command or method:
+- Manifest verification result: pass / fail
+- Observed manifest verification timestamp/timezone:
+- Verified by and relationship to the participant or author:
 
-The governing manifest hashes only the revised detail files included below. It
-does not list or hash itself. A later Stage B delivery manifest may hash this
-completed record and the governing manifest as supplied files.
+The governing manifest hashes only the completed governed artifacts listed
+below. It never lists or hashes itself or this later record. The artifact bytes
+already contain their IDs/versions, completion timestamps/timezones, complete
+pre-hash states, and a filename-only pointer to this record. They contain no
+self-hash, record hash, future verification time, or self-declared `FROZEN`
+state.
 
-## Exact revised-detail inventory
+## Exact governed-artifact inventory
 
-The first two rows are required. Before hashing, every included artifact must
-contain its artifact ID/version, completion timestamp/timezone, and pre-hash
-state `REVISED COMPLETE`; it must not self-declare `FROZEN`. The optional
-contract is `REVISED COMPLETE` when used or `NOT USED` when not opened; never
-invent a file for an unused optional artifact. A blank, `DRAFT`, `PENDING`,
-`PENDING FREEZE`, `AWAITING FREEZE`, or equivalent incomplete state fails this
-record. Matching hashes in the governing manifest plus this verified detached
-record establish the later `FROZEN` condition for included artifacts.
+| Exact immutable local filename | Artifact ID/version | Completion timestamp/timezone | Complete pre-hash state | SHA-256 | Matches governing manifest |
+| --- | --- | --- | --- | --- | --- |
+| | | | | | yes / no |
 
-| Exact immutable local filename | Required or optional | Artifact ID/version | Completion timestamp/timezone | Pre-hash state | SHA-256 | Matches governing manifest | Freeze status established by this record |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| `DATA-A-REVISED-WORKBOOK-v1.md` | required | | | `REVISED COMPLETE` | | yes / no | `FROZEN` / not established |
-| `DATA-A-REVISED-READINESS-ASSESSMENT-v1.md` | required | | | `REVISED COMPLETE` | | yes / no | `FROZEN` / not established |
-| `DATA-A-REVISED-DATA-PRODUCT-CONTRACT-v1.md` | optional | | | `REVISED COMPLETE` / `NOT USED` | | yes / no / not used | `FROZEN` / `NOT USED` / not established |
+For revised Stage A, include every required artifact and the optional contract
+only when used. Its expected complete pre-hash state is `REVISED COMPLETE`.
+Expected states for the later scopes are `HANDOFF COMPLETE`, `SECTION 1
+COMPLETE`, `SECTION 2 COMPLETE`, and `SECTIONS 3-5 COMPLETE`.
 
-## Verification before handoff
+## Temporal and integrity determination
 
-- All included revised work is complete: yes / no
-- Optional contract use is recorded without ambiguity: yes / no
-- All included literal filenames match the governing manifest: yes / no
-- All included IDs, versions, completion timestamps/timezones, pre-hash states,
-  and hashes match: yes / no
+- Every governed artifact was complete before the manifest was created:
+  yes / no
+- Every artifact completion timestamp precedes or equals observed manifest
+  verification: yes / no
+- Literal filenames, IDs/versions, completion metadata, states, and hashes
+  match: yes / no
+- The governing manifest excludes itself and this record: yes / no
+- No governed artifact contains its own hash or a future verification time:
+  yes / no
 - No incomplete-state marker or premature self-declared `FROZEN` remains:
   yes / no
-- This record establishes `FROZEN` for every included verified hash: yes / no
-- Record completed and verified before `05-one-screen-handoff.md` opened:
-  yes / no
-- Verified by, relationship, timestamp, and timezone:
+- This record was created only after successful manifest verification: yes / no
+- Determination for the exact governed bytes: `FROZEN` / not established
+- Stop or deviation ID when any required answer is `no`, blank, or failed:
 
-Any `no`, blank required field, mismatch, rename, regenerated copy, summary,
-substitution, or omission stops the handoff.
+Any failed or blank required check means `FROZEN` is not established. Preserve
+the attempted bytes and record the deviation; do not repair them in place.
 
-## Post-freeze correction, only if required
+## Next sealed phase
 
-Do not enter the planned live-update revision here. If any already frozen byte
-later changes, preserve the prior artifact and complete a new correction record
-and replacement freeze. Never overwrite or reuse the old filename.
+After this record is complete, the facilitator creates the next sealed
+phase-input manifest—or the closing evidence manifest for the final scope—over
+every governed artifact, its governing manifest, and this detached record.
+Record that later manifest and its observed verification event in the external
+run log. Do not add its future filename, hash, or verification timestamp to
+this record, and do not reopen this record afterward. The next manifest is
+separate provenance for delivery; it does not alter the earlier governing
+manifest or this observed verification event.
 
-| Correction ID | Reason | Correction timestamp/timezone | Exact old filename, ID/version, SHA-256, manifest | Exact new filename, ID/version, SHA-256, manifest | Replacement freeze record |
-| --- | --- | --- | --- | --- | --- |
-| | | | | | |
+## Immutable correction rule
+
+After this record is complete, do not edit it or any governed file. A
+correction preserves the old artifact set, manifest, and record, then creates a
+new immutable replacement set with new IDs/versions or filenames, a new
+governing manifest, and a new detached record. Record the reason and correction
+timestamp/timezone in the run log, not by modifying the old record.

@@ -1,14 +1,19 @@
 # AI-Ready Data Reader-Value Pilot Packet
 
 **Packet ID:** DATA-RV-PILOT-001
-**Version:** 1.2.0
+**Version:** 1.2.1
 **Status:** Prepared and unrun; no participant recruited or consented
 **Scenario:** Harbor Grove Housing, entirely fictional
 
-Version 1.2.0 adds literal revised-artifact identity, a detached freeze record,
-and exact Stage B transfer after a synthetic protocol audit of version 1.1.1.
-It preserves the material interpretation and the sealed-delivery and staged
-Stage B controls added in version 1.1.1. Synthetic work is defect-finding only.
+Version 1.2.1 replaces version 1.2.0's temporally self-referential freeze
+instructions. It preserves the AI-ready-data content, literal artifact
+identity, sealed delivery, and staged Stage B controls while making every
+governed freeze follow one observable order: complete artifacts, create their
+governing manifest, verify it and capture the exact event, then create a
+detached verification record. Synthetic work is defect-finding only.
+Version 1.2.0 remains preserved at source commit `6921313`; do not relabel an
+older run as 1.2.1. A 1.2.1 correction produces a new immutable artifact set,
+governing manifest, and detached record rather than overwriting old evidence.
 This version remains **PREPARED/UNRUN** with people and supports no
 human-validation, usability, privacy, safety, readiness, value, or
 incident-status claim.
@@ -46,7 +51,8 @@ only, in the order governed by the packet route:
 5. `ai-data-readiness-assessment.md`
 6. `data-product-contract.md`, only if the participant decides it answers a
    separate needed question
-7. `06-revised-artifact-freeze-record.md`, after the live-update revision; and
+7. `06-revised-artifact-freeze-record.md`, after the revised governing
+   manifest has been successfully verified; and
 8. [One-Screen Handoff](participant/05-one-screen-handoff.md), only after that
    record verifies
 
@@ -69,16 +75,26 @@ Every included revised file must contain its artifact ID, version, completion
 timestamp/timezone, and pre-hash state `REVISED COMPLETE`; the optional
 contract is `REVISED COMPLETE` when used or `NOT USED` otherwise. No `DRAFT`,
 `PENDING`, `PENDING FREEZE`, `AWAITING FREEZE`, blank, or equivalent incomplete
-state may remain, and no revised artifact may self-declare `FROZEN`. The governing manifest
+state may remain. A governed artifact may name its later detached record but
+may not embed its own hash, the record hash, a future verification time, or
+self-declare `FROZEN`. The governing manifest
 `DATA-A-REVISED-ARTIFACTS-SHA256SUMS-v1.txt` hashes exactly the included revised
-detail files and does not hash itself. Complete
-`DATA-A-REVISED-FREEZE-RECORD-v1.md` from the supplied
+detail files and does not hash itself or the later detached record. Verify the
+manifest, capture the exact observed timestamp/timezone, and only afterward
+complete `DATA-A-REVISED-FREEZE-VERIFICATION-v1.md` from the supplied
 [detached record template](participant/06-revised-artifact-freeze-record.md).
-It must verify freeze timestamp/timezone, filenames, IDs/versions, completion
-timestamps/timezones, pre-hash states, hashes, optional disposition, and
-manifest filename/hash and then establish `FROZEN` for included artifacts
-before the blank handoff opens. Complete and separately freeze the handoff as
-`DATA-A-ONE-SCREEN-HANDOFF-v1.md`.
+It records that observed verification event, filenames, IDs/versions,
+completion timestamps/timezones, pre-hash states, hashes, optional
+disposition, and manifest filename/hash. The detached record then establishes
+`FROZEN` for included exact bytes before the blank handoff opens.
+
+Complete the handoff as `DATA-A-ONE-SCREEN-HANDOFF-v1.md` with ID/version,
+completion timestamp/timezone, pre-hash `HANDOFF COMPLETE`, and a filename-only
+pointer to its later detached record. Then create and verify
+`DATA-A-HANDOFF-SHA256SUMS-v1.txt` over the handoff alone, capture the observed
+verification time/timezone, and create
+`DATA-A-HANDOFF-FREEZE-VERIFICATION-v1.md`. The sealed Stage B Phase 1 input
+manifest hashes the handoff, governing manifest, and detached record.
 
 ### Stage B — independent manager or executive decision owner
 
@@ -90,10 +106,11 @@ a run-specific manifest. After the recorded start time, supply in the route's
 exact order:
 
 1. [Packet route](participant/00-packet-route.md);
-2. the frozen `DATA-A-ONE-SCREEN-HANDOFF-v1.md` first;
+2. the frozen `DATA-A-ONE-SCREEN-HANDOFF-v1.md`, its governing manifest, and
+   detached record, with the handoff opened first for substantive reading;
 3. `04-decision-owner-workbook.md`;
 4. after the Section 1 freeze, `02-scenario-and-task.md`,
-   `DATA-A-REVISED-FREEZE-RECORD-v1.md`,
+   `DATA-A-REVISED-FREEZE-VERIFICATION-v1.md`,
    `DATA-A-REVISED-ARTIFACTS-SHA256SUMS-v1.txt`, and every revised detail named
    as included by the handoff;
 5. `EXECUTIVE-DECISION-BRIEF.md`; and
@@ -105,18 +122,28 @@ pre-hash `REVISED COMPLETE` or optional `NOT USED` state, hash, and
 detached-record `FROZEN` condition for included files. A rename, regenerated
 copy, summary, substitution, omission, or mismatch stops detailed read-back.
 
-Stage B has three scored freezes. Export and checksum-freeze Section 1 as
-`DATA-B-SECTION-1-SCAN-v1.md` from the one-screen handoff alone. Then verify
-the exact revised-detail transfer, complete Section 2, and export and
-checksum-freeze `DATA-B-SECTION-2-DETAIL-v1.md`. Only after that second freeze
-may the executive brief and value ledger open; complete Sections 3-5, export
-`DATA-B-SECTIONS-3-5-DECISION-v1.md`, and checksum-freeze it. Keep Section 6
-closed until scoring ends.
+Stage B has three scored freezes. For each export, first record its ID/version,
+completion timestamp/timezone, and declared complete pre-hash state. Then hash
+only the completed export in its governing manifest, verify the manifest and
+capture the exact time/timezone, and only afterward create its detached record.
+Use these exact triples:
+
+| Scope | Governed artifact | Governing manifest | Detached verification record |
+| --- | --- | --- | --- |
+| Section 1 | `DATA-B-SECTION-1-SCAN-v1.md` | `DATA-B-SECTION-1-SHA256SUMS-v1.txt` | `DATA-B-SECTION-1-FREEZE-VERIFICATION-v1.md` |
+| Section 2 | `DATA-B-SECTION-2-DETAIL-v1.md` | `DATA-B-SECTION-2-SHA256SUMS-v1.txt` | `DATA-B-SECTION-2-FREEZE-VERIFICATION-v1.md` |
+| Sections 3-5 | `DATA-B-SECTIONS-3-5-DECISION-v1.md` | `DATA-B-SECTIONS-3-5-SHA256SUMS-v1.txt` | `DATA-B-SECTIONS-3-5-FREEZE-VERIFICATION-v1.md` |
+
+The next sealed phase-input manifest hashes the prior artifact, governing
+manifest, and detached record. The closing evidence manifest does the same for
+Sections 3-5. Only after the Section 2 detached record verifies may the
+executive brief and value ledger open. Keep Section 6 closed until scoring
+ends.
 
 A correction after any freeze must preserve the prior artifact and use a new
 immutable filename. Record exact old/new filenames, IDs/versions, hashes,
-reason, correction timestamp/timezone, replacement freeze record, and
-replacement manifest. Never describe a later correction as the planned
+reason, correction timestamp/timezone, replacement governing manifest, and
+replacement detached record. Never describe a later correction as the planned
 live-update revision.
 
 The first calibration round uses a different person for Stage B. Keep the
@@ -142,6 +169,10 @@ the facilitator copies the exact immutable files into its sealed flat input and
 creates a run-specific manifest that hashes every supplied file under its exact
 local filename while excluding itself. Any byte change requires a new manifest; a meaning change
 requires a new version.
+
+See [Static protocol validation](STATIC-PROTOCOL-VALIDATION.md) for the local
+temporal-order review. That review checks instructions and packet bytes; it is
+not a human run or evidence that the procedure was executed successfully.
 
 ## Evidence boundary
 

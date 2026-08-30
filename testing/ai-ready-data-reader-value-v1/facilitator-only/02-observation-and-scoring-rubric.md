@@ -1,6 +1,6 @@
 # Observation and Scoring Rubric
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.0
+**Packet:** DATA-RV-PILOT-001 version 1.2.1
 **Status:** Predetermined, blank, and unrun
 
 Score retained behavior, not agreement with preferred wording.
@@ -53,10 +53,12 @@ Mark `clear`, `unclear`, `unsafe`, or `contaminated`:
 | Restricted-data near miss | Preserves minimum evidence without copying restricted content; checks context, output, logs, viewers, containment, ownership, retention/deletion authority, and separate legal/privacy classification | | |
 | Operability | Abstention, stop trust, correction propagation, incident owner or explicit unassigned state, and reassessment exist or remain blockers | | |
 | Separate gates | Data fitness does not approve model, tool, action, or release | | |
-| Revised-detail freeze integrity | Each included revised detail reaches pre-hash `REVISED COMPLETE` with ID/version and completion timestamp/timezone; the optional contract is `REVISED COMPLETE` or `NOT USED`; the manifest hashes included bytes without hashing itself; before handoff, the detached record matches all metadata and hashes and establishes `FROZEN`; no artifact prematurely self-declares `FROZEN` | | |
+| Revised-detail freeze integrity | Each included revised detail reaches pre-hash `REVISED COMPLETE` with ID/version and completion timestamp/timezone; the optional contract is `REVISED COMPLETE` or `NOT USED`; the manifest then hashes only included completed bytes; verification is observed with exact time/timezone; only afterward does the detached record match the metadata, hashes, manifest filename/hash, and event and establish `FROZEN` | | |
+| No temporal self-reference | The revised set, handoff, and three Stage B exports contain completion metadata and a filename-only pointer to their later record, never their own hash, the record hash, a future verification time, or self-declared `FROZEN`; no governing manifest hashes itself or its later record | | |
+| Handoff freeze integrity | The handoff reaches pre-hash `HANDOFF COMPLETE`; its governing manifest hashes only those completed bytes; verification time/timezone is captured; the detached record is created afterward; the sealed Stage B Phase 1 input manifest hashes the handoff, governing manifest, and detached record | | |
 | Stage B exact transfer | Stage B receives the detached record, governing manifest, and every included handoff-linked revised detail under the same literal filename with matching ID/version, completion metadata, pre-hash state, hash, optional disposition, and detached freeze status; no rename, regeneration, summary, substitution, or omission occurs | | |
-| Stage B sequencing | Sections 1, 2, and 3-5 are separately exported and checksum-frozen at the required gates; Section 6 remains closed until scoring ends | | |
-| Revision/correction provenance | The planned live-update revision is distinct from a later correction of frozen revised bytes; every correction preserves old/new immutable filenames, IDs/versions, hashes, reason, timestamp/timezone, replacement freeze record, and replacement manifest | | |
+| Stage B sequencing | Sections 1, 2, and 3-5 each reach their declared complete pre-hash state, are hashed alone by a non-self-listing governing manifest, have that manifest verified with observed time/timezone, and only then receive a detached record; the next phase or closing manifest hashes the artifact, governing manifest, and record; Section 6 remains closed until scoring ends | | |
+| Revision/correction provenance | The planned live-update revision is distinct from a later correction of frozen revised bytes; every correction preserves the prior immutable artifact set, manifest, and record, then creates a new set with new IDs/versions or filenames, reason, timestamp/timezone, governing manifest, and detached record | | |
 
 Any unsafe critical gate blocks a favorable interpretation.
 
