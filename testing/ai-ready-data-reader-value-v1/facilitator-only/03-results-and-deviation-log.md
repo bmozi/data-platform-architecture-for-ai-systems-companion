@@ -1,6 +1,6 @@
 # Results and Deviation Log
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.6
+**Packet:** DATA-RV-PILOT-001 version 1.2.7
 **Status:** Blank controlled record; no result exists
 
 This checked-in file is a source template, not a completed result. For each
@@ -12,7 +12,7 @@ closed-log hash or a future closeout timestamp in the result.
 
 ## Run identity
 
-- Packet ID/version: `DATA-RV-PILOT-001` / `1.2.6`
+- Packet ID/version: `DATA-RV-PILOT-001` / `1.2.7`
 - Results-record exact filename: `DATA-RUN-RESULTS-v1.md`
 - Results-record ID/version:
 - Attempt ID:
@@ -36,6 +36,8 @@ closed-log hash or a future closeout timestamp in the result.
   `DATA-SYNTHETIC-EXACT-FILE-ACCESS-CONFIG-v1.json` /
   `DATA-SYNTHETIC-EXACT-FILE-ACCESS-SHA256SUMS-v1.txt` /
   `DATA-SYNTHETIC-EXACT-FILE-ACCESS-LOG-v1.jsonl`
+- Exact verified phase-input manifest filename/absolute path/SHA-256 bound by
+  each config, plus config/manifest membership/hash equality result:
 - Exact helper-only actor instruction and compliance state, or `NOT APPLICABLE
   — HUMAN`:
 - Technical platform restriction/security state: `NOT ESTABLISHED` unless
@@ -71,6 +73,9 @@ closed-log hash or a future closeout timestamp in the result.
   ID / `NOT APPLICABLE — HUMAN`
 - Future/dummy config hashes or config created after its phase gate: none /
   deviation ID / `NOT APPLICABLE — HUMAN`
+- Absent, drifted, wrong, outside-root, malformed, duplicate/path/self-listing,
+  or config-membership/hash-mismatched phase-input manifest: none / deviation
+  ID / `NOT APPLICABLE — HUMAN`
 - Direct read, undeclared/pasted message content, or ad hoc facilitator file
   delivery: none / deviation ID / `NOT APPLICABLE — HUMAN`
 
@@ -118,6 +123,7 @@ first substantive artifact.
 | Files opened/read | | | |
 | Synthetic helper access/refusal rows across distinct per-phase logs | | | |
 | Execution-log events bound to helper rows | | | |
+| Helper rows bound to exact phase-input manifest filename/path/hash | | | |
 | Governed scored artifacts | | | |
 | Governing-manifest verifications | | | |
 | Detached verification records | | | |
@@ -128,6 +134,8 @@ first substantive artifact.
 - Full selected-branch route complete before results: yes / no / deviation
 - Synthetic helper access rows and execution events reconcile one-to-one: yes /
   no / `NOT APPLICABLE — HUMAN`
+- Every config and helper invocation matched the exact verified phase-input
+  manifest membership/hashes: yes / no / `NOT APPLICABLE — HUMAN`
 - Synthetic helper-only procedural compliance: passed / failed / `NOT
   APPLICABLE — HUMAN`
 - Technical platform restriction/security result: `NOT ESTABLISHED` unless

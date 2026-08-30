@@ -1,6 +1,6 @@
 # Facilitator Guide
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.6
+**Packet:** DATA-RV-PILOT-001 version 1.2.7
 **Status:** Facilitator-only; prepared and unrun
 
 ## Purpose
@@ -84,13 +84,19 @@ inventory item by item in the external access log.
 For each synthetic phase, wait until the phase's exact input bytes exist and
 its sealed-input manifest verifies. Then, before the phase gate opens, create
 immutable `DATA-SYNTHETIC-EXACT-FILE-ACCESS-CONFIG-v1.json` from those observed
-hashes in route order and verify
+hashes in route order and bind the exact verified phase-input manifest
+filename, absolute path, and SHA-256. Verify
 `DATA-SYNTHETIC-EXACT-FILE-ACCESS-SHA256SUMS-v1.txt` over exactly the pre-run
-helper copy and config. Do not predict later participant artifact hashes or use
-dummy hashes. Each phase has a distinct same-named external
+helper copy and config. On every invocation the helper must rehash and parse
+that phase-input manifest and require complete flat membership/hash equality
+with `ordered_files` before applying read order. Do not predict later
+participant artifact hashes or use dummy hashes. An absent, drifted, wrong,
+outside-root, malformed, duplicate/path/self-listing, or config-mismatched
+input manifest is a stop. Each phase has a distinct same-named external
 `DATA-SYNTHETIC-EXACT-FILE-ACCESS-LOG-v1.jsonl`; invoke the helper serially and
 mirror every grant, optional skip, or refusal into
-`DATA-EXECUTION-ACCESS-LOG-v1.jsonl`. A config created after its phase gate,
+`DATA-EXECUTION-ACCESS-LOG-v1.jsonl`; each row binds the phase-input manifest
+filename/path/hash. A config created after its phase gate,
 shared cross-phase helper log, ad hoc message delivery, or unreconciled helper
 row is a stop and deviation.
 

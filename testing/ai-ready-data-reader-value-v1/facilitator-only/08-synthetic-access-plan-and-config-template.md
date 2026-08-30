@@ -1,6 +1,6 @@
 # Synthetic Exact-File Access Plan and Config Template
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.6
+**Packet:** DATA-RV-PILOT-001 version 1.2.7
 **Status:** Blank facilitator-only pre-run template; not participant input and
 not an execution result
 
@@ -40,8 +40,10 @@ This narrow exception is not general shell permission.
   demonstrated with retained platform evidence
 
 The actor instruction permits only this literal shape, with the immutable
-helper and reserved config/manifest absolute paths fixed before `RUN_STARTED`
-and only the literal current-phase filename slot selectable by the actor:
+helper, dispatch shape, and reserved future config/binding-manifest filenames
+and locations fixed before `RUN_STARTED`, and only the literal current-phase
+filename slot selectable by the actor. This prebinding fixes no future config
+contents or hashes:
 
 ```text
 python3 DATA-SYNTHETIC-EXACT-FILE-ACCESS-v1.py \
@@ -82,14 +84,17 @@ Every config has exactly these keys:
 
 ```json
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "packet_id": "DATA-RV-PILOT-001",
-  "packet_version": "1.2.6",
+  "packet_version": "1.2.7",
   "attempt_id": "DATA-SYN-...",
   "actor_code": "DATA-A-SYN-...",
   "stage": "A",
   "phase_id": "stage-a-initial",
   "input_root": "/absolute/sealed/current-phase/input",
+  "phase_input_manifest_filename": "DATA-A-PHASE-1-INPUT-SHA256SUMS-v1.txt",
+  "phase_input_manifest_path": "/absolute/sealed/current-phase/input/DATA-A-PHASE-1-INPUT-SHA256SUMS-v1.txt",
+  "phase_input_manifest_sha256": "64-lowercase-hex",
   "ordered_files": [
     {
       "filename": "00-packet-route.md",
@@ -107,14 +112,20 @@ Every config has exactly these keys:
 ```
 
 Before the applicable phase gate, record the config SHA-256, binding-manifest
-SHA-256, phase sealed-input manifest identity/hash, access-log initial state,
+SHA-256, phase sealed-input manifest exact filename/absolute path/SHA-256,
+access-log initial state,
 creation and verification event IDs, timestamps/timezones, commands, complete
 outputs, and exit codes. The config and binding manifest become immutable at
 that point.
 
-The `ordered_files` array is the current phase's complete filename allowlist
-and exact read order. It contains hashes from that phase's verified sealed
-input manifest. The optional data-product contract has `"optional": true` at
+The `ordered_files` array is the current phase's exact read order. Its complete
+flat filename/hash set must equal the exact verified phase-input manifest
+named, located, and hashed by the three `phase_input_manifest_*` fields. The
+helper rehashes and parses that manifest on every invocation, rejects an
+absent, drifted, outside-root, malformed, duplicate-member, path-member, or
+self-listing manifest, and rejects any config/manifest membership or hash
+mismatch before reading a target. The optional data-product contract has
+`"optional": true` at
 its route position; every other file is required. The config grants no path
 slot, glob, directory listing, arbitrary command, message, or later-added
 member. Future/dummy hashes are forbidden; every hash must be observed from
@@ -137,14 +148,16 @@ for an already declared phase and before that phase's gate.
 
 ## Required access/refusal evidence
 
-The helper appends and fsyncs one JSONL row for every granted read, optional skip, or
+The helper uses an explicitly serialized write-all loop and fsyncs one JSONL
+row for every granted read, optional skip, or
 refusal. The external execution/access log records the corresponding
 `FILE_OPENED_OR_ACCESS_ATTEMPT_RECORDED` event and binds its helper access-log
 event ID. A refusal never advances read order. Hash mismatch, wrong filename,
 wrong order, wrong phase, exhausted allowlist, required-file skip, malformed
 config, changed helper/config, or undeclared access is a stop or explicit
-deviation. Invoke the helper serially; concurrent invocations are outside the
-declared local durability model and are a stop.
+deviation. Every row binds the exact phase-input manifest filename/path/hash as well as
+the helper config and binding manifest. Invoke the helper serially; concurrent
+invocations are outside the declared local durability model and are a stop.
 
 Before each phase gate opens, the facilitator verifies the phase's sealed
 input manifest, helper/config binding manifest, immutable config, expected next
@@ -157,6 +170,7 @@ mutate a config or grant new authority.
 This mechanism can make the helper's exact-file boundary and file chronology
 auditable. It does not prove that the host platform technically removed other
 tools or that its sandbox is secure. Technical platform restriction/security
-remains `NOT ESTABLISHED` unless separately demonstrated. It also does not prove that
-a human used the materials or that any data, control, system, safety outcome,
-or business result is valid.
+remains `NOT ESTABLISHED` unless separately demonstrated. It also does not
+prove that a serialized local append establishes cross-process security
+isolation. It does not prove that a human used the materials or that any data,
+control, system, safety outcome, or business result is valid.

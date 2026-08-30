@@ -1,16 +1,18 @@
 # AI-Ready Data Reader-Value Pilot Packet
 
 **Packet ID:** DATA-RV-PILOT-001
-**Version:** 1.2.6
+**Version:** 1.2.7
 **Status:** Prepared and unrun; no participant recruited or consented
 **Scenario:** Harbor Grove Housing, entirely fictional
 
-Version 1.2.6 repairs retained v1.2.5 attempt `DATA-SYN-20260830-002`
-deviation `DEV-002`: the synthetic actor had no route-permitted exact-file read
-mechanism. A synthetic run may now use only a pre-run immutable,
-checksum-bound exact-file helper declared in both the orchestration manifest
-and synthetic context. Human participants still use ordinary file surfaces
-without terminal or repository access. Version 1.2.6 preserves v1.2.5's
+Version 1.2.7 repairs an independent audit defect in v1.2.6: a config could
+self-declare allowed filenames and hashes without proving equality to the
+already verified sealed phase-input manifest. The config now binds that exact
+manifest's identity, absolute path, and SHA-256; on every invocation the helper
+parses it and requires complete flat membership/hash equality before applying
+the config-defined read order. Human participants still use ordinary file
+surfaces without terminal or repository access. Version 1.2.7 preserves
+v1.2.6's pre-run immutable checksum-bound helper boundary, v1.2.5's
 full-route closure controls and version 1.2.4's exact immutable
 participant/run input `DATA-A-LIVE-UPDATE-v1.md` and conditional initial
 data-product-contract binding. It also preserves the non-circular freeze order, exact
@@ -19,9 +21,9 @@ identity, sealed delivery, and staged Stage B controls. Every governed freeze
 follows one observable order:
 complete artifacts, create their governing manifest, verify it and capture the
 exact event, then create a detached verification record. Synthetic work is
-defect-finding only. Version 1.2.5 remains preserved at source commit
-`e38c7742a32a35c3bc2e0bb4b2d8a415d8a7595b`; do not relabel an older run as
-1.2.6. A 1.2.6
+defect-finding only. Version 1.2.6 remains preserved at source commit
+`b28f3e68e6e8309773d7b05f5528a05f7dd27de9`; do not relabel an older run as
+1.2.7. A 1.2.7
 correction produces a new immutable artifact set, governing manifest, and
 detached record rather than overwriting old evidence.
 This version remains **PREPARED/UNRUN** with people and supports no
@@ -65,9 +67,13 @@ declared helper command for the current phase. After that phase's exact input
 bytes exist and its sealed-input manifest verifies—but before its gate
 opens—the facilitator creates immutable
 `DATA-SYNTHETIC-EXACT-FILE-ACCESS-CONFIG-v1.json` from observed member hashes
-and verifies `DATA-SYNTHETIC-EXACT-FILE-ACCESS-SHA256SUMS-v1.txt` over exactly
-the helper and config. The helper enforces the flat filename allowlist, hashes,
-and read order and logs every grant, optional skip, or refusal to a distinct
+and records the verified phase-input manifest's literal filename, absolute
+path, and SHA-256. Then verify
+`DATA-SYNTHETIC-EXACT-FILE-ACCESS-SHA256SUMS-v1.txt` over exactly the helper and
+config. On every invocation the helper hashes and parses that exact
+phase-input manifest, rejects path/duplicate/self entries, and requires its
+complete flat filename/hash set to equal `ordered_files` before enforcing the
+config-defined read order. It logs every grant, optional skip, or refusal to a distinct
 per-phase `DATA-SYNTHETIC-EXACT-FILE-ACCESS-LOG-v1.jsonl`. It does not prove the
 host platform removed other tools; technical platform restriction/security is
 `NOT ESTABLISHED` unless separately demonstrated. General commands, direct
@@ -244,7 +250,7 @@ then complete `DATA-RUN-CLOSEOUT-v1.md` binding the closed-log,
 closeout-manifest, and results hashes. Only synthetic attempts satisfying all
 these boundaries may say `Full synthetic route complete`.
 
-The source results file is a blank template, not a result. Version 1.2.6
+The source results file is a blank template, not a result. Version 1.2.7
 inherits no earlier score, layout disposition, or execution result. Human
 evidence, data readiness, and real-world evidence remain `UNRUN`.
 
@@ -275,7 +281,8 @@ retain exact manifest-verification command/output/exit/time/timezone evidence.
 
 For a synthetic branch, also retain the source helper hash, every pre-run run
 helper copy/hash, reserved phase access paths, each later config and
-helper/config binding manifest, distinct per-phase helper access logs, and the
+helper/config binding manifest, each exact phase-input manifest
+filename/path/hash, distinct per-phase helper access logs, and the
 one-to-one reconciliation between helper grants/refusals and execution-log
 events. Do not create future phase configs with guessed or dummy hashes; create
 each only from the observed verified phase-input manifest before its gate.

@@ -1,6 +1,6 @@
 # Static Temporal-Protocol Validation
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.6
+**Packet:** DATA-RV-PILOT-001 version 1.2.7
 **Review date:** 2026-08-30
 **Result:** PASS for static source instructions after repository validation
 **Evidence class:** Local static inspection, not a participant run
@@ -41,12 +41,15 @@ larger participant/run route:
     `DATA-SYNTHETIC-CONTEXT-v1.md` plus its verified manifest for `SYNTHETIC`,
     with no fictional human-consent or human-result claim;
 11. a synthetic-only byte-exact helper is selected and orchestration/context
-    bound before `RUN_STARTED`; each current-phase config uses only observed
-    hashes from its verified sealed-input manifest, its helper/config manifest
-    verifies before the phase gate, every grant/refusal is logged and
-    reconciled, and no future/dummy hash, config-after-gate, general command,
-    direct read, or ad hoc message delivery is allowed; helper compliance does
-    not establish host-platform restriction or sandbox security;
+    bound before `RUN_STARTED`; each current-phase config binds the exact
+    verified sealed-input manifest filename, absolute path, and observed hash,
+    and its ordered-file membership/hashes must equal that manifest on every
+    invocation; its helper/config manifest verifies before the phase gate,
+    every grant/refusal is logged with a serialized write-all append and fsync
+    and reconciled, and no absent/drifted/wrong manifest, future/dummy hash,
+    config-after-gate, general command, direct read, or ad hoc message delivery
+    is allowed; helper compliance does not establish host-platform restriction,
+    cross-process security isolation, or sandbox security;
 12. exact Stage A and Stage B context/start checkpoints, Stage A material
     feedback/end, Stage B scoring end, gated Section 6 debrief, Stage B end,
     immutable results completion, and log close are recorded in order;
@@ -68,7 +71,7 @@ timestamps and self-hash fields in governed templates, and the old
 checksum-reference fields that would require an artifact to predict its own
 post-hash evidence. Per-file semantic clauses now enforce manifest exclusion,
 ordered completion and verification, release-manifest triple binding, and
-immutable correction identity. Forty-six negative mutations prove the validator
+immutable correction identity. Fifty-one negative mutations prove the validator
 rejects manifest self-inclusion, same-path correction, missing revised Stage A
 release binding, omitted complete verification output, missing attempt
 identity, invalid record chronology, undeclared orchestration permission,
@@ -85,6 +88,13 @@ reject an absent helper, helper selection after `RUN_STARTED`, overbroad helper
 authority, ad hoc message delivery, future/dummy config hashes, and config
 creation after its phase gate. Structured mutations refresh surrounding checksums
 so rejection depends on the invariant rather than merely a stale hash.
+Five v1.2.7 successor mutations additionally reject omission of exact
+phase-input manifest identity/path/hash binding, failure to reverify that
+manifest on every invocation, an outside-root manifest, weakened exact
+membership equality, and weakened exact member-hash equality. The helper
+subprocess suite separately rejects absent, drifted, outside-root, malformed,
+duplicate, and config-mismatched manifests while retaining the two-phase
+positive control.
 They also reject any scored workbook source that requires the future Stage A
 or Stage B end event inside governed bytes; those end facts belong only to the
 facilitator log and later run results.
@@ -103,8 +113,9 @@ facilitator log and later run results.
 
 The repository validator contains packet-specific temporal protocol checks,
 the executable negative fixtures check representative adversarial drift, and
-the helper subprocess suite checks exact byte emission, distinct two-phase
-logs, and bounded refusals.
+the helper subprocess suite checks partial write-all/fsync behavior, exact byte
+emission, distinct two-phase logs, phase-manifest binding/equality, and bounded
+refusals.
 The packet's checked-in `SHA256SUMS` includes this note and every other prepared
 source-packet file, excluding the manifest itself.
 

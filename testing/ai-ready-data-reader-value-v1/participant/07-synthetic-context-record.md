@@ -1,6 +1,6 @@
 # Synthetic Context Record Template
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.6
+**Packet:** DATA-RV-PILOT-001 version 1.2.7
 **Status:** Blank synthetic-branch template; not consent and not a result
 
 Use this template only when the run selects the synthetic branch. A synthetic
@@ -18,7 +18,7 @@ or closeout time.
 
 ## Required synthetic context
 
-- Packet ID/version: `DATA-RV-PILOT-001` / `1.2.6`
+- Packet ID/version: `DATA-RV-PILOT-001` / `1.2.7`
 - Attempt ID:
 - Required literal: `SYNTHETIC — NO HUMAN PARTICIPANT OR HUMAN DATA`
 - Scenario boundary: fictional Harbor Grove scenario only
@@ -39,7 +39,9 @@ or closeout time.
   `DATA-SYNTHETIC-EXACT-FILE-ACCESS-v1.py` /
 - Predeclared phase access directories, helper-copy hashes, and actor assignments:
 - Exact per-phase config filename/schema:
-  `DATA-SYNTHETIC-EXACT-FILE-ACCESS-CONFIG-v1.json` / schema 1
+  `DATA-SYNTHETIC-EXACT-FILE-ACCESS-CONFIG-v1.json` / schema 2
+- Required per-phase verified input-manifest filename/absolute path/SHA-256
+  binding and exact config membership/hash equality:
 - Exact per-phase helper/config binding-manifest filename:
   `DATA-SYNTHETIC-EXACT-FILE-ACCESS-SHA256SUMS-v1.txt`
 - Exact distinct per-phase external access-log filename:
@@ -59,6 +61,13 @@ or closeout time.
 - Context-record pre-hash state: `CONTEXT COMPLETE`
 - Later manifest exact filename:
   `DATA-SYNTHETIC-CONTEXT-SHA256SUMS-v1.txt`
+
+Every later per-phase config must bind the exact verified phase-input manifest
+flat filename, absolute path inside sealed input, and observed SHA-256. On
+every invocation, the helper must rehash and parse that manifest and require
+exact config/manifest membership and member-hash equality before reading a
+target. An absent, drifted, wrong, outside-root, malformed, duplicate,
+path-bearing, self-listing, or mismatched manifest stops the run.
 
 ## Synthetic non-claim
 

@@ -1,6 +1,6 @@
 # Participant Packet Route
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.6
+**Packet:** DATA-RV-PILOT-001 version 1.2.7
 **Status:** Prepared and unrun with people
 
 This file controls the read order. Use `UNKNOWN`, `UNASSIGNED`, or `STOP` when
@@ -70,6 +70,12 @@ For every synthetic phase, the facilitator creates the phase config only after
 all current input bytes exist and before that phase gate opens. Its
 `ordered_files` is exactly the current phase's sealed-input manifest in route
 order, with the data-product contract optional only at its declared position.
+The config records that manifest's exact filename, absolute path, and SHA-256.
+On every invocation the helper rehashes and parses the manifest and requires
+complete flat filename/hash equality with `ordered_files` before applying the
+config-defined order. An absent, drifted, outside-input-root, malformed,
+duplicate/path/self-listing, wrong, or config-mismatched manifest is a logged
+refusal and stop.
 The config and its exact helper copy are the only two members of
 `DATA-SYNTHETIC-EXACT-FILE-ACCESS-SHA256SUMS-v1.txt`. Wrong order, path, glob,
 hash, required-file skip, exhausted allowlist, helper/config drift, overbroad

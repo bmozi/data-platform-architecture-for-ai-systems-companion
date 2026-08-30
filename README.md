@@ -61,18 +61,21 @@ from a data-team slogan into a cross-functional decision. Use the
 valuable use, then exercise assumptions with the [Failure Lab](FAILURE-LAB.md)
 and [Pilot Route](PILOT-AND-USABILITY.md).
 
-The prepared reader-value packet is `DATA-RV-PILOT-001` version 1.2.6. Stage A
+The prepared reader-value packet is `DATA-RV-PILOT-001` version 1.2.7. Stage A
 freezes exact revised details through a detached record before opening its
 one-screen handoff; Stage B reads that handoff first, verifies the same literal
-files, then freezes its decision in three stages. Version 1.2.6 preserves
-v1.2.5's full-route and one-page layout controls and v1.2.4's exact immutable
-Stage A live update and optional-contract branch. It adds a synthetic-only,
-pre-run checksum-bound exact-file helper whose per-phase config uses observed
-sealed-input hashes and verifies before the phase gate. Human participants
-still use ordinary file surfaces without terminal or repository access. Helper
-procedural compliance is not sandbox proof; technical platform restriction is
-`NOT ESTABLISHED` unless separately demonstrated. Six scored freeze chains do
-not alone establish full-route completion. The packet remains unrun with
+files, then freezes its decision in three stages. Version 1.2.7 preserves
+v1.2.6's synthetic-only pre-run checksum-bound exact-file helper, v1.2.5's
+full-route and one-page layout controls, and v1.2.4's exact immutable Stage A
+live update and optional-contract branch. Each per-phase config now binds its
+exact verified sealed-input manifest filename/path/hash, and the helper
+rehashes and parses that manifest and proves exact member/hash equality on
+every invocation before it reads a target. Human participants still use
+ordinary file surfaces without terminal or repository access. Helper
+procedural compliance is not sandbox or cross-process security proof;
+technical platform restriction is `NOT ESTABLISHED` unless separately
+demonstrated. Six scored freeze chains do not alone establish full-route
+completion. The packet remains unrun with
 people and carries no human, practitioner, data-readiness, safety, business-
 value, or real-world validation.
 

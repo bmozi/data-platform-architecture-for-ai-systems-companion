@@ -385,6 +385,46 @@ def mutate_config_after_phase_gate(repo: Path) -> None:
     write_protocol(repo, protocol)
 
 
+def mutate_phase_manifest_identity_absent(repo: Path) -> None:
+    protocol = load_protocol(repo)
+    protocol["synthetic_exact_file_access"][
+        "phase_input_manifest_identity_required"
+    ] = False
+    write_protocol(repo, protocol)
+
+
+def mutate_phase_manifest_not_reverified(repo: Path) -> None:
+    protocol = load_protocol(repo)
+    protocol["synthetic_exact_file_access"][
+        "phase_input_manifest_verified_every_invocation"
+    ] = False
+    write_protocol(repo, protocol)
+
+
+def mutate_phase_manifest_outside_root(repo: Path) -> None:
+    protocol = load_protocol(repo)
+    protocol["synthetic_exact_file_access"][
+        "phase_input_manifest_must_be_inside_input_root"
+    ] = False
+    write_protocol(repo, protocol)
+
+
+def mutate_config_manifest_membership_weakening(repo: Path) -> None:
+    protocol = load_protocol(repo)
+    protocol["synthetic_exact_file_access"][
+        "config_membership_must_equal_phase_manifest"
+    ] = False
+    write_protocol(repo, protocol)
+
+
+def mutate_config_manifest_hash_weakening(repo: Path) -> None:
+    protocol = load_protocol(repo)
+    protocol["synthetic_exact_file_access"][
+        "config_hashes_must_equal_phase_manifest"
+    ] = False
+    write_protocol(repo, protocol)
+
+
 def main() -> int:
     positive = run_validator(ROOT)
     if positive.returncode != 0:
@@ -646,13 +686,38 @@ def main() -> int:
             mutate_config_after_phase_gate,
             "synthetic exact-file access must preserve",
         ),
+        (
+            "phase-manifest-identity-absent",
+            mutate_phase_manifest_identity_absent,
+            "synthetic exact-file access must preserve",
+        ),
+        (
+            "phase-manifest-not-reverified",
+            mutate_phase_manifest_not_reverified,
+            "synthetic exact-file access must preserve",
+        ),
+        (
+            "phase-manifest-outside-root",
+            mutate_phase_manifest_outside_root,
+            "synthetic exact-file access must preserve",
+        ),
+        (
+            "config-manifest-membership-weakening",
+            mutate_config_manifest_membership_weakening,
+            "synthetic exact-file access must preserve",
+        ),
+        (
+            "config-manifest-hash-weakening",
+            mutate_config_manifest_hash_weakening,
+            "synthetic exact-file access must preserve",
+        ),
     ]
     for name, mutation, expected in repo_cases:
         assert_repo_rejected(name, mutation, expected)
 
     print(
         "temporal protocol mutation tests passed: full positive control and "
-        "semantic baseline accepted; 46 adversarial mutations rejected"
+        "semantic baseline accepted; 51 adversarial mutations rejected"
     )
     return 0
 

@@ -15,8 +15,8 @@ from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 
 PACKET_ID = "DATA-RV-PILOT-001"
-PACKET_VERSION = "1.2.6"
-SCHEMA_VERSION = 1
+PACKET_VERSION = "1.2.7"
+SCHEMA_VERSION = 2
 RUN_HELPER_FILENAME = "DATA-SYNTHETIC-EXACT-FILE-ACCESS-v1.py"
 RUN_CONFIG_FILENAME = "DATA-SYNTHETIC-EXACT-FILE-ACCESS-CONFIG-v1.json"
 RUN_BINDING_MANIFEST = "DATA-SYNTHETIC-EXACT-FILE-ACCESS-SHA256SUMS-v1.txt"
@@ -31,6 +31,9 @@ CONFIG_KEYS = {
     "stage",
     "phase_id",
     "input_root",
+    "phase_input_manifest_filename",
+    "phase_input_manifest_path",
+    "phase_input_manifest_sha256",
     "ordered_files",
     "access_log",
     "binding_manifest_filename",
@@ -66,14 +69,22 @@ def resolved_outside(root: Path, candidate: Path) -> bool:
     return False
 
 
-def parse_manifest(path: Path) -> dict[str, str]:
+def parse_manifest_bytes(value: bytes) -> dict[str, str]:
     entries: dict[str, str] = {}
-    for line in path.read_text(encoding="utf-8").splitlines():
+    try:
+        lines = value.decode("utf-8").splitlines()
+    except UnicodeDecodeError as exc:
+        raise BoundaryError("checksum manifest is not UTF-8") from exc
+    for line in lines:
         match = HASH_LINE.fullmatch(line)
         if not match or match.group(2) in entries:
-            raise BoundaryError("binding manifest is malformed or has duplicate members")
+            raise BoundaryError("checksum manifest is malformed or has duplicate members")
         entries[match.group(2)] = match.group(1)
     return entries
+
+
+def parse_manifest(path: Path) -> dict[str, str]:
+    return parse_manifest_bytes(path.read_bytes())
 
 
 def load_config(path: Path) -> dict:
@@ -101,6 +112,28 @@ def load_config(path: Path) -> dict:
         raise BoundaryError("helper config is not immutable")
     if value["binding_manifest_filename"] != RUN_BINDING_MANIFEST:
         raise BoundaryError("binding manifest identity mismatch")
+    phase_manifest_filename = value["phase_input_manifest_filename"]
+    if (
+        not isinstance(phase_manifest_filename, str)
+        or not phase_manifest_filename
+        or Path(phase_manifest_filename).name != phase_manifest_filename
+        or "/" in phase_manifest_filename
+        or "\\" in phase_manifest_filename
+    ):
+        raise BoundaryError("phase-input manifest filename is not one flat identity")
+    phase_manifest_path = value["phase_input_manifest_path"]
+    if not isinstance(phase_manifest_path, str) or not Path(
+        phase_manifest_path
+    ).is_absolute():
+        raise BoundaryError("phase-input manifest path must be absolute")
+    if Path(phase_manifest_path) != Path(phase_manifest_path).resolve():
+        raise BoundaryError("phase-input manifest path must be canonical")
+    if Path(phase_manifest_path).name != phase_manifest_filename:
+        raise BoundaryError("phase-input manifest path/filename identity mismatch")
+    if not isinstance(value["phase_input_manifest_sha256"], str) or not re.fullmatch(
+        r"[0-9a-f]{64}", value["phase_input_manifest_sha256"]
+    ):
+        raise BoundaryError("phase-input manifest SHA-256 is invalid")
     ordered = value["ordered_files"]
     if not isinstance(ordered, list) or not ordered:
         raise BoundaryError("ordered_files must be a non-empty list")
@@ -173,6 +206,24 @@ def validate_boundary(
     if access_log.resolve() != audit_log_path:
         raise BoundaryError("config access_log differs from the fixed audit-log argument")
     input_root = input_root.resolve()
+    phase_input_manifest = Path(config["phase_input_manifest_path"]).resolve()
+    if phase_input_manifest.parent != input_root:
+        raise BoundaryError("phase-input manifest is outside the sealed input root")
+    if not phase_input_manifest.is_file():
+        raise BoundaryError("phase-input manifest is absent")
+    phase_manifest_bytes = phase_input_manifest.read_bytes()
+    if sha256_bytes(phase_manifest_bytes) != config["phase_input_manifest_sha256"]:
+        raise BoundaryError("phase-input manifest hash differs from the config")
+    phase_entries = parse_manifest_bytes(phase_manifest_bytes)
+    if config["phase_input_manifest_filename"] in phase_entries:
+        raise BoundaryError("phase-input manifest lists itself")
+    ordered_entries = {
+        item["filename"]: item["sha256"] for item in config["ordered_files"]
+    }
+    if phase_entries != ordered_entries:
+        raise BoundaryError(
+            "config ordered_files membership/hashes differ from the phase-input manifest"
+        )
     access_parent = access_log.parent.resolve()
     if not resolved_outside(input_root, access_parent):
         raise BoundaryError("access log must remain outside participant input")
@@ -200,6 +251,16 @@ def load_access_rows(path: Path, config: dict, config_hash: str, binding_hash: s
             raise BoundaryError("access log config binding mismatch")
         if row.get("binding_manifest_sha256") != binding_hash:
             raise BoundaryError("access log manifest binding mismatch")
+        if row.get("phase_input_manifest_filename") != config[
+            "phase_input_manifest_filename"
+        ]:
+            raise BoundaryError("access log phase-input manifest filename mismatch")
+        if row.get("phase_input_manifest_path") != config["phase_input_manifest_path"]:
+            raise BoundaryError("access log phase-input manifest path mismatch")
+        if row.get("phase_input_manifest_sha256") != config[
+            "phase_input_manifest_sha256"
+        ]:
+            raise BoundaryError("access log phase-input manifest hash mismatch")
         rows.append(row)
     return rows
 
@@ -230,13 +291,27 @@ def append_access(
         "timezone": config["timezone"],
         "config_sha256": config_hash,
         "binding_manifest_sha256": binding_hash,
+        "phase_input_manifest_filename": config["phase_input_manifest_filename"],
+        "phase_input_manifest_path": config["phase_input_manifest_path"],
+        "phase_input_manifest_sha256": config["phase_input_manifest_sha256"],
     }
     if not path.parent.is_dir():
         raise BoundaryError("predeclared access-log directory does not exist")
     encoded = (json.dumps(row, separators=(",", ":")) + "\n").encode("utf-8")
+    serialized_write_all_fsync(path, encoded)
+
+
+def serialized_write_all_fsync(path: Path, encoded: bytes) -> None:
+    """Append every byte and fsync; callers must serialize helper invocations."""
+
     descriptor = os.open(path, os.O_APPEND | os.O_CREAT | os.O_WRONLY, 0o600)
     try:
-        os.write(descriptor, encoded)
+        view = memoryview(encoded)
+        while view:
+            written = os.write(descriptor, view)
+            if written <= 0:
+                raise OSError("append write made no progress")
+            view = view[written:]
         os.fsync(descriptor)
     finally:
         os.close(descriptor)
@@ -269,7 +344,11 @@ def append_preboundary_refusal(
     except (TypeError, ValueError, ZoneInfoNotFoundError):
         now = datetime.now().astimezone().isoformat(timespec="seconds")
         timezone = str(datetime.now().astimezone().tzinfo)
-    existing = audit_log.read_text(encoding="utf-8").splitlines() if audit_log.exists() else []
+    existing = (
+        audit_log.read_text(encoding="utf-8").splitlines()
+        if audit_log.exists()
+        else []
+    )
 
     def observed_hash(path: Path) -> str:
         try:
@@ -291,16 +370,20 @@ def append_preboundary_refusal(
         "timezone": timezone,
         "config_sha256": observed_hash(config_path),
         "binding_manifest_sha256": observed_hash(manifest_path),
+        "phase_input_manifest_filename": raw_config.get(
+            "phase_input_manifest_filename", "UNVERIFIED"
+        ),
+        "phase_input_manifest_path": raw_config.get(
+            "phase_input_manifest_path", "UNVERIFIED"
+        ),
+        "phase_input_manifest_sha256": raw_config.get(
+            "phase_input_manifest_sha256", "UNVERIFIED"
+        ),
     }
     if not audit_log.parent.is_dir():
         raise BoundaryError("predeclared audit-log directory does not exist")
     encoded = (json.dumps(row, separators=(",", ":")) + "\n").encode("utf-8")
-    descriptor = os.open(audit_log, os.O_APPEND | os.O_CREAT | os.O_WRONLY, 0o600)
-    try:
-        os.write(descriptor, encoded)
-        os.fsync(descriptor)
-    finally:
-        os.close(descriptor)
+    serialized_write_all_fsync(audit_log, encoded)
 
 
 def completed_filenames(rows: list[dict]) -> list[str]:

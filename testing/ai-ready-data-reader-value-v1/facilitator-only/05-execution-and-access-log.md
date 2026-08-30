@@ -1,6 +1,6 @@
 # Facilitator Execution and Access Log
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.6
+**Packet:** DATA-RV-PILOT-001 version 1.2.7
 **Status:** Blank facilitator-side control record; prepared and unrun
 
 Create the append-only run instance as exactly
@@ -28,6 +28,8 @@ its verified sealed-input manifest.
   `NOT APPLICABLE — HUMAN`:
   `DATA-SYNTHETIC-EXACT-FILE-ACCESS-CONFIG-v1.json` /
   `DATA-SYNTHETIC-EXACT-FILE-ACCESS-SHA256SUMS-v1.txt` /
+- Current verified phase-input manifest exact filename/absolute path/SHA-256
+  and config membership/hash equality, or `NOT APPLICABLE — HUMAN`:
 - Current distinct external helper access log, or `NOT APPLICABLE — HUMAN`:
   `DATA-SYNTHETIC-EXACT-FILE-ACCESS-LOG-v1.jsonl`
 - Technical platform restriction/security state: `NOT ESTABLISHED` unless
@@ -55,13 +57,21 @@ claims. Mixing, switching, or leaving the branch blank stops the run.
 For `SYNTHETIC`, the immutable helper must be selected, checksum-bound in the
 orchestration manifest and context, and copied to every predeclared phase
 access directory before `RUN_STARTED`. After each phase-input manifest
-verifies, create its exact config from observed member hashes, create and
-verify its helper/config binding manifest, and only then open the phase gate.
-Future/dummy hashes, config creation after the gate, shared cross-phase helper
-logs, changed helper/config bytes, general commands, direct reads, and ad hoc
-message delivery are stops. The helper access logs every grant/refusal; mirror
-each row into this log one-to-one. The helper's boundary is observed separately
-from host-platform restriction, which remains `NOT ESTABLISHED` unless proved.
+verifies, create its exact config from observed member hashes and bind the
+manifest's exact flat filename, absolute path inside the sealed input, and
+observed SHA-256. Create and verify the helper/config binding manifest, and
+only then open the phase gate. On every invocation, the helper rehashes and
+parses that phase-input manifest and requires exact config/manifest filename
+membership and hash equality before any target read. An absent, drifted,
+outside-root, malformed, duplicate, path-bearing, self-listing, or mismatched
+phase-input manifest; future/dummy hashes; config creation after the gate;
+shared cross-phase helper logs; changed helper/config bytes; general commands;
+direct reads; and ad hoc message delivery are stops. The helper access logs
+every grant/refusal with the phase-input manifest filename/path/hash; mirror each row
+into this log one-to-one. The helper uses a serialized write-all append and
+fsync, but concurrent invocation and cross-process security isolation are not
+established. Its boundary is observed separately from host-platform
+restriction, which remains `NOT ESTABLISHED` unless proved.
 
 ## Declared participant-input inventory
 
@@ -146,8 +156,10 @@ gate sequence before any file access:
 7. `FILE_OPENED_OR_ACCESS_ATTEMPT_RECORDED`
 
 Every synthetic access event additionally records the exact helper access-log
-path/event ID, config SHA-256, binding-manifest SHA-256, and helper outcome.
-A config created from future/dummy hashes or after `PHASE_GATE_OPENED` is a
+path/event ID, phase-input manifest filename/path/SHA-256, config SHA-256,
+binding-manifest SHA-256, and helper outcome. A config that does not bind the
+verified phase-input manifest and equal its exact membership/hashes, is
+created from future/dummy hashes, or is created after `PHASE_GATE_OPENED` is a
 deviation and stops release.
 
 Repeat events 4-11 for each release chain. A manifest gate or phase may open
@@ -169,6 +181,11 @@ and actor on every `*_MANIFEST_VERIFIED` row.
   surface exposed: no / deviation ID
 - Synthetic helper access-log rows reconciled one-to-one across all distinct
   per-phase logs: yes / no / `NOT APPLICABLE — HUMAN`
+- Synthetic phase-input manifest identity/path/hash and exact config
+  membership/hash equality verified on every access: yes / no / `NOT
+  APPLICABLE — HUMAN`
+- Synthetic helper logs written under the declared serial-invocation,
+  write-all, and fsync model: yes / no / `NOT APPLICABLE — HUMAN`
 - Synthetic helper-only procedural compliance: passed / failed / `NOT
   APPLICABLE — HUMAN`
 - Technical platform restriction/security: `NOT ESTABLISHED` / separately

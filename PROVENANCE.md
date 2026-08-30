@@ -173,3 +173,33 @@ and which validation or usability state actually changed.
   protections, six freeze chains/full-route distinction, and human,
   data-readiness, real-world, safety, and business-value states remain
   `PREPARED/UNRUN` or `UNRUN` as applicable
+
+## 2026-08-30 phase-input manifest binding repair v1.2.7
+
+- **Authority:** Author-directed non-amended successor after independent audit
+  of v1.2.6 commit `b28f3e68e6e8309773d7b05f5528a05f7dd27de9`
+- **Defect retained:** v1.2.6 bound the helper and config and required the
+  config to self-declare observed ordered-file hashes, but the config did not
+  bind the exact verified phase-input manifest and the helper did not prove
+  that the config membership and hashes equaled that manifest
+- **Changed:** every per-phase config now binds the phase-input manifest's
+  exact flat filename, absolute path inside sealed input, and observed SHA-256;
+  the helper rehashes and parses that manifest on every invocation and requires
+  exact flat member/hash equality before any target read
+- **Durability boundary:** helper rows use an explicitly serialized write-all
+  append and fsync. Concurrent invocation and cross-process security isolation
+  remain outside the demonstrated local model; host-platform restriction and
+  sandbox security remain `NOT ESTABLISHED`
+- **Enforcement:** schema-v6 validation and 51 checksum-refreshed protocol
+  mutations add omission and weakening resistance for phase-manifest identity,
+  per-invocation verification, sealed-root location, exact membership, and
+  exact member hashes; helper subprocess tests reject absent, drifted, wrong,
+  duplicate, and config-mismatched manifests while retaining the two-phase
+  positive control
+- **Preserved evidence limits:** v1.2.6 remains immutable in Git history; exact
+  live-update SHA-256
+  `248ba3c42c138e6503386ec3d800d56751e90a915cd24faa450206cd0870320e`,
+  the optional data-product-contract branch, branch-before-run order,
+  future-end protections, six freeze chains/full-route distinction, and all
+  human, data-readiness, real-world, safety, and business-value states remain
+  `PREPARED/UNRUN` or `UNRUN` as applicable

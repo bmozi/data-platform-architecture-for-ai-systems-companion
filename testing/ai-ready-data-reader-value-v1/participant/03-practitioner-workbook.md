@@ -1,6 +1,6 @@
 # Stage A Practitioner Workbook
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.6
+**Packet:** DATA-RV-PILOT-001 version 1.2.7
 **Status:** Blank participant record
 
 - Participant code:

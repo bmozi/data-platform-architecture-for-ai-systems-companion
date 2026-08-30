@@ -1,6 +1,6 @@
 # Observation and Scoring Rubric
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.6
+**Packet:** DATA-RV-PILOT-001 version 1.2.7
 **Status:** Predetermined, blank, and unrun
 
 Score retained behavior, not agreement with preferred wording.
@@ -54,7 +54,7 @@ Mark `clear`, `unclear`, `unsafe`, or `contaminated`:
 | Operability | Abstention, stop trust, correction propagation, incident owner or explicit unassigned state, and reassessment exist or remain blockers | | |
 | Separate gates | Data fitness does not approve model, tool, action, or release | | |
 | Entry-branch integrity | Exactly one `HUMAN` or `SYNTHETIC` branch is selected for the whole attempt; human scored input follows completed real-person consent, while synthetic scored input follows verified exact `DATA-SYNTHETIC-CONTEXT-v1.md` and contains no fictional consent or human-result claim | | |
-| Synthetic exact-file access integrity | `SYNTHETIC` alone uses byte-identical `DATA-SYNTHETIC-EXACT-FILE-ACCESS-v1.py` copies selected and orchestration/context-bound before `RUN_STARTED`; each observed-hash config and helper/config manifest verifies after its sealed phase input and before its gate; the helper enforces flat filename/hash/read order and logs every grant/refusal in a distinct per-phase log reconciled to the execution log; no general command, direct read, future/dummy hash, config-after-gate, or ad hoc message is used | | |
+| Synthetic exact-file access integrity | `SYNTHETIC` alone uses byte-identical `DATA-SYNTHETIC-EXACT-FILE-ACCESS-v1.py` copies selected and orchestration/context-bound before `RUN_STARTED`; each observed-hash config binds the exact verified phase-input manifest filename/path/hash and its helper/config manifest verifies before the gate; on every invocation the helper parses and hashes the phase manifest, requires complete flat config/manifest membership/hash equality, enforces config read order, and logs every grant/refusal with that manifest filename/path/hash in a distinct per-phase log reconciled to the execution log; no absent/drifted/wrong manifest, general command, direct read, future/dummy hash, config-after-gate, or ad hoc message is used | | |
 | Platform restriction claim boundary | Helper-only procedural compliance is scored separately from host-platform restriction/security; unless separately demonstrated with retained platform evidence, the latter remains `NOT ESTABLISHED` and cannot become a sandbox or security claim | | |
 
 The literal per-phase identities are

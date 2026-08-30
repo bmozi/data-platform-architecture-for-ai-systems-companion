@@ -1,11 +1,13 @@
 # Temporal Freeze Protocol and Record Templates
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.6
+**Packet:** DATA-RV-PILOT-001 version 1.2.7
 **Status:** Facilitator-only static protocol and blank run-record schema;
 prepared and unrun
 
-Version 1.2.6 adds a pre-run checksum-bound synthetic exact-file access
-boundary while preserving v1.2.5's entry-branch, full-route,
+Version 1.2.7 binds each synthetic helper config to the exact verified
+phase-input manifest identity/path/hash and enforces full membership/hash
+equality on every invocation. It preserves v1.2.6's pre-run checksum-bound
+synthetic access boundary and v1.2.5's entry-branch, full-route,
 immutable-results, external-closeout, and literal-layout controls and v1.2.4's
 exact immutable `DATA-A-LIVE-UPDATE-v1.md` and optional-contract semantics.
 Every detached record requires attempt, phase, actor, facilitator,
@@ -91,19 +93,29 @@ a stop.
 Do not invent future artifact hashes. After a phase's exact sealed-input
 manifest is created and verified, derive
 `DATA-SYNTHETIC-EXACT-FILE-ACCESS-CONFIG-v1.json` from those observed filenames
-and hashes in route order. Then create and verify
+and hashes in route order. The config also binds that exact phase-input
+manifest's flat filename, absolute path inside the sealed input, and observed
+SHA-256. Then create and verify
 `DATA-SYNTHETIC-EXACT-FILE-ACCESS-SHA256SUMS-v1.txt` over exactly the pre-run
 helper copy and current config before `CURRENT_PHASE_GATE_OPENED`. Each phase
 uses a distinct external `DATA-SYNTHETIC-EXACT-FILE-ACCESS-LOG-v1.jsonl`; every
 grant, optional skip, or refusal binds one execution-log event. Future/dummy
-hashes, config creation after the gate, shared logs, general commands, direct
-reads, concurrent invocation, pasted content, or ad hoc message delivery are
-stops.
+hashes, an absent, drifted, outside-root, malformed, duplicate, path-bearing,
+or self-listing phase-input manifest, config/manifest membership or hash
+mismatch, config creation after the gate, shared logs, general commands,
+direct reads, concurrent invocation, pasted content, or ad hoc message
+delivery are stops.
 
-The helper enforces its own flat-filename/hash/read-order boundary. It does not
-prove the host platform removed other tools. Record helper-only procedural
-compliance separately, and keep technical platform restriction/security `NOT
-ESTABLISHED` unless separately demonstrated with retained platform evidence.
+On every invocation, the helper rehashes and parses the bound phase-input
+manifest and requires its complete flat filename/hash set to equal the
+config's ordered-file set before reading a target. Read order may be declared
+by the config only after that equality succeeds. The helper appends each row
+through an explicitly serialized write-all loop and fsync; concurrent
+invocation is outside this local durability model. The helper does not prove
+the host platform removed other tools or provide cross-process security
+isolation. Record helper-only procedural compliance separately, and keep
+technical platform restriction/security `NOT ESTABLISHED` unless separately
+demonstrated with retained platform evidence.
 
 ## Full-route closure after six freeze chains
 

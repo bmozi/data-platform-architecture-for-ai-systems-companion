@@ -17,8 +17,8 @@ LINK_PATTERN = re.compile(r"!?\[[^\]]*\]\(([^)]+)\)")
 COMMIT_PATTERN = re.compile(r"^[0-9a-f]{7,40}$")
 CHECKSUM_PATTERN = re.compile(r"^([0-9a-f]{64})  (.+)$")
 PACKET_ID = "DATA-RV-PILOT-001"
-PACKET_VERSION = "1.2.6"
-TEMPORAL_SCHEMA_VERSION = 5
+PACKET_VERSION = "1.2.7"
+TEMPORAL_SCHEMA_VERSION = 6
 LIVE_UPDATE_FILENAME = "DATA-A-LIVE-UPDATE-v1.md"
 LIVE_UPDATE_PATH = f"participant/{LIVE_UPDATE_FILENAME}"
 REVISION_PHASE_ID = "stage_a_revision"
@@ -51,7 +51,7 @@ LAYOUT_RECORD = "DATA-A-HANDOFF-LAYOUT-PROOF-v1.md"
 LAYOUT_PDF = "DATA-A-ONE-SCREEN-HANDOFF-v1.pdf"
 SYNTHETIC_HELPER_SOURCE = "facilitator-only/07-synthetic-exact-file-access.py"
 SYNTHETIC_HELPER_SHA256 = (
-    "78954b6f9edf42104c0721cf32ddaecc49ad5e22249dc611b184d03abd2b284a"
+    "1cbb6e681f20cbd35d4d737116d40067d5fa73ac95b509aa61c0772ce555301a"
 )
 SYNTHETIC_ACCESS_PLAN = (
     "facilitator-only/08-synthetic-access-plan-and-config-template.md"
@@ -172,7 +172,7 @@ def require_count(
 
 
 def temporal_protocol_content_errors(contents: dict[str, str]) -> list[str]:
-    """Return static semantic errors for packet 1.2.6 source instructions."""
+    """Return static semantic errors for packet 1.2.7 source instructions."""
 
     errors: list[str] = []
     combined = "\n".join(contents.values())
@@ -317,6 +317,8 @@ def temporal_protocol_content_errors(contents: dict[str, str]) -> list[str]:
             "new immutable filename and a new artifact ID/version",
             "Human participants use ordinary file surfaces and receive no terminal, repository, Git, or helper authority.",
             "Do not create future phase configs with guessed or dummy hashes; create each only from the observed verified phase-input manifest before its gate.",
+            "On every invocation the helper hashes and parses that exact phase-input manifest",
+            "requires its complete flat filename/hash set to equal `ordered_files` before enforcing the config-defined read order.",
             "technical platform restriction/security is `NOT ESTABLISHED` unless separately demonstrated.",
         ],
         "participant/01-consent-and-privacy.md": [
@@ -340,6 +342,8 @@ def temporal_protocol_content_errors(contents: dict[str, str]) -> list[str]:
             "new immutable filename and a new artifact ID/version",
             "No ad hoc facilitator message may substitute for a declared file.",
             "For every synthetic phase, the facilitator creates the phase config only after all current input bytes exist and before that phase gate opens.",
+            "The config records that manifest's exact filename, absolute path, and SHA-256.",
+            "On every invocation the helper rehashes and parses the manifest and requires complete flat filename/hash equality with `ordered_files`",
             "technical platform restriction is `NOT ESTABLISHED` unless separately demonstrated.",
         ],
         "participant/03-practitioner-workbook.md": [
@@ -384,6 +388,8 @@ def temporal_protocol_content_errors(contents: dict[str, str]) -> list[str]:
             "new immutable filename and a new artifact ID/version",
             "Do not predict later participant artifact hashes or use dummy hashes.",
             "A config created after its phase gate, shared cross-phase helper log, ad hoc message delivery, or unreconciled helper row is a stop and deviation.",
+            "bind the exact verified phase-input manifest filename, absolute path, and SHA-256.",
+            "On every invocation the helper must rehash and parse that phase-input manifest and require complete flat membership/hash equality with `ordered_files`",
             "record that state as `NOT ESTABLISHED` unless separate retained evidence demonstrates it.",
         ],
         "facilitator-only/02-observation-and-scoring-rubric.md": [
@@ -397,6 +403,7 @@ def temporal_protocol_content_errors(contents: dict[str, str]) -> list[str]:
             "the next phase or closing manifest hashes the artifact, governing manifest, and record",
             "new immutable filename and new artifact ID/version for every corrected artifact",
             "Synthetic exact-file access integrity",
+            "on every invocation the helper parses and hashes the phase manifest, requires complete flat config/manifest membership/hash equality",
             "Platform restriction claim boundary",
             "helper compliance is not sandbox proof",
         ],
@@ -412,6 +419,8 @@ def temporal_protocol_content_errors(contents: dict[str, str]) -> list[str]:
             "| Stage A revised set | required revised files; optional only if used | `DATA-A-REVISED-ARTIFACTS-SHA256SUMS-v1.txt` / | | `DATA-A-REVISED-FREEZE-VERIFICATION-v1.md` / | Stage B Phase 2 input / |",
             "new immutable filename and a new artifact ID/version",
             "Future/dummy config hashes or config created after its phase gate: none / deviation ID / `NOT APPLICABLE — HUMAN`",
+            "Exact verified phase-input manifest filename/absolute path/SHA-256 bound by each config, plus config/manifest membership/hash equality result:",
+            "Every config and helper invocation matched the exact verified phase-input manifest membership/hashes",
             "Technical platform restriction/security result: `NOT ESTABLISHED` unless separately demonstrated / `NOT APPLICABLE — HUMAN`",
         ],
         "facilitator-only/04-temporal-freeze-protocol-and-record-templates.md": [
@@ -423,6 +432,8 @@ def temporal_protocol_content_errors(contents: dict[str, str]) -> list[str]:
             "conditional `DATA-A-INITIAL-DATA-PRODUCT-CONTRACT-v1.md` exactly when it was used and appears in the initial governing manifest, and otherwise not",
             "Verify this manifest before opening the live update.",
             "Do not invent future artifact hashes.",
+            "On every invocation, the helper rehashes and parses the bound phase-input manifest",
+            "through an explicitly serialized write-all loop and fsync",
             "helper-only procedural compliance separately, and keep technical platform restriction/security `NOT ESTABLISHED` unless separately demonstrated",
         ],
         "facilitator-only/05-execution-and-access-log.md": [
@@ -432,13 +443,17 @@ def temporal_protocol_content_errors(contents: dict[str, str]) -> list[str]:
             "The closeout record is later external provenance.",
             "exact immutable `DATA-A-LIVE-UPDATE-v1.md`",
             "The optional contract must be absent here when it was not used.",
-            "Future/dummy hashes, config creation after the gate, shared cross-phase helper logs, changed helper/config bytes, general commands, direct reads, and ad hoc message delivery are stops.",
-            "The helper's boundary is observed separately from host-platform restriction, which remains `NOT ESTABLISHED` unless proved.",
+            "An absent, drifted, outside-root, malformed, duplicate, path-bearing, self-listing, or mismatched phase-input manifest; future/dummy hashes; config creation after the gate; shared cross-phase helper logs; changed helper/config bytes; general commands; direct reads; and ad hoc message delivery are stops.",
+            "On every invocation, the helper rehashes and parses that phase-input manifest and requires exact config/manifest filename membership and hash equality before any target read.",
+            "The helper uses a serialized write-all append and fsync",
+            "Its boundary is observed separately from host-platform restriction, which remains `NOT ESTABLISHED` unless proved.",
         ],
         SYNTHETIC_CONTEXT_TEMPLATE: [
             "not consent and not a result",
             "`SYNTHETIC — NO HUMAN PARTICIPANT OR HUMAN DATA`",
             "Any blank required field, branch mixing, fictional human affirmation, human result claim, absent or after-start helper, overbroad helper authority, or ad hoc message delivery stops the run before scored input opens.",
+            "Every later per-phase config must bind the exact verified phase-input manifest flat filename, absolute path inside sealed input, and observed SHA-256.",
+            "On every invocation, the helper must rehash and parse that manifest and require exact config/manifest membership and member-hash equality",
             "Technical platform restriction/security state: `NOT ESTABLISHED` unless separately demonstrated with retained platform evidence",
         ],
         SYNTHETIC_ACCESS_PLAN: [
@@ -448,6 +463,9 @@ def temporal_protocol_content_errors(contents: dict[str, str]) -> list[str]:
             "The helper enforces its own exact-file boundary, but it does not prove that the host platform removes other tools.",
             "Ad hoc facilitator delivery is a deviation, not transport.",
             "Future/dummy hashes",
+            "flat filename/hash set must equal the exact verified phase-input manifest named, located, and hashed by the three `phase_input_manifest_*` fields.",
+            "The helper rehashes and parses that manifest on every invocation",
+            "explicitly serialized write-all loop and fsyncs one JSONL row",
             "technical platform restriction/security remains `NOT ESTABLISHED` unless separately demonstrated",
         ],
         LAYOUT_TEMPLATE: [
@@ -713,7 +731,7 @@ def temporal_protocol_content_errors(contents: dict[str, str]) -> list[str]:
 def validate_temporal_freeze_protocol(
     errors: list[str], content_overrides: dict[str, str] | None = None
 ) -> int:
-    """Check packet 1.2.6's static temporal-order invariants."""
+    """Check packet 1.2.7's static temporal-order invariants."""
 
     packet = ROOT / "testing/ai-ready-data-reader-value-v1"
     contents: dict[str, str] = {}
@@ -860,6 +878,7 @@ def validate_temporal_protocol_json(errors: list[str]) -> int:
         "run_helper_identity",
         "predeclared_phase_access_directories",
         "per_phase_config_schema",
+        "per_phase_input_manifest_identity_path_hash",
         "per_phase_binding_manifest_identity",
         "per_phase_access_log_identity",
         "actor_instruction_invocation",
@@ -882,6 +901,7 @@ def validate_temporal_protocol_json(errors: list[str]) -> int:
         "protocol_state",
         "synthetic_behavior_state",
         "synthetic_helper_or_human_surface_identity",
+        "phase_input_manifest_config_binding",
         "per_phase_helper_log_reconciliation",
         "technical_platform_restriction_state",
         "layout_state",
@@ -918,6 +938,9 @@ def validate_temporal_protocol_json(errors: list[str]) -> int:
     expected_synthetic_helper_event_fields = [
         "helper_access_log_path",
         "helper_access_event_id",
+        "phase_input_manifest_filename",
+        "phase_input_manifest_path",
+        "phase_input_manifest_sha256",
         "helper_config_sha256",
         "helper_binding_manifest_sha256",
         "helper_outcome",
@@ -1031,10 +1054,21 @@ def validate_temporal_protocol_json(errors: list[str]) -> int:
         "declared_in_synthetic_context": True,
         "predeclared_phase_directories_required": True,
         "config_filename": SYNTHETIC_ACCESS_CONFIG,
-        "config_schema_version": 1,
+        "config_schema_version": 2,
         "config_created_after_verified_phase_input_manifest": True,
         "config_created_before_event": "CURRENT_PHASE_GATE_OPENED",
         "future_or_dummy_hashes_forbidden": True,
+        "phase_input_manifest_identity_required": True,
+        "phase_input_manifest_absolute_path_required": True,
+        "phase_input_manifest_sha256_required": True,
+        "phase_input_manifest_verified_every_invocation": True,
+        "phase_input_manifest_must_be_inside_input_root": True,
+        "phase_input_manifest_flat_members_only": True,
+        "phase_input_manifest_duplicate_members_forbidden": True,
+        "phase_input_manifest_self_entry_forbidden": True,
+        "config_membership_must_equal_phase_manifest": True,
+        "config_hashes_must_equal_phase_manifest": True,
+        "read_order_may_be_config_defined_after_exact_membership": True,
         "binding_manifest": SYNTHETIC_ACCESS_BINDING_MANIFEST,
         "binding_manifest_members": ["run_helper", "current_phase_config"],
         "binding_manifest_verified_before_event": "CURRENT_PHASE_GATE_OPENED",
@@ -1063,8 +1097,9 @@ def validate_temporal_protocol_json(errors: list[str]) -> int:
     if protocol.get("synthetic_exact_file_access") != expected_synthetic_access:
         errors.append(
             "temporal protocol JSON: synthetic exact-file access must preserve "
-            "pre-run helper identity, current-phase observed-hash gating, bounded "
-            "authority, refusal logging, and the platform non-claim"
+            "pre-run helper identity, exact phase-input manifest binding and "
+            "membership/hash equality, current-phase observed-hash gating, "
+            "bounded authority, refusal logging, and the platform non-claim"
         )
     helper_source = protocol_target(
         packet,
