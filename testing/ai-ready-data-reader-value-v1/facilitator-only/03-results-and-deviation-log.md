@@ -1,6 +1,6 @@
 # Results and Deviation Log
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.7
+**Packet:** DATA-RV-PILOT-001 version 1.2.8
 **Status:** Blank controlled record; no result exists
 
 This checked-in file is a source template, not a completed result. For each
@@ -12,7 +12,7 @@ closed-log hash or a future closeout timestamp in the result.
 
 ## Run identity
 
-- Packet ID/version: `DATA-RV-PILOT-001` / `1.2.7`
+- Packet ID/version: `DATA-RV-PILOT-001` / `1.2.8`
 - Results-record exact filename: `DATA-RUN-RESULTS-v1.md`
 - Results-record ID/version:
 - Attempt ID:
@@ -168,7 +168,7 @@ first substantive artifact.
 - Any incomplete state or premature artifact self-declaration of `FROZEN`:
   none / deviation
 
-| Handoff-linked exact local filename | Required or optional | Artifact ID/version | Completion timestamp/timezone | Pre-hash state | SHA-256 | Detached freeze status | Matched record/manifest | Supplied to Stage B under same filename |
+| Handoff-pointed exact local filename | Required or optional | Artifact ID/version | Completion timestamp/timezone | Pre-hash state | SHA-256 | Detached freeze status | Matched record/manifest | Supplied to Stage B Phase 2 under same filename |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | `DATA-A-REVISED-WORKBOOK-v1.md` | required | | | `REVISED COMPLETE` | | `FROZEN` | | |
 | `DATA-A-REVISED-READINESS-ASSESSMENT-v1.md` | required | | | `REVISED COMPLETE` | | `FROZEN` | | |
@@ -246,6 +246,16 @@ a new artifact ID/version, plus a new governing manifest and detached record.
 
 ## Handoff layout proof
 
+- Exact immutable provenance markers retained once each: yes / no / deviation
+- Five required reader sections and every exact transfer field present: yes /
+  no / deviation
+- Non-clickable exact-filename detail pointers used with no runtime Markdown
+  detail link or copied-detail Markdown table: yes /
+  no / deviation
+- Section ceilings and combined `335`-word reader target followed: yes / no /
+  deviation
+- Immutable provenance excluded only from reader-word count, not page layout:
+  yes / no / deviation
 - Layout-proof exact filename/hash:
   `DATA-A-HANDOFF-LAYOUT-PROOF-v1.md` /
 - Frozen handoff Markdown exact filename/hash:
@@ -255,7 +265,7 @@ a new artifact ID/version, plus a new governing manifest and detached record.
 - Exact rendering command and tool versions retained: yes / no / deviation
 - US Letter portrait, exactly one page: yes / no / unverifiable
 - Every margin at least 0.5 inch: yes / no / unverifiable
-- Body and table text at least 9 points: yes / no / unverifiable
+- Body text at least 9 points: yes / no / unverifiable
 - Reader-facing words, excluding only immutable provenance metadata: / 450 max
 - No clipping, overlap, hidden overflow, or unreadable shrinking: yes / no /
   unverifiable

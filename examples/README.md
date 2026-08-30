@@ -39,6 +39,11 @@ links make a conflicting decision visible: NBX-ADR-001 cannot pass while the
 named product is stopped by NBX-QES-001 and its complete eligible-partner
 population cannot be reconstructed under NBX-PVR-001.
 
+The [One-Screen Handoff Miniature](one-screen-handoff-miniature-v1.md) is a
+separate constructed format example for a compact decision transfer. It is not
+part of `DATA-RV-PILOT-001`, is never a scored-route input, and carries no
+freeze or usability result.
+
 ## How to read the sequence
 
 1. Start with NBX-DPC-001 to see the bounded information promise and excluded

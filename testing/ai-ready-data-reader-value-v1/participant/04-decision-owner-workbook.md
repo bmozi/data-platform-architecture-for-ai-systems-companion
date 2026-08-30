@@ -1,6 +1,6 @@
 # Stage B Decision-Owner Workbook
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.7
+**Packet:** DATA-RV-PILOT-001 version 1.2.8
 **Status:** Blank independent read-back record
 
 - Reviewer code:
@@ -57,7 +57,7 @@ verification timestamp, or `FROZEN` inside it.
 
 Before answering, verify `DATA-A-REVISED-FREEZE-VERIFICATION-v1.md`,
 `DATA-A-REVISED-ARTIFACTS-SHA256SUMS-v1.txt`, and every included
-handoff-linked revised detail. Literal filenames, IDs/versions, completion
+handoff-pointed revised detail. Literal filenames, IDs/versions, completion
 timestamps/timezones, pre-hash `REVISED COMPLETE` states, hashes, and
 detached-record `FROZEN` conditions must match. The optional contract must be
 consistently `NOT USED` or present as `REVISED COMPLETE` and later frozen.

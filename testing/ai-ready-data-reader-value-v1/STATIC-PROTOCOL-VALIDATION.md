@@ -1,6 +1,6 @@
 # Static Temporal-Protocol Validation
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.7
+**Packet:** DATA-RV-PILOT-001 version 1.2.8
 **Review date:** 2026-08-30
 **Result:** PASS for static source instructions after repository validation
 **Evidence class:** Local static inspection, not a participant run
@@ -61,17 +61,25 @@ larger participant/run route:
 15. later external `DATA-RUN-CLOSEOUT-v1.md` binds observed hashes for the
     byte-identical closed log, the verified closeout manifest, and results; and
 16. a favorable one-page claim requires a retained proof for one US Letter
-    portrait PDF, margins at least 0.5 inch, body/table text at least 9 points,
+    portrait PDF, margins at least 0.5 inch, body text at least 9 points,
     no more than 450 reader-facing words excluding only immutable provenance,
     and no clipping, overlap, hidden overflow, or unreadable shrinking. This is
-    layout evidence, not comprehension evidence.
+    layout evidence, not comprehension evidence; and
+17. the runtime handoff has exactly eight compact immutable provenance lines,
+    five required reader sections with a 335-word combined target and exact
+    section ceilings, non-clickable exact-filename pointers, and no Markdown
+    detail link or copied-detail table. The handoff triple is the only Stage A
+    evidence in Stage B Phase 1; the route and blank Section 1 workbook remain
+    allowed, and revised detail first becomes available in verified Phase 2.
+    The constructed linked miniature remains outside every participant and
+    scored release.
 
 Static checks also reject the legacy revised-record identity, future freeze
 timestamps and self-hash fields in governed templates, and the old
 checksum-reference fields that would require an artifact to predict its own
 post-hash evidence. Per-file semantic clauses now enforce manifest exclusion,
 ordered completion and verification, release-manifest triple binding, and
-immutable correction identity. Fifty-one negative mutations prove the validator
+immutable correction identity. Fifty-nine negative mutations prove the validator
 rejects manifest self-inclusion, same-path correction, missing revised Stage A
 release binding, omitted complete verification output, missing attempt
 identity, invalid record chronology, undeclared orchestration permission,
@@ -95,6 +103,11 @@ membership equality, and weakened exact member-hash equality. The helper
 subprocess suite separately rejects absent, drifted, outside-root, malformed,
 duplicate, and config-mismatched manifests while retaining the two-phase
 positive control.
+Eight v1.2.8 successor mutations additionally reject an omitted provenance
+marker, a wide runtime table, an omitted required reader field, a runtime
+clickable detail link, a weakened 335-word target, exclusion of provenance
+from page layout, premature Phase 1 detail access, and removal of the
+miniature's outside-route working link.
 They also reject any scored workbook source that requires the future Stage A
 or Stage B end event inside governed bytes; those end facts belong only to the
 facilitator log and later run results.

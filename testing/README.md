@@ -19,16 +19,19 @@ evidence-state change.
   facilitator-only materials. It has no DATA-X005 execution or transition
   authority.
 - [AI-Ready Data Reader-Value Pilot Packet](ai-ready-data-reader-value-v1/README.md)
-  — `DATA-RV-PILOT-001` version 1.2.7, a separate two-stage candidate for the
+  — `DATA-RV-PILOT-001` version 1.2.8, a separate two-stage candidate for the
   plain-language readiness journey, outside-team transfer, and decision-owner
   legibility. Stage A freezes a detailed artifact and one-screen handoff; Stage
-  B reads the handoff first and then verifies the exact frozen detailed
-  artifacts, detached record, and governing manifest. Its full route also
+  B receives the handoff triple as its only Stage A evidence first, freezes
+  Section 1, and then verifies the exact frozen detailed artifacts, detached
+  record, and governing manifest. Its full route also
   requires one mutually exclusive entry branch, exact stage/debrief/results
   boundaries, later external closeout, retained literal layout proof, and a
   synthetic-only pre-run checksum-bound exact-file helper with exact verified
   phase-input-manifest identity and membership/hash equality at every
-  per-phase access. Human participants still use ordinary file surfaces. Helper
+  per-phase access. The compact runtime handoff uses non-clickable exact
+  filename pointers, not links that could expose Phase 2 detail during Phase 1.
+  Human participants still use ordinary file surfaces. Helper
   compliance is not a platform-sandbox claim. It is not
   a DATA-X005 or DATA-X006 execution and inherits no result from Cedar Vale.
 

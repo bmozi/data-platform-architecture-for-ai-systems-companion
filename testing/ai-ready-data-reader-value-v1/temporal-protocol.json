@@ -1,8 +1,8 @@
 {
-  "schema_version": 6,
+  "schema_version": 7,
   "protocol_id": "RV-TEMPORAL-FREEZE-001",
   "packet_id": "DATA-RV-PILOT-001",
-  "packet_version": "1.2.7",
+  "packet_version": "1.2.8",
   "causal_order": [
     "completed_artifacts",
     "artifact_only_manifest",
@@ -115,7 +115,7 @@
     "applies_only_to_branch": "SYNTHETIC",
     "human_branch_ordinary_file_surfaces_only": true,
     "source_helper_path": "facilitator-only/07-synthetic-exact-file-access.py",
-    "source_helper_sha256": "1cbb6e681f20cbd35d4d737116d40067d5fa73ac95b509aa61c0772ce555301a",
+    "source_helper_sha256": "a8a5f1cee2071a1606849b3dafdd509277039a7e2dd5d39ff1a2cd2e7c70e8dd",
     "plan_template_path": "facilitator-only/08-synthetic-access-plan-and-config-template.md",
     "run_helper_filename": "DATA-SYNTHETIC-EXACT-FILE-ACCESS-v1.py",
     "helper_selected_before_event": "RUN_STARTED",
@@ -332,13 +332,71 @@
       "maximum_pages": 1,
       "minimum_margin_inches": 0.5,
       "minimum_body_text_points": 9,
-      "minimum_table_text_points": 9,
       "maximum_reader_facing_words": 450,
       "word_count_excludes_only": "immutable provenance metadata",
       "clipping_allowed": false,
       "overlap_allowed": false,
       "hidden_overflow_allowed": false,
       "unreadable_shrinking_allowed": false
+    },
+    "participant_template_contract": {
+      "provenance_start_marker": "<!-- IMMUTABLE PROVENANCE START -->",
+      "provenance_end_marker": "<!-- IMMUTABLE PROVENANCE END -->",
+      "provenance_maximum_compact_lines": 8,
+      "provenance_excluded_from_reader_word_count": true,
+      "provenance_excluded_from_page_layout": false,
+      "markdown_table_allowed": false,
+      "copied_detail_allowed": false,
+      "detail_transfer": "non-clickable exact-filename pointers",
+      "runtime_markdown_detail_links_allowed": false,
+      "combined_reader_target_words": 335,
+      "hard_reader_maximum_words": 450,
+      "reader_sections": [
+        {
+          "heading": "1. Decision and beneficiary",
+          "maximum_words": 55,
+          "required_fields": [
+            "Current decision and bounded scope",
+            "Who benefits and the exact use"
+          ]
+        },
+        {
+          "heading": "2. Allowed and withheld",
+          "maximum_words": 55,
+          "required_fields": [
+            "What the assistant may search",
+            "What data or use is withheld"
+          ]
+        },
+        {
+          "heading": "3. Evidence and uncertainty",
+          "maximum_words": 85,
+          "required_fields": [
+            "Current evidence class, mapped to each material claim",
+            "Known evidence",
+            "Unknown or disputed evidence"
+          ]
+        },
+        {
+          "heading": "4. Ownership, risk, and action",
+          "maximum_words": 85,
+          "required_fields": [
+            "Assigned owner, or UNASSIGNED; assigning or acting authority, or UNKNOWN",
+            "Largest unacceptable outcome",
+            "Immediate next action",
+            "Review date or evidence-based trigger"
+          ]
+        },
+        {
+          "heading": "5. Proof, gates, and limits",
+          "maximum_words": 55,
+          "required_fields": [
+            "How we prove the exact policy used",
+            "How corrections reach the served copy",
+            "Separate model, action-authority, and release gates still unresolved, plus what this exercise cannot establish"
+          ]
+        }
+      ]
     },
     "required_evidence": [
       "generated_markdown",
@@ -350,6 +408,27 @@
     ],
     "favorable_claim_requires_passed_proof": true,
     "proves_human_comprehension": false
+  },
+  "handoff_detail_access_boundary": {
+    "runtime_handoff_reference": "non-clickable exact-filename pointers",
+    "runtime_markdown_detail_links_forbidden": true,
+    "stage_b_phase_1": {
+      "manifest": "DATA-B-PHASE-1-INPUT-SHA256SUMS-v1.txt",
+      "only_stage_a_evidence_is_handoff_triple": true,
+      "route_and_blank_section_1_workbook_allowed": true,
+      "revised_detail_allowed": false
+    },
+    "stage_b_phase_2": {
+      "manifest": "DATA-B-PHASE-2-INPUT-SHA256SUMS-v1.txt",
+      "revised_detail_first_allowed": true,
+      "requires_revised_artifacts_manifest_and_detached_record": true
+    },
+    "constructed_miniature": {
+      "path": "examples/one-screen-handoff-miniature-v1.md",
+      "outside_packet": true,
+      "participant_or_scored_input_allowed": false,
+      "working_link_allowed_only_here": true
+    }
   },
   "revision_phase_input": {
     "id": "stage_a_revision",
@@ -508,71 +587,71 @@
   "critical_documents": [
     {
       "path": "README.md",
-      "sha256": "a8948b75bb3886c00a812fbd24e0d38974a09cf1ee50494df27945d2303d2f32"
+      "sha256": "0da742ce32df00305f4aded3d5d125495049d1e0e32d913c0181c59224586919"
     },
     {
       "path": "STATIC-PROTOCOL-VALIDATION.md",
-      "sha256": "b0e43449bae04c22ec38fa92c6ae9b0c16c9807962e62231e97658f7513431f7"
+      "sha256": "c422e47456b574755778568515780917f7512e8fa039524c1206a684247ad53f"
     },
     {
       "path": "facilitator-only/01-facilitator-guide.md",
-      "sha256": "6ee78c2b99c855916d2ac0ac120b3d2fb80f991065d8f664f63df1fdf489a689"
+      "sha256": "47d4f5ee86a58d55ac1f06de8529a568133b3dde9f2ee26056664d719e228a28"
     },
     {
       "path": "facilitator-only/02-observation-and-scoring-rubric.md",
-      "sha256": "c0a6cf0b16ad2bdaf861283461cd0f5e2753c902c164a972d000114599c2300c"
+      "sha256": "02afd814f1511bab5ed2c536d98c06645d79cb1a0495595630048b22e2dc8576"
     },
     {
       "path": "facilitator-only/03-results-and-deviation-log.md",
-      "sha256": "c446951ec9b9aba5397a204cbdf67922e3b2f7c1b359f25b06cc578e5ecccd23"
+      "sha256": "8f815789fccfde85532bb0f91948cbf0f3d05ae5b83fd1ae43f946d562a69657"
     },
     {
       "path": "facilitator-only/04-temporal-freeze-protocol-and-record-templates.md",
-      "sha256": "206d1d7c23d0502f9766a228b8590a2d2c6f18a93b6bd4fa7b6c45e3de43df45"
+      "sha256": "ff3e1bcaa40f9656d7c20b14292dfd0aa9134dee5c05694493555be7cb1b896a"
     },
     {
       "path": "facilitator-only/05-execution-and-access-log.md",
-      "sha256": "755627b7b480b522c399d84bb8d221fcf7fbf6691fec70d3020a1223bd3f883d"
+      "sha256": "c04b5e14fb7d4f3fe0094a4f55a24bc388dae851045327a2bf1f53d0769adc0c"
     },
     {
       "path": "facilitator-only/06-handoff-layout-proof-record.md",
-      "sha256": "c9f52990c9e1a094ef60e1d37f537a356712c58905a7f65501fe06a2869a6920"
+      "sha256": "0921890f5f1c6d768a1726efd91e4bae5c5378c0dd96f6f176e20cd6e9f782a6"
     },
     {
       "path": "facilitator-only/08-synthetic-access-plan-and-config-template.md",
-      "sha256": "be1a819ba1fe3600ed79e3578dd3c1304db09088c06a1920a919d09c35619a9b"
+      "sha256": "e30edc3352bccd8d91097e7339a81fe18f8def824a879fc43e8fb701eee2559c"
     },
     {
       "path": "participant/00-packet-route.md",
-      "sha256": "69f437fe2ef3193583d6db620ce8818b6ec3d8ad5580fbbdd7575d474f8b5d6c"
+      "sha256": "69b6d86469b5e621e5dd3ed93fdbb8b6004393f4377c3c989608525dfd3ad363"
     },
     {
       "path": "participant/01-consent-and-privacy.md",
-      "sha256": "4ad68b64ccb95ee5f6d20c96e45e65d3182e64c5398e2eba6c1ec1d0925bc03e"
+      "sha256": "17047e467048a1719c3e63f396a203df1a03399c680b55b6e5cd4f06c8861dbe"
     },
     {
       "path": "participant/02-scenario-and-task.md",
-      "sha256": "a8ca880da7374d82cc79f9f0edb5329501ecaa0c415432043cc3d12a8b17c26b"
+      "sha256": "9cd7a697f651a026356d281202f06feb6a4110ec15b4bcaa3e2c4bf863dbee26"
     },
     {
       "path": "participant/03-practitioner-workbook.md",
-      "sha256": "9be334a60570992cad602da1fc0a11194b59c6797a273d387d47b4c3c4dc7c7b"
+      "sha256": "91c4a27c6c04b5c35730aa7ea92c17059db9a2de07e63ac93063e576cdc64740"
     },
     {
       "path": "participant/04-decision-owner-workbook.md",
-      "sha256": "83825b2ec53b5f00fffbcf7088b897099b2cfed880cf4e8287a2de72b5d937ec"
+      "sha256": "bfbad1c8c0437c40f1603755edd26f784eef5e754896e8ec2d436bee25aefd45"
     },
     {
       "path": "participant/05-one-screen-handoff.md",
-      "sha256": "ab37e780638218c385bdb3e54d8343219e23ea3bf38ad5605399d04041769709"
+      "sha256": "01e8ca8409407e4d3b81b3b4fa0e658aa26afffd45f87a638079b0f5ad6edb65"
     },
     {
       "path": "participant/06-revised-artifact-freeze-record.md",
-      "sha256": "dabfb8a0cfc36d95243914cc1082d3ff86f93bf7da54a8d2cc89ec87c99c75a2"
+      "sha256": "d2fde7fa3bedf0327ad0c7b165789d416d73ab377789bdbb4e644309bc558e8d"
     },
     {
       "path": "participant/07-synthetic-context-record.md",
-      "sha256": "48ee07dba4e3f100039669b1090a2b6961b514fcc7ef351aaa4dea87266ef1b2"
+      "sha256": "930e5b6cb5fa0ab2134941e030be2eb64292c590673021f4c79c9c0906f2c510"
     },
     {
       "path": "participant/DATA-A-LIVE-UPDATE-v1.md",

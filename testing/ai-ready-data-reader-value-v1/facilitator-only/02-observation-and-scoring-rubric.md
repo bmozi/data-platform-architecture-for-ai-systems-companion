@@ -1,6 +1,6 @@
 # Observation and Scoring Rubric
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.7
+**Packet:** DATA-RV-PILOT-001 version 1.2.8
 **Status:** Predetermined, blank, and unrun
 
 Score retained behavior, not agreement with preferred wording.
@@ -25,7 +25,7 @@ Do not treat the total as a validated psychometric score.
 | RV-3 First useful artifact | Produces a bounded assessment with explicit unknowns and separate gates | A | | |
 | RV-4 Outside read-back | Stage B reconstructs use, scope, stop, owner state, authority, evidence, and next trigger without repair | B | | |
 | RV-5 Failure discovery | Detects obsolete source, missing version, entitlement leak, and correction gap | A | | |
-| RV-6 Team transfer | One-screen handoff yields evidence class, beneficiary/use, decision, allowed/withheld data/use, owner state and assigning authority, knowns/unknowns, unacceptable outcome, next action, and date or evidence trigger; links detailed artifacts | B | | |
+| RV-6 Team transfer | One-screen handoff yields evidence class, beneficiary/use, decision, allowed/withheld data/use, owner state and assigning authority, knowns/unknowns, unacceptable outcome, next action, and date or evidence trigger; points to detailed artifacts by exact non-clickable filename; uses the five-section 335-word target with no copied-detail table | B | | |
 | RV-7 Decision-owner legibility | Selects a bounded state without universal readiness or invented ROI | B | | |
 
 For RV-6, an assigned owner is not required when none exists. Credit explicit
@@ -67,11 +67,11 @@ The literal per-phase identities are
 | Detached-record replay identity | Every record contains attempt ID, phase, artifact actor, facilitator, verifier, exact verification command, complete output, exit code, observed verification timestamp/timezone, record-completing actor, and a separately recorded later completion timestamp/timezone; any blank, failure, or reversal blocks `FROZEN` | | |
 | Execution/access continuity | The facilitator-side log records ordered manifest gates, item opens/access attempts, artifact completions, manifest creations/verifications, record completions, and phase opens with filenames, actors, timestamps/timezones, predecessor bindings, and manifest SHA-256; participant input contains no undeclared orchestration or facilitator file | | |
 | Handoff freeze integrity | The handoff reaches pre-hash `HANDOFF COMPLETE`; its governing manifest hashes only those completed bytes; verification time/timezone is captured; the detached record is created afterward; the sealed Stage B Phase 1 input manifest hashes the handoff, governing manifest, and detached record | | |
-| Stage B exact transfer | Stage B receives the detached record, governing manifest, and every included handoff-linked revised detail under the same literal filename with matching ID/version, completion metadata, pre-hash state, hash, optional disposition, and detached freeze status; no rename, regeneration, summary, substitution, or omission occurs | | |
+| Stage B exact transfer | The handoff triple is the only Stage A evidence in Phase 1, alongside the route and blank Section 1 workbook, and no runtime handoff link resolves; Phase 2 then receives the detached revised record, governing manifest, and every included handoff-pointed revised detail under the same literal filename with matching ID/version, completion metadata, pre-hash state, hash, optional disposition, and detached freeze status; no early detail, rename, regeneration, summary, substitution, or omission occurs | | |
 | Stage B sequencing | Sections 1, 2, and 3-5 each reach their declared complete pre-hash state, are hashed alone by a non-self-listing governing manifest, have that manifest verified with observed time/timezone, and only then receive a detached record; the next phase or closing manifest hashes the artifact, governing manifest, and record; Section 6 remains closed until scoring ends | | |
 | Full-route closure | The log records run start, both context gates and starts, Stage A material feedback/end, Stage B scoring end, verified debrief input, Section 6 completion, Stage B end, immutable results completion, and log close in order; six scored freeze chains alone are never called full-route completion | | |
 | Results and external closeout | Exact `DATA-RUN-RESULTS-v1.md` is `RESULTS COMPLETE` before `LOG_CLOSED`, contains the final pre-close checkpoint but predicts no final log hash or closeout time, and later `DATA-RUN-CLOSEOUT-v1.md` binds the closed-log, closeout-manifest, and results hashes | | |
-| Literal layout proof | Exact `DATA-A-HANDOFF-LAYOUT-PROOF-v1.md` retains frozen Markdown/PDF hashes, page count, rendering command/tool versions, margins, text size, word count, and defect inspection; `LAYOUT PASSED` requires one US Letter portrait page, margins at least 0.5 inch, text at least 9 points, at most 450 reader-facing words excluding only immutable provenance, and no clipping, overlap, hidden overflow, or unreadable shrinking | | |
+| Literal layout proof | Exact `DATA-A-HANDOFF-LAYOUT-PROOF-v1.md` retains frozen Markdown/PDF hashes, page count, rendering command/tool versions, margins, text size, word count, and defect inspection; the completed handoff retains both immutable provenance markers, five required reader sections, exact required field labels, non-clickable exact-filename detail pointers, no runtime Markdown link or table, and the 335-word target/section ceilings; `LAYOUT PASSED` requires one US Letter portrait page, margins at least 0.5 inch, text at least 9 points, at most 450 reader-facing words excluding only immutable provenance, and no clipping, overlap, hidden overflow, or unreadable shrinking | | |
 | Revision/correction provenance | The planned live-update revision is distinct from a later correction of frozen revised bytes; every correction preserves the prior immutable artifact set, manifest, and record, then creates a new immutable filename and new artifact ID/version for every corrected artifact, with reason, timestamp/timezone, governing manifest, and detached record | | |
 
 Any unsafe critical gate blocks a favorable interpretation.

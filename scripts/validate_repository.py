@@ -17,8 +17,8 @@ LINK_PATTERN = re.compile(r"!?\[[^\]]*\]\(([^)]+)\)")
 COMMIT_PATTERN = re.compile(r"^[0-9a-f]{7,40}$")
 CHECKSUM_PATTERN = re.compile(r"^([0-9a-f]{64})  (.+)$")
 PACKET_ID = "DATA-RV-PILOT-001"
-PACKET_VERSION = "1.2.7"
-TEMPORAL_SCHEMA_VERSION = 6
+PACKET_VERSION = "1.2.8"
+TEMPORAL_SCHEMA_VERSION = 7
 LIVE_UPDATE_FILENAME = "DATA-A-LIVE-UPDATE-v1.md"
 LIVE_UPDATE_PATH = f"participant/{LIVE_UPDATE_FILENAME}"
 REVISION_PHASE_ID = "stage_a_revision"
@@ -49,9 +49,60 @@ CLOSEOUT_RECORD = "DATA-RUN-CLOSEOUT-v1.md"
 LAYOUT_TEMPLATE = "facilitator-only/06-handoff-layout-proof-record.md"
 LAYOUT_RECORD = "DATA-A-HANDOFF-LAYOUT-PROOF-v1.md"
 LAYOUT_PDF = "DATA-A-ONE-SCREEN-HANDOFF-v1.pdf"
+HANDOFF_TEMPLATE = "participant/05-one-screen-handoff.md"
+HANDOFF_PROVENANCE_START = "<!-- IMMUTABLE PROVENANCE START -->"
+HANDOFF_PROVENANCE_END = "<!-- IMMUTABLE PROVENANCE END -->"
+HANDOFF_READER_TARGET = 335
+HANDOFF_EXAMPLE = ROOT / "examples/one-screen-handoff-miniature-v1.md"
+HANDOFF_READER_SECTIONS = [
+    {
+        "heading": "1. Decision and beneficiary",
+        "maximum_words": 55,
+        "required_fields": [
+            "Current decision and bounded scope",
+            "Who benefits and the exact use",
+        ],
+    },
+    {
+        "heading": "2. Allowed and withheld",
+        "maximum_words": 55,
+        "required_fields": [
+            "What the assistant may search",
+            "What data or use is withheld",
+        ],
+    },
+    {
+        "heading": "3. Evidence and uncertainty",
+        "maximum_words": 85,
+        "required_fields": [
+            "Current evidence class, mapped to each material claim",
+            "Known evidence",
+            "Unknown or disputed evidence",
+        ],
+    },
+    {
+        "heading": "4. Ownership, risk, and action",
+        "maximum_words": 85,
+        "required_fields": [
+            "Assigned owner, or UNASSIGNED; assigning or acting authority, or UNKNOWN",
+            "Largest unacceptable outcome",
+            "Immediate next action",
+            "Review date or evidence-based trigger",
+        ],
+    },
+    {
+        "heading": "5. Proof, gates, and limits",
+        "maximum_words": 55,
+        "required_fields": [
+            "How we prove the exact policy used",
+            "How corrections reach the served copy",
+            "Separate model, action-authority, and release gates still unresolved, plus what this exercise cannot establish",
+        ],
+    },
+]
 SYNTHETIC_HELPER_SOURCE = "facilitator-only/07-synthetic-exact-file-access.py"
 SYNTHETIC_HELPER_SHA256 = (
-    "1cbb6e681f20cbd35d4d737116d40067d5fa73ac95b509aa61c0772ce555301a"
+    "a8a5f1cee2071a1606849b3dafdd509277039a7e2dd5d39ff1a2cd2e7c70e8dd"
 )
 SYNTHETIC_ACCESS_PLAN = (
     "facilitator-only/08-synthetic-access-plan-and-config-template.md"
@@ -172,7 +223,7 @@ def require_count(
 
 
 def temporal_protocol_content_errors(contents: dict[str, str]) -> list[str]:
-    """Return static semantic errors for packet 1.2.7 source instructions."""
+    """Return static semantic errors for packet 1.2.8 source instructions."""
 
     errors: list[str] = []
     combined = "\n".join(contents.values())
@@ -180,6 +231,79 @@ def temporal_protocol_content_errors(contents: dict[str, str]) -> list[str]:
     legacy = "DATA-A-REVISED-FREEZE-RECORD-v1.md"
     if legacy in combined:
         errors.append(f"temporal protocol: legacy record identity remains: {legacy}")
+
+    handoff_source = contents.get(HANDOFF_TEMPLATE, "")
+    for marker in [HANDOFF_PROVENANCE_START, HANDOFF_PROVENANCE_END]:
+        if handoff_source.count(marker) != 1:
+            errors.append(
+                "temporal protocol: handoff immutable provenance marker must "
+                f"appear exactly once: {marker}"
+            )
+    if re.search(r"(?m)^\s*\|[^\n]*\|\s*$", handoff_source):
+        errors.append(
+            "temporal protocol: handoff template permits a wide Markdown table"
+        )
+    if re.search(r"\[[^\]]+\]\([^)]+\)", handoff_source):
+        errors.append(
+            "temporal protocol: runtime handoff template permits a clickable "
+            "Markdown detail link before Stage B Phase 2"
+        )
+    provenance_match = re.search(
+        re.escape(HANDOFF_PROVENANCE_START)
+        + r"\n(?P<body>.*?)\n"
+        + re.escape(HANDOFF_PROVENANCE_END),
+        handoff_source,
+        flags=re.DOTALL,
+    )
+    provenance_lines = (
+        re.findall(r"(?m)^- ", provenance_match.group("body"))
+        if provenance_match
+        else []
+    )
+    if len(provenance_lines) != 8:
+        errors.append(
+            "temporal protocol: handoff immutable provenance block must contain "
+            "exactly eight compact lines"
+        )
+    for section in HANDOFF_READER_SECTIONS:
+        heading = section["heading"]
+        if heading not in handoff_source:
+            errors.append(
+                f"temporal protocol: handoff template lacks reader section: {heading}"
+            )
+        for field in section["required_fields"]:
+            if field not in normalized(handoff_source).replace("`", ""):
+                errors.append(
+                    "temporal protocol: handoff template lacks required reader "
+                    f"field: {field}"
+                )
+        if f"{section['maximum_words']} words maximum" not in handoff_source:
+            errors.append(
+                "temporal protocol: handoff template lacks exact section word "
+                f"ceiling: {heading} / {section['maximum_words']}"
+            )
+    if not HANDOFF_EXAMPLE.is_file():
+        errors.append(
+            "temporal protocol: constructed handoff miniature outside scored "
+            "release is missing"
+        )
+    else:
+        example_content = HANDOFF_EXAMPLE.read_text(encoding="utf-8")
+        for clause in [
+            "not a packet artifact, freeze, run, or result",
+            "outside the scored packet",
+            "must never be supplied during a participant route",
+        ]:
+            if clause.casefold() not in normalized(example_content).casefold():
+                errors.append(
+                    "temporal protocol: constructed handoff miniature lacks "
+                    f"outside-route boundary: {clause}"
+                )
+        if not re.search(r"\[[^\]]+\]\([^)]+\)", example_content):
+            errors.append(
+                "temporal protocol: constructed handoff miniature lacks its "
+                "outside-route working detail link"
+            )
 
     exact_identities = [
         LIVE_UPDATE_FILENAME,
@@ -363,8 +487,10 @@ def temporal_protocol_content_errors(contents: dict[str, str]) -> list[str]:
             "new immutable filename and a new artifact ID/version",
         ],
         "participant/05-one-screen-handoff.md": [
-            "target one US Letter portrait page with every margin at least 0.5 inch, body and table text at least 9 points",
+            "The completed file targets one US Letter portrait page with every margin at least 0.5 inch, body text at least 9 points",
             "no more than 450 reader-facing words excluding only immutable provenance metadata",
+            "non-clickable exact-filename pointer",
+            "Stage B Section 1 receives the handoff before revised detail is released in Section 2",
             "Even `LAYOUT PASSED` is local layout evidence, not proof that a person can scan, understand, or use the handoff.",
             "The manifest never hashes itself or the later record.",
             "Stage B's sealed Phase 1 input manifest hashes the handoff, its governing manifest, and the detached record.",
@@ -471,7 +597,7 @@ def temporal_protocol_content_errors(contents: dict[str, str]) -> list[str]:
         LAYOUT_TEMPLATE: [
             "one US Letter portrait page",
             "every margin is at least 0.5 inch",
-            "body and table text are at least 9 points",
+            "body text is at least 9 points",
             "no more than 450 words excluding only immutable provenance metadata",
             "it does not test whether a person can scan, understand, or use the handoff",
         ],
@@ -731,7 +857,7 @@ def temporal_protocol_content_errors(contents: dict[str, str]) -> list[str]:
 def validate_temporal_freeze_protocol(
     errors: list[str], content_overrides: dict[str, str] | None = None
 ) -> int:
-    """Check packet 1.2.7's static temporal-order invariants."""
+    """Check packet 1.2.8's static temporal-order invariants."""
 
     packet = ROOT / "testing/ai-ready-data-reader-value-v1"
     contents: dict[str, str] = {}
@@ -1211,13 +1337,26 @@ def validate_temporal_protocol_json(errors: list[str]) -> int:
             "maximum_pages": 1,
             "minimum_margin_inches": 0.5,
             "minimum_body_text_points": 9,
-            "minimum_table_text_points": 9,
             "maximum_reader_facing_words": 450,
             "word_count_excludes_only": "immutable provenance metadata",
             "clipping_allowed": False,
             "overlap_allowed": False,
             "hidden_overflow_allowed": False,
             "unreadable_shrinking_allowed": False,
+        },
+        "participant_template_contract": {
+            "provenance_start_marker": HANDOFF_PROVENANCE_START,
+            "provenance_end_marker": HANDOFF_PROVENANCE_END,
+            "provenance_maximum_compact_lines": 8,
+            "provenance_excluded_from_reader_word_count": True,
+            "provenance_excluded_from_page_layout": False,
+            "markdown_table_allowed": False,
+            "copied_detail_allowed": False,
+            "detail_transfer": "non-clickable exact-filename pointers",
+            "runtime_markdown_detail_links_allowed": False,
+            "combined_reader_target_words": HANDOFF_READER_TARGET,
+            "hard_reader_maximum_words": 450,
+            "reader_sections": HANDOFF_READER_SECTIONS,
         },
         "required_evidence": [
             "generated_markdown",
@@ -1234,6 +1373,33 @@ def validate_temporal_protocol_json(errors: list[str]) -> int:
         errors.append(
             "temporal protocol JSON: one-page US Letter handoff proof contract or "
             "non-comprehension boundary invalid"
+        )
+
+    expected_handoff_detail_boundary = {
+        "runtime_handoff_reference": "non-clickable exact-filename pointers",
+        "runtime_markdown_detail_links_forbidden": True,
+        "stage_b_phase_1": {
+            "manifest": "DATA-B-PHASE-1-INPUT-SHA256SUMS-v1.txt",
+            "only_stage_a_evidence_is_handoff_triple": True,
+            "route_and_blank_section_1_workbook_allowed": True,
+            "revised_detail_allowed": False,
+        },
+        "stage_b_phase_2": {
+            "manifest": "DATA-B-PHASE-2-INPUT-SHA256SUMS-v1.txt",
+            "revised_detail_first_allowed": True,
+            "requires_revised_artifacts_manifest_and_detached_record": True,
+        },
+        "constructed_miniature": {
+            "path": "examples/one-screen-handoff-miniature-v1.md",
+            "outside_packet": True,
+            "participant_or_scored_input_allowed": False,
+            "working_link_allowed_only_here": True,
+        },
+    }
+    if protocol.get("handoff_detail_access_boundary") != expected_handoff_detail_boundary:
+        errors.append(
+            "temporal protocol JSON: handoff-only Phase 1 and detail-later "
+            "Phase 2 access boundary invalid"
         )
     layout_template = protocol_target(
         packet,

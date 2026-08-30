@@ -1,6 +1,6 @@
 # Synthetic Exact-File Access Plan and Config Template
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.7
+**Packet:** DATA-RV-PILOT-001 version 1.2.8
 **Status:** Blank facilitator-only pre-run template; not participant input and
 not an execution result
 
@@ -86,7 +86,7 @@ Every config has exactly these keys:
 {
   "schema_version": 2,
   "packet_id": "DATA-RV-PILOT-001",
-  "packet_version": "1.2.7",
+  "packet_version": "1.2.8",
   "attempt_id": "DATA-SYN-...",
   "actor_code": "DATA-A-SYN-...",
   "stage": "A",

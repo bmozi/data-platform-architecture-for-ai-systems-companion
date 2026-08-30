@@ -203,3 +203,34 @@ and which validation or usability state actually changed.
   future-end protections, six freeze chains/full-route distinction, and all
   human, data-readiness, real-world, safety, and business-value states remain
   `PREPARED/UNRUN` or `UNRUN` as applicable
+
+## 2026-08-30 literal handoff transfer repair v1.2.8
+
+- **Authority:** Author-directed non-amended successor derived from retained
+  synthetic attempt `DATA-SYN-20260830-006`
+- **Defect retained:** the frozen attempt006 handoff contained strong bounded
+  analysis but rendered as two US Letter pages and contained 640
+  reader-facing words, so it failed the declared scan-ready transfer contract
+- **Changed:** the blank runtime handoff now requires five short reader
+  sections with exact field labels and section ceilings, a 335-word combined
+  target below the unchanged 450-word hard maximum, eight compact immutable
+  provenance lines, non-clickable exact-filename pointers, and no Markdown
+  table or copied detail
+- **Staged-access boundary:** the handoff, governing manifest, and detached
+  record are the only Stage A evidence in Stage B Phase 1; the route and blank
+  Section 1 workbook remain allowed. Runtime Markdown detail links are
+  forbidden; revised detail first becomes available in the verified Phase 2
+  release. A constructed miniature with one working link remains outside the
+  packet and may never be supplied as participant or scored input
+- **Enforcement:** schema-v7 validation and 59 checksum-refreshed protocol
+  mutations reject provenance-marker omission, wide-table reintroduction,
+  required-field omission, a runtime clickable detail link, weakened reader
+  target or page-layout accounting, premature Phase 1 detail, and removal of
+  the miniature's outside-route link while retaining all 51 v1.2.7 cases
+- **Preserved evidence limits:** v1.2.7 remains immutable at commit
+  `a4b88a34d11a267a140e5bf67c69f4bc68a1d43a`; exact live-update SHA-256
+  `248ba3c42c138e6503386ec3d800d56751e90a915cd24faa450206cd0870320e`,
+  optional data-product-contract semantics, branch-before-run order,
+  future-end protections, six freeze chains/full-route distinction, and all
+  human, data-readiness, real-world, privacy, safety, ROI, and business-value
+  states remain `PREPARED/UNRUN` or `UNRUN` as applicable

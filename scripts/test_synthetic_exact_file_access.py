@@ -60,7 +60,7 @@ def make_phase(
     config = {
         "schema_version": 2,
         "packet_id": "DATA-RV-PILOT-001",
-        "packet_version": "1.2.7",
+        "packet_version": "1.2.8",
         "attempt_id": "DATA-SYN-TEST-001",
         "actor_code": actor,
         "stage": "A" if actor.startswith("DATA-A") else "B",

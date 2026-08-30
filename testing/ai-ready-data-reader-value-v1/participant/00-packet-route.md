@@ -1,6 +1,6 @@
 # Participant Packet Route
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.7
+**Packet:** DATA-RV-PILOT-001 version 1.2.8
 **Status:** Prepared and unrun with people
 
 This file controls the read order. Use `UNKNOWN`, `UNASSIGNED`, or `STOP` when
@@ -160,8 +160,17 @@ facilitator logs `RUN_STARTED`, then
     establish `FROZEN` for those exact bytes.
 12. Only after that detached record verifies, complete the blank
     [One-Screen Handoff](05-one-screen-handoff.md) as
-    `DATA-A-ONE-SCREEN-HANDOFF-v1.md`. Record its ID/version, completion
-    timestamp/timezone, and pre-hash state `HANDOFF COMPLETE`; point forward to
+    `DATA-A-ONE-SCREEN-HANDOFF-v1.md`. Delete its guidance and blanks; keep
+    exactly the five declared reader sections and the byte-exact immutable
+    provenance markers. Use the section ceilings and 335-word reader target,
+    no Markdown table or copied detail, and non-clickable exact-filename
+    pointers for every declared detail record. Runtime handoff Markdown links
+    are forbidden: the handoff triple is the only Stage A evidence in Stage B
+    Phase 1 (the route and blank Section 1 workbook remain allowed), while
+    revised detail remains withheld until the verified Phase 2 release. The provenance block is excluded only from the
+    reader-word count, not page layout. Record the handoff ID/version,
+    completion timestamp/timezone, and pre-hash state `HANDOFF COMPLETE` inside
+    that compact block; point forward to
     `DATA-A-HANDOFF-FREEZE-VERIFICATION-v1.md` without embedding its own hash or
     a future freeze time. Then create and verify
     `DATA-A-HANDOFF-SHA256SUMS-v1.txt` over the completed handoff only, capture

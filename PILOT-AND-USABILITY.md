@@ -16,7 +16,15 @@ preflight that was useful for finding packet defects: partial cross-role
 transfer, missing exact timing, terminology density, and no dedicated field for
 the restricted-data near miss. That was internal defect-finding, not a human
 session. Versions 1.1.0 and 1.1.1 contain earlier source and route repairs.
-Version 1.2.7 preserves v1.2.6's synthetic-only pre-run checksum-bound
+Version 1.2.8 adds a compact five-section handoff contract after retained
+synthetic attempt `DATA-SYN-20260830-006` failed the literal one-page gate at
+two pages and 640 reader-facing words. Its 335-word target, section ceilings,
+eight compact provenance lines, exact non-clickable filename pointers, and
+no-table rule are prepared controls, not a successful run result. The handoff
+triple is the only Stage A evidence in Phase 1; the route and blank Section 1
+workbook remain allowed, and revised detail first becomes available in
+Phase 2. Version 1.2.8 preserves v1.2.7's exact phase-input binding,
+v1.2.6's synthetic-only pre-run checksum-bound
 exact-file helper, v1.2.5's full-route and literal one-page layout-proof
 controls, and v1.2.4's exact immutable live update and optional-contract
 binding. Each per-phase config binds its exact verified input manifest

@@ -1,10 +1,10 @@
 # Temporal Freeze Protocol and Record Templates
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.7
+**Packet:** DATA-RV-PILOT-001 version 1.2.8
 **Status:** Facilitator-only static protocol and blank run-record schema;
 prepared and unrun
 
-Version 1.2.7 binds each synthetic helper config to the exact verified
+Version 1.2.8 binds each synthetic helper config to the exact verified
 phase-input manifest identity/path/hash and enforces full membership/hash
 equality on every invocation. It preserves v1.2.6's pre-run checksum-bound
 synthetic access boundary and v1.2.5's entry-branch, full-route,
@@ -152,10 +152,16 @@ The closeout record is later external provenance.
 ## Literal one-page layout proof
 
 Complete `DATA-A-HANDOFF-LAYOUT-PROOF-v1.md` from the declared layout-proof
-template. Preserve the frozen Markdown, generated
+template. The completed handoff retains the exact
+`<!-- IMMUTABLE PROVENANCE START -->` and
+`<!-- IMMUTABLE PROVENANCE END -->` markers, its eight compact audit lines,
+all five required reader sections and labels, non-clickable exact-filename detail pointers, the
+five declared section ceilings and 335-word reader target, and no Markdown
+table or copied detail. Immutable provenance is excluded only from the
+reader-word count, never from page layout. Preserve the frozen Markdown, generated
 `DATA-A-ONE-SCREEN-HANDOFF-v1.pdf`, page count, rendering command, tool
 versions, and PDF SHA-256. `LAYOUT PASSED` requires one US Letter portrait page,
-margins of at least 0.5 inch, body and table text at least 9 points, no more
+margins of at least 0.5 inch, body text at least 9 points, no more
 than 450 reader-facing words excluding only immutable provenance metadata, and
 no clipping, overlap, hidden overflow, or unreadable shrinking. Otherwise
 retain `HOLD — LAYOUT FAILED`. Neither state proves human comprehension.

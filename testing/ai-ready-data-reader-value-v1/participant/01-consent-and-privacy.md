@@ -1,6 +1,6 @@
 # Participant Consent and Privacy Notice
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.7
+**Packet:** DATA-RV-PILOT-001 version 1.2.8
 **Status:** Blank; no consent has been obtained
 
 This notice is for the `HUMAN` entry branch only. A synthetic rehearsal must

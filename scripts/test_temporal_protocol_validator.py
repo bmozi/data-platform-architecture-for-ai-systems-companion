@@ -330,6 +330,85 @@ def mutate_favorable_layout_without_proof(repo: Path) -> None:
     write_protocol(repo, protocol)
 
 
+def mutate_handoff_provenance_marker_omission(repo: Path) -> None:
+    update_critical_document(
+        repo,
+        "participant/05-one-screen-handoff.md",
+        lambda content: content.replace(
+            validator.HANDOFF_PROVENANCE_START,
+            "<!-- PROVENANCE START -->",
+            1,
+        ),
+    )
+
+
+def mutate_handoff_wide_table(repo: Path) -> None:
+    update_critical_document(
+        repo,
+        "participant/05-one-screen-handoff.md",
+        lambda content: content + "\n| Detail | Value |\n| --- | --- |\n",
+    )
+
+
+def mutate_handoff_required_field_omission(repo: Path) -> None:
+    update_critical_document(
+        repo,
+        "participant/05-one-screen-handoff.md",
+        lambda content: content.replace(
+            "**What data or use is withheld:**",
+            "**Additional boundary:**",
+            1,
+        ),
+    )
+
+
+def mutate_runtime_handoff_clickable_link(repo: Path) -> None:
+    update_critical_document(
+        repo,
+        "participant/05-one-screen-handoff.md",
+        lambda content: content
+        + "\n[Revised detail](DATA-A-REVISED-WORKBOOK-v1.md)\n",
+    )
+
+
+def mutate_handoff_reader_target_weakening(repo: Path) -> None:
+    protocol = load_protocol(repo)
+    protocol["handoff_layout_proof"]["participant_template_contract"][
+        "combined_reader_target_words"
+    ] = 450
+    write_protocol(repo, protocol)
+
+
+def mutate_handoff_provenance_layout_exclusion(repo: Path) -> None:
+    protocol = load_protocol(repo)
+    protocol["handoff_layout_proof"]["participant_template_contract"][
+        "provenance_excluded_from_page_layout"
+    ] = True
+    write_protocol(repo, protocol)
+
+
+def mutate_stage_b_phase_1_detail_leak(repo: Path) -> None:
+    protocol = load_protocol(repo)
+    protocol["handoff_detail_access_boundary"]["stage_b_phase_1"][
+        "revised_detail_allowed"
+    ] = True
+    write_protocol(repo, protocol)
+
+
+def mutate_miniature_working_link_omission(repo: Path) -> None:
+    target = repo / "examples/one-screen-handoff-miniature-v1.md"
+    content = target.read_text(encoding="utf-8")
+    updated = content.replace(
+        "[Northbridge AI-Data Readiness Assessment]"
+        "(northbridge-ai-data-readiness-assessment-v1.md)",
+        "Northbridge AI-Data Readiness Assessment",
+        1,
+    )
+    if updated == content:
+        raise AssertionError("miniature working-link mutation did not change input")
+    target.write_text(updated, encoding="utf-8")
+
+
 def mutate_future_stage_end_in_scored_workbook(repo: Path) -> None:
     update_critical_document(
         repo,
@@ -652,6 +731,46 @@ def main() -> int:
             "one-page US Letter handoff proof contract",
         ),
         (
+            "handoff-provenance-marker-omission",
+            mutate_handoff_provenance_marker_omission,
+            "handoff immutable provenance marker",
+        ),
+        (
+            "handoff-wide-table",
+            mutate_handoff_wide_table,
+            "handoff template permits a wide Markdown table",
+        ),
+        (
+            "handoff-required-field-omission",
+            mutate_handoff_required_field_omission,
+            "handoff template lacks required reader field",
+        ),
+        (
+            "runtime-handoff-clickable-link",
+            mutate_runtime_handoff_clickable_link,
+            "runtime handoff template permits a clickable Markdown detail link",
+        ),
+        (
+            "handoff-reader-target-weakening",
+            mutate_handoff_reader_target_weakening,
+            "one-page US Letter handoff proof contract",
+        ),
+        (
+            "handoff-provenance-layout-exclusion",
+            mutate_handoff_provenance_layout_exclusion,
+            "one-page US Letter handoff proof contract",
+        ),
+        (
+            "stage-b-phase-1-detail-leak",
+            mutate_stage_b_phase_1_detail_leak,
+            "handoff-only Phase 1 and detail-later Phase 2 access boundary invalid",
+        ),
+        (
+            "miniature-working-link-omission",
+            mutate_miniature_working_link_omission,
+            "constructed handoff miniature lacks its outside-route working detail link",
+        ),
+        (
             "future-stage-end-in-scored-workbook",
             mutate_future_stage_end_in_scored_workbook,
             "requires future stage-end fact inside governed/scored source",
@@ -717,7 +836,7 @@ def main() -> int:
 
     print(
         "temporal protocol mutation tests passed: full positive control and "
-        "semantic baseline accepted; 51 adversarial mutations rejected"
+        "semantic baseline accepted; 59 adversarial mutations rejected"
     )
     return 0
 

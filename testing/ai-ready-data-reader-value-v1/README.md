@@ -1,30 +1,36 @@
 # AI-Ready Data Reader-Value Pilot Packet
 
 **Packet ID:** DATA-RV-PILOT-001
-**Version:** 1.2.7
+**Version:** 1.2.8
 **Status:** Prepared and unrun; no participant recruited or consented
 **Scenario:** Harbor Grove Housing, entirely fictional
 
-Version 1.2.7 repairs an independent audit defect in v1.2.6: a config could
-self-declare allowed filenames and hashes without proving equality to the
-already verified sealed phase-input manifest. The config now binds that exact
-manifest's identity, absolute path, and SHA-256; on every invocation the helper
-parses it and requires complete flat membership/hash equality before applying
-the config-defined read order. Human participants still use ordinary file
-surfaces without terminal or repository access. Version 1.2.7 preserves
-v1.2.6's pre-run immutable checksum-bound helper boundary, v1.2.5's
-full-route closure controls and version 1.2.4's exact immutable
-participant/run input `DATA-A-LIVE-UPDATE-v1.md` and conditional initial
-data-product-contract binding. It also preserves the non-circular freeze order, exact
-manifest-verification evidence, AI-ready-data content, literal artifact
-identity, sealed delivery, and staged Stage B controls. Every governed freeze
-follows one observable order:
+Version 1.2.8 repairs the literal reader-transfer failure retained in synthetic
+attempt `DATA-SYN-20260830-006`: its semantically bounded handoff rendered as
+two US Letter pages and the sealed counter found 640 reader-facing words. The
+blank handoff now supplies a five-section, 335-word target; exact per-section
+ceilings; an eight-line immutable provenance block; non-clickable exact-filename
+detail pointers; and an explicit prohibition on runtime Markdown links, wide
+tables, and copied detail. The handoff triple is the only Stage A evidence in
+Phase 1; the route and blank Section 1 workbook remain allowed. Machine/audit
+metadata remains present and frozen but is excluded only from reader-word
+count, not page layout. A constructed miniature outside the scored packet
+demonstrates the compact shape without supplying a Harbor Grove answer.
+
+Version 1.2.8 preserves v1.2.7's exact phase-input manifest binding and
+per-invocation membership/hash equality, v1.2.6's pre-run immutable
+checksum-bound helper boundary, v1.2.5's full-route closure controls, and
+v1.2.4's exact immutable participant/run input `DATA-A-LIVE-UPDATE-v1.md` and
+conditional initial data-product-contract binding. Human participants still
+use ordinary file surfaces without terminal or repository access. It also
+preserves the non-circular freeze order, exact manifest-verification evidence,
+AI-ready-data content, literal artifact identity, sealed delivery, and staged
+Stage B controls. Every governed freeze follows one observable order:
 complete artifacts, create their governing manifest, verify it and capture the
 exact event, then create a detached verification record. Synthetic work is
-defect-finding only. Version 1.2.6 remains preserved at source commit
-`b28f3e68e6e8309773d7b05f5528a05f7dd27de9`; do not relabel an older run as
-1.2.7. A 1.2.7
-correction produces a new immutable artifact set, governing manifest, and
+defect-finding only. Version 1.2.7 remains preserved at source commit
+`a4b88a34d11a267a140e5bf67c69f4bc68a1d43a`; do not relabel an older run as
+1.2.8. A 1.2.8 correction produces a new immutable artifact set, governing manifest, and
 detached record rather than overwriting old evidence.
 This version remains **PREPARED/UNRUN** with people and supports no
 human-validation, usability, privacy, safety, readiness, value, or
@@ -169,7 +175,7 @@ Preserve the frozen Markdown and render
 `DATA-A-HANDOFF-LAYOUT-PROOF-v1.md` from the
 [layout-proof template](facilitator-only/06-handoff-layout-proof-record.md).
 The local gate is one US Letter portrait page, margins at least 0.5 inch, body
-and table text at least 9 points, no clipping, overlap, hidden overflow, or
+text at least 9 points, no clipping, overlap, hidden overflow, or
 unreadable shrinking, and at most 450 reader-facing words excluding only
 immutable provenance metadata. Layout evidence is not comprehension evidence.
 
@@ -189,7 +195,9 @@ exact order:
 
 1. [Packet route](participant/00-packet-route.md);
 2. the frozen `DATA-A-ONE-SCREEN-HANDOFF-v1.md`, its governing manifest, and
-   detached record, with the handoff opened first for substantive reading;
+   detached record, with the handoff opened first for substantive reading and
+   no other Stage A evidence, revised detail, or resolvable runtime handoff
+   link present in Phase 1;
 3. `04-decision-owner-workbook.md`;
 4. after the Section 1 freeze, `02-scenario-and-task.md`,
    `DATA-A-REVISED-FREEZE-VERIFICATION-v1.md`,
@@ -198,7 +206,7 @@ exact order:
 5. `EXECUTIVE-DECISION-BRIEF.md`; and
 6. `VALUE-AND-EVIDENCE-LEDGER.md`.
 
-The handoff inventory, detached record, governing manifest, and delivered files
+The handoff pointers, detached record, governing manifest, and delivered files
 must match in literal filename, ID/version, completion timestamp/timezone,
 pre-hash `REVISED COMPLETE` or optional `NOT USED` state, hash, and
 detached-record `FROZEN` condition for included files. A rename, regenerated
@@ -250,7 +258,7 @@ then complete `DATA-RUN-CLOSEOUT-v1.md` binding the closed-log,
 closeout-manifest, and results hashes. Only synthetic attempts satisfying all
 these boundaries may say `Full synthetic route complete`.
 
-The source results file is a blank template, not a result. Version 1.2.7
+The source results file is a blank template, not a result. Version 1.2.8
 inherits no earlier score, layout disposition, or execution result. Human
 evidence, data readiness, and real-world evidence remain `UNRUN`.
 

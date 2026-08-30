@@ -1,6 +1,6 @@
 # Facilitator Guide
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.7
+**Packet:** DATA-RV-PILOT-001 version 1.2.8
 **Status:** Facilitator-only; prepared and unrun
 
 ## Purpose
@@ -200,10 +200,14 @@ a new manifest, and a new detached record. Never revise the old set in place.
     timestamp/timezone, and only then create
     `DATA-A-REVISED-FREEZE-VERIFICATION-v1.md`. Verify the detached record
     before the blank handoff opens.
-11. Supply the blank handoff. Ensure its inventory matches the revised record
-    and manifest. Complete it as `DATA-A-ONE-SCREEN-HANDOFF-v1.md` with
-    completion metadata, pre-hash `HANDOFF COMPLETE`, and filename-only pointer
-    to `DATA-A-HANDOFF-FREEZE-VERIFICATION-v1.md`. Create
+11. Supply the blank handoff. Ensure its compact pointed provenance matches the
+    revised record and manifest. Complete it as
+    `DATA-A-ONE-SCREEN-HANDOFF-v1.md` with the byte-exact provenance markers,
+    no table or copied detail, non-clickable exact-filename pointers, all five reader sections,
+    each declared section ceiling, and the 335-word reader target. Provenance
+    is excluded only from reader-word count, not page layout. Record completion
+    metadata, pre-hash `HANDOFF COMPLETE`, and the filename-only pointer to
+    `DATA-A-HANDOFF-FREEZE-VERIFICATION-v1.md`. Create
     `DATA-A-HANDOFF-SHA256SUMS-v1.txt` over the handoff only, verify it and
     capture the exact time/timezone, then create the detached record.
 12. Preserve the frozen Markdown, render exact
@@ -240,7 +244,9 @@ a new manifest, and a new detached record. Never revise the old set in place.
    included revised Stage A artifact; the revised Stage A governing manifest;
    the revised Stage A detached record; and the scenario. Then supply
    `02-scenario-and-task.md`, the detached revised freeze record, governing
-   revised manifest, and every exact included handoff-linked detail.
+   revised manifest, and every exact included handoff-pointed detail. Runtime
+   handoff Markdown links remain forbidden so the Phase 1 handoff-only gate
+   cannot expose Phase 2 detail early.
    Verify literal filenames, IDs/versions, completion timestamps/timezones,
    pre-hash states, hashes, and detached freeze statuses. A rename,
    regenerated copy, summary, substitution, omission, mismatch, or missing

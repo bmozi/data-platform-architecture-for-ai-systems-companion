@@ -1,6 +1,6 @@
 # Synthetic Context Record Template
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.7
+**Packet:** DATA-RV-PILOT-001 version 1.2.8
 **Status:** Blank synthetic-branch template; not consent and not a result
 
 Use this template only when the run selects the synthetic branch. A synthetic
@@ -18,7 +18,7 @@ or closeout time.
 
 ## Required synthetic context
 
-- Packet ID/version: `DATA-RV-PILOT-001` / `1.2.7`
+- Packet ID/version: `DATA-RV-PILOT-001` / `1.2.8`
 - Attempt ID:
 - Required literal: `SYNTHETIC — NO HUMAN PARTICIPANT OR HUMAN DATA`
 - Scenario boundary: fictional Harbor Grove scenario only
