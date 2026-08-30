@@ -1,6 +1,6 @@
 # Observation and Scoring Rubric
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.4
+**Packet:** DATA-RV-PILOT-001 version 1.2.5
 **Status:** Predetermined, blank, and unrun
 
 Score retained behavior, not agreement with preferred wording.
@@ -53,6 +53,7 @@ Mark `clear`, `unclear`, `unsafe`, or `contaminated`:
 | Restricted-data near miss | Preserves minimum evidence without copying restricted content; checks context, output, logs, viewers, containment, ownership, retention/deletion authority, and separate legal/privacy classification | | |
 | Operability | Abstention, stop trust, correction propagation, incident owner or explicit unassigned state, and reassessment exist or remain blockers | | |
 | Separate gates | Data fitness does not approve model, tool, action, or release | | |
+| Entry-branch integrity | Exactly one `HUMAN` or `SYNTHETIC` branch is selected for the whole attempt; human scored input follows completed real-person consent, while synthetic scored input follows verified exact `DATA-SYNTHETIC-CONTEXT-v1.md` and contains no fictional consent or human-result claim | | |
 | Revision-input integrity | `DATA-A-REVISION-PHASE-INPUT-SHA256SUMS-v1.txt` binds both required initial artifacts, the optional initial contract exactly when used and in the initial manifest, that governing manifest, detached record, and exact immutable `DATA-A-LIVE-UPDATE-v1.md`; verification precedes opening, with no omission, rename, regeneration, summary, substitution, mismatch, or unmanifested update | | |
 | Revised-detail freeze integrity | Each included revised detail reaches pre-hash `REVISED COMPLETE` with ID/version and completion timestamp/timezone; the optional contract is `REVISED COMPLETE` or `NOT USED`; the manifest then hashes only included completed bytes; verification is observed with exact time/timezone; only afterward does the detached record match the metadata, hashes, manifest filename/hash, and event and establish `FROZEN` | | |
 | No temporal self-reference | The revised set, handoff, and three Stage B exports contain completion metadata and a filename-only pointer to their later record, never their own hash, the record hash, a future verification time, or self-declared `FROZEN`; no governing manifest hashes itself or its later record | | |
@@ -61,9 +62,17 @@ Mark `clear`, `unclear`, `unsafe`, or `contaminated`:
 | Handoff freeze integrity | The handoff reaches pre-hash `HANDOFF COMPLETE`; its governing manifest hashes only those completed bytes; verification time/timezone is captured; the detached record is created afterward; the sealed Stage B Phase 1 input manifest hashes the handoff, governing manifest, and detached record | | |
 | Stage B exact transfer | Stage B receives the detached record, governing manifest, and every included handoff-linked revised detail under the same literal filename with matching ID/version, completion metadata, pre-hash state, hash, optional disposition, and detached freeze status; no rename, regeneration, summary, substitution, or omission occurs | | |
 | Stage B sequencing | Sections 1, 2, and 3-5 each reach their declared complete pre-hash state, are hashed alone by a non-self-listing governing manifest, have that manifest verified with observed time/timezone, and only then receive a detached record; the next phase or closing manifest hashes the artifact, governing manifest, and record; Section 6 remains closed until scoring ends | | |
+| Full-route closure | The log records run start, both context gates and starts, Stage A material feedback/end, Stage B scoring end, verified debrief input, Section 6 completion, Stage B end, immutable results completion, and log close in order; six scored freeze chains alone are never called full-route completion | | |
+| Results and external closeout | Exact `DATA-RUN-RESULTS-v1.md` is `RESULTS COMPLETE` before `LOG_CLOSED`, contains the final pre-close checkpoint but predicts no final log hash or closeout time, and later `DATA-RUN-CLOSEOUT-v1.md` binds the closed-log, closeout-manifest, and results hashes | | |
+| Literal layout proof | Exact `DATA-A-HANDOFF-LAYOUT-PROOF-v1.md` retains frozen Markdown/PDF hashes, page count, rendering command/tool versions, margins, text size, word count, and defect inspection; `LAYOUT PASSED` requires one US Letter portrait page, margins at least 0.5 inch, text at least 9 points, at most 450 reader-facing words excluding only immutable provenance, and no clipping, overlap, hidden overflow, or unreadable shrinking | | |
 | Revision/correction provenance | The planned live-update revision is distinct from a later correction of frozen revised bytes; every correction preserves the prior immutable artifact set, manifest, and record, then creates a new immutable filename and new artifact ID/version for every corrected artifact, with reason, timestamp/timezone, governing manifest, and detached record | | |
 
 Any unsafe critical gate blocks a favorable interpretation.
+
+Report protocol, synthetic behavior, layout, human, data-readiness, and
+real-world states separately. A local layout pass is not comprehension; a
+synthetic behavior pass is not a human result; human, data-readiness, and
+real-world evidence remain `UNRUN` without corresponding authorized evidence.
 
 ## Findings to record
 

@@ -1,25 +1,24 @@
 # AI-Ready Data Reader-Value Pilot Packet
 
 **Packet ID:** DATA-RV-PILOT-001
-**Version:** 1.2.4
+**Version:** 1.2.5
 **Status:** Prepared and unrun; no participant recruited or consented
 **Scenario:** Harbor Grove Housing, entirely fictional
 
-Version 1.2.4 exports the canonical Stage A update as exact immutable
-participant/run input `DATA-A-LIVE-UPDATE-v1.md`. The revision-phase manifest
-must bind it alongside both required initial artifacts, the optional initial
-data-product contract exactly when that contract was actually used, the
-initial governing manifest, and the detached record. It preserves version
-1.2.3's non-circular freeze order and controls that make execution history
-auditable, including exact manifest-verification
-command/output/exit/time/timezone and later record-completion chronology. It
-also preserves the AI-ready-data content, literal artifact identity, sealed
-delivery, and staged Stage B controls. Every governed freeze follows one
-observable order:
+Version 1.2.5 adds full-route closure controls derived from retained synthetic
+replay defects: a mutually exclusive human-consent or synthetic-context entry
+branch, logged stage starts/ends and scoring/debrief boundaries, immutable
+run-specific results before log close, later external closeout, and a declared
+one-page layout proof. It preserves version 1.2.4's exact immutable
+participant/run input `DATA-A-LIVE-UPDATE-v1.md` and conditional initial
+data-product-contract binding. It also preserves the non-circular freeze order, exact
+manifest-verification evidence, AI-ready-data content, literal artifact
+identity, sealed delivery, and staged Stage B controls. Every governed freeze
+follows one observable order:
 complete artifacts, create their governing manifest, verify it and capture the
 exact event, then create a detached verification record. Synthetic work is
 defect-finding only. Version 1.2.1 remains preserved at source commit `9921757`
-and version 1.2.0 at `6921313`; do not relabel an older run as 1.2.4. A 1.2.4
+and version 1.2.0 at `6921313`; do not relabel an older run as 1.2.5. A 1.2.5
 correction produces a new immutable artifact set, governing manifest, and
 detached record rather than overwriting old evidence.
 This version remains **PREPARED/UNRUN** with people and supports no
@@ -44,9 +43,14 @@ failure discovery, outside-team transfer, and management/executive legibility.
 
 ### Stage A — practitioner or domain/product participant
 
-Before the scored stage, complete and close the
-[Consent and privacy notice](participant/01-consent-and-privacy.md). The
-facilitator must copy the exact approved, immutable files into a sealed flat
+Before the run, select exactly one entry branch for the entire attempt. A real
+person uses a fully completed [Consent and privacy
+notice](participant/01-consent-and-privacy.md). A synthetic rehearsal does not
+claim consent and instead uses
+[the synthetic-context template](participant/07-synthetic-context-record.md)
+to create manifested exact `DATA-SYNTHETIC-CONTEXT-v1.md`. Branch mixing or a
+fictional human affirmation is a stop. The facilitator must copy the exact
+approved, immutable files into a sealed flat
 Stage A input and hash every supplied file in a run-specific manifest that does
 not list or hash itself. That input may contain only route-declared files. An
 `ORCHESTRATION.md`, run note, hidden prompt, facilitator file, or other
@@ -55,6 +59,10 @@ stay in the external facilitator-only
 [execution and access log](facilitator-only/05-execution-and-access-log.md).
 Then supply
 only, in the order governed by the packet route:
+
+Before item 1, supply exactly one branch context: the applicable completed
+human consent record, or exact `DATA-SYNTHETIC-CONTEXT-v1.md` with
+`DATA-SYNTHETIC-CONTEXT-SHA256SUMS-v1.txt` verified for a synthetic attempt.
 
 1. [Packet route](participant/00-packet-route.md)
 2. [Scenario and task](participant/02-scenario-and-task.md)
@@ -124,11 +132,21 @@ pointer to its later detached record. Then create and verify
 verification time/timezone, and create
 `DATA-A-HANDOFF-FREEZE-VERIFICATION-v1.md`. The sealed Stage B Phase 1 input
 manifest hashes the handoff, governing manifest, and detached record.
+Preserve the frozen Markdown and render
+`DATA-A-ONE-SCREEN-HANDOFF-v1.pdf`; complete exact
+`DATA-A-HANDOFF-LAYOUT-PROOF-v1.md` from the
+[layout-proof template](facilitator-only/06-handoff-layout-proof-record.md).
+The local gate is one US Letter portrait page, margins at least 0.5 inch, body
+and table text at least 9 points, no clipping, overlap, hidden overflow, or
+unreadable shrinking, and at most 450 reader-facing words excluding only
+immutable provenance metadata. Layout evidence is not comprehension evidence.
 
 ### Stage B — independent manager or executive decision owner
 
-Before the scored stage, complete and close a Stage B
-[Consent and privacy notice](participant/01-consent-and-privacy.md). The
+Before the scored stage, continue the same entry branch. A human reviewer needs
+a fully completed Stage B [Consent and privacy
+notice](participant/01-consent-and-privacy.md); a synthetic reviewer receives
+the unchanged manifested synthetic context, never fictional human consent. The
 facilitator must copy the exact approved, immutable files and frozen Stage A
 artifacts into a separate sealed Stage B input and hash every supplied file in
 a run-specific manifest. After the recorded start time, supply in the route's
@@ -180,6 +198,27 @@ describe a later correction as the planned live-update revision.
 The first calibration round uses a different person for Stage B. Keep the
 Stage A participant unavailable during the initial read-back.
 
+## Full-route closure after the six scored freezes
+
+Six completed artifact/manifest/verification/detached-record chains do not by
+themselves complete the route. After Sections 3-5 freeze, record
+`STAGE_B_SCORING_ENDED`; verify
+`DATA-B-PHASE-4-DEBRIEF-INPUT-SHA256SUMS-v1.txt` over that frozen triple and
+the exact Section 6 input; complete `DATA-B-SECTION-6-DEBRIEF-v1.md` without
+changing scored bytes; record Stage B end; and complete immutable
+`DATA-RUN-RESULTS-v1.md` before `LOG_CLOSED`.
+
+Closed `DATA-EXECUTION-ACCESS-LOG-v1.jsonl` cannot predict its future external
+hash. Copy it without byte change into a dedicated closeout input, create and
+verify `DATA-RUN-CLOSEOUT-SHA256SUMS-v1.txt` over the closed-log copy and run results,
+then complete `DATA-RUN-CLOSEOUT-v1.md` binding the closed-log,
+closeout-manifest, and results hashes. Only synthetic attempts satisfying all
+these boundaries may say `Full synthetic route complete`.
+
+The source results file is a blank template, not a result. Version 1.2.5
+inherits no earlier score, layout disposition, or execution result. Human
+evidence, data readiness, and real-world evidence remain `UNRUN`.
+
 ## Facilitator only
 
 - [Facilitator guide](facilitator-only/01-facilitator-guide.md)
@@ -187,6 +226,7 @@ Stage A participant unavailable during the initial read-back.
 - [Results and deviation log](facilitator-only/03-results-and-deviation-log.md)
 - [Temporal freeze protocol and record templates](facilitator-only/04-temporal-freeze-protocol-and-record-templates.md)
 - [Execution and access log](facilitator-only/05-execution-and-access-log.md)
+- [Handoff layout-proof record](facilitator-only/06-handoff-layout-proof-record.md)
 
 Never supply these files before the scored stages end.
 
@@ -199,7 +239,8 @@ organizational review. Freeze and hash the exact packet and referenced assets.
 Retain exact manifest-verification commands, complete output, exit codes,
 actors, facilitator identities, observed timestamps/timezones, later
 record-completion timestamps/timezones, and the external item-by-item
-execution/access log.
+execution/access log. These controls make the execution history auditable and
+retain exact manifest-verification command/output/exit/time/timezone evidence.
 
 The checked-in `SHA256SUMS` records the prepared source packet. For each stage,
 the facilitator copies the exact immutable files into its sealed flat input and

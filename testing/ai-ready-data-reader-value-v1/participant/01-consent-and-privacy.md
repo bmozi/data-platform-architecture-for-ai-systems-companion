@@ -1,7 +1,12 @@
 # Participant Consent and Privacy Notice
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.4
+**Packet:** DATA-RV-PILOT-001 version 1.2.5
 **Status:** Blank; no consent has been obtained
+
+This notice is for the `HUMAN` entry branch only. A synthetic rehearsal must
+not fill it with fictional names, initials, affirmations, or signatures and
+must instead use exact manifested `DATA-SYNTHETIC-CONTEXT-v1.md`. A blank human
+notice never counts as synthetic consent.
 
 ## Purpose
 

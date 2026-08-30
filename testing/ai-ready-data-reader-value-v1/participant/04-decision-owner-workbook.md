@@ -1,6 +1,6 @@
 # Stage B Decision-Owner Workbook
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.4
+**Packet:** DATA-RV-PILOT-001 version 1.2.5
 **Status:** Blank independent read-back record
 
 - Reviewer code:
@@ -140,12 +140,21 @@ later hashes the completed export, governing manifest, and detached record.
 
 ## 6. Debrief after scoring
 
-Keep this section closed until the facilitator confirms that Sections 1-5 are
-governed by verified manifests and detached records, and scoring has ended.
+Keep this section closed until the facilitator records
+`STAGE_B_SCORING_ENDED` and verifies
+`DATA-B-PHASE-4-DEBRIEF-INPUT-SHA256SUMS-v1.txt` over the frozen Sections 3-5
+artifact, its governing manifest, its detached record, and this exact debrief
+input. Debrief access before both events is a stop.
 
 - Stage A explanation that changed your interpretation:
 - Decision changed after discussion:
 - Why:
+
+Export this section separately as exactly `DATA-B-SECTION-6-DEBRIEF-v1.md`.
+Record its completion timestamp/timezone and state `DEBRIEF COMPLETE`. Do not
+edit Sections 1-5 or use the debrief to upgrade a frozen score. After export,
+stop; the facilitator owns every later route-boundary event in the external
+execution/access log and run results.
 
 ## Frozen-artifact correction register
 

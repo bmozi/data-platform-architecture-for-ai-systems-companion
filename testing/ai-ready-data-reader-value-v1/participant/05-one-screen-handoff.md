@@ -1,6 +1,6 @@
 # Stage A One-Screen Handoff
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.4
+**Packet:** DATA-RV-PILOT-001 version 1.2.5
 **Status:** Blank Stage A transfer; open only after the revised-detail detached
 verification record verifies
 
@@ -9,9 +9,12 @@ verbal repair. Link the detailed records instead of copying them. Write
 `UNASSIGNED` when no owner has been assigned and `UNKNOWN` when the supplied
 evidence cannot answer. Never invent a person, authority, or date.
 
-**Format rule:** keep this to one printed page or one screen and one line per
-field. Put depth in the linked artifacts, not in an attachment or verbal note.
-Complete it as `DATA-A-ONE-SCREEN-HANDOFF-v1.md` only after
+**Format rule:** target one US Letter portrait page with every margin at least
+0.5 inch, body and table text at least 9 points, no clipping, overlap, hidden
+overflow, or unreadable shrinking, and no more than 450 reader-facing words
+excluding only immutable provenance metadata. Put depth in linked artifacts,
+not an attachment or verbal note. Complete it as
+`DATA-A-ONE-SCREEN-HANDOFF-v1.md` only after
 `DATA-A-REVISED-FREEZE-VERIFICATION-v1.md` verifies.
 
 - **Handoff artifact ID and version:**
@@ -70,3 +73,10 @@ the observed timestamp/timezone, and only then create
 own hash, the detached record's hash, or a future verification time. Stage B's
 sealed Phase 1 input manifest hashes the handoff, its governing manifest, and
 the detached record. Do not revise the handoff during Stage B read-back.
+
+After freeze, preserve the Markdown and render
+`DATA-A-ONE-SCREEN-HANDOFF-v1.pdf`. Record page count, exact rendering command,
+tool versions, PDF SHA-256, margins, text size, reader-facing word count, and
+visual defects in `DATA-A-HANDOFF-LAYOUT-PROOF-v1.md`. A two-page or compressed
+proof is `HOLD — LAYOUT FAILED`. Even `LAYOUT PASSED` is local layout evidence,
+not proof that a person can scan, understand, or use the handoff.

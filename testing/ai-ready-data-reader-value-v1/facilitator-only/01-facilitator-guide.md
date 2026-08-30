@@ -1,6 +1,6 @@
 # Facilitator Guide
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.4
+**Packet:** DATA-RV-PILOT-001 version 1.2.5
 **Status:** Facilitator-only; prepared and unrun
 
 ## Purpose
@@ -44,6 +44,14 @@ phase open with exact actor, facilitator, timestamp, timezone, filename, and
 continuity binding.
 
 ## Sealed flat delivery and provenance
+
+Select exactly one entry branch before `RUN_STARTED` and keep it for the whole
+attempt. `HUMAN` requires completed real-person consent for each applicable
+stage. `SYNTHETIC` forbids fictional consent and requires exact completed
+`DATA-SYNTHETIC-CONTEXT-v1.md`, created from
+`07-synthetic-context-record.md`, plus verified
+`DATA-SYNTHETIC-CONTEXT-SHA256SUMS-v1.txt` before scored input opens. Log
+`ENTRY_BRANCH_SELECTED`; branch omission, switching, or mixing is a stop.
 
 Before each stage, copy the exact approved immutable files into a separate
 sealed flat stage input. Preserve these local filenames exactly when supplied:
@@ -95,11 +103,12 @@ a new manifest, and a new detached record. Never revise the old set in place.
 
 ## Stage A sequence
 
-1. Complete consent, privacy, authority, storage, access, retention, deletion,
-   withdrawal, sealed flat input, and run-specific manifest prerequisites
-   before the scored stage.
-2. Record the exact Stage A start immediately before the first scored file is
-   opened.
+1. Complete the selected entry branch, privacy/authority/storage/access/
+   retention boundaries, sealed flat input, and run-specific manifests before
+   the scored stage. Record `RUN_STARTED` and then
+   `STAGE_A_CONTEXT_GATE_OPENED` with the exact verified branch evidence.
+2. Record `STAGE_A_STARTED` with exact timestamp/timezone and prior-event
+   binding immediately before the first scored file opens.
 3. Enforce and log the exact order in the participant packet route: route;
    scenario; workbook Section 1; journey; assessment; optional contract only
    if independently requested; remaining detailed work.
@@ -164,15 +173,23 @@ a new manifest, and a new detached record. Never revise the old set in place.
     to `DATA-A-HANDOFF-FREEZE-VERIFICATION-v1.md`. Create
     `DATA-A-HANDOFF-SHA256SUMS-v1.txt` over the handoff only, verify it and
     capture the exact time/timezone, then create the detached record.
-12. Collect material feedback in the separate run record only after all
-    freezes verify; do not edit a governed workbook or handoff.
+12. Preserve the frozen Markdown, render exact
+    `DATA-A-ONE-SCREEN-HANDOFF-v1.pdf`, and complete
+    `DATA-A-HANDOFF-LAYOUT-PROOF-v1.md` from the layout-proof template. Record
+    `HANDOFF_LAYOUT_PROOF_COMPLETED`; retain `HOLD — LAYOUT FAILED` when any
+    declared one-page condition fails.
+13. Collect material feedback in the separate run record only after all
+    freezes verify; do not edit a governed workbook or handoff. Record
+    `STAGE_A_MATERIAL_FEEDBACK_COMPLETED` and then `STAGE_A_ENDED` with exact
+    timestamps/timezones and predecessor bindings.
 
 ## Stage B sequence
 
-1. Complete the same human consent and run prerequisites and use a reviewer who
-   did not create Stage A work.
-2. Record the exact Stage B start immediately before the first scored file is
-   opened.
+1. Continue the same entry branch and use a reviewer who did not create Stage A
+   work. Complete real reviewer consent for `HUMAN` or reverify the unchanged
+   synthetic context for `SYNTHETIC`; record `STAGE_B_CONTEXT_GATE_OPENED`.
+2. Record `STAGE_B_STARTED` with exact timestamp/timezone and prior-event
+   binding immediately before the first scored file opens.
 3. Verify the handoff, its governing manifest, and detached record. Supply the
    route, then `DATA-A-ONE-SCREEN-HANDOFF-v1.md` as the first substantive
    artifact. Supply the decision-owner workbook. Complete
@@ -210,7 +227,26 @@ a new manifest, and a new detached record. Never revise the old set in place.
    `DATA-B-SECTIONS-3-5-FREEZE-VERIFICATION-v1.md`. The closing evidence
    manifest hashes all three. Keep Section 6 closed.
 8. Keep the Stage A participant unavailable until Stage B Sections 1-5 are
-   frozen. End scoring before Section 6, explanation, or repair.
+   frozen. Record `STAGE_B_SCORING_ENDED` before Section 6, explanation, or
+   repair.
+9. Create and verify
+   `DATA-B-PHASE-4-DEBRIEF-INPUT-SHA256SUMS-v1.txt` over the frozen Sections
+   3-5 artifact, its governing manifest, detached record, and exact
+   `04-decision-owner-workbook.md`. Only afterward open Section 6 and complete
+   exact `DATA-B-SECTION-6-DEBRIEF-v1.md` as `DEBRIEF COMPLETE`; do not alter
+   scored bytes. Record `STAGE_B_SECTION_6_DEBRIEF_COMPLETED`, then
+   `STAGE_B_ENDED`.
+10. Complete immutable `DATA-RUN-RESULTS-v1.md` from the blank results template
+    with all boundaries, counts, freeze results, interventions, deviations,
+    rejected attempts, inventions, layout result, scores, separate evidence
+    states, decision, limits, and final pre-close log checkpoint. Record
+    `RUN_RESULTS_COMPLETED` before `LOG_CLOSED`; the result and closed log must
+    not predict the future external log hash or closeout time.
+11. Validate closed `DATA-EXECUTION-ACCESS-LOG-v1.jsonl`, copy it without byte
+    change into a dedicated closeout input, create and verify
+    `DATA-RUN-CLOSEOUT-SHA256SUMS-v1.txt` over the log copy and results, and
+    only then create `DATA-RUN-CLOSEOUT-v1.md` binding all three observed
+    hashes.
 
 If any correction is necessary after a freeze, preserve the previous file and
 use a new immutable filename and a new artifact ID/version. Log exact old/new

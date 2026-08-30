@@ -1,14 +1,15 @@
 # Temporal Freeze Protocol and Record Templates
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.4
+**Packet:** DATA-RV-PILOT-001 version 1.2.5
 **Status:** Facilitator-only static protocol and blank run-record schema;
 prepared and unrun
 
-Version 1.2.4 binds exact immutable `DATA-A-LIVE-UPDATE-v1.md` into the Stage A
-revision phase while preserving version 1.2.3's auditable execution history.
-Every detached record requires attempt, phase, actor, facilitator, exact
-verification command/output/exit/time/timezone, and a later record-completion
-timestamp/timezone. The facilitator separately maintains the
+Version 1.2.5 adds explicit entry-branch, full-route, immutable-results,
+external-closeout, and literal-layout controls while preserving version
+1.2.4's exact immutable `DATA-A-LIVE-UPDATE-v1.md` and optional-contract
+semantics. Every detached record requires attempt, phase, actor, facilitator,
+exact verification command/output/exit/time/timezone, and a later
+record-completion timestamp/timezone. The facilitator separately maintains the
 [`execution and access log`](05-execution-and-access-log.md). Passing static
 checks is non-human evidence only.
 
@@ -59,6 +60,64 @@ No other member is allowed. Verify this manifest before opening the live
 update. Record the exact manifest/update filenames and hashes and the optional
 contract disposition. Omission, rename, regeneration, summary, substitution,
 mismatch, or an unmanifested update is a stop and deviation.
+
+## Mutually exclusive run entry
+
+Select exactly `HUMAN` or `SYNTHETIC` once before `RUN_STARTED`.
+
+- `HUMAN` requires completed real-person consent and every required
+  privacy/authority prerequisite before each applicable stage opens.
+- `SYNTHETIC` forbids fictional human affirmations and human-result claims.
+  Complete `07-synthetic-context-record.md` as exact
+  `DATA-SYNTHETIC-CONTEXT-v1.md`, create
+  `DATA-SYNTHETIC-CONTEXT-SHA256SUMS-v1.txt` over that record alone, and verify
+  it before scored input opens.
+
+Branch omission, switching, mixing, or treating a blank human notice as
+synthetic consent is a stop.
+
+## Full-route closure after six freeze chains
+
+The six scored freeze chains remain exactly the six rows above. Their
+completion does not establish full-route closure. The append-only log must also
+record, in order: `RUN_STARTED`; Stage A context gate/start, material feedback,
+and end; Stage B context gate/start and scoring end; debrief-manifest creation
+and verification; Section 6 open/completion; Stage B end; results completion;
+and log close.
+
+`DATA-B-PHASE-4-DEBRIEF-INPUT-SHA256SUMS-v1.txt` contains every and only:
+
+1. `DATA-B-SECTIONS-3-5-DECISION-v1.md`;
+2. `DATA-B-SECTIONS-3-5-SHA256SUMS-v1.txt`;
+3. `DATA-B-SECTIONS-3-5-FREEZE-VERIFICATION-v1.md`; and
+4. exact `04-decision-owner-workbook.md` as the Section 6/debrief input.
+
+Verify it only after `STAGE_B_SCORING_ENDED`. Complete Section 6 as exact
+`DATA-B-SECTION-6-DEBRIEF-v1.md`, state `DEBRIEF COMPLETE`, without changing
+scored bytes. Stage A explanation or repair is forbidden before scoring end.
+
+## Immutable results and external closeout
+
+Complete the blank results template as exact `DATA-RUN-RESULTS-v1.md`, state
+`RESULTS COMPLETE`, before `LOG_CLOSED`. It contains the final pre-close log
+checkpoint but no predicted final log hash or future closeout timestamp. After
+close, validate and copy `DATA-EXECUTION-ACCESS-LOG-v1.jsonl` without byte
+change to a dedicated closeout input beside the completed results. Create and
+verify `DATA-RUN-CLOSEOUT-SHA256SUMS-v1.txt` over those two files. Only then
+complete `DATA-RUN-CLOSEOUT-v1.md`, binding the observed closed-log,
+closeout-manifest, and results hashes.
+The closeout record is later external provenance.
+
+## Literal one-page layout proof
+
+Complete `DATA-A-HANDOFF-LAYOUT-PROOF-v1.md` from the declared layout-proof
+template. Preserve the frozen Markdown, generated
+`DATA-A-ONE-SCREEN-HANDOFF-v1.pdf`, page count, rendering command, tool
+versions, and PDF SHA-256. `LAYOUT PASSED` requires one US Letter portrait page,
+margins of at least 0.5 inch, body and table text at least 9 points, no more
+than 450 reader-facing words excluding only immutable provenance metadata, and
+no clipping, overlap, hidden overflow, or unreadable shrinking. Otherwise
+retain `HOLD — LAYOUT FAILED`. Neither state proves human comprehension.
 
 ## Required detached-record fields
 

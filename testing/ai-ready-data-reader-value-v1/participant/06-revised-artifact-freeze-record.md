@@ -1,6 +1,6 @@
 # Detached Freeze-Verification Record Template
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.4
+**Packet:** DATA-RV-PILOT-001 version 1.2.5
 **Status:** Blank detached template; create an instance only after its governing
 manifest has been verified
 

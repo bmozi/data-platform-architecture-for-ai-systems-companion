@@ -111,3 +111,30 @@ and which validation or usability state actually changed.
   drift, and weakening the optional-contract branch even with refreshed hashes
 - **Execution state:** `PREPARED/UNRUN`; no human participant, usability, data
   readiness, privacy, safety, production, cost, or business-value result exists
+
+## 2026-08-30 synthetic execution closure repair v1.2.5
+
+- **Authority:** Author-directed application of the private
+  `field-guide-synthetic-execution-closure-standard.md`, informed by the
+  retained v1.2.3 collection audit's distinction between completed freeze
+  chains and incomplete participant routes
+- **Preserved:** version 1.2.4's byte-exact immutable
+  `DATA-A-LIVE-UPDATE-v1.md`, canonical facilitator wording, required initial
+  artifact/manifest/record binding, and optional data-product-contract branch
+- **Added:** mutually exclusive real-human-consent or exact synthetic-context
+  entry; logged Stage A/B starts and ends, Stage A feedback, Stage B scoring
+  end and gated debrief; immutable run-specific results before log close; and a
+  later external closeout binding observed log, manifest, and results hashes
+- **Layout boundary:** a favorable one-page claim requires retained proof of a
+  US Letter portrait PDF with at least 0.5-inch margins, at least 9-point body
+  and table text, at most 450 reader-facing words excluding only immutable
+  provenance, and no clipping, overlap, hidden overflow, or unreadable
+  shrinking; this is not human-comprehension evidence
+- **Enforcement:** schema-v4 invariants and checksum-refreshed negative
+  mutations preserve the six scored freeze chains while rejecting branch
+  mixing, missing closure boundaries, premature log close, predicted future
+  hashes, missing closeout, and favorable layout claims without proof
+- **Execution state:** `PREPARED/UNRUN` with people; data-readiness claims and
+  real-world use remain `UNRUN`; no human consent, participant result,
+  usability, privacy, safety, production, cost, or business-value evidence was
+  created by this source repair

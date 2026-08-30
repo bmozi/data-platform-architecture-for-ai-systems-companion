@@ -1,24 +1,45 @@
 # Results and Deviation Log
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.4
+**Packet:** DATA-RV-PILOT-001 version 1.2.5
 **Status:** Blank controlled record; no result exists
+
+This checked-in file is a source template, not a completed result. For each
+attempt, complete a new immutable instance as exactly
+`DATA-RUN-RESULTS-v1.md`, give it a results-record ID/version, completion
+timestamp/timezone, and state `RESULTS COMPLETE`, then record
+`RUN_RESULTS_COMPLETED` before `LOG_CLOSED`. Do not put the future final
+closed-log hash or a future closeout timestamp in the result.
 
 ## Run identity
 
+- Packet ID/version: `DATA-RV-PILOT-001` / `1.2.5`
+- Results-record exact filename: `DATA-RUN-RESULTS-v1.md`
+- Results-record ID/version:
 - Attempt ID:
+- Entry branch selected once: `HUMAN` / `SYNTHETIC`
+- Branch-selection event/checkpoint:
 - Execution owner and authorization:
 - Stage A participant code:
 - Stage B reviewer code:
 - Facilitator:
 - Evaluator and independence disclosure:
 - Date, mode, and time:
+- Exact prepared-source manifest filename/hash:
+- Exact orchestration manifest filename/hash, or `NOT APPLICABLE`:
+- Run start event/timestamp/timezone:
 - Exact Stage A start before first scored file opened, with timezone:
 - Exact Stage B start before first scored file opened, with timezone:
 - Facilitator execution/access log exact filename and SHA-256:
 
 ## Consent, privacy, and freeze
 
-- Consent records:
+- Human branch consent records, or `NOT APPLICABLE — SYNTHETIC`:
+- Synthetic context exact filename/hash, or `NOT APPLICABLE — HUMAN`:
+  `DATA-SYNTHETIC-CONTEXT-v1.md` /
+- Synthetic context manifest exact filename/hash, or `NOT APPLICABLE — HUMAN`:
+  `DATA-SYNTHETIC-CONTEXT-SHA256SUMS-v1.txt` /
+- Human and synthetic branches remained mutually exclusive: yes / no /
+  deviation
 - Storage/access/retention authority:
 - Run-specific SHA-256 manifest:
 - Sealed flat Stage A input location and manifest:
@@ -42,6 +63,47 @@ first substantive artifact.
 | Stage | Sequence | Exact time | File or attempted surface | Expected / optional / prohibited | Outcome or deviation |
 | --- | ---: | --- | --- | --- | --- |
 | | | | | | |
+
+## Full-route boundary and count reconciliation
+
+| Required boundary | Event ID | Timestamp/timezone | Prior-event or manifest binding | Result/deviation |
+| --- | --- | --- | --- | --- |
+| `ENTRY_BRANCH_SELECTED` | | | | |
+| `RUN_STARTED` | | | | |
+| `STAGE_A_CONTEXT_GATE_OPENED` | | | | |
+| `STAGE_A_STARTED` | | | | |
+| `HANDOFF_LAYOUT_PROOF_COMPLETED` | | | | |
+| `STAGE_A_MATERIAL_FEEDBACK_COMPLETED` | | | | |
+| `STAGE_A_ENDED` | | | | |
+| `STAGE_B_CONTEXT_GATE_OPENED` | | | | |
+| `STAGE_B_STARTED` | | | | |
+| `STAGE_B_SCORING_ENDED` | | | | |
+| `DEBRIEF_INPUT_MANIFEST_CREATED` | | | | |
+| `DEBRIEF_INPUT_MANIFEST_VERIFIED` | | | | |
+| `STAGE_B_SECTION_6_DEBRIEF_OPENED` | | | | |
+| `STAGE_B_SECTION_6_DEBRIEF_COMPLETED` | | | | |
+| `STAGE_B_ENDED` | | | | |
+
+- Debrief input manifest exact filename/hash:
+  `DATA-B-PHASE-4-DEBRIEF-INPUT-SHA256SUMS-v1.txt` /
+- Section 6/debrief exact output filename/hash/state:
+  `DATA-B-SECTION-6-DEBRIEF-v1.md` / / `DEBRIEF COMPLETE`
+- Stage A explanation or repair withheld through scoring end: yes / no /
+  deviation
+- Scored bytes unchanged by debrief: yes / no / deviation
+
+| Reconciled count | Declared | Observed | Match or deviation |
+| --- | ---: | ---: | --- |
+| Participant/run input files | | | |
+| Files opened/read | | | |
+| Governed scored artifacts | | | |
+| Governing-manifest verifications | | | |
+| Detached verification records | | | |
+| Required stage-boundary events | | | |
+| Debrief completions | 1 | | |
+
+- Six scored freeze chains complete: yes / no / deviation
+- Full selected-branch route complete before results: yes / no / deviation
 
 ## Revised-detail and Stage B transfer verification
 
@@ -146,6 +208,28 @@ a new artifact ID/version, plus a new governing manifest and detached record.
 | --- | --- | --- | --- | --- |
 | | | | | |
 
+## Handoff layout proof
+
+- Layout-proof exact filename/hash:
+  `DATA-A-HANDOFF-LAYOUT-PROOF-v1.md` /
+- Frozen handoff Markdown exact filename/hash:
+  `DATA-A-ONE-SCREEN-HANDOFF-v1.md` /
+- Generated PDF exact filename/hash:
+  `DATA-A-ONE-SCREEN-HANDOFF-v1.pdf` /
+- Exact rendering command and tool versions retained: yes / no / deviation
+- US Letter portrait, exactly one page: yes / no / unverifiable
+- Every margin at least 0.5 inch: yes / no / unverifiable
+- Body and table text at least 9 points: yes / no / unverifiable
+- Reader-facing words, excluding only immutable provenance metadata: / 450 max
+- No clipping, overlap, hidden overflow, or unreadable shrinking: yes / no /
+  unverifiable
+- Literal layout state: `LAYOUT PASSED` / `HOLD — LAYOUT FAILED` / `UNRUN`
+- Human scanability/comprehension state: `UNRUN` unless separately consented
+
+A favorable one-page or one-screen claim without the completed proof record,
+retained PDF, page count, rendering command, tool versions, and PDF hash is a
+deviation and cannot be `LAYOUT PASSED`.
+
 | Time | Exact intervention | Level | Gate affected | Interpretation effect |
 | --- | --- | --- | --- | --- |
 | | | | | |
@@ -179,6 +263,12 @@ reopen or append it to the governed practitioner workbook or handoff.
 | --- | --- | --- | --- | --- | --- |
 | | | | | | |
 
+- Retained rejected attempts, exact identities/manifests, stops, and non-score
+  dispositions:
+- Semantic invention or unsupported fact, exact artifact/location, scoring
+  effect, and retained correction state:
+- Unexplained count, timing, hash, open/read, or artifact variance:
+
 ## Findings and disposition
 
 | ID | Finding | Source | Severity | Revise / retest / hold / remove | Owner | Evidence |
@@ -187,8 +277,31 @@ reopen or append it to the governed practitioner workbook or handoff.
 
 ## Truthful state statement
 
+- Protocol state: six freeze chains complete / full route complete / partial /
+  stopped / unrun
+- Synthetic behavior state: passed for exact pair / partial / failed / unrun
+- Layout state: passed / hold-failed / unrun
+- Human evidence state: `UNRUN` unless a consented human attempt exists
+- Data-readiness claim state: `UNRUN`
+- Real-world evidence state: `UNRUN`
 - What this exact pair establishes:
 - What it does not establish:
 - Packet state after authorized review:
 - Files changed only after raw evidence was preserved:
 - Next attempt and version:
+
+## Immutable results completion before log close
+
+- Final pre-close execution-log event ID and entry SHA-256:
+- Results-record completion timestamp/timezone:
+- Results-record completing actor/facilitator:
+- Results-record state: `RESULTS COMPLETE`
+- No predicted final closed-log hash or future closeout timestamp appears in
+  this record: yes / no
+
+Only after all fields are complete may the facilitator log
+`RUN_RESULTS_COMPLETED` for the immutable result and then record `LOG_CLOSED`,
+validate `DATA-EXECUTION-ACCESS-LOG-v1.jsonl`, and copy it without byte change to the dedicated
+closeout input. The later `DATA-RUN-CLOSEOUT-v1.md` binds the observed
+closed-log hash, `DATA-RUN-CLOSEOUT-SHA256SUMS-v1.txt` hash, and this completed
+results-record hash. Do not reopen this result after log close.

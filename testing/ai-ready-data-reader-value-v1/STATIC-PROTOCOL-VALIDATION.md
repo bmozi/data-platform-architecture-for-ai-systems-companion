@@ -1,6 +1,6 @@
 # Static Temporal-Protocol Validation
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.4
+**Packet:** DATA-RV-PILOT-001 version 1.2.5
 **Review date:** 2026-08-30
 **Result:** PASS for static source instructions after repository validation
 **Evidence class:** Local static inspection, not a participant run
@@ -9,7 +9,9 @@
 
 The packet route, facilitator guide, workbooks, handoff, detached-record
 template, rubric, results log, protocol inventory, execution/access log, and
-packet README were checked for the same sequence in all six governed scopes:
+packet README, synthetic-context template, layout-proof template, and structured
+protocol were checked for the same sequence in all six governed scopes and the
+larger participant/run route:
 
 1. initial and revised Stage A artifacts record ID/version, completion
    timestamp/timezone, and their declared complete state before hashing;
@@ -34,21 +36,48 @@ packet README were checked for the same sequence in all six governed scopes:
    `DATA-A-LIVE-UPDATE-v1.md`, and verifies before the update opens; and
 9. the next sealed phase-input or closing evidence manifest hashes the governed
    artifact, governing manifest, and detached record under literal filenames.
+10. one mutually exclusive entry branch is selected before `RUN_STARTED`:
+    real completed consent for `HUMAN`, or exact immutable
+    `DATA-SYNTHETIC-CONTEXT-v1.md` plus its verified manifest for `SYNTHETIC`,
+    with no fictional human-consent or human-result claim;
+11. exact Stage A and Stage B context/start checkpoints, Stage A material
+    feedback/end, Stage B scoring end, gated Section 6 debrief, Stage B end,
+    immutable results completion, and log close are recorded in order;
+12. `DATA-B-PHASE-4-DEBRIEF-INPUT-SHA256SUMS-v1.txt` binds the final scored
+    artifact/manifest/record triple plus exact `04-decision-owner-workbook.md`
+    before exact `DATA-B-SECTION-6-DEBRIEF-v1.md` opens;
+13. exact immutable `DATA-RUN-RESULTS-v1.md` reaches `RESULTS COMPLETE` before
+    `LOG_CLOSED` without predicting the final log hash or a future closeout;
+14. later external `DATA-RUN-CLOSEOUT-v1.md` binds observed hashes for the
+    byte-identical closed log, the verified closeout manifest, and results; and
+15. a favorable one-page claim requires a retained proof for one US Letter
+    portrait PDF, margins at least 0.5 inch, body/table text at least 9 points,
+    no more than 450 reader-facing words excluding only immutable provenance,
+    and no clipping, overlap, hidden overflow, or unreadable shrinking. This is
+    layout evidence, not comprehension evidence.
 
 Static checks also reject the legacy revised-record identity, future freeze
 timestamps and self-hash fields in governed templates, and the old
 checksum-reference fields that would require an artifact to predict its own
 post-hash evidence. Per-file semantic clauses now enforce manifest exclusion,
 ordered completion and verification, release-manifest triple binding, and
-immutable correction identity. Sixteen negative mutations prove the validator
+immutable correction identity. Forty negative mutations prove the validator
 rejects manifest self-inclusion, same-path correction, missing revised Stage A
 release binding, omitted complete verification output, missing attempt
 identity, invalid record chronology, undeclared orchestration permission,
 missing execution events, missing actor fields, and an omitted record-template
 output field. They also reject live-update omission, rename, unbound release
 membership, route omission, canonical wording drift, and weakening the
-optional-contract branch. Structured mutations refresh surrounding checksums
+optional-contract branch. Closure mutations additionally reject entry-branch
+omission or mixing, synthetic human-consent/result claims, missing context,
+start, material-feedback, end, scoring, debrief, Section 6, or results
+boundaries, an omitted or unverified debrief gate, omitted results, premature
+log close, a predicted future log hash, omitted external closeout, and a
+favorable one-page claim without passed proof. Structured mutations refresh surrounding checksums
 so rejection depends on the invariant rather than merely a stale hash.
+They also reject any scored workbook source that requires the future Stage A
+or Stage B end event inside governed bytes; those end facts belong only to the
+facilitator log and later run results.
 
 ## Commands used
 
@@ -68,7 +97,8 @@ source-packet file, excluding the manifest itself.
 ## Boundary
 
 This PASS means the source instructions and literal identities are internally
-consistent under static inspection. It does not show that a facilitator
+consistent under static inspection. Six completed scored freeze chains remain
+distinct from full participant/run-route completion. This PASS does not show that a facilitator
 executed the order, that timestamps are trustworthy, that a participant
 understood the materials, or that any data, AI system, control, readiness
 decision, safety claim, or business result is valid. Those require an

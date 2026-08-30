@@ -17,8 +17,8 @@ LINK_PATTERN = re.compile(r"!?\[[^\]]*\]\(([^)]+)\)")
 COMMIT_PATTERN = re.compile(r"^[0-9a-f]{7,40}$")
 CHECKSUM_PATTERN = re.compile(r"^([0-9a-f]{64})  (.+)$")
 PACKET_ID = "DATA-RV-PILOT-001"
-PACKET_VERSION = "1.2.4"
-TEMPORAL_SCHEMA_VERSION = 3
+PACKET_VERSION = "1.2.5"
+TEMPORAL_SCHEMA_VERSION = 4
 LIVE_UPDATE_FILENAME = "DATA-A-LIVE-UPDATE-v1.md"
 LIVE_UPDATE_PATH = f"participant/{LIVE_UPDATE_FILENAME}"
 REVISION_PHASE_ID = "stage_a_revision"
@@ -36,12 +36,45 @@ REVISION_CONDITIONAL_MEMBERS = [
         "forbidden_when_prior_release_artifact_not_included": True,
     }
 ]
+SYNTHETIC_CONTEXT_TEMPLATE = "participant/07-synthetic-context-record.md"
+SYNTHETIC_CONTEXT_FILENAME = "DATA-SYNTHETIC-CONTEXT-v1.md"
+SYNTHETIC_CONTEXT_MANIFEST = "DATA-SYNTHETIC-CONTEXT-SHA256SUMS-v1.txt"
+EXECUTION_LOG_FILENAME = "DATA-EXECUTION-ACCESS-LOG-v1.jsonl"
+DEBRIEF_INPUT_FILENAME = "04-decision-owner-workbook.md"
+DEBRIEF_MANIFEST = "DATA-B-PHASE-4-DEBRIEF-INPUT-SHA256SUMS-v1.txt"
+DEBRIEF_OUTPUT_FILENAME = "DATA-B-SECTION-6-DEBRIEF-v1.md"
+RUN_RESULTS_FILENAME = "DATA-RUN-RESULTS-v1.md"
+CLOSEOUT_MANIFEST = "DATA-RUN-CLOSEOUT-SHA256SUMS-v1.txt"
+CLOSEOUT_RECORD = "DATA-RUN-CLOSEOUT-v1.md"
+LAYOUT_TEMPLATE = "facilitator-only/06-handoff-layout-proof-record.md"
+LAYOUT_RECORD = "DATA-A-HANDOFF-LAYOUT-PROOF-v1.md"
+LAYOUT_PDF = "DATA-A-ONE-SCREEN-HANDOFF-v1.pdf"
+ROUTE_BOUNDARY_SEQUENCE = [
+    "ENTRY_BRANCH_SELECTED",
+    "RUN_STARTED",
+    "STAGE_A_CONTEXT_GATE_OPENED",
+    "STAGE_A_STARTED",
+    "HANDOFF_LAYOUT_PROOF_COMPLETED",
+    "STAGE_A_MATERIAL_FEEDBACK_COMPLETED",
+    "STAGE_A_ENDED",
+    "STAGE_B_CONTEXT_GATE_OPENED",
+    "STAGE_B_STARTED",
+    "STAGE_B_SCORING_ENDED",
+    "DEBRIEF_INPUT_MANIFEST_CREATED",
+    "DEBRIEF_INPUT_MANIFEST_VERIFIED",
+    "STAGE_B_SECTION_6_DEBRIEF_OPENED",
+    "STAGE_B_SECTION_6_DEBRIEF_COMPLETED",
+    "STAGE_B_ENDED",
+    "RUN_RESULTS_COMPLETED",
+    "LOG_CLOSED",
+]
 
 
 TEMPORAL_PROTOCOL_FILES = [
     "README.md",
     "participant/00-packet-route.md",
     LIVE_UPDATE_PATH,
+    SYNTHETIC_CONTEXT_TEMPLATE,
     "participant/03-practitioner-workbook.md",
     "participant/04-decision-owner-workbook.md",
     "participant/05-one-screen-handoff.md",
@@ -51,6 +84,13 @@ TEMPORAL_PROTOCOL_FILES = [
     "facilitator-only/03-results-and-deviation-log.md",
     "facilitator-only/04-temporal-freeze-protocol-and-record-templates.md",
     "facilitator-only/05-execution-and-access-log.md",
+    LAYOUT_TEMPLATE,
+]
+
+GOVERNED_OR_SCORED_SOURCE_FILES = [
+    "participant/03-practitioner-workbook.md",
+    "participant/04-decision-owner-workbook.md",
+    "participant/05-one-screen-handoff.md",
 ]
 
 
@@ -118,7 +158,7 @@ def require_count(
 
 
 def temporal_protocol_content_errors(contents: dict[str, str]) -> list[str]:
-    """Return static semantic errors for packet 1.2.4 source instructions."""
+    """Return static semantic errors for packet 1.2.5 source instructions."""
 
     errors: list[str] = []
     combined = "\n".join(contents.values())
@@ -147,6 +187,31 @@ def temporal_protocol_content_errors(contents: dict[str, str]) -> list[str]:
         if identity not in combined:
             errors.append(f"temporal protocol: missing exact identity: {identity}")
 
+    closure_identities = [
+        SYNTHETIC_CONTEXT_FILENAME,
+        SYNTHETIC_CONTEXT_MANIFEST,
+        EXECUTION_LOG_FILENAME,
+        LAYOUT_RECORD,
+        LAYOUT_PDF,
+        DEBRIEF_MANIFEST,
+        DEBRIEF_OUTPUT_FILENAME,
+        RUN_RESULTS_FILENAME,
+        CLOSEOUT_MANIFEST,
+        CLOSEOUT_RECORD,
+    ]
+    for identity in closure_identities:
+        if identity not in combined:
+            errors.append(f"temporal protocol: missing closure identity: {identity}")
+
+    for relative in GOVERNED_OR_SCORED_SOURCE_FILES:
+        content = contents.get(relative, "")
+        for future_event in ["STAGE_A_ENDED", "STAGE_B_ENDED"]:
+            if future_event in content:
+                errors.append(
+                    f"temporal protocol: {relative} requires future stage-end fact "
+                    f"inside governed/scored source: {future_event}"
+                )
+
     required_by_file = {
         "participant/00-packet-route.md": exact_identities,
         "facilitator-only/01-facilitator-guide.md": exact_identities,
@@ -161,6 +226,20 @@ def temporal_protocol_content_errors(contents: dict[str, str]) -> list[str]:
             if identity not in content:
                 errors.append(
                     f"temporal protocol: {relative} lacks exact identity: {identity}"
+                )
+
+    for relative in [
+        "README.md",
+        "participant/00-packet-route.md",
+        "facilitator-only/01-facilitator-guide.md",
+        "facilitator-only/03-results-and-deviation-log.md",
+        "facilitator-only/04-temporal-freeze-protocol-and-record-templates.md",
+    ]:
+        content = contents.get(relative, "")
+        for identity in closure_identities:
+            if identity not in content:
+                errors.append(
+                    f"temporal protocol: {relative} lacks closure identity: {identity}"
                 )
 
     for relative, content in contents.items():
@@ -182,13 +261,25 @@ def temporal_protocol_content_errors(contents: dict[str, str]) -> list[str]:
 
     semantic_clauses = {
         "README.md": [
+            "select exactly one entry branch for the entire attempt",
+            "Six completed artifact/manifest/verification/detached-record chains do not by themselves complete the route.",
+            "complete immutable `DATA-RUN-RESULTS-v1.md` before `LOG_CLOSED`",
+            "Layout evidence is not comprehension evidence.",
             "exact immutable participant/run input `DATA-A-LIVE-UPDATE-v1.md`",
             "The optional contract must be present in both manifests when used and absent from both when not used.",
             "The governing manifest `DATA-A-REVISED-ARTIFACTS-SHA256SUMS-v1.txt` hashes exactly the included revised detail files and does not hash itself or the later detached record.",
             "Stage B Phase 2 specifically binds every included revised Stage A artifact, its governing manifest, and its detached record, in addition to the frozen Section 1 triple.",
             "new immutable filename and a new artifact ID/version",
         ],
+        "participant/01-consent-and-privacy.md": [
+            "This notice is for the `HUMAN` entry branch only.",
+            "A blank human notice never counts as synthetic consent.",
+        ],
         "participant/00-packet-route.md": [
+            "The branches are mutually exclusive.",
+            "Any fictional human affirmation or human-result claim is a stop.",
+            "Record `RUN_RESULTS_COMPLETED` before `LOG_CLOSED`.",
+            "All six scored freeze chains may be complete while the full route remains incomplete.",
             "`DATA-A-LIVE-UPDATE-v1.md`. The optional contract must be present in both manifests when used and absent from both when not used.",
             "Only after that revision-phase input manifest verifies, open `DATA-A-LIVE-UPDATE-v1.md`",
             "It hashes exactly the included revised artifacts, never itself or the later verification record.",
@@ -197,7 +288,7 @@ def temporal_protocol_content_errors(contents: dict[str, str]) -> list[str]:
             "`DATA-B-SECTION-1-SHA256SUMS-v1.txt` over the completed export only and create that detached record.",
             "`DATA-B-SECTION-2-SHA256SUMS-v1.txt` over only the completed export and create that detached record before opening either decision aid.",
             "`DATA-B-SECTIONS-3-5-SHA256SUMS-v1.txt` over only that completed export; then create the detached record.",
-            "Collect all material feedback in the external results and deviation log",
+            "Collect all material feedback in the external run-specific results record",
             "new immutable filename and a new artifact ID/version",
         ],
         "participant/03-practitioner-workbook.md": [
@@ -211,10 +302,15 @@ def temporal_protocol_content_errors(contents: dict[str, str]) -> list[str]:
             "The optional initial data-product contract must be included in the revision-phase manifest exactly when it was used and included in the initial governing manifest.",
         ],
         "participant/04-decision-owner-workbook.md": [
+            "Keep this section closed until the facilitator records `STAGE_B_SCORING_ENDED`",
+            "Export this section separately as exactly `DATA-B-SECTION-6-DEBRIEF-v1.md`.",
             "The closing evidence manifest later hashes the completed export, governing manifest, and detached record.",
             "new immutable filename and a new artifact ID/version",
         ],
         "participant/05-one-screen-handoff.md": [
+            "target one US Letter portrait page with every margin at least 0.5 inch, body and table text at least 9 points",
+            "no more than 450 reader-facing words excluding only immutable provenance metadata",
+            "Even `LAYOUT PASSED` is local layout evidence, not proof that a person can scan, understand, or use the handoff.",
             "The manifest never hashes itself or the later record.",
             "Stage B's sealed Phase 1 input manifest hashes the handoff, its governing manifest, and the detached record.",
         ],
@@ -226,6 +322,9 @@ def temporal_protocol_content_errors(contents: dict[str, str]) -> list[str]:
             "new immutable filename and a new artifact ID/version for every corrected artifact",
         ],
         "facilitator-only/01-facilitator-guide.md": [
+            "Select exactly one entry branch before `RUN_STARTED` and keep it for the whole attempt.",
+            "Record `RUN_RESULTS_COMPLETED` before `LOG_CLOSED`",
+            "only then create `DATA-RUN-CLOSEOUT-v1.md` binding all three observed hashes",
             "sealed participant input `DATA-A-LIVE-UPDATE-v1.md`",
             "The optional contract must be present in both manifests when used and absent from both when not used.",
             "The manifest never lists or hashes itself or the later record.",
@@ -234,6 +333,10 @@ def temporal_protocol_content_errors(contents: dict[str, str]) -> list[str]:
             "new immutable filename and a new artifact ID/version",
         ],
         "facilitator-only/02-observation-and-scoring-rubric.md": [
+            "Entry-branch integrity",
+            "Full-route closure",
+            "Results and external closeout",
+            "Literal layout proof",
             "Revision-input integrity",
             "exact immutable `DATA-A-LIVE-UPDATE-v1.md`",
             "no governing manifest hashes itself or its later record",
@@ -241,6 +344,10 @@ def temporal_protocol_content_errors(contents: dict[str, str]) -> list[str]:
             "new immutable filename and new artifact ID/version for every corrected artifact",
         ],
         "facilitator-only/03-results-and-deviation-log.md": [
+            "This checked-in file is a source template, not a completed result.",
+            "state `RESULTS COMPLETE`, then record `RUN_RESULTS_COMPLETED` before `LOG_CLOSED`",
+            "No predicted final closed-log hash or future closeout timestamp appears in this record",
+            "A favorable one-page or one-screen claim without the completed proof record",
             "Immutable live-update participant input exact filename/hash: `DATA-A-LIVE-UPDATE-v1.md` /",
             "included in both the initial and revision-phase manifests when used, and absent from both when not used",
             "Every governing manifest excludes itself and its later detached record",
@@ -249,13 +356,33 @@ def temporal_protocol_content_errors(contents: dict[str, str]) -> list[str]:
             "new immutable filename and a new artifact ID/version",
         ],
         "facilitator-only/04-temporal-freeze-protocol-and-record-templates.md": [
+            "Select exactly `HUMAN` or `SYNTHETIC` once before `RUN_STARTED`.",
+            "Their completion does not establish full-route closure.",
+            "Complete the blank results template as exact `DATA-RUN-RESULTS-v1.md`, state `RESULTS COMPLETE`, before `LOG_CLOSED`.",
+            "The closeout record is later external provenance.",
             "exact immutable `DATA-A-LIVE-UPDATE-v1.md`",
             "conditional `DATA-A-INITIAL-DATA-PRODUCT-CONTRACT-v1.md` exactly when it was used and appears in the initial governing manifest, and otherwise not",
             "Verify this manifest before opening the live update.",
         ],
         "facilitator-only/05-execution-and-access-log.md": [
+            "The branch is selected once before `RUN_STARTED`.",
+            "Required whole-route boundary sequence",
+            "`LOG_CLOSED` cannot precede it.",
+            "The closeout record is later external provenance.",
             "exact immutable `DATA-A-LIVE-UPDATE-v1.md`",
             "The optional contract must be absent here when it was not used.",
+        ],
+        SYNTHETIC_CONTEXT_TEMPLATE: [
+            "not consent and not a result",
+            "`SYNTHETIC — NO HUMAN PARTICIPANT OR HUMAN DATA`",
+            "Any blank required field, branch mixing, fictional human affirmation, or human result claim stops the run before scored input opens.",
+        ],
+        LAYOUT_TEMPLATE: [
+            "one US Letter portrait page",
+            "every margin is at least 0.5 inch",
+            "body and table text are at least 9 points",
+            "no more than 450 words excluding only immutable provenance metadata",
+            "it does not test whether a person can scan, understand, or use the handoff",
         ],
     }
 
@@ -334,6 +461,32 @@ def temporal_protocol_content_errors(contents: dict[str, str]) -> list[str]:
     for relative, clauses in replay_clauses.items():
         require_clauses(errors, contents, relative, clauses)
 
+    require_order(
+        errors,
+        contents,
+        "participant/00-packet-route.md",
+        [
+            "record `STAGE_B_SCORING_ENDED`",
+            "Create and verify `DATA-B-PHASE-4-DEBRIEF-INPUT-SHA256SUMS-v1.txt`",
+            "Open Section 6 only after that gate",
+            "Record `STAGE_B_SECTION_6_DEBRIEF_COMPLETED`, then `STAGE_B_ENDED`",
+            "Complete the immutable run-specific results record",
+            "Record `RUN_RESULTS_COMPLETED` before `LOG_CLOSED`",
+            "Create and verify `DATA-RUN-CLOSEOUT-SHA256SUMS-v1.txt`",
+            "Only afterward complete `DATA-RUN-CLOSEOUT-v1.md`",
+        ],
+        "scoring end -> debrief -> stage end -> results -> log close -> closeout",
+    )
+    require_order(
+        errors,
+        contents,
+        "facilitator-only/05-execution-and-access-log.md",
+        [
+            f"{index}. `{event}`"
+            for index, event in enumerate(ROUTE_BOUNDARY_SEQUENCE, start=1)
+        ],
+        "whole-route boundary",
+    )
     require_order(
         errors,
         contents,
@@ -487,7 +640,7 @@ def temporal_protocol_content_errors(contents: dict[str, str]) -> list[str]:
 def validate_temporal_freeze_protocol(
     errors: list[str], content_overrides: dict[str, str] | None = None
 ) -> int:
-    """Check packet 1.2.4's static temporal-order invariants."""
+    """Check packet 1.2.5's static temporal-order invariants."""
 
     packet = ROOT / "testing/ai-ready-data-reader-value-v1"
     contents: dict[str, str] = {}
@@ -617,6 +770,39 @@ def validate_temporal_protocol_json(errors: list[str]) -> int:
         "continuity_binding",
         "outcome_or_deviation",
     ]
+    expected_synthetic_fields = [
+        "packet_id_version",
+        "attempt_id",
+        "fictional_scenario_only",
+        "no_human_consent_or_result",
+        "stage_a_actor",
+        "stage_b_actor",
+        "facilitator",
+        "orchestration_aided_status",
+        "orchestration_manifest_identity",
+        "evidence_root",
+        "retention_boundary",
+        "access_boundary",
+        "run_start_timestamp_timezone",
+        "pre_scored_log_checkpoint",
+    ]
+    expected_results_fields = [
+        "packet_attempt_actor_facilitator_identity",
+        "source_and_orchestration_manifest_identity",
+        "six_freeze_chain_results",
+        "final_pre_close_log_checkpoint",
+        "input_open_artifact_verification_record_boundary_counts",
+        "interventions_deviations_stops_rejected_attempts",
+        "semantic_inventions_layout_failures_variances",
+        "reader_value_scores_domain_gate_findings",
+        "protocol_state",
+        "synthetic_behavior_state",
+        "layout_state",
+        "human_state",
+        "data_readiness_state",
+        "real_world_state",
+        "decision_and_evidence_limits",
+    ]
     expected_release_ids = [
         "stage_a_initial",
         "stage_a_revised",
@@ -689,6 +875,172 @@ def validate_temporal_protocol_json(errors: list[str]) -> int:
         "facilitator file",
     ]:
         errors.append("temporal protocol JSON: forbidden participant-input examples incomplete")
+
+    entry_branch = protocol.get("entry_branch")
+    expected_entry_branch = {
+        "selection_event": "ENTRY_BRANCH_SELECTED",
+        "selection_required_before": "RUN_STARTED",
+        "mutually_exclusive": True,
+        "mixed_branch_forbidden": True,
+        "human": {
+            "consent_template_path": "participant/01-consent-and-privacy.md",
+            "completed_real_person_consent_required": True,
+            "blank_consent_stops": True,
+            "synthetic_context_forbidden": True,
+        },
+        "synthetic": {
+            "context_template_path": SYNTHETIC_CONTEXT_TEMPLATE,
+            "run_record_filename": SYNTHETIC_CONTEXT_FILENAME,
+            "manifest": SYNTHETIC_CONTEXT_MANIFEST,
+            "manifest_members": [SYNTHETIC_CONTEXT_FILENAME],
+            "manifest_verified_before_scored_input": True,
+            "human_consent_claim_forbidden": True,
+            "human_result_claim_forbidden": True,
+            "required_literal": "SYNTHETIC — NO HUMAN PARTICIPANT OR HUMAN DATA",
+            "required_fields": expected_synthetic_fields,
+        },
+    }
+    if entry_branch != expected_entry_branch:
+        errors.append(
+            "temporal protocol JSON: entry branch must preserve exact mutually exclusive "
+            "human-consent or synthetic-context semantics"
+        )
+    for path, label in [
+        (
+            expected_entry_branch["human"]["consent_template_path"],
+            "human consent template",
+        ),
+        (SYNTHETIC_CONTEXT_TEMPLATE, "synthetic context template"),
+    ]:
+        target = protocol_target(packet, path, label, errors)
+        if target and not target.is_file():
+            errors.append(f"temporal protocol JSON: missing {label} {path}")
+
+    route_closure = protocol.get("route_closure")
+    expected_route_closure = {
+        "six_scored_freeze_chains": expected_release_ids,
+        "freeze_chain_completion_is_full_route_completion": False,
+        "required_boundary_sequence": ROUTE_BOUNDARY_SEQUENCE,
+        "stage_a_explanation_forbidden_before": "STAGE_B_SCORING_ENDED",
+        "debrief_phase_input": {
+            "manifest": DEBRIEF_MANIFEST,
+            "created_after": "STAGE_B_SCORING_ENDED",
+            "verified_before_open": True,
+            "required_members": [
+                "DATA-B-SECTIONS-3-5-DECISION-v1.md",
+                "DATA-B-SECTIONS-3-5-SHA256SUMS-v1.txt",
+                "DATA-B-SECTIONS-3-5-FREEZE-VERIFICATION-v1.md",
+                DEBRIEF_INPUT_FILENAME,
+            ],
+        },
+        "debrief_output": {
+            "filename": DEBRIEF_OUTPUT_FILENAME,
+            "state": "DEBRIEF COMPLETE",
+            "completed_before": "STAGE_B_ENDED",
+            "may_modify_scored_bytes": False,
+        },
+    }
+    if route_closure != expected_route_closure:
+        errors.append(
+            "temporal protocol JSON: full-route closure boundaries, debrief gate, or "
+            "six-freeze-chain distinction invalid"
+        )
+
+    run_results = protocol.get("run_results")
+    expected_run_results = {
+        "source_template": "facilitator-only/03-results-and-deviation-log.md",
+        "filename": RUN_RESULTS_FILENAME,
+        "state": "RESULTS COMPLETE",
+        "completion_event": "RUN_RESULTS_COMPLETED",
+        "completed_before_log_close": True,
+        "required_fields": expected_results_fields,
+        "predicted_final_closed_log_hash_forbidden": True,
+        "future_closeout_timestamp_forbidden": True,
+    }
+    if run_results != expected_run_results:
+        errors.append(
+            "temporal protocol JSON: immutable run-results identity, fields, or "
+            "pre-close ordering invalid"
+        )
+    results_template = protocol_target(
+        packet,
+        expected_run_results["source_template"],
+        "run-results source template",
+        errors,
+    )
+    if results_template and not results_template.is_file():
+        errors.append(
+            "temporal protocol JSON: run-results source template is missing"
+        )
+
+    external_closeout = protocol.get("external_closeout")
+    expected_external_closeout = {
+        "created_after": "LOG_CLOSED",
+        "closed_log_filename": EXECUTION_LOG_FILENAME,
+        "closed_log_copy_byte_identical": True,
+        "manifest": CLOSEOUT_MANIFEST,
+        "manifest_members": [EXECUTION_LOG_FILENAME, RUN_RESULTS_FILENAME],
+        "record": CLOSEOUT_RECORD,
+        "record_created_after_manifest_verification": True,
+        "required_record_bindings": [
+            "closed_log_sha256",
+            "closeout_manifest_sha256",
+            "run_results_sha256",
+        ],
+        "closed_log_may_predict_external_hash_or_closeout_time": False,
+    }
+    if external_closeout != expected_external_closeout:
+        errors.append(
+            "temporal protocol JSON: later external closeout identity, membership, "
+            "or observed-hash binding invalid"
+        )
+
+    handoff_layout = protocol.get("handoff_layout_proof")
+    expected_handoff_layout = {
+        "source_template": LAYOUT_TEMPLATE,
+        "record": LAYOUT_RECORD,
+        "markdown": "DATA-A-ONE-SCREEN-HANDOFF-v1.md",
+        "pdf": LAYOUT_PDF,
+        "target": {
+            "page_size": "US Letter",
+            "orientation": "portrait",
+            "maximum_pages": 1,
+            "minimum_margin_inches": 0.5,
+            "minimum_body_text_points": 9,
+            "minimum_table_text_points": 9,
+            "maximum_reader_facing_words": 450,
+            "word_count_excludes_only": "immutable provenance metadata",
+            "clipping_allowed": False,
+            "overlap_allowed": False,
+            "hidden_overflow_allowed": False,
+            "unreadable_shrinking_allowed": False,
+        },
+        "required_evidence": [
+            "generated_markdown",
+            "generated_pdf",
+            "page_count",
+            "rendering_command",
+            "tool_versions",
+            "pdf_sha256",
+        ],
+        "favorable_claim_requires_passed_proof": True,
+        "proves_human_comprehension": False,
+    }
+    if handoff_layout != expected_handoff_layout:
+        errors.append(
+            "temporal protocol JSON: one-page US Letter handoff proof contract or "
+            "non-comprehension boundary invalid"
+        )
+    layout_template = protocol_target(
+        packet,
+        LAYOUT_TEMPLATE,
+        "handoff layout proof source template",
+        errors,
+    )
+    if layout_template and not layout_template.is_file():
+        errors.append(
+            "temporal protocol JSON: handoff layout proof source template is missing"
+        )
 
     execution = protocol.get("execution_access_log", {})
     if execution.get("path") != "facilitator-only/05-execution-and-access-log.md":
@@ -906,6 +1258,46 @@ def validate_temporal_protocol_json(errors: list[str]) -> int:
     else:
         errors.append("temporal protocol JSON: stage_a_initial release missing")
 
+    final_release = release_map.get("stage_b_sections_3_5")
+    if isinstance(final_release, dict):
+        final_artifacts = final_release.get("artifacts", [])
+        final_names = [
+            artifact.get("filename")
+            for artifact in final_artifacts
+            if isinstance(artifact, dict)
+            and isinstance(artifact.get("filename"), str)
+        ]
+        expected_debrief_members = [
+            *final_names,
+            final_release.get("governing_manifest"),
+            final_release.get("detached_record"),
+            DEBRIEF_INPUT_FILENAME,
+        ]
+        debrief_input = (
+            route_closure.get("debrief_phase_input", {})
+            if isinstance(route_closure, dict)
+            else {}
+        )
+        if debrief_input.get("required_members") != expected_debrief_members:
+            errors.append(
+                "temporal protocol JSON: debrief input manifest does not bind the "
+                "final scored artifact triple and exact Section 6 input"
+            )
+        if final_release.get("next_release_manifest") != DEBRIEF_MANIFEST:
+            errors.append(
+                "temporal protocol JSON: final scored release does not open the exact "
+                "debrief manifest"
+            )
+        if final_release.get("next_release_additional_inputs") != [
+            DEBRIEF_INPUT_FILENAME
+        ]:
+            errors.append(
+                "temporal protocol JSON: final scored release must add only the exact "
+                "Section 6 input"
+            )
+    else:
+        errors.append("temporal protocol JSON: stage_b_sections_3_5 release missing")
+
     for release in releases:
         if not isinstance(release, dict) or release.get("id") not in expected_states:
             continue
@@ -935,6 +1327,15 @@ def validate_temporal_protocol_json(errors: list[str]) -> int:
         ):
             errors.append(
                 f"temporal protocol JSON: immutable live update bound to wrong release {release_id}"
+            )
+        expected_additional_inputs = {
+            REVISION_PRIOR_RELEASE: [LIVE_UPDATE_FILENAME],
+            "stage_b_sections_3_5": [DEBRIEF_INPUT_FILENAME],
+        }.get(release_id, [])
+        if additional_inputs != expected_additional_inputs:
+            errors.append(
+                f"temporal protocol JSON: {release_id} next-release additional input "
+                "inventory invalid"
             )
 
     critical = protocol.get("critical_documents", [])

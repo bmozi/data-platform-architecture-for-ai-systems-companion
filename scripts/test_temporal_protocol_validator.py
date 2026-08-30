@@ -253,6 +253,92 @@ def mutate_optional_branch_weakening(repo: Path) -> None:
     write_protocol(repo, protocol)
 
 
+def mutate_entry_branch_omission(repo: Path) -> None:
+    protocol = load_protocol(repo)
+    protocol.pop("entry_branch")
+    write_protocol(repo, protocol)
+
+
+def mutate_branch_mixing(repo: Path) -> None:
+    protocol = load_protocol(repo)
+    protocol["entry_branch"]["mixed_branch_forbidden"] = False
+    write_protocol(repo, protocol)
+
+
+def mutate_synthetic_human_consent_claim(repo: Path) -> None:
+    protocol = load_protocol(repo)
+    protocol["entry_branch"]["synthetic"]["human_consent_claim_forbidden"] = False
+    write_protocol(repo, protocol)
+
+
+def mutate_synthetic_human_result_claim(repo: Path) -> None:
+    protocol = load_protocol(repo)
+    protocol["entry_branch"]["synthetic"]["human_result_claim_forbidden"] = False
+    write_protocol(repo, protocol)
+
+
+def remove_route_boundary(event: str) -> Callable[[Path], None]:
+    def mutation(repo: Path) -> None:
+        protocol = load_protocol(repo)
+        protocol["route_closure"]["required_boundary_sequence"].remove(event)
+        write_protocol(repo, protocol)
+
+    return mutation
+
+
+def mutate_debrief_gate_omission(repo: Path) -> None:
+    protocol = load_protocol(repo)
+    protocol["route_closure"].pop("debrief_phase_input")
+    write_protocol(repo, protocol)
+
+
+def mutate_debrief_unverified(repo: Path) -> None:
+    protocol = load_protocol(repo)
+    protocol["route_closure"]["debrief_phase_input"][
+        "verified_before_open"
+    ] = False
+    write_protocol(repo, protocol)
+
+
+def mutate_results_omission(repo: Path) -> None:
+    protocol = load_protocol(repo)
+    protocol.pop("run_results")
+    write_protocol(repo, protocol)
+
+
+def mutate_premature_log_close(repo: Path) -> None:
+    protocol = load_protocol(repo)
+    protocol["run_results"]["completed_before_log_close"] = False
+    write_protocol(repo, protocol)
+
+
+def mutate_predicted_future_log_hash(repo: Path) -> None:
+    protocol = load_protocol(repo)
+    protocol["run_results"]["predicted_final_closed_log_hash_forbidden"] = False
+    write_protocol(repo, protocol)
+
+
+def mutate_missing_closeout(repo: Path) -> None:
+    protocol = load_protocol(repo)
+    protocol.pop("external_closeout")
+    write_protocol(repo, protocol)
+
+
+def mutate_favorable_layout_without_proof(repo: Path) -> None:
+    protocol = load_protocol(repo)
+    protocol["handoff_layout_proof"]["favorable_claim_requires_passed_proof"] = False
+    write_protocol(repo, protocol)
+
+
+def mutate_future_stage_end_in_scored_workbook(repo: Path) -> None:
+    update_critical_document(
+        repo,
+        "participant/03-practitioner-workbook.md",
+        lambda content: content
+        + "\n- Required future route fact: `STAGE_A_ENDED`\n",
+    )
+
+
 def main() -> int:
     positive = run_validator(ROOT)
     if positive.returncode != 0:
@@ -364,13 +450,133 @@ def main() -> int:
             mutate_optional_branch_weakening,
             "optional initial contract membership semantics weakened",
         ),
+        (
+            "entry-branch-omission",
+            mutate_entry_branch_omission,
+            "entry branch must preserve exact mutually exclusive",
+        ),
+        (
+            "entry-branch-mixing",
+            mutate_branch_mixing,
+            "entry branch must preserve exact mutually exclusive",
+        ),
+        (
+            "synthetic-human-consent-claim",
+            mutate_synthetic_human_consent_claim,
+            "entry branch must preserve exact mutually exclusive",
+        ),
+        (
+            "synthetic-human-result-claim",
+            mutate_synthetic_human_result_claim,
+            "entry branch must preserve exact mutually exclusive",
+        ),
+        (
+            "missing-stage-a-start",
+            remove_route_boundary("STAGE_A_STARTED"),
+            "full-route closure boundaries",
+        ),
+        (
+            "missing-stage-a-context-gate",
+            remove_route_boundary("STAGE_A_CONTEXT_GATE_OPENED"),
+            "full-route closure boundaries",
+        ),
+        (
+            "missing-layout-proof-boundary",
+            remove_route_boundary("HANDOFF_LAYOUT_PROOF_COMPLETED"),
+            "full-route closure boundaries",
+        ),
+        (
+            "missing-stage-a-material-feedback",
+            remove_route_boundary("STAGE_A_MATERIAL_FEEDBACK_COMPLETED"),
+            "full-route closure boundaries",
+        ),
+        (
+            "missing-stage-a-end",
+            remove_route_boundary("STAGE_A_ENDED"),
+            "full-route closure boundaries",
+        ),
+        (
+            "missing-stage-b-start",
+            remove_route_boundary("STAGE_B_STARTED"),
+            "full-route closure boundaries",
+        ),
+        (
+            "missing-stage-b-context-gate",
+            remove_route_boundary("STAGE_B_CONTEXT_GATE_OPENED"),
+            "full-route closure boundaries",
+        ),
+        (
+            "missing-stage-b-scoring-end",
+            remove_route_boundary("STAGE_B_SCORING_ENDED"),
+            "full-route closure boundaries",
+        ),
+        (
+            "missing-section-6-completion",
+            remove_route_boundary("STAGE_B_SECTION_6_DEBRIEF_COMPLETED"),
+            "full-route closure boundaries",
+        ),
+        (
+            "missing-section-6-open",
+            remove_route_boundary("STAGE_B_SECTION_6_DEBRIEF_OPENED"),
+            "full-route closure boundaries",
+        ),
+        (
+            "missing-stage-b-end",
+            remove_route_boundary("STAGE_B_ENDED"),
+            "full-route closure boundaries",
+        ),
+        (
+            "missing-run-results-boundary",
+            remove_route_boundary("RUN_RESULTS_COMPLETED"),
+            "full-route closure boundaries",
+        ),
+        (
+            "debrief-gate-omission",
+            mutate_debrief_gate_omission,
+            "full-route closure boundaries",
+        ),
+        (
+            "debrief-unverified",
+            mutate_debrief_unverified,
+            "full-route closure boundaries",
+        ),
+        (
+            "run-results-omission",
+            mutate_results_omission,
+            "immutable run-results identity",
+        ),
+        (
+            "premature-log-close",
+            mutate_premature_log_close,
+            "immutable run-results identity",
+        ),
+        (
+            "predicted-future-log-hash",
+            mutate_predicted_future_log_hash,
+            "immutable run-results identity",
+        ),
+        (
+            "missing-external-closeout",
+            mutate_missing_closeout,
+            "later external closeout identity",
+        ),
+        (
+            "favorable-layout-without-proof",
+            mutate_favorable_layout_without_proof,
+            "one-page US Letter handoff proof contract",
+        ),
+        (
+            "future-stage-end-in-scored-workbook",
+            mutate_future_stage_end_in_scored_workbook,
+            "requires future stage-end fact inside governed/scored source",
+        ),
     ]
     for name, mutation, expected in repo_cases:
         assert_repo_rejected(name, mutation, expected)
 
     print(
         "temporal protocol mutation tests passed: full positive control and "
-        "semantic baseline accepted; 16 adversarial mutations rejected"
+        "semantic baseline accepted; 40 adversarial mutations rejected"
     )
     return 0
 

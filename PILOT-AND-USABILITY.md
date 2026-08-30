@@ -16,9 +16,11 @@ preflight that was useful for finding packet defects: partial cross-role
 transfer, missing exact timing, terminology density, and no dedicated field for
 the restricted-data near miss. That was internal defect-finding, not a human
 session. Versions 1.1.0 and 1.1.1 contain earlier source and route repairs.
-Version 1.2.4 adds exact immutable live-update binding on top of exact
-revised-artifact transfer and freeze provenance and remains **Prepared and
-human-unrun**. No version establishes usability,
+Version 1.2.5 preserves version 1.2.4's exact immutable live-update and
+optional-contract binding, and adds full-route closure plus literal one-page
+layout-proof controls. It remains **Prepared and human-unrun**. Six completed
+scored freeze chains would not alone establish full-route completion. No
+version establishes usability,
 privacy, safety, data readiness, business value, or practitioner benefit.
 
 ## First pilot
