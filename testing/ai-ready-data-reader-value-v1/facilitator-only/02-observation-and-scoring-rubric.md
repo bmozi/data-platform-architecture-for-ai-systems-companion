@@ -1,6 +1,6 @@
 # Observation and Scoring Rubric
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.5
+**Packet:** DATA-RV-PILOT-001 version 1.2.6
 **Status:** Predetermined, blank, and unrun
 
 Score retained behavior, not agreement with preferred wording.
@@ -54,6 +54,13 @@ Mark `clear`, `unclear`, `unsafe`, or `contaminated`:
 | Operability | Abstention, stop trust, correction propagation, incident owner or explicit unassigned state, and reassessment exist or remain blockers | | |
 | Separate gates | Data fitness does not approve model, tool, action, or release | | |
 | Entry-branch integrity | Exactly one `HUMAN` or `SYNTHETIC` branch is selected for the whole attempt; human scored input follows completed real-person consent, while synthetic scored input follows verified exact `DATA-SYNTHETIC-CONTEXT-v1.md` and contains no fictional consent or human-result claim | | |
+| Synthetic exact-file access integrity | `SYNTHETIC` alone uses byte-identical `DATA-SYNTHETIC-EXACT-FILE-ACCESS-v1.py` copies selected and orchestration/context-bound before `RUN_STARTED`; each observed-hash config and helper/config manifest verifies after its sealed phase input and before its gate; the helper enforces flat filename/hash/read order and logs every grant/refusal in a distinct per-phase log reconciled to the execution log; no general command, direct read, future/dummy hash, config-after-gate, or ad hoc message is used | | |
+| Platform restriction claim boundary | Helper-only procedural compliance is scored separately from host-platform restriction/security; unless separately demonstrated with retained platform evidence, the latter remains `NOT ESTABLISHED` and cannot become a sandbox or security claim | | |
+
+The literal per-phase identities are
+`DATA-SYNTHETIC-EXACT-FILE-ACCESS-CONFIG-v1.json`,
+`DATA-SYNTHETIC-EXACT-FILE-ACCESS-SHA256SUMS-v1.txt`, and distinct external
+`DATA-SYNTHETIC-EXACT-FILE-ACCESS-LOG-v1.jsonl` files.
 | Revision-input integrity | `DATA-A-REVISION-PHASE-INPUT-SHA256SUMS-v1.txt` binds both required initial artifacts, the optional initial contract exactly when used and in the initial manifest, that governing manifest, detached record, and exact immutable `DATA-A-LIVE-UPDATE-v1.md`; verification precedes opening, with no omission, rename, regeneration, summary, substitution, mismatch, or unmanifested update | | |
 | Revised-detail freeze integrity | Each included revised detail reaches pre-hash `REVISED COMPLETE` with ID/version and completion timestamp/timezone; the optional contract is `REVISED COMPLETE` or `NOT USED`; the manifest then hashes only included completed bytes; verification is observed with exact time/timezone; only afterward does the detached record match the metadata, hashes, manifest filename/hash, and event and establish `FROZEN` | | |
 | No temporal self-reference | The revised set, handoff, and three Stage B exports contain completion metadata and a filename-only pointer to their later record, never their own hash, the record hash, a future verification time, or self-declared `FROZEN`; no governing manifest hashes itself or its later record | | |
@@ -69,10 +76,12 @@ Mark `clear`, `unclear`, `unsafe`, or `contaminated`:
 
 Any unsafe critical gate blocks a favorable interpretation.
 
-Report protocol, synthetic behavior, layout, human, data-readiness, and
-real-world states separately. A local layout pass is not comprehension; a
-synthetic behavior pass is not a human result; human, data-readiness, and
-real-world evidence remain `UNRUN` without corresponding authorized evidence.
+Report protocol, synthetic behavior, helper procedural compliance, technical
+platform restriction/security, layout, human, data-readiness, and real-world
+states separately. A local layout pass is not comprehension; a synthetic
+behavior pass is not a human result; helper compliance is not sandbox proof;
+human, data-readiness, and real-world evidence remain `UNRUN` without
+corresponding authorized evidence.
 
 ## Findings to record
 

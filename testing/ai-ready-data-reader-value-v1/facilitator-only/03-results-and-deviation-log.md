@@ -1,6 +1,6 @@
 # Results and Deviation Log
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.5
+**Packet:** DATA-RV-PILOT-001 version 1.2.6
 **Status:** Blank controlled record; no result exists
 
 This checked-in file is a source template, not a completed result. For each
@@ -12,7 +12,7 @@ closed-log hash or a future closeout timestamp in the result.
 
 ## Run identity
 
-- Packet ID/version: `DATA-RV-PILOT-001` / `1.2.5`
+- Packet ID/version: `DATA-RV-PILOT-001` / `1.2.6`
 - Results-record exact filename: `DATA-RUN-RESULTS-v1.md`
 - Results-record ID/version:
 - Attempt ID:
@@ -26,6 +26,20 @@ closed-log hash or a future closeout timestamp in the result.
 - Date, mode, and time:
 - Exact prepared-source manifest filename/hash:
 - Exact orchestration manifest filename/hash, or `NOT APPLICABLE`:
+- Synthetic helper source/run-copy identities and hashes, or `NOT APPLICABLE —
+  HUMAN`:
+- Run helper exact filename: `DATA-SYNTHETIC-EXACT-FILE-ACCESS-v1.py`
+- Synthetic access plan/schema and predeclared phase directories, or `NOT
+  APPLICABLE — HUMAN`:
+- Synthetic per-phase config, binding-manifest, and distinct helper-log
+  identities/hashes, or `NOT APPLICABLE — HUMAN`:
+  `DATA-SYNTHETIC-EXACT-FILE-ACCESS-CONFIG-v1.json` /
+  `DATA-SYNTHETIC-EXACT-FILE-ACCESS-SHA256SUMS-v1.txt` /
+  `DATA-SYNTHETIC-EXACT-FILE-ACCESS-LOG-v1.jsonl`
+- Exact helper-only actor instruction and compliance state, or `NOT APPLICABLE
+  — HUMAN`:
+- Technical platform restriction/security state: `NOT ESTABLISHED` unless
+  separately demonstrated / `NOT APPLICABLE — HUMAN`
 - Run start event/timestamp/timezone:
 - Exact Stage A start before first scored file opened, with timezone:
 - Exact Stage B start before first scored file opened, with timezone:
@@ -53,6 +67,12 @@ closed-log hash or a future closeout timestamp in the result.
 - Confidentiality or privacy concern:
 - Out-of-surface command, repository/status/history inspection, omitted link,
   internet search, or extra file: none observed / deviation ID
+- Absent, after-start, changed, or overbroad synthetic helper: none / deviation
+  ID / `NOT APPLICABLE — HUMAN`
+- Future/dummy config hashes or config created after its phase gate: none /
+  deviation ID / `NOT APPLICABLE — HUMAN`
+- Direct read, undeclared/pasted message content, or ad hoc facilitator file
+  delivery: none / deviation ID / `NOT APPLICABLE — HUMAN`
 
 ## Exact file-open order
 
@@ -96,6 +116,8 @@ first substantive artifact.
 | --- | ---: | ---: | --- |
 | Participant/run input files | | | |
 | Files opened/read | | | |
+| Synthetic helper access/refusal rows across distinct per-phase logs | | | |
+| Execution-log events bound to helper rows | | | |
 | Governed scored artifacts | | | |
 | Governing-manifest verifications | | | |
 | Detached verification records | | | |
@@ -104,6 +126,12 @@ first substantive artifact.
 
 - Six scored freeze chains complete: yes / no / deviation
 - Full selected-branch route complete before results: yes / no / deviation
+- Synthetic helper access rows and execution events reconcile one-to-one: yes /
+  no / `NOT APPLICABLE — HUMAN`
+- Synthetic helper-only procedural compliance: passed / failed / `NOT
+  APPLICABLE — HUMAN`
+- Technical platform restriction/security result: `NOT ESTABLISHED` unless
+  separately demonstrated / `NOT APPLICABLE — HUMAN`
 
 ## Revised-detail and Stage B transfer verification
 

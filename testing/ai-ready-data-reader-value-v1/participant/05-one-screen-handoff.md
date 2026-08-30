@@ -1,6 +1,6 @@
 # Stage A One-Screen Handoff
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.5
+**Packet:** DATA-RV-PILOT-001 version 1.2.6
 **Status:** Blank Stage A transfer; open only after the revised-detail detached
 verification record verifies
 

@@ -138,3 +138,38 @@ and which validation or usability state actually changed.
   real-world use remain `UNRUN`; no human consent, participant result,
   usability, privacy, safety, production, cost, or business-value evidence was
   created by this source repair
+
+## 2026-08-30 synthetic exact-file access repair v1.2.6
+
+- **Authority:** Author-directed successor repair derived from retained
+  synthetic attempt `DATA-SYN-20260830-002`, deviation `DEV-002`
+- **Preserved predecessor:** v1.2.5 source remains at commit
+  `e38c7742a32a35c3bc2e0bb4b2d8a415d8a7595b`; this v1.2.6 change does not
+  amend or relabel that attempt
+- **Defect retained:** the v1.2.5 participant route prohibited the only local
+  read mechanism available to the fresh synthetic actor, and no exact helper
+  transport was predeclared in the orchestration manifest or synthetic context
+- **Changed:** human participants continue to use ordinary file surfaces with
+  no terminal, repository, Git, or helper authority; a synthetic actor may
+  procedurally invoke only the pre-run immutable checksum-bound exact-file
+  helper declared in orchestration and context
+- **Non-circular phase gate:** the helper/schema/path/invocation are bound
+  before `RUN_STARTED`; each later phase config is derived only from that
+  phase's already verified sealed-input manifest and verifies before the phase
+  gate, so no future participant-artifact hash is guessed or invented
+- **Enforcement:** the helper checks flat filename allowlists, observed hashes,
+  route order, required/optional semantics, and byte identity, and fsyncs every
+  grant/refusal to a distinct per-phase log reconciled with the facilitator
+  log; schema-v5 validation and 46 checksum-refreshed mutations reject absent,
+  after-start, overbroad, message-delivery, future/dummy-hash, and
+  config-after-gate defects while retaining the prior 40 cases
+- **Platform boundary:** helper procedural compliance is not proof that the
+  host platform removed general tools or is secure; technical platform
+  restriction/security remains `NOT ESTABLISHED` unless separately
+  demonstrated
+- **Preserved evidence limits:** exact live-update SHA-256
+  `248ba3c42c138e6503386ec3d800d56751e90a915cd24faa450206cd0870320e`,
+  conditional data-product-contract branch, first-event order, future-end
+  protections, six freeze chains/full-route distinction, and human,
+  data-readiness, real-world, safety, and business-value states remain
+  `PREPARED/UNRUN` or `UNRUN` as applicable

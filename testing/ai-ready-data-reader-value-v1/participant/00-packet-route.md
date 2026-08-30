@@ -1,6 +1,6 @@
 # Participant Packet Route
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.5
+**Packet:** DATA-RV-PILOT-001 version 1.2.6
 **Status:** Prepared and unrun with people
 
 This file controls the read order. Use `UNKNOWN`, `UNASSIGNED`, or `STOP` when
@@ -23,20 +23,39 @@ human form is not synthetic consent, and a run may not switch or mix branches.
   `DATA-SYNTHETIC-CONTEXT-v1.md`, creates and verifies
   `DATA-SYNTHETIC-CONTEXT-SHA256SUMS-v1.txt`, and supplies that manifested
   record instead of a completed human consent form. Any fictional human
-  affirmation or human-result claim is a stop.
+  affirmation or human-result claim is a stop. Before `RUN_STARTED`, the
+  facilitator also selects the exact byte-for-byte
+  `DATA-SYNTHETIC-EXACT-FILE-ACCESS-v1.py`, binds every predeclared phase copy
+  in the orchestration manifest and synthetic context, and fixes the exact
+  actor-instruction invocation. A missing or after-start helper is a stop.
 
 The facilitator logs `RUN_STARTED`, then the applicable context gate, before
 the scored stage start. The same selected branch governs the entire attempt.
 
 ## Allowed surface
 
-Use only files the facilitator supplies in the order below. Do not use a
-terminal, repository or Git status/history commands, internet search, omitted
+Use only files the facilitator supplies in the order below. Human participants
+use ordinary file surfaces and may not use a terminal, repository or Git
+status/history commands, or the synthetic helper. A synthetic actor may invoke
+only the exact pre-run declared `DATA-SYNTHETIC-EXACT-FILE-ACCESS-v1.py`
+command with its current phase's immutable
+`DATA-SYNTHETIC-EXACT-FILE-ACCESS-CONFIG-v1.json` and verified
+`DATA-SYNTHETIC-EXACT-FILE-ACCESS-SHA256SUMS-v1.txt`. That narrow procedural
+exception is not general terminal or shell permission. The helper enforces the
+current phase's flat filename allowlist, SHA-256 values, and read order and
+appends every grant, optional skip, or refusal to the phase's external
+`DATA-SYNTHETIC-EXACT-FILE-ACCESS-LOG-v1.jsonl`.
+
+Neither branch may use repository browsing, Git, internet search, omitted
 links, linked full examples, the failure lab, Northbridge completed examples,
-facilitator files, or private organizational information. Do not inspect other
-repository files. Ask a question or mark an unknown instead. The facilitator
-records every pause, question, intervention, extra file, command, or route
-deviation.
+facilitator files, private organizational information, direct filesystem reads,
+or undeclared/pasted message content. No ad hoc facilitator message may
+substitute for a declared file. Do not inspect other repository files. Ask a
+question or mark an unknown instead. The facilitator records every pause,
+question, intervention, extra file, command, helper grant/refusal, or route
+deviation. The helper does not prove the host platform removed other tools;
+technical platform restriction is `NOT ESTABLISHED` unless separately
+demonstrated.
 
 The miniature example already embedded inside a supplied template remains part
 of that file. Do not follow its link to the comprehensive example.
@@ -46,6 +65,17 @@ phase release. Do not open or follow an `ORCHESTRATION.md`, run note, hidden
 prompt, facilitator file, or other undeclared control file. Its presence is a
 stop and deviation. The facilitator keeps instructions and the item-by-item
 access history outside this input.
+
+For every synthetic phase, the facilitator creates the phase config only after
+all current input bytes exist and before that phase gate opens. Its
+`ordered_files` is exactly the current phase's sealed-input manifest in route
+order, with the data-product contract optional only at its declared position.
+The config and its exact helper copy are the only two members of
+`DATA-SYNTHETIC-EXACT-FILE-ACCESS-SHA256SUMS-v1.txt`. Wrong order, path, glob,
+hash, required-file skip, exhausted allowlist, helper/config drift, overbroad
+authority, shared cross-phase helper log, concurrent invocation, or any
+undeclared access is a logged refusal and stop. Each phase uses a distinct
+same-named helper log in its predeclared external phase directory.
 
 For every detached verification record named below, record the attempt ID,
 stage/phase, artifact-producing actor, facilitator, manifest verifier, exact
@@ -65,7 +95,9 @@ Plain labels used here:
 ## Stage A exact read order
 
 Pre-session only: complete the selected branch and verify its exact context
-evidence. The facilitator logs `RUN_STARTED`, then
+evidence. For `SYNTHETIC`, also verify the pre-run helper identity and the
+initial phase's config/binding manifest before the context gate. The
+facilitator logs `RUN_STARTED`, then
 `STAGE_A_CONTEXT_GATE_OPENED`. Then:
 
 1. The facilitator records `STAGE_A_STARTED` with exact timestamp/timezone and
@@ -151,7 +183,8 @@ corrected set may continue.
 
 Pre-session only: continue the same selected branch. For a human reviewer,
 complete and close that reviewer's real consent record. For a synthetic
-reviewer, verify the unchanged exact synthetic context and manifest. The
+reviewer, verify the unchanged exact synthetic context and manifest, unchanged
+pre-run helper identity, and Stage B Phase 1 config/binding manifest. The
 facilitator records `STAGE_B_CONTEXT_GATE_OPENED`. Then:
 
 1. The facilitator records `STAGE_B_STARTED` with exact timestamp/timezone and

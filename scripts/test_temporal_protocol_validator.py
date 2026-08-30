@@ -339,6 +339,52 @@ def mutate_future_stage_end_in_scored_workbook(repo: Path) -> None:
     )
 
 
+def mutate_synthetic_helper_absent(repo: Path) -> None:
+    protocol = load_protocol(repo)
+    protocol.pop("synthetic_exact_file_access")
+    write_protocol(repo, protocol)
+
+
+def mutate_synthetic_helper_after_start(repo: Path) -> None:
+    protocol = load_protocol(repo)
+    protocol["synthetic_exact_file_access"]["helper_selected_before_event"] = (
+        "STAGE_A_STARTED"
+    )
+    write_protocol(repo, protocol)
+
+
+def mutate_synthetic_helper_overbroad(repo: Path) -> None:
+    protocol = load_protocol(repo)
+    protocol["synthetic_exact_file_access"][
+        "helper_grants_general_terminal_or_shell"
+    ] = True
+    write_protocol(repo, protocol)
+
+
+def mutate_ad_hoc_message_delivery(repo: Path) -> None:
+    protocol = load_protocol(repo)
+    protocol["synthetic_exact_file_access"][
+        "ad_hoc_message_delivery_allowed"
+    ] = True
+    write_protocol(repo, protocol)
+
+
+def mutate_future_or_dummy_hashes(repo: Path) -> None:
+    protocol = load_protocol(repo)
+    protocol["synthetic_exact_file_access"][
+        "future_or_dummy_hashes_forbidden"
+    ] = False
+    write_protocol(repo, protocol)
+
+
+def mutate_config_after_phase_gate(repo: Path) -> None:
+    protocol = load_protocol(repo)
+    protocol["synthetic_exact_file_access"]["config_created_before_event"] = (
+        "CURRENT_PHASE_GATE_CLOSED"
+    )
+    write_protocol(repo, protocol)
+
+
 def main() -> int:
     positive = run_validator(ROOT)
     if positive.returncode != 0:
@@ -570,13 +616,43 @@ def main() -> int:
             mutate_future_stage_end_in_scored_workbook,
             "requires future stage-end fact inside governed/scored source",
         ),
+        (
+            "synthetic-helper-absent",
+            mutate_synthetic_helper_absent,
+            "synthetic exact-file access must preserve",
+        ),
+        (
+            "synthetic-helper-after-start",
+            mutate_synthetic_helper_after_start,
+            "synthetic exact-file access must preserve",
+        ),
+        (
+            "synthetic-helper-overbroad",
+            mutate_synthetic_helper_overbroad,
+            "synthetic exact-file access must preserve",
+        ),
+        (
+            "ad-hoc-message-delivery",
+            mutate_ad_hoc_message_delivery,
+            "synthetic exact-file access must preserve",
+        ),
+        (
+            "future-or-dummy-config-hashes",
+            mutate_future_or_dummy_hashes,
+            "synthetic exact-file access must preserve",
+        ),
+        (
+            "config-after-phase-gate",
+            mutate_config_after_phase_gate,
+            "synthetic exact-file access must preserve",
+        ),
     ]
     for name, mutation, expected in repo_cases:
         assert_repo_rejected(name, mutation, expected)
 
     print(
         "temporal protocol mutation tests passed: full positive control and "
-        "semantic baseline accepted; 40 adversarial mutations rejected"
+        "semantic baseline accepted; 46 adversarial mutations rejected"
     )
     return 0
 

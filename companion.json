@@ -25,9 +25,12 @@
     "testing/ai-ready-data-reader-value-v1/participant/05-one-screen-handoff.md",
     "testing/ai-ready-data-reader-value-v1/participant/07-synthetic-context-record.md",
     "testing/ai-ready-data-reader-value-v1/facilitator-only/06-handoff-layout-proof-record.md",
+    "testing/ai-ready-data-reader-value-v1/facilitator-only/07-synthetic-exact-file-access.py",
+    "testing/ai-ready-data-reader-value-v1/facilitator-only/08-synthetic-access-plan-and-config-template.md",
     "testing/ai-ready-data-reader-value-v1/SHA256SUMS",
     "testing/ai-ready-data-reader-value-v1/temporal-protocol.json",
-    "scripts/test_temporal_protocol_validator.py"
+    "scripts/test_temporal_protocol_validator.py",
+    "scripts/test_synthetic_exact_file_access.py"
   ],
   "temporal_protocols": [
     "testing/ai-ready-data-reader-value-v1/temporal-protocol.json"

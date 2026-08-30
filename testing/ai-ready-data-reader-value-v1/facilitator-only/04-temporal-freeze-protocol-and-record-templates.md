@@ -1,13 +1,14 @@
 # Temporal Freeze Protocol and Record Templates
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.5
+**Packet:** DATA-RV-PILOT-001 version 1.2.6
 **Status:** Facilitator-only static protocol and blank run-record schema;
 prepared and unrun
 
-Version 1.2.5 adds explicit entry-branch, full-route, immutable-results,
-external-closeout, and literal-layout controls while preserving version
-1.2.4's exact immutable `DATA-A-LIVE-UPDATE-v1.md` and optional-contract
-semantics. Every detached record requires attempt, phase, actor, facilitator,
+Version 1.2.6 adds a pre-run checksum-bound synthetic exact-file access
+boundary while preserving v1.2.5's entry-branch, full-route,
+immutable-results, external-closeout, and literal-layout controls and v1.2.4's
+exact immutable `DATA-A-LIVE-UPDATE-v1.md` and optional-contract semantics.
+Every detached record requires attempt, phase, actor, facilitator,
 exact verification command/output/exit/time/timezone, and a later
 record-completion timestamp/timezone. The facilitator separately maintains the
 [`execution and access log`](05-execution-and-access-log.md). Passing static
@@ -75,6 +76,34 @@ Select exactly `HUMAN` or `SYNTHETIC` once before `RUN_STARTED`.
 
 Branch omission, switching, mixing, or treating a blank human notice as
 synthetic consent is a stop.
+
+## Synthetic exact-file access boundary
+
+Human participants use ordinary file surfaces and receive no terminal,
+repository, Git, or helper authority. For `SYNTHETIC`, select exact source
+`07-synthetic-exact-file-access.py` before `RUN_STARTED`; copy it byte for byte
+as `DATA-SYNTHETIC-EXACT-FILE-ACCESS-v1.py` into every predeclared phase access
+directory; and bind the copies, exact invocation, schema, reserved paths, and
+`08-synthetic-access-plan-and-config-template.md` in the orchestration manifest
+and synthetic context. An absent, after-start, changed, or overbroad helper is
+a stop.
+
+Do not invent future artifact hashes. After a phase's exact sealed-input
+manifest is created and verified, derive
+`DATA-SYNTHETIC-EXACT-FILE-ACCESS-CONFIG-v1.json` from those observed filenames
+and hashes in route order. Then create and verify
+`DATA-SYNTHETIC-EXACT-FILE-ACCESS-SHA256SUMS-v1.txt` over exactly the pre-run
+helper copy and current config before `CURRENT_PHASE_GATE_OPENED`. Each phase
+uses a distinct external `DATA-SYNTHETIC-EXACT-FILE-ACCESS-LOG-v1.jsonl`; every
+grant, optional skip, or refusal binds one execution-log event. Future/dummy
+hashes, config creation after the gate, shared logs, general commands, direct
+reads, concurrent invocation, pasted content, or ad hoc message delivery are
+stops.
+
+The helper enforces its own flat-filename/hash/read-order boundary. It does not
+prove the host platform removed other tools. Record helper-only procedural
+compliance separately, and keep technical platform restriction/security `NOT
+ESTABLISHED` unless separately demonstrated with retained platform evidence.
 
 ## Full-route closure after six freeze chains
 

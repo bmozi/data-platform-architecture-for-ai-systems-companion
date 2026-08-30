@@ -16,12 +16,15 @@ preflight that was useful for finding packet defects: partial cross-role
 transfer, missing exact timing, terminology density, and no dedicated field for
 the restricted-data near miss. That was internal defect-finding, not a human
 session. Versions 1.1.0 and 1.1.1 contain earlier source and route repairs.
-Version 1.2.5 preserves version 1.2.4's exact immutable live-update and
-optional-contract binding, and adds full-route closure plus literal one-page
-layout-proof controls. It remains **Prepared and human-unrun**. Six completed
+Version 1.2.6 preserves v1.2.5's full-route and literal one-page layout-proof
+controls and v1.2.4's exact immutable live update and optional-contract
+binding. It adds a synthetic-only pre-run checksum-bound exact-file helper;
+per-phase configs use observed sealed-input hashes before their gates. Helper
+procedural compliance is not host-platform sandbox evidence. The packet
+remains **Prepared and human-unrun**. Six completed
 scored freeze chains would not alone establish full-route completion. No
-version establishes usability,
-privacy, safety, data readiness, business value, or practitioner benefit.
+version establishes usability, privacy, safety, data readiness, business
+value, platform security, or practitioner benefit.
 
 ## First pilot
 

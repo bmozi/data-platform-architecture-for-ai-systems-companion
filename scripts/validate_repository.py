@@ -17,8 +17,8 @@ LINK_PATTERN = re.compile(r"!?\[[^\]]*\]\(([^)]+)\)")
 COMMIT_PATTERN = re.compile(r"^[0-9a-f]{7,40}$")
 CHECKSUM_PATTERN = re.compile(r"^([0-9a-f]{64})  (.+)$")
 PACKET_ID = "DATA-RV-PILOT-001"
-PACKET_VERSION = "1.2.5"
-TEMPORAL_SCHEMA_VERSION = 4
+PACKET_VERSION = "1.2.6"
+TEMPORAL_SCHEMA_VERSION = 5
 LIVE_UPDATE_FILENAME = "DATA-A-LIVE-UPDATE-v1.md"
 LIVE_UPDATE_PATH = f"participant/{LIVE_UPDATE_FILENAME}"
 REVISION_PHASE_ID = "stage_a_revision"
@@ -49,6 +49,19 @@ CLOSEOUT_RECORD = "DATA-RUN-CLOSEOUT-v1.md"
 LAYOUT_TEMPLATE = "facilitator-only/06-handoff-layout-proof-record.md"
 LAYOUT_RECORD = "DATA-A-HANDOFF-LAYOUT-PROOF-v1.md"
 LAYOUT_PDF = "DATA-A-ONE-SCREEN-HANDOFF-v1.pdf"
+SYNTHETIC_HELPER_SOURCE = "facilitator-only/07-synthetic-exact-file-access.py"
+SYNTHETIC_HELPER_SHA256 = (
+    "78954b6f9edf42104c0721cf32ddaecc49ad5e22249dc611b184d03abd2b284a"
+)
+SYNTHETIC_ACCESS_PLAN = (
+    "facilitator-only/08-synthetic-access-plan-and-config-template.md"
+)
+SYNTHETIC_RUN_HELPER = "DATA-SYNTHETIC-EXACT-FILE-ACCESS-v1.py"
+SYNTHETIC_ACCESS_CONFIG = "DATA-SYNTHETIC-EXACT-FILE-ACCESS-CONFIG-v1.json"
+SYNTHETIC_ACCESS_BINDING_MANIFEST = (
+    "DATA-SYNTHETIC-EXACT-FILE-ACCESS-SHA256SUMS-v1.txt"
+)
+SYNTHETIC_ACCESS_LOG = "DATA-SYNTHETIC-EXACT-FILE-ACCESS-LOG-v1.jsonl"
 ROUTE_BOUNDARY_SEQUENCE = [
     "ENTRY_BRANCH_SELECTED",
     "RUN_STARTED",
@@ -85,6 +98,7 @@ TEMPORAL_PROTOCOL_FILES = [
     "facilitator-only/04-temporal-freeze-protocol-and-record-templates.md",
     "facilitator-only/05-execution-and-access-log.md",
     LAYOUT_TEMPLATE,
+    SYNTHETIC_ACCESS_PLAN,
 ]
 
 GOVERNED_OR_SCORED_SOURCE_FILES = [
@@ -158,7 +172,7 @@ def require_count(
 
 
 def temporal_protocol_content_errors(contents: dict[str, str]) -> list[str]:
-    """Return static semantic errors for packet 1.2.5 source instructions."""
+    """Return static semantic errors for packet 1.2.6 source instructions."""
 
     errors: list[str] = []
     combined = "\n".join(contents.values())
@@ -203,6 +217,18 @@ def temporal_protocol_content_errors(contents: dict[str, str]) -> list[str]:
         if identity not in combined:
             errors.append(f"temporal protocol: missing closure identity: {identity}")
 
+    access_identities = [
+        SYNTHETIC_RUN_HELPER,
+        SYNTHETIC_ACCESS_CONFIG,
+        SYNTHETIC_ACCESS_BINDING_MANIFEST,
+        SYNTHETIC_ACCESS_LOG,
+    ]
+    for identity in access_identities:
+        if identity not in combined:
+            errors.append(
+                f"temporal protocol: missing synthetic access identity: {identity}"
+            )
+
     for relative in GOVERNED_OR_SCORED_SOURCE_FILES:
         content = contents.get(relative, "")
         for future_event in ["STAGE_A_ENDED", "STAGE_B_ENDED"]:
@@ -242,6 +268,25 @@ def temporal_protocol_content_errors(contents: dict[str, str]) -> list[str]:
                     f"temporal protocol: {relative} lacks closure identity: {identity}"
                 )
 
+    for relative in [
+        "README.md",
+        "participant/00-packet-route.md",
+        SYNTHETIC_CONTEXT_TEMPLATE,
+        "facilitator-only/01-facilitator-guide.md",
+        "facilitator-only/02-observation-and-scoring-rubric.md",
+        "facilitator-only/03-results-and-deviation-log.md",
+        "facilitator-only/04-temporal-freeze-protocol-and-record-templates.md",
+        "facilitator-only/05-execution-and-access-log.md",
+        SYNTHETIC_ACCESS_PLAN,
+    ]:
+        content = contents.get(relative, "")
+        for identity in access_identities:
+            if identity not in content:
+                errors.append(
+                    f"temporal protocol: {relative} lacks synthetic access identity: "
+                    f"{identity}"
+                )
+
     for relative, content in contents.items():
         if relative == LIVE_UPDATE_PATH:
             continue
@@ -270,6 +315,9 @@ def temporal_protocol_content_errors(contents: dict[str, str]) -> list[str]:
             "The governing manifest `DATA-A-REVISED-ARTIFACTS-SHA256SUMS-v1.txt` hashes exactly the included revised detail files and does not hash itself or the later detached record.",
             "Stage B Phase 2 specifically binds every included revised Stage A artifact, its governing manifest, and its detached record, in addition to the frozen Section 1 triple.",
             "new immutable filename and a new artifact ID/version",
+            "Human participants use ordinary file surfaces and receive no terminal, repository, Git, or helper authority.",
+            "Do not create future phase configs with guessed or dummy hashes; create each only from the observed verified phase-input manifest before its gate.",
+            "technical platform restriction/security is `NOT ESTABLISHED` unless separately demonstrated.",
         ],
         "participant/01-consent-and-privacy.md": [
             "This notice is for the `HUMAN` entry branch only.",
@@ -290,6 +338,9 @@ def temporal_protocol_content_errors(contents: dict[str, str]) -> list[str]:
             "`DATA-B-SECTIONS-3-5-SHA256SUMS-v1.txt` over only that completed export; then create the detached record.",
             "Collect all material feedback in the external run-specific results record",
             "new immutable filename and a new artifact ID/version",
+            "No ad hoc facilitator message may substitute for a declared file.",
+            "For every synthetic phase, the facilitator creates the phase config only after all current input bytes exist and before that phase gate opens.",
+            "technical platform restriction is `NOT ESTABLISHED` unless separately demonstrated.",
         ],
         "participant/03-practitioner-workbook.md": [
             "Live-update input exact filename: `DATA-A-LIVE-UPDATE-v1.md`",
@@ -331,6 +382,9 @@ def temporal_protocol_content_errors(contents: dict[str, str]) -> list[str]:
             "The next sealed phase-input manifest hashes each governed artifact, its governing manifest, and its detached verification record.",
             "Before Phase 2 opens, create and verify its sealed input manifest over the frozen Section 1 artifact, governing manifest, and detached record; every included revised Stage A artifact; the revised Stage A governing manifest; the revised Stage A detached record; and the scenario.",
             "new immutable filename and a new artifact ID/version",
+            "Do not predict later participant artifact hashes or use dummy hashes.",
+            "A config created after its phase gate, shared cross-phase helper log, ad hoc message delivery, or unreconciled helper row is a stop and deviation.",
+            "record that state as `NOT ESTABLISHED` unless separate retained evidence demonstrates it.",
         ],
         "facilitator-only/02-observation-and-scoring-rubric.md": [
             "Entry-branch integrity",
@@ -342,6 +396,9 @@ def temporal_protocol_content_errors(contents: dict[str, str]) -> list[str]:
             "no governing manifest hashes itself or its later record",
             "the next phase or closing manifest hashes the artifact, governing manifest, and record",
             "new immutable filename and new artifact ID/version for every corrected artifact",
+            "Synthetic exact-file access integrity",
+            "Platform restriction claim boundary",
+            "helper compliance is not sandbox proof",
         ],
         "facilitator-only/03-results-and-deviation-log.md": [
             "This checked-in file is a source template, not a completed result.",
@@ -354,6 +411,8 @@ def temporal_protocol_content_errors(contents: dict[str, str]) -> list[str]:
             "Every next phase/evidence manifest hashes the artifact(s), governing manifest, and detached record under literal filenames",
             "| Stage A revised set | required revised files; optional only if used | `DATA-A-REVISED-ARTIFACTS-SHA256SUMS-v1.txt` / | | `DATA-A-REVISED-FREEZE-VERIFICATION-v1.md` / | Stage B Phase 2 input / |",
             "new immutable filename and a new artifact ID/version",
+            "Future/dummy config hashes or config created after its phase gate: none / deviation ID / `NOT APPLICABLE — HUMAN`",
+            "Technical platform restriction/security result: `NOT ESTABLISHED` unless separately demonstrated / `NOT APPLICABLE — HUMAN`",
         ],
         "facilitator-only/04-temporal-freeze-protocol-and-record-templates.md": [
             "Select exactly `HUMAN` or `SYNTHETIC` once before `RUN_STARTED`.",
@@ -363,6 +422,8 @@ def temporal_protocol_content_errors(contents: dict[str, str]) -> list[str]:
             "exact immutable `DATA-A-LIVE-UPDATE-v1.md`",
             "conditional `DATA-A-INITIAL-DATA-PRODUCT-CONTRACT-v1.md` exactly when it was used and appears in the initial governing manifest, and otherwise not",
             "Verify this manifest before opening the live update.",
+            "Do not invent future artifact hashes.",
+            "helper-only procedural compliance separately, and keep technical platform restriction/security `NOT ESTABLISHED` unless separately demonstrated",
         ],
         "facilitator-only/05-execution-and-access-log.md": [
             "The branch is selected once before `RUN_STARTED`.",
@@ -371,11 +432,23 @@ def temporal_protocol_content_errors(contents: dict[str, str]) -> list[str]:
             "The closeout record is later external provenance.",
             "exact immutable `DATA-A-LIVE-UPDATE-v1.md`",
             "The optional contract must be absent here when it was not used.",
+            "Future/dummy hashes, config creation after the gate, shared cross-phase helper logs, changed helper/config bytes, general commands, direct reads, and ad hoc message delivery are stops.",
+            "The helper's boundary is observed separately from host-platform restriction, which remains `NOT ESTABLISHED` unless proved.",
         ],
         SYNTHETIC_CONTEXT_TEMPLATE: [
             "not consent and not a result",
             "`SYNTHETIC — NO HUMAN PARTICIPANT OR HUMAN DATA`",
-            "Any blank required field, branch mixing, fictional human affirmation, or human result claim stops the run before scored input opens.",
+            "Any blank required field, branch mixing, fictional human affirmation, human result claim, absent or after-start helper, overbroad helper authority, or ad hoc message delivery stops the run before scored input opens.",
+            "Technical platform restriction/security state: `NOT ESTABLISHED` unless separately demonstrated with retained platform evidence",
+        ],
+        SYNTHETIC_ACCESS_PLAN: [
+            "Human participants use ordinary file surfaces and receive no terminal, repository, Git, or helper authority.",
+            "Before `RUN_STARTED`, select and verify the helper, predeclare every phase access directory",
+            "Create a distinct immutable config and helper/config binding manifest only when that phase's complete input bytes exist, but always before the current phase gate opens.",
+            "The helper enforces its own exact-file boundary, but it does not prove that the host platform removes other tools.",
+            "Ad hoc facilitator delivery is a deviation, not transport.",
+            "Future/dummy hashes",
+            "technical platform restriction/security remains `NOT ESTABLISHED` unless separately demonstrated",
         ],
         LAYOUT_TEMPLATE: [
             "one US Letter portrait page",
@@ -640,7 +713,7 @@ def temporal_protocol_content_errors(contents: dict[str, str]) -> list[str]:
 def validate_temporal_freeze_protocol(
     errors: list[str], content_overrides: dict[str, str] | None = None
 ) -> int:
-    """Check packet 1.2.5's static temporal-order invariants."""
+    """Check packet 1.2.6's static temporal-order invariants."""
 
     packet = ROOT / "testing/ai-ready-data-reader-value-v1"
     contents: dict[str, str] = {}
@@ -783,6 +856,17 @@ def validate_temporal_protocol_json(errors: list[str]) -> int:
         "evidence_root",
         "retention_boundary",
         "access_boundary",
+        "source_helper_identity",
+        "run_helper_identity",
+        "predeclared_phase_access_directories",
+        "per_phase_config_schema",
+        "per_phase_binding_manifest_identity",
+        "per_phase_access_log_identity",
+        "actor_instruction_invocation",
+        "helper_selected_and_verified_before_run",
+        "helper_boundary_state",
+        "technical_platform_restriction_state",
+        "ad_hoc_message_delivery_forbidden",
         "run_start_timestamp_timezone",
         "pre_scored_log_checkpoint",
     ]
@@ -797,6 +881,9 @@ def validate_temporal_protocol_json(errors: list[str]) -> int:
         "reader_value_scores_domain_gate_findings",
         "protocol_state",
         "synthetic_behavior_state",
+        "synthetic_helper_or_human_surface_identity",
+        "per_phase_helper_log_reconciliation",
+        "technical_platform_restriction_state",
         "layout_state",
         "human_state",
         "data_readiness_state",
@@ -819,6 +906,22 @@ def validate_temporal_protocol_json(errors: list[str]) -> int:
         "stage_b_section_2": "SECTION 2 COMPLETE",
         "stage_b_sections_3_5": "SECTIONS 3-5 COMPLETE",
     }
+    expected_synthetic_phase_gate_sequence = [
+        "SEALED_INPUT_MANIFEST_CREATED",
+        "SEALED_INPUT_MANIFEST_VERIFIED",
+        "SYNTHETIC_ACCESS_CONFIG_CREATED",
+        "SYNTHETIC_ACCESS_BINDING_MANIFEST_CREATED",
+        "SYNTHETIC_ACCESS_BINDING_MANIFEST_VERIFIED",
+        "PHASE_GATE_OPENED",
+        "FILE_OPENED_OR_ACCESS_ATTEMPT_RECORDED",
+    ]
+    expected_synthetic_helper_event_fields = [
+        "helper_access_log_path",
+        "helper_access_event_id",
+        "helper_config_sha256",
+        "helper_binding_manifest_sha256",
+        "helper_outcome",
+    ]
 
     if protocol.get("schema_version") != TEMPORAL_SCHEMA_VERSION:
         errors.append(
@@ -915,6 +1018,72 @@ def validate_temporal_protocol_json(errors: list[str]) -> int:
         target = protocol_target(packet, path, label, errors)
         if target and not target.is_file():
             errors.append(f"temporal protocol JSON: missing {label} {path}")
+
+    expected_synthetic_access = {
+        "applies_only_to_branch": "SYNTHETIC",
+        "human_branch_ordinary_file_surfaces_only": True,
+        "source_helper_path": SYNTHETIC_HELPER_SOURCE,
+        "source_helper_sha256": SYNTHETIC_HELPER_SHA256,
+        "plan_template_path": SYNTHETIC_ACCESS_PLAN,
+        "run_helper_filename": SYNTHETIC_RUN_HELPER,
+        "helper_selected_before_event": "RUN_STARTED",
+        "declared_in_orchestration_manifest": True,
+        "declared_in_synthetic_context": True,
+        "predeclared_phase_directories_required": True,
+        "config_filename": SYNTHETIC_ACCESS_CONFIG,
+        "config_schema_version": 1,
+        "config_created_after_verified_phase_input_manifest": True,
+        "config_created_before_event": "CURRENT_PHASE_GATE_OPENED",
+        "future_or_dummy_hashes_forbidden": True,
+        "binding_manifest": SYNTHETIC_ACCESS_BINDING_MANIFEST,
+        "binding_manifest_members": ["run_helper", "current_phase_config"],
+        "binding_manifest_verified_before_event": "CURRENT_PHASE_GATE_OPENED",
+        "access_log_filename": SYNTHETIC_ACCESS_LOG,
+        "fixed_audit_log_argument_required": True,
+        "distinct_log_per_phase": True,
+        "access_log_outside_participant_input": True,
+        "current_phase_flat_filename_allowlist_only": True,
+        "read_order_enforced": True,
+        "target_sha256_enforced": True,
+        "optional_skip_only_when_declared": True,
+        "every_access_or_refusal_logged": True,
+        "execution_log_reconciliation_required": True,
+        "serial_invocation_required": True,
+        "actor_instruction_exact_helper_only": True,
+        "helper_grants_general_terminal_or_shell": False,
+        "repository_browsing_allowed": False,
+        "git_allowed": False,
+        "internet_allowed": False,
+        "direct_filesystem_read_allowed": False,
+        "undeclared_message_input_allowed": False,
+        "ad_hoc_message_delivery_allowed": False,
+        "technical_platform_restriction_default_state": "NOT ESTABLISHED",
+        "sandbox_security_claimed": False,
+    }
+    if protocol.get("synthetic_exact_file_access") != expected_synthetic_access:
+        errors.append(
+            "temporal protocol JSON: synthetic exact-file access must preserve "
+            "pre-run helper identity, current-phase observed-hash gating, bounded "
+            "authority, refusal logging, and the platform non-claim"
+        )
+    helper_source = protocol_target(
+        packet,
+        expected_synthetic_access["source_helper_path"],
+        "synthetic exact-file helper source",
+        errors,
+    )
+    if helper_source and not helper_source.is_file():
+        errors.append("temporal protocol JSON: synthetic exact-file helper is missing")
+    elif helper_source and sha256(helper_source) != SYNTHETIC_HELPER_SHA256:
+        errors.append("temporal protocol JSON: protected synthetic helper hash mismatch")
+    access_plan = protocol_target(
+        packet,
+        expected_synthetic_access["plan_template_path"],
+        "synthetic access plan template",
+        errors,
+    )
+    if access_plan and not access_plan.is_file():
+        errors.append("temporal protocol JSON: synthetic access plan is missing")
 
     route_closure = protocol.get("route_closure")
     expected_route_closure = {
@@ -1055,6 +1224,22 @@ def validate_temporal_protocol_json(errors: list[str]) -> int:
         errors.append("temporal protocol JSON: execution event sequence invalid")
     if execution.get("required_row_fields") != expected_log_fields:
         errors.append("temporal protocol JSON: execution log row fields incomplete")
+    if (
+        execution.get("synthetic_phase_gate_sequence")
+        != expected_synthetic_phase_gate_sequence
+    ):
+        errors.append(
+            "temporal protocol JSON: synthetic config/binding creation and "
+            "verification must follow phase-input verification and precede the gate"
+        )
+    if (
+        execution.get("synthetic_helper_event_binding_fields")
+        != expected_synthetic_helper_event_fields
+    ):
+        errors.append(
+            "temporal protocol JSON: synthetic helper events lack exact "
+            "per-phase access-log reconciliation fields"
+        )
 
     if protocol.get("next_release_bindings") != [
         "governed_artifacts",

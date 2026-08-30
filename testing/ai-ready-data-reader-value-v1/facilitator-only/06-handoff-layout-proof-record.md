@@ -1,6 +1,6 @@
 # Handoff Layout-Proof Record Template
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.5
+**Packet:** DATA-RV-PILOT-001 version 1.2.6
 **Status:** Blank facilitator-only local layout record; no layout result exists
 
 Complete an immutable run instance as exactly

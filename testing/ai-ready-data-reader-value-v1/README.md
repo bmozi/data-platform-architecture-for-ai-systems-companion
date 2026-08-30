@@ -1,15 +1,17 @@
 # AI-Ready Data Reader-Value Pilot Packet
 
 **Packet ID:** DATA-RV-PILOT-001
-**Version:** 1.2.5
+**Version:** 1.2.6
 **Status:** Prepared and unrun; no participant recruited or consented
 **Scenario:** Harbor Grove Housing, entirely fictional
 
-Version 1.2.5 adds full-route closure controls derived from retained synthetic
-replay defects: a mutually exclusive human-consent or synthetic-context entry
-branch, logged stage starts/ends and scoring/debrief boundaries, immutable
-run-specific results before log close, later external closeout, and a declared
-one-page layout proof. It preserves version 1.2.4's exact immutable
+Version 1.2.6 repairs retained v1.2.5 attempt `DATA-SYN-20260830-002`
+deviation `DEV-002`: the synthetic actor had no route-permitted exact-file read
+mechanism. A synthetic run may now use only a pre-run immutable,
+checksum-bound exact-file helper declared in both the orchestration manifest
+and synthetic context. Human participants still use ordinary file surfaces
+without terminal or repository access. Version 1.2.6 preserves v1.2.5's
+full-route closure controls and version 1.2.4's exact immutable
 participant/run input `DATA-A-LIVE-UPDATE-v1.md` and conditional initial
 data-product-contract binding. It also preserves the non-circular freeze order, exact
 manifest-verification evidence, AI-ready-data content, literal artifact
@@ -17,8 +19,9 @@ identity, sealed delivery, and staged Stage B controls. Every governed freeze
 follows one observable order:
 complete artifacts, create their governing manifest, verify it and capture the
 exact event, then create a detached verification record. Synthetic work is
-defect-finding only. Version 1.2.1 remains preserved at source commit `9921757`
-and version 1.2.0 at `6921313`; do not relabel an older run as 1.2.5. A 1.2.5
+defect-finding only. Version 1.2.5 remains preserved at source commit
+`e38c7742a32a35c3bc2e0bb4b2d8a415d8a7595b`; do not relabel an older run as
+1.2.6. A 1.2.6
 correction produces a new immutable artifact set, governing manifest, and
 detached record rather than overwriting old evidence.
 This version remains **PREPARED/UNRUN** with people and supports no
@@ -49,7 +52,29 @@ notice](participant/01-consent-and-privacy.md). A synthetic rehearsal does not
 claim consent and instead uses
 [the synthetic-context template](participant/07-synthetic-context-record.md)
 to create manifested exact `DATA-SYNTHETIC-CONTEXT-v1.md`. Branch mixing or a
-fictional human affirmation is a stop. The facilitator must copy the exact
+fictional human affirmation is a stop. The synthetic context and pre-run
+orchestration manifest must also bind byte-identical
+`DATA-SYNTHETIC-EXACT-FILE-ACCESS-v1.py` copies in every predeclared phase
+access directory, the fixed config schema and paths, and the exact
+actor-instruction invocation. The helper is selected and verified before
+`RUN_STARTED`; an absent, after-start, or overbroad helper is a stop.
+
+Human participants use ordinary file surfaces and receive no terminal,
+repository, Git, or helper authority. A synthetic actor may invoke only the
+declared helper command for the current phase. After that phase's exact input
+bytes exist and its sealed-input manifest verifies—but before its gate
+opens—the facilitator creates immutable
+`DATA-SYNTHETIC-EXACT-FILE-ACCESS-CONFIG-v1.json` from observed member hashes
+and verifies `DATA-SYNTHETIC-EXACT-FILE-ACCESS-SHA256SUMS-v1.txt` over exactly
+the helper and config. The helper enforces the flat filename allowlist, hashes,
+and read order and logs every grant, optional skip, or refusal to a distinct
+per-phase `DATA-SYNTHETIC-EXACT-FILE-ACCESS-LOG-v1.jsonl`. It does not prove the
+host platform removed other tools; technical platform restriction/security is
+`NOT ESTABLISHED` unless separately demonstrated. General commands, direct
+reads, undeclared messages, pasted content, and ad hoc facilitator delivery are
+stops and deviations.
+
+The facilitator must copy the exact
 approved, immutable files into a sealed flat
 Stage A input and hash every supplied file in a run-specific manifest that does
 not list or hash itself. That input may contain only route-declared files. An
@@ -62,7 +87,8 @@ only, in the order governed by the packet route:
 
 Before item 1, supply exactly one branch context: the applicable completed
 human consent record, or exact `DATA-SYNTHETIC-CONTEXT-v1.md` with
-`DATA-SYNTHETIC-CONTEXT-SHA256SUMS-v1.txt` verified for a synthetic attempt.
+`DATA-SYNTHETIC-CONTEXT-SHA256SUMS-v1.txt` plus the applicable verified
+helper/config binding manifest for a synthetic attempt.
 
 1. [Packet route](participant/00-packet-route.md)
 2. [Scenario and task](participant/02-scenario-and-task.md)
@@ -146,7 +172,10 @@ immutable provenance metadata. Layout evidence is not comprehension evidence.
 Before the scored stage, continue the same entry branch. A human reviewer needs
 a fully completed Stage B [Consent and privacy
 notice](participant/01-consent-and-privacy.md); a synthetic reviewer receives
-the unchanged manifested synthetic context, never fictional human consent. The
+the unchanged manifested synthetic context and pre-run helper identity, never
+fictional human consent. The current Stage B phase config uses only hashes from
+its already verified sealed-input manifest and verifies before the phase gate.
+The
 facilitator must copy the exact approved, immutable files and frozen Stage A
 artifacts into a separate sealed Stage B input and hash every supplied file in
 a run-specific manifest. After the recorded start time, supply in the route's
@@ -215,7 +244,7 @@ then complete `DATA-RUN-CLOSEOUT-v1.md` binding the closed-log,
 closeout-manifest, and results hashes. Only synthetic attempts satisfying all
 these boundaries may say `Full synthetic route complete`.
 
-The source results file is a blank template, not a result. Version 1.2.5
+The source results file is a blank template, not a result. Version 1.2.6
 inherits no earlier score, layout disposition, or execution result. Human
 evidence, data readiness, and real-world evidence remain `UNRUN`.
 
@@ -227,6 +256,8 @@ evidence, data readiness, and real-world evidence remain `UNRUN`.
 - [Temporal freeze protocol and record templates](facilitator-only/04-temporal-freeze-protocol-and-record-templates.md)
 - [Execution and access log](facilitator-only/05-execution-and-access-log.md)
 - [Handoff layout-proof record](facilitator-only/06-handoff-layout-proof-record.md)
+- [Synthetic exact-file helper](facilitator-only/07-synthetic-exact-file-access.py)
+- [Synthetic access plan and config template](facilitator-only/08-synthetic-access-plan-and-config-template.md)
 
 Never supply these files before the scored stages end.
 
@@ -241,6 +272,13 @@ actors, facilitator identities, observed timestamps/timezones, later
 record-completion timestamps/timezones, and the external item-by-item
 execution/access log. These controls make the execution history auditable and
 retain exact manifest-verification command/output/exit/time/timezone evidence.
+
+For a synthetic branch, also retain the source helper hash, every pre-run run
+helper copy/hash, reserved phase access paths, each later config and
+helper/config binding manifest, distinct per-phase helper access logs, and the
+one-to-one reconciliation between helper grants/refusals and execution-log
+events. Do not create future phase configs with guessed or dummy hashes; create
+each only from the observed verified phase-input manifest before its gate.
 
 The checked-in `SHA256SUMS` records the prepared source packet. For each stage,
 the facilitator copies the exact immutable files into its sealed flat input and

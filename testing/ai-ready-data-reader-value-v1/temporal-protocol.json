@@ -1,8 +1,8 @@
 {
-  "schema_version": 4,
+  "schema_version": 5,
   "protocol_id": "RV-TEMPORAL-FREEZE-001",
   "packet_id": "DATA-RV-PILOT-001",
-  "packet_version": "1.2.5",
+  "packet_version": "1.2.6",
   "causal_order": [
     "completed_artifacts",
     "artifact_only_manifest",
@@ -80,7 +80,7 @@
       "manifest_verified_before_scored_input": true,
       "human_consent_claim_forbidden": true,
       "human_result_claim_forbidden": true,
-      "required_literal": "SYNTHETIC — NO HUMAN PARTICIPANT OR HUMAN DATA",
+      "required_literal": "SYNTHETIC \u2014 NO HUMAN PARTICIPANT OR HUMAN DATA",
       "required_fields": [
         "packet_id_version",
         "attempt_id",
@@ -94,10 +94,65 @@
         "evidence_root",
         "retention_boundary",
         "access_boundary",
+        "source_helper_identity",
+        "run_helper_identity",
+        "predeclared_phase_access_directories",
+        "per_phase_config_schema",
+        "per_phase_binding_manifest_identity",
+        "per_phase_access_log_identity",
+        "actor_instruction_invocation",
+        "helper_selected_and_verified_before_run",
+        "helper_boundary_state",
+        "technical_platform_restriction_state",
+        "ad_hoc_message_delivery_forbidden",
         "run_start_timestamp_timezone",
         "pre_scored_log_checkpoint"
       ]
     }
+  },
+  "synthetic_exact_file_access": {
+    "applies_only_to_branch": "SYNTHETIC",
+    "human_branch_ordinary_file_surfaces_only": true,
+    "source_helper_path": "facilitator-only/07-synthetic-exact-file-access.py",
+    "source_helper_sha256": "78954b6f9edf42104c0721cf32ddaecc49ad5e22249dc611b184d03abd2b284a",
+    "plan_template_path": "facilitator-only/08-synthetic-access-plan-and-config-template.md",
+    "run_helper_filename": "DATA-SYNTHETIC-EXACT-FILE-ACCESS-v1.py",
+    "helper_selected_before_event": "RUN_STARTED",
+    "declared_in_orchestration_manifest": true,
+    "declared_in_synthetic_context": true,
+    "predeclared_phase_directories_required": true,
+    "config_filename": "DATA-SYNTHETIC-EXACT-FILE-ACCESS-CONFIG-v1.json",
+    "config_schema_version": 1,
+    "config_created_after_verified_phase_input_manifest": true,
+    "config_created_before_event": "CURRENT_PHASE_GATE_OPENED",
+    "future_or_dummy_hashes_forbidden": true,
+    "binding_manifest": "DATA-SYNTHETIC-EXACT-FILE-ACCESS-SHA256SUMS-v1.txt",
+    "binding_manifest_members": [
+      "run_helper",
+      "current_phase_config"
+    ],
+    "binding_manifest_verified_before_event": "CURRENT_PHASE_GATE_OPENED",
+    "access_log_filename": "DATA-SYNTHETIC-EXACT-FILE-ACCESS-LOG-v1.jsonl",
+    "fixed_audit_log_argument_required": true,
+    "distinct_log_per_phase": true,
+    "access_log_outside_participant_input": true,
+    "current_phase_flat_filename_allowlist_only": true,
+    "read_order_enforced": true,
+    "target_sha256_enforced": true,
+    "optional_skip_only_when_declared": true,
+    "every_access_or_refusal_logged": true,
+    "execution_log_reconciliation_required": true,
+    "serial_invocation_required": true,
+    "actor_instruction_exact_helper_only": true,
+    "helper_grants_general_terminal_or_shell": false,
+    "repository_browsing_allowed": false,
+    "git_allowed": false,
+    "internet_allowed": false,
+    "direct_filesystem_read_allowed": false,
+    "undeclared_message_input_allowed": false,
+    "ad_hoc_message_delivery_allowed": false,
+    "technical_platform_restriction_default_state": "NOT ESTABLISHED",
+    "sandbox_security_claimed": false
   },
   "execution_access_log": {
     "path": "facilitator-only/05-execution-and-access-log.md",
@@ -132,6 +187,22 @@
       "exit_code",
       "continuity_binding",
       "outcome_or_deviation"
+    ],
+    "synthetic_phase_gate_sequence": [
+      "SEALED_INPUT_MANIFEST_CREATED",
+      "SEALED_INPUT_MANIFEST_VERIFIED",
+      "SYNTHETIC_ACCESS_CONFIG_CREATED",
+      "SYNTHETIC_ACCESS_BINDING_MANIFEST_CREATED",
+      "SYNTHETIC_ACCESS_BINDING_MANIFEST_VERIFIED",
+      "PHASE_GATE_OPENED",
+      "FILE_OPENED_OR_ACCESS_ATTEMPT_RECORDED"
+    ],
+    "synthetic_helper_event_binding_fields": [
+      "helper_access_log_path",
+      "helper_access_event_id",
+      "helper_config_sha256",
+      "helper_binding_manifest_sha256",
+      "helper_outcome"
     ]
   },
   "next_release_bindings": [
@@ -204,6 +275,9 @@
       "reader_value_scores_domain_gate_findings",
       "protocol_state",
       "synthetic_behavior_state",
+      "synthetic_helper_or_human_surface_identity",
+      "per_phase_helper_log_reconciliation",
+      "technical_platform_restriction_state",
       "layout_state",
       "human_state",
       "data_readiness_state",
@@ -418,71 +492,75 @@
   "critical_documents": [
     {
       "path": "README.md",
-      "sha256": "6f0b19a9a2a78fb4154692fcc3783488d892f8e5ff294c069a78d379b455c98d"
+      "sha256": "65906bba5406b48cc361858e11559b6c3adce4687b3a224e1b55b92880cf3006"
     },
     {
       "path": "STATIC-PROTOCOL-VALIDATION.md",
-      "sha256": "9d98b22ad75a73afcf212ca8fe981001c50eb611545206c779d0efe6c94e2a13"
+      "sha256": "a84167fdbab8a63833664e1530341547f089b2bf5e770957a331c2728408f852"
     },
     {
       "path": "facilitator-only/01-facilitator-guide.md",
-      "sha256": "90a9c6e7fbaaf17648dda46bbf113bb99f3ebec6cb92d7dd1d16c6ee3eb4a845"
+      "sha256": "5efe0e405fff8c4602cb9e45a5c1a5954624f9b8949efa51cf6b0b32b57b9779"
     },
     {
       "path": "facilitator-only/02-observation-and-scoring-rubric.md",
-      "sha256": "55e43b471f353ecfbbecac9ebf8a3a160e09ff09bee2ffb2e7f94c3439ed2bd8"
+      "sha256": "b1568310c80f19076289f124ce87cbbd12d2d4566005cde5041a497363e64bbe"
     },
     {
       "path": "facilitator-only/03-results-and-deviation-log.md",
-      "sha256": "fb44388789ce6d6967c8ddd168e32bcab83e2784d83a7dbf027d1ff4a7f449ae"
+      "sha256": "e6af7b518600c0497d33f8143899c753d08757fb5be0729a1b2ae23a8b58fd80"
     },
     {
       "path": "facilitator-only/04-temporal-freeze-protocol-and-record-templates.md",
-      "sha256": "9fb74c6c9a4b4d89ce4087ccf8a8006f2baca8cddce8b68e9833046624f32d32"
+      "sha256": "2e794111c6c566326e9aa6b7ed46c42a1a61b330f10dc763576440f6665d815b"
     },
     {
       "path": "facilitator-only/05-execution-and-access-log.md",
-      "sha256": "1c6f10e675793e395d14ec43782ee5d5725009b6f34eb2c73f1c779ce210507b"
+      "sha256": "f173f57c61a63aadc959bd67371e50d979d6da945f8b1a305d7500190a7be5ae"
     },
     {
       "path": "facilitator-only/06-handoff-layout-proof-record.md",
-      "sha256": "caf418a5eb3d16a9197d0e6d7a9c580b571845af22b4f4e15a32bfa179f643ac"
+      "sha256": "fca0ce599b0c35b68be8dcaf5e1eeefc563609f58aa31db36a19112c42a1e7c6"
+    },
+    {
+      "path": "facilitator-only/08-synthetic-access-plan-and-config-template.md",
+      "sha256": "344568ef6f082d1082d79113943ea3620d35a6e477eca66fdef1b6b82dee3fa5"
     },
     {
       "path": "participant/00-packet-route.md",
-      "sha256": "fd15e5c58f40a64aafbd4098ca58c4d9793eb5bc7a9ea3e8f64887dfe2d6e74f"
+      "sha256": "4ae58fa82a6cb0d9e095ff20597e45182a81ca4b244db189f4819297d845b2ba"
+    },
+    {
+      "path": "participant/01-consent-and-privacy.md",
+      "sha256": "659ce01a9c8e7b53a58ef4850abc557102d24c3563104527b784f8dc744afd58"
+    },
+    {
+      "path": "participant/02-scenario-and-task.md",
+      "sha256": "20a3fa563db4203f07b917f64215a350f756b26643926288583519d026857d12"
+    },
+    {
+      "path": "participant/03-practitioner-workbook.md",
+      "sha256": "e7302fcde72b63cb4a8c41cfad2f27cacefa5bc00a17d7a7712ee30df7adee04"
+    },
+    {
+      "path": "participant/04-decision-owner-workbook.md",
+      "sha256": "5d55811b94969a21bf26e77c626a3c934d00a5813a584ec1a13cb29f60f2fe87"
+    },
+    {
+      "path": "participant/05-one-screen-handoff.md",
+      "sha256": "5ad525f62296229ad990d81556c650c22b3ceb989f77c753b97beb0b7b59281b"
+    },
+    {
+      "path": "participant/06-revised-artifact-freeze-record.md",
+      "sha256": "082cfeba479d1b98030266b58531108a441505a760c68cbffbb596a6d85cd9d0"
+    },
+    {
+      "path": "participant/07-synthetic-context-record.md",
+      "sha256": "1a55d1666312627e70057d4a7483435c68af8e4692872cee935fe1fc8aa06ba5"
     },
     {
       "path": "participant/DATA-A-LIVE-UPDATE-v1.md",
       "sha256": "248ba3c42c138e6503386ec3d800d56751e90a915cd24faa450206cd0870320e"
-    },
-    {
-      "path": "participant/01-consent-and-privacy.md",
-      "sha256": "5b9c4d2121ea7ebeec4e16719b91ecdafb993897ca6603373d253b608972345f"
-    },
-    {
-      "path": "participant/02-scenario-and-task.md",
-      "sha256": "793c6d6bec8cc6c5a68d7a4d937d1c079db77c4ef70d1d5d5400afcd7e58bc0b"
-    },
-    {
-      "path": "participant/03-practitioner-workbook.md",
-      "sha256": "a98b10c9de4a7ff85654a90ec786eeebca91ec4fca334a62ebe536931a9b194f"
-    },
-    {
-      "path": "participant/04-decision-owner-workbook.md",
-      "sha256": "01c95f6e0568312340f5ca6f11d6b35581cd604f2ca6cf714ef8b0456003970e"
-    },
-    {
-      "path": "participant/05-one-screen-handoff.md",
-      "sha256": "f59971d8ed581961ab0abcde67f98db23e2e08d066cb3b1af333bcafb63c594b"
-    },
-    {
-      "path": "participant/06-revised-artifact-freeze-record.md",
-      "sha256": "38d5157be20f375e038864ebf087f1d1068e82672cae08d5d5a5a8e2fa0fb31a"
-    },
-    {
-      "path": "participant/07-synthetic-context-record.md",
-      "sha256": "ecc14bb6643c71e6f4ba74bce380a7071fd08587e0485247e8b247fc44118150"
     }
   ]
 }

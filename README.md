@@ -61,17 +61,20 @@ from a data-team slogan into a cross-functional decision. Use the
 valuable use, then exercise assumptions with the [Failure Lab](FAILURE-LAB.md)
 and [Pilot Route](PILOT-AND-USABILITY.md).
 
-The prepared reader-value packet is `DATA-RV-PILOT-001` version 1.2.5. Stage A
+The prepared reader-value packet is `DATA-RV-PILOT-001` version 1.2.6. Stage A
 freezes exact revised details through a detached record before opening its
 one-screen handoff; Stage B reads that handoff first, verifies the same literal
-files, then freezes its decision in three stages. Version 1.2.5 preserves
-version 1.2.4's exact immutable Stage A live update and optional-contract
-branch, and adds mutually exclusive human/synthetic entry, exact stage and
-debrief checkpoints, immutable pre-close results, later external closeout, and
-a machine-enforced one-page layout-proof contract. Six scored freeze chains do
+files, then freezes its decision in three stages. Version 1.2.6 preserves
+v1.2.5's full-route and one-page layout controls and v1.2.4's exact immutable
+Stage A live update and optional-contract branch. It adds a synthetic-only,
+pre-run checksum-bound exact-file helper whose per-phase config uses observed
+sealed-input hashes and verifies before the phase gate. Human participants
+still use ordinary file surfaces without terminal or repository access. Helper
+procedural compliance is not sandbox proof; technical platform restriction is
+`NOT ESTABLISHED` unless separately demonstrated. Six scored freeze chains do
 not alone establish full-route completion. The packet remains unrun with
-people and carries no human, practitioner, data-readiness, or real-world
-validation.
+people and carries no human, practitioner, data-readiness, safety, business-
+value, or real-world validation.
 
 ## Development boundary
 

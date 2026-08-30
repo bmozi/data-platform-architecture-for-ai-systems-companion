@@ -1,6 +1,6 @@
 # Facilitator Execution and Access Log
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.5
+**Packet:** DATA-RV-PILOT-001 version 1.2.6
 **Status:** Blank facilitator-side control record; prepared and unrun
 
 Create the append-only run instance as exactly
@@ -19,6 +19,19 @@ its verified sealed-input manifest.
 - Attempt ID:
 - Entry branch: `HUMAN` / `SYNTHETIC`
 - Branch evidence exact filename/manifest/hash:
+- Synthetic helper source/run-copy/orchestration identities and hashes, or
+  `NOT APPLICABLE — HUMAN`:
+  `DATA-SYNTHETIC-EXACT-FILE-ACCESS-v1.py` /
+- Predeclared phase access directory and exact config/binding/log paths, or
+  `NOT APPLICABLE — HUMAN`:
+- Current synthetic config and helper/config binding-manifest hashes, or
+  `NOT APPLICABLE — HUMAN`:
+  `DATA-SYNTHETIC-EXACT-FILE-ACCESS-CONFIG-v1.json` /
+  `DATA-SYNTHETIC-EXACT-FILE-ACCESS-SHA256SUMS-v1.txt` /
+- Current distinct external helper access log, or `NOT APPLICABLE — HUMAN`:
+  `DATA-SYNTHETIC-EXACT-FILE-ACCESS-LOG-v1.jsonl`
+- Technical platform restriction/security state: `NOT ESTABLISHED` unless
+  separately demonstrated / `NOT APPLICABLE — HUMAN`
 - Stage and phase:
 - Participant or reviewer code:
 - Facilitator name/code:
@@ -38,6 +51,17 @@ The branch is selected once before `RUN_STARTED`. `HUMAN` requires completed
 real-person consent; `SYNTHETIC` requires exact manifested
 `DATA-SYNTHETIC-CONTEXT-v1.md` and forbids fictional consent or human-result
 claims. Mixing, switching, or leaving the branch blank stops the run.
+
+For `SYNTHETIC`, the immutable helper must be selected, checksum-bound in the
+orchestration manifest and context, and copied to every predeclared phase
+access directory before `RUN_STARTED`. After each phase-input manifest
+verifies, create its exact config from observed member hashes, create and
+verify its helper/config binding manifest, and only then open the phase gate.
+Future/dummy hashes, config creation after the gate, shared cross-phase helper
+logs, changed helper/config bytes, general commands, direct reads, and ad hoc
+message delivery are stops. The helper access logs every grant/refusal; mirror
+each row into this log one-to-one. The helper's boundary is observed separately
+from host-platform restriction, which remains `NOT ESTABLISHED` unless proved.
 
 ## Declared participant-input inventory
 
@@ -110,6 +134,22 @@ Use these exact event types in this order where applicable:
 10. `NEXT_RELEASE_MANIFEST_VERIFIED`
 11. `NEXT_PHASE_GATE_OPENED`
 
+For every synthetic phase, replace the first three steps with this stricter
+gate sequence before any file access:
+
+1. `SEALED_INPUT_MANIFEST_CREATED`
+2. `SEALED_INPUT_MANIFEST_VERIFIED`
+3. `SYNTHETIC_ACCESS_CONFIG_CREATED`
+4. `SYNTHETIC_ACCESS_BINDING_MANIFEST_CREATED`
+5. `SYNTHETIC_ACCESS_BINDING_MANIFEST_VERIFIED`
+6. `PHASE_GATE_OPENED`
+7. `FILE_OPENED_OR_ACCESS_ATTEMPT_RECORDED`
+
+Every synthetic access event additionally records the exact helper access-log
+path/event ID, config SHA-256, binding-manifest SHA-256, and helper outcome.
+A config created from future/dummy hashes or after `PHASE_GATE_OPENED` is a
+deviation and stops release.
+
 Repeat events 4-11 for each release chain. A manifest gate or phase may open
 only after the immediately required verification succeeded. Record the exact
 command, complete observed output, exit code, verification timestamp/timezone,
@@ -127,6 +167,12 @@ and actor on every `*_MANIFEST_VERIFIED` row.
 - Every participant-visible file declared and manifested: yes / no
 - Any undeclared orchestration, hidden prompt, facilitator file, or extra
   surface exposed: no / deviation ID
+- Synthetic helper access-log rows reconciled one-to-one across all distinct
+  per-phase logs: yes / no / `NOT APPLICABLE — HUMAN`
+- Synthetic helper-only procedural compliance: passed / failed / `NOT
+  APPLICABLE — HUMAN`
+- Technical platform restriction/security: `NOT ESTABLISHED` / separately
+  demonstrated evidence identity / `NOT APPLICABLE — HUMAN`
 - Gaps, reversals, failed commands, or access deviations:
 - Facilitator signature/code and completion timestamp/timezone:
 

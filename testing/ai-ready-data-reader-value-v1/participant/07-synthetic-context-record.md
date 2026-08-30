@@ -1,6 +1,6 @@
 # Synthetic Context Record Template
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.5
+**Packet:** DATA-RV-PILOT-001 version 1.2.6
 **Status:** Blank synthetic-branch template; not consent and not a result
 
 Use this template only when the run selects the synthetic branch. A synthetic
@@ -18,7 +18,7 @@ or closeout time.
 
 ## Required synthetic context
 
-- Packet ID/version: `DATA-RV-PILOT-001` / `1.2.5`
+- Packet ID/version: `DATA-RV-PILOT-001` / `1.2.6`
 - Attempt ID:
 - Required literal: `SYNTHETIC — NO HUMAN PARTICIPANT OR HUMAN DATA`
 - Scenario boundary: fictional Harbor Grove scenario only
@@ -33,6 +33,25 @@ or closeout time.
 - Evidence root:
 - Retention boundary:
 - Access boundary:
+- Exact helper source path and SHA-256:
+  `facilitator-only/07-synthetic-exact-file-access.py` /
+- Immutable run helper filename and SHA-256:
+  `DATA-SYNTHETIC-EXACT-FILE-ACCESS-v1.py` /
+- Predeclared phase access directories, helper-copy hashes, and actor assignments:
+- Exact per-phase config filename/schema:
+  `DATA-SYNTHETIC-EXACT-FILE-ACCESS-CONFIG-v1.json` / schema 1
+- Exact per-phase helper/config binding-manifest filename:
+  `DATA-SYNTHETIC-EXACT-FILE-ACCESS-SHA256SUMS-v1.txt`
+- Exact distinct per-phase external access-log filename:
+  `DATA-SYNTHETIC-EXACT-FILE-ACCESS-LOG-v1.jsonl`
+- Exact actor-instruction helper invocation and prohibition on every other
+  command, direct read, or undeclared message:
+- Helper/plan/orchestration selected and verified before `RUN_STARTED`, with
+  event IDs/timestamps/timezones:
+- Helper boundary state: exact-file allowlist/order/hash/refusal logging enabled
+- Technical platform restriction/security state: `NOT ESTABLISHED` unless
+  separately demonstrated with retained platform evidence
+- Ad hoc facilitator message delivery: prohibited
 - Run start timestamp:
 - Run start timezone:
 - Pre-scored execution-log checkpoint event ID and entry SHA-256:
@@ -49,5 +68,8 @@ benefit, data readiness, privacy or safety effectiveness, production fitness,
 cost, ROI, or business value. A synthetic behavior or layout result, if later
 retained, must remain separately labeled and limited to its exact attempt.
 
-Any blank required field, branch mixing, fictional human affirmation, or human
-result claim stops the run before scored input opens.
+Any blank required field, branch mixing, fictional human affirmation, human
+result claim, absent or after-start helper, overbroad helper authority, or ad
+hoc message delivery stops the run before scored input opens. Later per-phase
+configs are allowed only for predeclared phase directories and must be created,
+bound, and verified before the applicable phase gate.

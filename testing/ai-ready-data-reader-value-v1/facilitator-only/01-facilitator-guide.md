@@ -1,6 +1,6 @@
 # Facilitator Guide
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.5
+**Packet:** DATA-RV-PILOT-001 version 1.2.6
 **Status:** Facilitator-only; prepared and unrun
 
 ## Purpose
@@ -28,13 +28,19 @@ decision and whether the artifact transfers to a decision owner.
 
 ## No-coaching rule
 
-During scored work, repeat written text or resolve file access only. Do not
+During scored work, repeat written text or resolve human file access only. For
+a synthetic actor, resolve access only through the predeclared exact helper;
+never paste or summarize file content in a message. Do not
 identify the stale index, recommend excluding work orders, define the correct
 readiness outcome, name the missing owners, or suggest the stop condition.
 Record every pause, participant question, intervention, file open, and route
-deviation. Do not permit terminal, repository or Git status/history commands,
-internet searches, omitted links, completed examples, or other out-of-surface
-materials.
+deviation. Human participants may not use terminal, repository, Git, or helper
+surfaces. A synthetic actor may invoke only the exact helper command; do not
+permit any other terminal or shell command, direct filesystem read, repository
+or Git status/history command, internet search, undeclared message input,
+omitted link, completed example, or other out-of-surface material. The helper
+does not establish technical platform sandboxing; record that state as `NOT
+ESTABLISHED` unless separate retained evidence demonstrates it.
 
 Maintain the facilitator-only
 [`execution and access log`](05-execution-and-access-log.md) item by item. Log
@@ -51,7 +57,15 @@ stage. `SYNTHETIC` forbids fictional consent and requires exact completed
 `DATA-SYNTHETIC-CONTEXT-v1.md`, created from
 `07-synthetic-context-record.md`, plus verified
 `DATA-SYNTHETIC-CONTEXT-SHA256SUMS-v1.txt` before scored input opens. Log
-`ENTRY_BRANCH_SELECTED`; branch omission, switching, or mixing is a stop.
+`ENTRY_BRANCH_SELECTED`; branch omission, switching, or mixing is a stop. For
+`SYNTHETIC`, before `RUN_STARTED` also copy exact
+`07-synthetic-exact-file-access.py` as
+`DATA-SYNTHETIC-EXACT-FILE-ACCESS-v1.py` into every predeclared phase access
+directory; bind those byte-identical copies and
+`08-synthetic-access-plan-and-config-template.md` into the orchestration
+manifest and synthetic context; and fix the helper filename, schema, reserved
+config/binding/log paths, actor assignments, and exact invocation. An absent,
+after-start, changed, or overbroad helper is a stop.
 
 Before each stage, copy the exact approved immutable files into a separate
 sealed flat stage input. Preserve these local filenames exactly when supplied:
@@ -66,6 +80,19 @@ Reject any participant input containing an undeclared `ORCHESTRATION.md`, run
 note, hidden prompt, facilitator file, or other extra control file. Keep all
 facilitation outside the sealed participant surface and prove the declared
 inventory item by item in the external access log.
+
+For each synthetic phase, wait until the phase's exact input bytes exist and
+its sealed-input manifest verifies. Then, before the phase gate opens, create
+immutable `DATA-SYNTHETIC-EXACT-FILE-ACCESS-CONFIG-v1.json` from those observed
+hashes in route order and verify
+`DATA-SYNTHETIC-EXACT-FILE-ACCESS-SHA256SUMS-v1.txt` over exactly the pre-run
+helper copy and config. Do not predict later participant artifact hashes or use
+dummy hashes. Each phase has a distinct same-named external
+`DATA-SYNTHETIC-EXACT-FILE-ACCESS-LOG-v1.jsonl`; invoke the helper serially and
+mirror every grant, optional skip, or refusal into
+`DATA-EXECUTION-ACCESS-LOG-v1.jsonl`. A config created after its phase gate,
+shared cross-phase helper log, ad hoc message delivery, or unreconciled helper
+row is a stop and deviation.
 
 ## Governing freeze sequence
 
@@ -187,7 +214,9 @@ a new manifest, and a new detached record. Never revise the old set in place.
 
 1. Continue the same entry branch and use a reviewer who did not create Stage A
    work. Complete real reviewer consent for `HUMAN` or reverify the unchanged
-   synthetic context for `SYNTHETIC`; record `STAGE_B_CONTEXT_GATE_OPENED`.
+   synthetic context and unchanged pre-run helper identity for `SYNTHETIC`;
+   create and verify the Stage B Phase 1 config/binding manifest from the
+   verified phase-input hashes; then record `STAGE_B_CONTEXT_GATE_OPENED`.
 2. Record `STAGE_B_STARTED` with exact timestamp/timezone and prior-event
    binding immediately before the first scored file opens.
 3. Verify the handoff, its governing manifest, and detached record. Supply the
