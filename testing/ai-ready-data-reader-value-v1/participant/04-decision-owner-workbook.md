@@ -1,6 +1,6 @@
 # Stage B Decision-Owner Workbook
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.3
+**Packet:** DATA-RV-PILOT-001 version 1.2.4
 **Status:** Blank independent read-back record
 
 - Reviewer code:

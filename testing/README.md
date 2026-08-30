@@ -19,7 +19,7 @@ evidence-state change.
   facilitator-only materials. It has no DATA-X005 execution or transition
   authority.
 - [AI-Ready Data Reader-Value Pilot Packet](ai-ready-data-reader-value-v1/README.md)
-  — `DATA-RV-PILOT-001` version 1.2.3, a separate two-stage candidate for the
+  — `DATA-RV-PILOT-001` version 1.2.4, a separate two-stage candidate for the
   plain-language readiness journey, outside-team transfer, and decision-owner
   legibility. Stage A freezes a detailed artifact and one-screen handoff; Stage
   B reads the handoff first and then verifies the exact frozen detailed

@@ -1,6 +1,6 @@
 # Detached Freeze-Verification Record Template
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.3
+**Packet:** DATA-RV-PILOT-001 version 1.2.4
 **Status:** Blank detached template; create an instance only after its governing
 manifest has been verified
 
@@ -8,6 +8,25 @@ Use this template for the revised Stage A set, the handoff, Stage B Section 1,
 Stage B Section 2, and Stage B Sections 3-5. A completed instance records an
 observed verification event. It never predicts a future event and is never
 listed in the governing manifest whose verification it records.
+
+## Revision-input lineage for revised Stage A
+
+Complete this section only for the revised Stage A record. For every other
+scope, record `NOT APPLICABLE — different release` rather than leaving it
+ambiguous.
+
+- Revision-phase input manifest exact filename and SHA-256:
+  `DATA-A-REVISION-PHASE-INPUT-SHA256SUMS-v1.txt` /
+- Live-update participant input exact filename: `DATA-A-LIVE-UPDATE-v1.md`
+- Live-update SHA-256 from the verified revision-phase input manifest:
+- Both required initial artifacts, their governing manifest, detached record,
+  and exact live update were included: yes / no
+- Optional `DATA-A-INITIAL-DATA-PRODUCT-CONTRACT-v1.md` was included exactly
+  when it appeared in the initial governing manifest and otherwise absent:
+  yes / no
+- Live-update filename and bytes matched before opening: yes / no
+- Any omission, rename, regenerated copy, summary, substitution, mismatch, or
+  unmanifested update: none / stop and deviation
 
 ## Select one exact record identity
 

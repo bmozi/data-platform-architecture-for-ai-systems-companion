@@ -1,13 +1,14 @@
 # Temporal Freeze Protocol and Record Templates
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.3
+**Packet:** DATA-RV-PILOT-001 version 1.2.4
 **Status:** Facilitator-only static protocol and blank run-record schema;
 prepared and unrun
 
-Version 1.2.3 makes the execution history auditable, not merely the final
-files. Every detached record requires attempt, phase, actor, facilitator,
-exact verification command/output/exit/time/timezone, and a later
-record-completion timestamp/timezone. The facilitator separately maintains the
+Version 1.2.4 binds exact immutable `DATA-A-LIVE-UPDATE-v1.md` into the Stage A
+revision phase while preserving version 1.2.3's auditable execution history.
+Every detached record requires attempt, phase, actor, facilitator, exact
+verification command/output/exit/time/timezone, and a later record-completion
+timestamp/timezone. The facilitator separately maintains the
 [`execution and access log`](05-execution-and-access-log.md). Passing static
 checks is non-human evidence only.
 
@@ -35,12 +36,29 @@ checks is non-human evidence only.
 
 | Freeze | Governed artifact(s) and required state | Governing manifest | Later detached verification record | Next-phase input manifest |
 | --- | --- | --- | --- | --- |
-| Stage A initial | `DATA-A-INITIAL-WORKBOOK-v1.md`; `DATA-A-INITIAL-READINESS-ASSESSMENT-v1.md`; optional `DATA-A-INITIAL-DATA-PRODUCT-CONTRACT-v1.md`; `INITIAL COMPLETE` | `DATA-A-INITIAL-ARTIFACTS-SHA256SUMS-v1.txt` | `DATA-A-INITIAL-FREEZE-VERIFICATION-v1.md` | `DATA-A-REVISION-PHASE-INPUT-SHA256SUMS-v1.txt` |
+| Stage A initial | `DATA-A-INITIAL-WORKBOOK-v1.md`; `DATA-A-INITIAL-READINESS-ASSESSMENT-v1.md`; optional `DATA-A-INITIAL-DATA-PRODUCT-CONTRACT-v1.md`; `INITIAL COMPLETE` | `DATA-A-INITIAL-ARTIFACTS-SHA256SUMS-v1.txt` | `DATA-A-INITIAL-FREEZE-VERIFICATION-v1.md` | `DATA-A-REVISION-PHASE-INPUT-SHA256SUMS-v1.txt`, also binding exact new input `DATA-A-LIVE-UPDATE-v1.md` and the optional initial contract iff used and included in the governing manifest |
 | Stage A revised | required `DATA-A-REVISED-WORKBOOK-v1.md`; required `DATA-A-REVISED-READINESS-ASSESSMENT-v1.md`; optional `DATA-A-REVISED-DATA-PRODUCT-CONTRACT-v1.md`; `REVISED COMPLETE` | `DATA-A-REVISED-ARTIFACTS-SHA256SUMS-v1.txt` | `DATA-A-REVISED-FREEZE-VERIFICATION-v1.md` | `DATA-A-HANDOFF-PHASE-INPUT-SHA256SUMS-v1.txt` |
 | Stage A handoff | `DATA-A-ONE-SCREEN-HANDOFF-v1.md`; `HANDOFF COMPLETE` | `DATA-A-HANDOFF-SHA256SUMS-v1.txt` | `DATA-A-HANDOFF-FREEZE-VERIFICATION-v1.md` | `DATA-B-PHASE-1-INPUT-SHA256SUMS-v1.txt` |
 | Stage B Section 1 | `DATA-B-SECTION-1-SCAN-v1.md`; `SECTION 1 COMPLETE` | `DATA-B-SECTION-1-SHA256SUMS-v1.txt` | `DATA-B-SECTION-1-FREEZE-VERIFICATION-v1.md` | `DATA-B-PHASE-2-INPUT-SHA256SUMS-v1.txt` |
 | Stage B Section 2 | `DATA-B-SECTION-2-DETAIL-v1.md`; `SECTION 2 COMPLETE` | `DATA-B-SECTION-2-SHA256SUMS-v1.txt` | `DATA-B-SECTION-2-FREEZE-VERIFICATION-v1.md` | `DATA-B-PHASE-3-INPUT-SHA256SUMS-v1.txt` |
 | Stage B Sections 3-5 | `DATA-B-SECTIONS-3-5-DECISION-v1.md`; `SECTIONS 3-5 COMPLETE` | `DATA-B-SECTIONS-3-5-SHA256SUMS-v1.txt` | `DATA-B-SECTIONS-3-5-FREEZE-VERIFICATION-v1.md` | `DATA-B-PHASE-4-DEBRIEF-INPUT-SHA256SUMS-v1.txt` |
+
+## Exact Stage A revision-phase input inventory
+
+Create `DATA-A-REVISION-PHASE-INPUT-SHA256SUMS-v1.txt` over:
+
+1. required `DATA-A-INITIAL-WORKBOOK-v1.md`;
+2. required `DATA-A-INITIAL-READINESS-ASSESSMENT-v1.md`;
+3. conditional `DATA-A-INITIAL-DATA-PRODUCT-CONTRACT-v1.md` exactly when it
+   was used and appears in the initial governing manifest, and otherwise not;
+4. `DATA-A-INITIAL-ARTIFACTS-SHA256SUMS-v1.txt`;
+5. `DATA-A-INITIAL-FREEZE-VERIFICATION-v1.md`; and
+6. exact immutable `DATA-A-LIVE-UPDATE-v1.md`.
+
+No other member is allowed. Verify this manifest before opening the live
+update. Record the exact manifest/update filenames and hashes and the optional
+contract disposition. Omission, rename, regeneration, summary, substitution,
+mismatch, or an unmanifested update is a stop and deviation.
 
 ## Required detached-record fields
 

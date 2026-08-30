@@ -1,6 +1,6 @@
 # Facilitator Execution and Access Log
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.3
+**Packet:** DATA-RV-PILOT-001 version 1.2.4
 **Status:** Blank facilitator-side control record; prepared and unrun
 
 Keep this log outside every sealed participant input. It is not a participant
@@ -34,6 +34,15 @@ Record one row for every expected file and every attempted extra surface before
 the phase opens. `Present and manifested` must be `yes` for declared files and
 `no` for undeclared files. Any undeclared orchestration or facilitator file
 stops the phase.
+
+For the Stage A revision phase, the declared inventory must contain both
+required initial artifacts; optional
+`DATA-A-INITIAL-DATA-PRODUCT-CONTRACT-v1.md` exactly when it appears in the
+initial governing manifest; `DATA-A-INITIAL-ARTIFACTS-SHA256SUMS-v1.txt`;
+`DATA-A-INITIAL-FREEZE-VERIFICATION-v1.md`; and exact immutable
+`DATA-A-LIVE-UPDATE-v1.md`. All must be bound by verified
+`DATA-A-REVISION-PHASE-INPUT-SHA256SUMS-v1.txt` before the update opens. The
+optional contract must be absent here when it was not used.
 
 | Stage/phase | Exact local filename or attempted surface | Declared by route/release | Expected SHA-256 | Present and manifested | Participant-accessible | First-open event ID | Disposition/deviation |
 | --- | --- | --- | --- | --- | --- | --- | --- |

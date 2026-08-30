@@ -1,20 +1,25 @@
 # AI-Ready Data Reader-Value Pilot Packet
 
 **Packet ID:** DATA-RV-PILOT-001
-**Version:** 1.2.3
+**Version:** 1.2.4
 **Status:** Prepared and unrun; no participant recruited or consented
 **Scenario:** Harbor Grove Housing, entirely fictional
 
-Version 1.2.3 preserves the non-circular freeze order while making the
-execution history auditable. Every detached record now requires attempt,
-phase, actors, facilitator, exact manifest-verification
-command/output/exit/time/timezone, and a later record-completion
-timestamp/timezone. It preserves the AI-ready-data content, literal artifact
-identity, sealed delivery, and staged Stage B controls. Every governed freeze follows one observable order:
+Version 1.2.4 exports the canonical Stage A update as exact immutable
+participant/run input `DATA-A-LIVE-UPDATE-v1.md`. The revision-phase manifest
+must bind it alongside both required initial artifacts, the optional initial
+data-product contract exactly when that contract was actually used, the
+initial governing manifest, and the detached record. It preserves version
+1.2.3's non-circular freeze order and controls that make execution history
+auditable, including exact manifest-verification
+command/output/exit/time/timezone and later record-completion chronology. It
+also preserves the AI-ready-data content, literal artifact identity, sealed
+delivery, and staged Stage B controls. Every governed freeze follows one
+observable order:
 complete artifacts, create their governing manifest, verify it and capture the
 exact event, then create a detached verification record. Synthetic work is
 defect-finding only. Version 1.2.1 remains preserved at source commit `9921757`
-and version 1.2.0 at `6921313`; do not relabel an older run as 1.2.3. A 1.2.3
+and version 1.2.0 at `6921313`; do not relabel an older run as 1.2.4. A 1.2.4
 correction produces a new immutable artifact set, governing manifest, and
 detached record rather than overwriting old evidence.
 This version remains **PREPARED/UNRUN** with people and supports no
@@ -59,9 +64,11 @@ only, in the order governed by the packet route:
 5. `ai-data-readiness-assessment.md`
 6. `data-product-contract.md`, only if the participant decides it answers a
    separate needed question
-7. `06-revised-artifact-freeze-record.md`, after the revised governing
+7. `DATA-A-LIVE-UPDATE-v1.md`, only after the revision-phase input manifest
+   verifies;
+8. `06-revised-artifact-freeze-record.md`, after the revised governing
    manifest has been successfully verified; and
-8. [One-Screen Handoff](participant/05-one-screen-handoff.md), only after that
+9. [One-Screen Handoff](participant/05-one-screen-handoff.md), only after that
    record verifies
 
 Do not supply the Northbridge completion, the repository failure lab,
@@ -77,8 +84,14 @@ required files `DATA-A-INITIAL-WORKBOOK-v1.md` and
 used. Mark included files `INITIAL COMPLETE`, hash only them in
 `DATA-A-INITIAL-ARTIFACTS-SHA256SUMS-v1.txt`, verify that manifest, and then
 create `DATA-A-INITIAL-FREEZE-VERIFICATION-v1.md`. The verified
-`DATA-A-REVISION-PHASE-INPUT-SHA256SUMS-v1.txt` binds the exact initial
-artifacts, manifest, detached record, and live update before the update opens.
+`DATA-A-REVISION-PHASE-INPUT-SHA256SUMS-v1.txt` binds the two required initial
+artifacts; `DATA-A-INITIAL-DATA-PRODUCT-CONTRACT-v1.md` exactly when it was
+actually used and included in the initial governing manifest; the initial
+governing manifest; the detached record; and exact immutable
+`DATA-A-LIVE-UPDATE-v1.md`. Verify that manifest before the live-update file is
+opened. The optional contract must be present in both manifests when used and
+absent from both when not used. An omitted, renamed, regenerated, summarized,
+substituted, mismatched, or unmanifested update is a stop and deviation.
 The planned update creates the first revised set; it is not a correction of
 already frozen revised bytes. Required revised-detail filenames are:
 

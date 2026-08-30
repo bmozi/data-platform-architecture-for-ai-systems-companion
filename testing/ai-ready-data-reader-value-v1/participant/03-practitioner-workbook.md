@@ -1,6 +1,6 @@
 # Stage A Practitioner Workbook
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.3
+**Packet:** DATA-RV-PILOT-001 version 1.2.4
 **Status:** Blank participant record
 
 - Participant code:
@@ -54,6 +54,16 @@ information may influence the named draft. Include one reason to abstain.
 ## 5. Live update
 
 Record the update exactly as supplied.
+
+- Revision-phase input manifest exact filename and SHA-256:
+  `DATA-A-REVISION-PHASE-INPUT-SHA256SUMS-v1.txt` /
+- Live-update input exact filename: `DATA-A-LIVE-UPDATE-v1.md`
+- Live-update SHA-256 from that verified manifest:
+- Optional initial contract disposition matched both the initial and
+  revision-phase manifests: included in both / absent from both / deviation
+- Exact filename and hash matched before the update was opened: yes / no /
+  deviation
+- Exact live-update contents:
 
 This is the planned live-update revision that creates the first revised set.
 It is not a correction of already frozen revised bytes.

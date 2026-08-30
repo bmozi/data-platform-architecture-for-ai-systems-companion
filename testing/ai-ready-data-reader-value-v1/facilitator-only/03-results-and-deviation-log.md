@@ -1,6 +1,6 @@
 # Results and Deviation Log
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.3
+**Packet:** DATA-RV-PILOT-001 version 1.2.4
 **Status:** Blank controlled record; no result exists
 
 ## Run identity
@@ -45,6 +45,19 @@ first substantive artifact.
 
 ## Revised-detail and Stage B transfer verification
 
+- Revision-phase input manifest exact filename/hash:
+  `DATA-A-REVISION-PHASE-INPUT-SHA256SUMS-v1.txt` /
+- Immutable live-update participant input exact filename/hash:
+  `DATA-A-LIVE-UPDATE-v1.md` /
+- Revision-phase manifest binds both required initial artifacts, their
+  governing manifest, detached record, and exact live-update input: yes / no /
+  deviation
+- Optional `DATA-A-INITIAL-DATA-PRODUCT-CONTRACT-v1.md` included in both the
+  initial and revision-phase manifests when used, and absent from both when not
+  used: yes / no / deviation
+- Live-update filename and bytes matched before opening; no omission, rename,
+  regeneration, summary, substitution, mismatch, or unmanifested delivery:
+  yes / no / deviation
 - Revised manifest verified before detached record was created: yes / no /
   deviation
 - Detached record completed before handoff opened: yes / no / deviation
@@ -78,7 +91,7 @@ from recollection.
 
 | Scope | Exact artifact filename(s), ID/version, completion time/timezone, state, hash | Governing manifest filename/hash | Observed manifest verification time/timezone and result | Detached record filename/hash and completion time/timezone | Next phase/evidence manifest and preserved location |
 | --- | --- | --- | --- | --- | --- |
-| Stage A initial | required `DATA-A-INITIAL-WORKBOOK-v1.md`; required `DATA-A-INITIAL-READINESS-ASSESSMENT-v1.md`; optional `DATA-A-INITIAL-DATA-PRODUCT-CONTRACT-v1.md`; `INITIAL COMPLETE` | `DATA-A-INITIAL-ARTIFACTS-SHA256SUMS-v1.txt` / | | `DATA-A-INITIAL-FREEZE-VERIFICATION-v1.md` / | `DATA-A-REVISION-PHASE-INPUT-SHA256SUMS-v1.txt` / |
+| Stage A initial | required `DATA-A-INITIAL-WORKBOOK-v1.md`; required `DATA-A-INITIAL-READINESS-ASSESSMENT-v1.md`; optional `DATA-A-INITIAL-DATA-PRODUCT-CONTRACT-v1.md`; `INITIAL COMPLETE` | `DATA-A-INITIAL-ARTIFACTS-SHA256SUMS-v1.txt` / | | `DATA-A-INITIAL-FREEZE-VERIFICATION-v1.md` / | `DATA-A-REVISION-PHASE-INPUT-SHA256SUMS-v1.txt` /; includes exact `DATA-A-LIVE-UPDATE-v1.md`; optional initial contract iff used and in governing manifest |
 | Stage A revised set | required revised files; optional only if used | `DATA-A-REVISED-ARTIFACTS-SHA256SUMS-v1.txt` / | | `DATA-A-REVISED-FREEZE-VERIFICATION-v1.md` / | Stage B Phase 2 input / |
 | Stage A handoff | `DATA-A-ONE-SCREEN-HANDOFF-v1.md`; `HANDOFF COMPLETE` | `DATA-A-HANDOFF-SHA256SUMS-v1.txt` / | | `DATA-A-HANDOFF-FREEZE-VERIFICATION-v1.md` / | Stage B Phase 1 input / |
 | Stage B Section 1 | `DATA-B-SECTION-1-SCAN-v1.md`; `SECTION 1 COMPLETE` | `DATA-B-SECTION-1-SHA256SUMS-v1.txt` / | | `DATA-B-SECTION-1-FREEZE-VERIFICATION-v1.md` / | Stage B Phase 2 input / |

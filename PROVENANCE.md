@@ -91,3 +91,23 @@ and which validation or usability state actually changed.
   mutations validate structured and human-readable omission resistance
 - **Execution state:** `PREPARED/UNRUN`; static and synthetic defect-finding is
   not human usability, data readiness, privacy, safety, or business-value evidence
+
+## 2026-08-30 immutable live-update binding v1.2.4
+
+- **Authority:** Repair of a release blocker found by static and synthetic
+  preflight of the prepared reader-value packet
+- **Defect retained:** version 1.2.3 kept the canonical Stage A live update in
+  facilitator prose but did not export a route-declared immutable participant
+  file or bind it into the revision-phase input manifest
+- **Added:** exact `DATA-A-LIVE-UPDATE-v1.md`, copied from the retained
+  canonical facilitator wording without invented scenario results
+- **Changed:** the route, packet README, revision templates/inventories, and
+  schema-v3 temporal protocol require the revision-phase manifest to bind both
+  required initial artifacts, the optional initial data-product contract
+  exactly when used and in the initial manifest, that governing manifest,
+  detached record, and exact live update before opening it
+- **Enforcement:** repository validation and disposable-copy mutations reject
+  update omission, rename, unbound release membership, route omission, wording
+  drift, and weakening the optional-contract branch even with refreshed hashes
+- **Execution state:** `PREPARED/UNRUN`; no human participant, usability, data
+  readiness, privacy, safety, production, cost, or business-value result exists

@@ -187,6 +187,72 @@ def mutate_record_template_omission(repo: Path) -> None:
     )
 
 
+def mutate_live_update_member_omission(repo: Path) -> None:
+    protocol = load_protocol(repo)
+    protocol["revision_phase_input"]["required_members"].remove(
+        "DATA-A-LIVE-UPDATE-v1.md"
+    )
+    write_protocol(repo, protocol)
+
+
+def mutate_live_update_rename(repo: Path) -> None:
+    protocol = load_protocol(repo)
+    protocol["revision_phase_input"]["immutable_participant_input"][
+        "filename"
+    ] = "DATA-A-LIVE-UPDATE-renamed-v1.md"
+    write_protocol(repo, protocol)
+
+
+def mutate_live_update_unbound(repo: Path) -> None:
+    protocol = load_protocol(repo)
+    protocol["revision_phase_input"]["opens_release"] = "stage_a_handoff"
+    write_protocol(repo, protocol)
+
+
+def mutate_route_live_update_omission(repo: Path) -> None:
+    update_critical_document(
+        repo,
+        "participant/00-packet-route.md",
+        lambda content: content.replace(
+            "`DATA-A-LIVE-UPDATE-v1.md`", "the live-update file"
+        ),
+    )
+
+
+def mutate_live_update_wording_drift(repo: Path) -> None:
+    protocol = load_protocol(repo)
+    relative = protocol["revision_phase_input"]["immutable_participant_input"][
+        "path"
+    ]
+    packet_dir = protocol_path(repo).parent
+    target = packet_dir / relative
+    original = target.read_text(encoding="utf-8")
+    updated = original.replace("Policy v2 above v3", "Policy v3 above v2", 1)
+    if updated == original:
+        raise AssertionError("live-update wording mutation did not change input")
+    target.write_text(updated, encoding="utf-8")
+    refresh_packet_checksum(repo, target)
+    updated_hash = sha256(target)
+    protocol["revision_phase_input"]["immutable_participant_input"][
+        "sha256"
+    ] = updated_hash
+    for item in protocol["critical_documents"]:
+        if item["path"] == relative:
+            item["sha256"] = updated_hash
+            break
+    else:
+        raise AssertionError("live-update critical document not found")
+    write_protocol(repo, protocol)
+
+
+def mutate_optional_branch_weakening(repo: Path) -> None:
+    protocol = load_protocol(repo)
+    protocol["revision_phase_input"]["conditional_members"][0][
+        "required_when_prior_release_artifact_included"
+    ] = False
+    write_protocol(repo, protocol)
+
+
 def main() -> int:
     positive = run_validator(ROOT)
     if positive.returncode != 0:
@@ -268,13 +334,43 @@ def main() -> int:
             mutate_record_template_omission,
             "lacks required semantic invariant: - Complete observed command output:",
         ),
+        (
+            "live-update-member-omission",
+            mutate_live_update_member_omission,
+            "revision input omits or changes required manifest members",
+        ),
+        (
+            "live-update-rename",
+            mutate_live_update_rename,
+            "immutable live-update filename must be DATA-A-LIVE-UPDATE-v1.md",
+        ),
+        (
+            "live-update-unbound",
+            mutate_live_update_unbound,
+            "revision phase input must open stage_a_revised",
+        ),
+        (
+            "route-live-update-omission",
+            mutate_route_live_update_omission,
+            "participant/00-packet-route.md lacks exact identity: DATA-A-LIVE-UPDATE-v1.md",
+        ),
+        (
+            "live-update-wording-drift",
+            mutate_live_update_wording_drift,
+            "immutable live-update input differs from canonical facilitator wording",
+        ),
+        (
+            "optional-branch-weakening",
+            mutate_optional_branch_weakening,
+            "optional initial contract membership semantics weakened",
+        ),
     ]
     for name, mutation, expected in repo_cases:
         assert_repo_rejected(name, mutation, expected)
 
     print(
         "temporal protocol mutation tests passed: full positive control and "
-        "semantic baseline accepted; 10 adversarial omissions or permissions rejected"
+        "semantic baseline accepted; 16 adversarial mutations rejected"
     )
     return 0
 

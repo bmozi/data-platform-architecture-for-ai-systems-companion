@@ -1,6 +1,6 @@
 # Participant Packet Route
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.3
+**Packet:** DATA-RV-PILOT-001 version 1.2.4
 **Status:** Prepared and unrun with people
 
 This file controls the read order. Use `UNKNOWN`, `UNASSIGNED`, or `STOP` when
@@ -74,10 +74,18 @@ Pre-session only: complete and close
    timestamp/timezone, and `INITIAL COMPLETE` state. Hash only those completed
    artifacts in `DATA-A-INITIAL-ARTIFACTS-SHA256SUMS-v1.txt`, verify it, and
    then create `DATA-A-INITIAL-FREEZE-VERIFICATION-v1.md`. Create and verify
-   `DATA-A-REVISION-PHASE-INPUT-SHA256SUMS-v1.txt` over the initial artifacts,
-   governing manifest, detached record, and live update before opening the
-   update.
-9. Receive the live update, complete workbook Sections 5-6, revise the detailed
+   `DATA-A-REVISION-PHASE-INPUT-SHA256SUMS-v1.txt`. It must bind the two
+   required initial artifacts; `DATA-A-INITIAL-DATA-PRODUCT-CONTRACT-v1.md`
+   exactly when it was used and included in the initial governing manifest;
+   `DATA-A-INITIAL-ARTIFACTS-SHA256SUMS-v1.txt`;
+   `DATA-A-INITIAL-FREEZE-VERIFICATION-v1.md`; and exact immutable
+   `DATA-A-LIVE-UPDATE-v1.md`. The optional contract must be present in both
+   manifests when used and absent from both when not used. Omission, rename,
+   regeneration, summary, substitution, mismatch, or an unmanifested update
+   stops the revision phase.
+9. Only after that revision-phase input manifest verifies, open
+   `DATA-A-LIVE-UPDATE-v1.md` and record its contents exactly. Then complete
+   workbook Sections 5-6 and revise the detailed
    artifacts. This planned revision creates the first revised set and is not a
    correction of already frozen revised bytes. Save exactly
    `DATA-A-REVISED-WORKBOOK-v1.md`,

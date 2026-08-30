@@ -1,6 +1,6 @@
 # Observation and Scoring Rubric
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.3
+**Packet:** DATA-RV-PILOT-001 version 1.2.4
 **Status:** Predetermined, blank, and unrun
 
 Score retained behavior, not agreement with preferred wording.
@@ -53,6 +53,7 @@ Mark `clear`, `unclear`, `unsafe`, or `contaminated`:
 | Restricted-data near miss | Preserves minimum evidence without copying restricted content; checks context, output, logs, viewers, containment, ownership, retention/deletion authority, and separate legal/privacy classification | | |
 | Operability | Abstention, stop trust, correction propagation, incident owner or explicit unassigned state, and reassessment exist or remain blockers | | |
 | Separate gates | Data fitness does not approve model, tool, action, or release | | |
+| Revision-input integrity | `DATA-A-REVISION-PHASE-INPUT-SHA256SUMS-v1.txt` binds both required initial artifacts, the optional initial contract exactly when used and in the initial manifest, that governing manifest, detached record, and exact immutable `DATA-A-LIVE-UPDATE-v1.md`; verification precedes opening, with no omission, rename, regeneration, summary, substitution, mismatch, or unmanifested update | | |
 | Revised-detail freeze integrity | Each included revised detail reaches pre-hash `REVISED COMPLETE` with ID/version and completion timestamp/timezone; the optional contract is `REVISED COMPLETE` or `NOT USED`; the manifest then hashes only included completed bytes; verification is observed with exact time/timezone; only afterward does the detached record match the metadata, hashes, manifest filename/hash, and event and establish `FROZEN` | | |
 | No temporal self-reference | The revised set, handoff, and three Stage B exports contain completion metadata and a filename-only pointer to their later record, never their own hash, the record hash, a future verification time, or self-declared `FROZEN`; no governing manifest hashes itself or its later record | | |
 | Detached-record replay identity | Every record contains attempt ID, phase, artifact actor, facilitator, verifier, exact verification command, complete output, exit code, observed verification timestamp/timezone, record-completing actor, and a separately recorded later completion timestamp/timezone; any blank, failure, or reversal blocks `FROZEN` | | |

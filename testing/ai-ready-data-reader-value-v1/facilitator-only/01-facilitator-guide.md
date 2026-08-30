@@ -1,6 +1,6 @@
 # Facilitator Guide
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.3
+**Packet:** DATA-RV-PILOT-001 version 1.2.4
 **Status:** Facilitator-only; prepared and unrun
 
 ## Purpose
@@ -113,10 +113,19 @@ a new manifest, and a new detached record. Never revise the old set in place.
    `DATA-A-INITIAL-ARTIFACTS-SHA256SUMS-v1.txt` over only those completed
    artifacts, verify it, and then complete
    `DATA-A-INITIAL-FREEZE-VERIFICATION-v1.md`. Create and verify
-   `DATA-A-REVISION-PHASE-INPUT-SHA256SUMS-v1.txt` over the initial artifacts,
-   their governing manifest, detached record, and live update before opening
-   the update.
-6. Read the update:
+   `DATA-A-REVISION-PHASE-INPUT-SHA256SUMS-v1.txt`. It must bind both required
+   initial artifacts; `DATA-A-INITIAL-DATA-PRODUCT-CONTRACT-v1.md` exactly when
+   used and included in the initial governing manifest; their governing
+   manifest; detached record; and exact immutable
+   `DATA-A-LIVE-UPDATE-v1.md`. Verify it before the update opens. The optional
+   contract must be present in both manifests when used and absent from both
+   when not used. Any omission, rename, regeneration, summary, substitution,
+   mismatch, or unmanifested update is a stop and deviation.
+6. Only after that revision-phase input manifest verifies, deliver and open
+   sealed participant input `DATA-A-LIVE-UPDATE-v1.md`. Do not retype,
+   summarize, or substitute it. Its canonical contents are:
+
+<!-- DATA-A-LIVE-UPDATE-v1 CANONICAL START -->
 
 > During a dry content check, the proposed assistant retrieved Heat Response
 > Policy v2 above v3 and drafted the obsolete escalation timing. The answer
@@ -126,6 +135,8 @@ a new manifest, and a new detached record. Never revise the old set in place.
 > buildings. The source owner corrected v3 later that morning, but no owner can
 > say when the correction will reach the index. No resident message or work
 > order was sent; the candidate remains offline.
+
+<!-- DATA-A-LIVE-UPDATE-v1 CANONICAL END -->
 
 7. Ask only: “What may the team safely conclude or do now, and what changes in
    your artifact?”

@@ -1,6 +1,6 @@
 # Harbor Grove Scenario: Is This Information Ready for This AI Use?
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.3
+**Packet:** DATA-RV-PILOT-001 version 1.2.4
 **Status:** Fictional, prepared, and unrun
 
 Harbor Grove Housing operates eighteen fictional apartment buildings. Resident
@@ -75,8 +75,13 @@ The named use for this review is narrower:
    date. The facilitator then hashes, verifies, and records its freeze in the
    governed temporal order; do not predict that event inside the handoff.
 
-The facilitator will provide one live update after the first artifact is
-frozen.
+After the initial artifact set is frozen, the facilitator creates and verifies
+`DATA-A-REVISION-PHASE-INPUT-SHA256SUMS-v1.txt`. Only then open exact immutable
+`DATA-A-LIVE-UPDATE-v1.md`. Record its contents exactly. A renamed, omitted,
+regenerated, summarized, substituted, mismatched, or unmanifested update is a
+stop. The optional initial data-product contract must be included in the
+revision-phase manifest exactly when it was used and included in the initial
+governing manifest.
 
 That planned revision creates the first revised artifact set. It is not a later
 correction of already frozen revised bytes.
