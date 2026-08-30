@@ -36,3 +36,11 @@ and which validation or usability state actually changed.
   observation, score, revision-from-observation, or result exists
 - **Prior packet boundary:** Cedar Vale remains a separate DATA-X006 candidate
   and neither packet inherits or changes the other's evidence state
+
+## 2026-08-29 source-alignment terminology repair
+
+- **Authority:** Author-directed collection drift and unfinished-marker audit
+- **Changed:** the Northbridge provenance example now labels an unmade decision
+  as a candidate reference rather than a placeholder
+- **Boundary:** synchronized constructed-example wording only; no decision,
+  lineage evidence, or execution state changed

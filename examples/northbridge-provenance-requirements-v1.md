@@ -44,7 +44,7 @@ of that row from proof that the product included every eligible partner?
 | Quality and reconciliation | NBX-QES-001 version 1.0.0 | NBX-ROLE-RELIABILITY | Scenario thresholds and stop action | Failing authored condition; no run | Stopped use cannot be treated as fit |
 | Purpose and entitlement | NBX-POL-PURPOSE-08 version 3 | NBX-ROLE-SECURITY | Renewal-purpose and role mapping | Scenario reference only | Read access could be mistaken for use authority |
 | AI context assembly | NBX-CTX-RENEWAL-02 version 1 | NBX-ROLE-AI-DATA | Planned field selection and prompt-context reference | Not assembled or tested | Cannot reconstruct what an AI component received |
-| Output/decision/consumer | NBX-DEC-RENEWAL-1842 placeholder | NBX-ROLE-RENEWAL | Required reviewer, time, input versions, disposition | Blank; no decision occurred | Cannot claim a renewal outcome or rationale |
+| Output/decision/consumer | NBX-DEC-RENEWAL-1842 candidate reference; no decision exists | NBX-ROLE-RENEWAL | Required reviewer, time, input versions, disposition | Blank; no decision occurred | Cannot claim a renewal outcome or rationale |
 
 Only layers relevant to the bounded scenario are listed. This record does not
 claim the list is exhaustive for a real organization.
