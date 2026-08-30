@@ -1,6 +1,6 @@
 # Facilitator Guide
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.1
+**Packet:** DATA-RV-PILOT-001 version 1.2.2
 **Status:** Facilitator-only; prepared and unrun
 
 ## Purpose
@@ -71,8 +71,9 @@ and each of the three Stage B exports:
    governing manifest, and its detached verification record. The closing
    evidence manifest does the same for the final Stage B export.
 
-Any change after step 3 requires an immutable replacement set, new manifest,
-and new detached record. Never revise the old set in place.
+Any change after step 3 requires an immutable replacement set with a new
+immutable filename and a new artifact ID/version for every corrected artifact,
+a new manifest, and a new detached record. Never revise the old set in place.
 
 ## Stage A sequence
 
@@ -144,9 +145,13 @@ and new detached record. Never revise the old set in place.
    open.
 4. Create `DATA-B-SECTION-1-SHA256SUMS-v1.txt` over that completed export only,
    verify it and capture the exact observed time/timezone, then create the
-   detached record. Seal all three files into the Phase 2 input manifest.
-5. Then supply `02-scenario-and-task.md`, the detached revised freeze record,
-   governing revised manifest, and every exact included handoff-linked detail.
+   detached record.
+5. Before Phase 2 opens, create and verify its sealed input manifest over the
+   frozen Section 1 artifact, governing manifest, and detached record; every
+   included revised Stage A artifact; the revised Stage A governing manifest;
+   the revised Stage A detached record; and the scenario. Then supply
+   `02-scenario-and-task.md`, the detached revised freeze record, governing
+   revised manifest, and every exact included handoff-linked detail.
    Verify literal filenames, IDs/versions, completion timestamps/timezones,
    pre-hash states, hashes, and detached freeze statuses. A rename,
    regenerated copy, summary, substitution, omission, mismatch, or missing
@@ -171,7 +176,8 @@ and new detached record. Never revise the old set in place.
    frozen. End scoring before Section 6, explanation, or repair.
 
 If any correction is necessary after a freeze, preserve the previous file and
-log exact old/new immutable filenames, IDs/versions, hashes, reason, correction
+use a new immutable filename and a new artifact ID/version. Log exact old/new
+immutable filenames, IDs/versions, hashes, reason, correction
 timestamp/timezone, replacement detached record, and replacement manifest. A
 corrected artifact is a new freeze, not a silent replacement or the planned
 live-update revision.

@@ -1,6 +1,6 @@
 # Observation and Scoring Rubric
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.1
+**Packet:** DATA-RV-PILOT-001 version 1.2.2
 **Status:** Predetermined, blank, and unrun
 
 Score retained behavior, not agreement with preferred wording.
@@ -58,7 +58,7 @@ Mark `clear`, `unclear`, `unsafe`, or `contaminated`:
 | Handoff freeze integrity | The handoff reaches pre-hash `HANDOFF COMPLETE`; its governing manifest hashes only those completed bytes; verification time/timezone is captured; the detached record is created afterward; the sealed Stage B Phase 1 input manifest hashes the handoff, governing manifest, and detached record | | |
 | Stage B exact transfer | Stage B receives the detached record, governing manifest, and every included handoff-linked revised detail under the same literal filename with matching ID/version, completion metadata, pre-hash state, hash, optional disposition, and detached freeze status; no rename, regeneration, summary, substitution, or omission occurs | | |
 | Stage B sequencing | Sections 1, 2, and 3-5 each reach their declared complete pre-hash state, are hashed alone by a non-self-listing governing manifest, have that manifest verified with observed time/timezone, and only then receive a detached record; the next phase or closing manifest hashes the artifact, governing manifest, and record; Section 6 remains closed until scoring ends | | |
-| Revision/correction provenance | The planned live-update revision is distinct from a later correction of frozen revised bytes; every correction preserves the prior immutable artifact set, manifest, and record, then creates a new set with new IDs/versions or filenames, reason, timestamp/timezone, governing manifest, and detached record | | |
+| Revision/correction provenance | The planned live-update revision is distinct from a later correction of frozen revised bytes; every correction preserves the prior immutable artifact set, manifest, and record, then creates a new immutable filename and new artifact ID/version for every corrected artifact, with reason, timestamp/timezone, governing manifest, and detached record | | |
 
 Any unsafe critical gate blocks a favorable interpretation.
 

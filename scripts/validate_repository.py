@@ -18,30 +18,88 @@ COMMIT_PATTERN = re.compile(r"^[0-9a-f]{7,40}$")
 CHECKSUM_PATTERN = re.compile(r"^([0-9a-f]{64})  (.+)$")
 
 
-def validate_temporal_freeze_protocol(errors: list[str]) -> int:
-    """Check packet 1.2.1's static temporal-order invariants."""
+TEMPORAL_PROTOCOL_FILES = [
+    "README.md",
+    "participant/00-packet-route.md",
+    "participant/03-practitioner-workbook.md",
+    "participant/04-decision-owner-workbook.md",
+    "participant/05-one-screen-handoff.md",
+    "participant/06-revised-artifact-freeze-record.md",
+    "facilitator-only/01-facilitator-guide.md",
+    "facilitator-only/02-observation-and-scoring-rubric.md",
+    "facilitator-only/03-results-and-deviation-log.md",
+]
 
-    packet = ROOT / "testing/ai-ready-data-reader-value-v1"
-    relative_files = [
-        "README.md",
-        "participant/00-packet-route.md",
-        "participant/03-practitioner-workbook.md",
-        "participant/04-decision-owner-workbook.md",
-        "participant/05-one-screen-handoff.md",
-        "participant/06-revised-artifact-freeze-record.md",
-        "facilitator-only/01-facilitator-guide.md",
-        "facilitator-only/02-observation-and-scoring-rubric.md",
-        "facilitator-only/03-results-and-deviation-log.md",
-    ]
-    contents: dict[str, str] = {}
-    for relative in relative_files:
-        path = packet / relative
-        if not path.is_file():
-            errors.append(f"temporal protocol: missing {path.relative_to(ROOT)}")
-            continue
-        contents[relative] = path.read_text(encoding="utf-8")
 
+def normalized(text: str) -> str:
+    """Collapse Markdown layout whitespace for exact semantic-clause checks."""
+
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def require_clauses(
+    errors: list[str],
+    contents: dict[str, str],
+    relative: str,
+    clauses: list[str],
+) -> None:
+    """Require explicit protocol clauses in one named source file."""
+
+    content = normalized(contents.get(relative, "")).casefold()
+    for clause in clauses:
+        if normalized(clause).casefold() not in content:
+            errors.append(
+                f"temporal protocol: {relative} lacks required semantic "
+                f"invariant: {normalized(clause)}"
+            )
+
+
+def require_order(
+    errors: list[str],
+    contents: dict[str, str],
+    relative: str,
+    anchors: list[str],
+    scope: str,
+) -> None:
+    """Require protocol anchors to appear once in an executable order."""
+
+    content = normalized(contents.get(relative, "")).casefold()
+    positions = [content.find(normalized(anchor).casefold()) for anchor in anchors]
+    if (
+        any(position < 0 for position in positions)
+        or positions != sorted(positions)
+        or len(set(positions)) != len(positions)
+    ):
+        errors.append(
+            f"temporal protocol: {relative} lacks ordered {scope} sequence: "
+            + " -> ".join(normalized(anchor) for anchor in anchors)
+        )
+
+
+def require_count(
+    errors: list[str],
+    contents: dict[str, str],
+    relative: str,
+    clause: str,
+    expected: int,
+) -> None:
+    """Require a repeated invariant once for each governed scope."""
+
+    content = normalized(contents.get(relative, "")).casefold()
+    actual = content.count(normalized(clause).casefold())
+    if actual != expected:
+        errors.append(
+            f"temporal protocol: {relative} requires {expected} occurrence(s) "
+            f"of semantic invariant but found {actual}: {normalized(clause)}"
+        )
+
+
+def temporal_protocol_content_errors(contents: dict[str, str]) -> list[str]:
+    """Return static semantic errors for packet 1.2.2 source instructions."""
+
+    errors: list[str] = []
     combined = "\n".join(contents.values())
+    normalized_combined = normalized(combined).casefold()
     legacy = "DATA-A-REVISED-FREEZE-RECORD-v1.md"
     if legacy in combined:
         errors.append(f"temporal protocol: legacy record identity remains: {legacy}")
@@ -78,32 +136,147 @@ def validate_temporal_freeze_protocol(errors: list[str]) -> int:
                     f"temporal protocol: {relative} lacks exact identity: {identity}"
                 )
 
-    for path in packet.rglob("*.md"):
-        content = path.read_text(encoding="utf-8")
-        for match in re.finditer(r"\*\*Packet:\*\* DATA-RV-PILOT-001 version ([^\s]+)", content):
-            if match.group(1) != "1.2.1":
-                errors.append(
-                    f"temporal protocol: packet version drift in "
-                    f"{path.relative_to(ROOT)}: {match.group(1)}"
-                )
-
-    guide = contents.get("facilitator-only/01-facilitator-guide.md", "")
-    ordered_anchors = [
-        "Finalize every governed artifact",
-        "Create the governing manifest",
-        "Verify that manifest",
-        "Only afterward create the detached record",
-    ]
-    positions = [guide.find(anchor) for anchor in ordered_anchors]
-    if any(position < 0 for position in positions) or positions != sorted(positions):
-        errors.append(
-            "temporal protocol: facilitator guide lacks the required ordered "
-            "complete -> manifest -> verify -> detached-record sequence"
+    for relative, content in contents.items():
+        matches = re.findall(
+            r"\*\*Packet:\*\* DATA-RV-PILOT-001 version ([^\s]+)", content
         )
+        if relative == "README.md":
+            if "**Version:** 1.2.2" not in content:
+                errors.append("temporal protocol: README.md lacks packet version 1.2.2")
+        elif matches != ["1.2.2"]:
+            errors.append(
+                f"temporal protocol: packet version identity invalid in {relative}: "
+                f"{matches or 'missing'}"
+            )
 
-    workbook = contents.get("participant/04-decision-owner-workbook.md", "")
-    handoff = contents.get("participant/05-one-screen-handoff.md", "")
-    practitioner = contents.get("participant/03-practitioner-workbook.md", "")
+    semantic_clauses = {
+        "README.md": [
+            "The governing manifest `DATA-A-REVISED-ARTIFACTS-SHA256SUMS-v1.txt` hashes exactly the included revised detail files and does not hash itself or the later detached record.",
+            "Stage B Phase 2 specifically binds every included revised Stage A artifact, its governing manifest, and its detached record, in addition to the frozen Section 1 triple.",
+            "new immutable filename and a new artifact ID/version",
+        ],
+        "participant/00-packet-route.md": [
+            "It hashes exactly the included revised artifacts, never itself or the later verification record.",
+            "At every phase boundary, the next sealed phase-input manifest must hash the completed artifact, its governing manifest, and its later detached verification record.",
+            "Stage B Phase 2 must bind both the frozen Section 1 triple and every included revised Stage A artifact plus its governing manifest and detached record.",
+            "`DATA-B-SECTION-1-SHA256SUMS-v1.txt` over the completed export only and create that detached record.",
+            "`DATA-B-SECTION-2-SHA256SUMS-v1.txt` over only the completed export and create that detached record before opening either decision aid.",
+            "`DATA-B-SECTIONS-3-5-SHA256SUMS-v1.txt` over only that completed export; then create the detached record.",
+            "Collect all material feedback in the external results and deviation log",
+            "new immutable filename and a new artifact ID/version",
+        ],
+        "participant/03-practitioner-workbook.md": [
+            "without listing or hashing the manifest itself or the later record",
+            "new immutable filename and a new artifact ID/version",
+        ],
+        "participant/04-decision-owner-workbook.md": [
+            "The closing evidence manifest later hashes the completed export, governing manifest, and detached record.",
+            "new immutable filename and a new artifact ID/version",
+        ],
+        "participant/05-one-screen-handoff.md": [
+            "The manifest never hashes itself or the later record.",
+            "Stage B's sealed Phase 1 input manifest hashes the handoff, its governing manifest, and the detached record.",
+        ],
+        "participant/06-revised-artifact-freeze-record.md": [
+            "It never predicts a future event and is never listed in the governing manifest whose verification it records.",
+            "the facilitator creates the next sealed phase-input manifest—or the closing evidence manifest for the final scope—over every governed artifact, its governing manifest, and this detached record.",
+            "new immutable filename and a new artifact ID/version for every corrected artifact",
+        ],
+        "facilitator-only/01-facilitator-guide.md": [
+            "The manifest never lists or hashes itself or the later record.",
+            "The next sealed phase-input manifest hashes each governed artifact, its governing manifest, and its detached verification record.",
+            "Before Phase 2 opens, create and verify its sealed input manifest over the frozen Section 1 artifact, governing manifest, and detached record; every included revised Stage A artifact; the revised Stage A governing manifest; the revised Stage A detached record; and the scenario.",
+            "new immutable filename and a new artifact ID/version",
+        ],
+        "facilitator-only/02-observation-and-scoring-rubric.md": [
+            "no governing manifest hashes itself or its later record",
+            "the next phase or closing manifest hashes the artifact, governing manifest, and record",
+            "new immutable filename and new artifact ID/version for every corrected artifact",
+        ],
+        "facilitator-only/03-results-and-deviation-log.md": [
+            "Every governing manifest excludes itself and its later detached record",
+            "Every next phase/evidence manifest hashes the artifact(s), governing manifest, and detached record under literal filenames",
+            "| Stage A revised set | required revised files; optional only if used | `DATA-A-REVISED-ARTIFACTS-SHA256SUMS-v1.txt` / | | `DATA-A-REVISED-FREEZE-VERIFICATION-v1.md` / | Stage B Phase 2 input / |",
+            "new immutable filename and a new artifact ID/version",
+        ],
+    }
+    for relative, clauses in semantic_clauses.items():
+        require_clauses(errors, contents, relative, clauses)
+
+    require_order(
+        errors,
+        contents,
+        "facilitator-only/01-facilitator-guide.md",
+        [
+            "Finalize every governed artifact",
+            "Create the governing manifest",
+            "Verify that manifest",
+            "Only afterward create the detached record",
+            "The next sealed phase-input manifest hashes each governed artifact",
+        ],
+        "complete -> manifest -> verify -> detached record -> release manifest",
+    )
+    require_order(
+        errors,
+        contents,
+        "participant/00-packet-route.md",
+        [
+            "After those bytes are complete, create",
+            "Verify the manifest and capture that observed timestamp and timezone",
+            "Only then complete",
+            "The verified manifest plus detached record establish",
+            "The next sealed phase input manifest hashes each supplied governed artifact",
+        ],
+        "revised Stage A freeze and release",
+    )
+    require_order(
+        errors,
+        contents,
+        "participant/00-packet-route.md",
+        [
+            "Give it an ID/version, completion timestamp/timezone, pre-hash state `SECTION 1 COMPLETE`",
+            "Then create and verify `DATA-B-SECTION-1-SHA256SUMS-v1.txt` over the completed export only",
+            "and create that detached record",
+        ],
+        "Stage B Section 1 complete -> manifest verification -> detached record",
+    )
+    require_order(
+        errors,
+        contents,
+        "participant/00-packet-route.md",
+        [
+            "Complete Section 2 and export it as `DATA-B-SECTION-2-DETAIL-v1.md` with ID/version, completion timestamp/timezone, pre-hash state `SECTION 2 COMPLETE`",
+            "Then create and verify `DATA-B-SECTION-2-SHA256SUMS-v1.txt` over only the completed export",
+            "and create that detached record before opening either decision aid",
+        ],
+        "Stage B Section 2 complete -> manifest verification -> detached record",
+    )
+    require_order(
+        errors,
+        contents,
+        "participant/00-packet-route.md",
+        [
+            "Complete Sections 3-5 and export them as `DATA-B-SECTIONS-3-5-DECISION-v1.md` with ID/version, completion timestamp/timezone, pre-hash state `SECTIONS 3-5 COMPLETE`",
+            "Create and verify `DATA-B-SECTIONS-3-5-SHA256SUMS-v1.txt` over only that completed export",
+            "then create the detached record",
+        ],
+        "Stage B Sections 3-5 complete -> manifest verification -> detached record",
+    )
+    require_count(
+        errors,
+        contents,
+        "participant/04-decision-owner-workbook.md",
+        "Finalize the export before hashing. Do not put its own hash, a future verification timestamp, or `FROZEN` inside it.",
+        3,
+    )
+    require_count(
+        errors,
+        contents,
+        "participant/04-decision-owner-workbook.md",
+        "created only after",
+        3,
+    )
+
     stale_self_reference_fields = [
         "Section 1 freeze timestamp and timezone:",
         "Section 1 SHA-256 or manifest reference:",
@@ -113,11 +286,19 @@ def validate_temporal_freeze_protocol(errors: list[str]) -> int:
         "Sections 3-5 SHA-256 or manifest reference:",
         "Separate handoff freeze timestamp/timezone",
     ]
-    governed_templates = workbook + "\n" + handoff
+    governed_templates = "\n".join(
+        contents.get(relative, "")
+        for relative in [
+            "participant/03-practitioner-workbook.md",
+            "participant/04-decision-owner-workbook.md",
+            "participant/05-one-screen-handoff.md",
+        ]
+    )
     for field in stale_self_reference_fields:
         if field in governed_templates:
             errors.append(f"temporal protocol: stale self-reference field: {field}")
 
+    practitioner = contents.get("participant/03-practitioner-workbook.md", "")
     future_handoff_fields = [
         "One-screen handoff completion timestamp/timezone",
         "Post-hash handoff verification provenance",
@@ -130,18 +311,49 @@ def validate_temporal_freeze_protocol(errors: list[str]) -> int:
                 f"feedback field: {field}"
             )
 
-    template = contents.get("participant/06-revised-artifact-freeze-record.md", "")
-    template_anchors = [
-        "create an instance only after its governing",
-        "never lists or hashes itself or this later record",
-        "observed manifest verification timestamp/timezone",
-        "immutable replacement set",
+    forbidden_correction_language = [
+        "new ids/versions or filenames",
+        "new id/version or filename",
+        "new artifact id/version or a new immutable filename",
+        "new immutable filename or a new artifact id/version",
     ]
-    for anchor in template_anchors:
-        if anchor.casefold() not in template.casefold():
-            errors.append(f"temporal protocol: detached template lacks: {anchor}")
+    for phrase in forbidden_correction_language:
+        if phrase in normalized_combined:
+            errors.append(
+                "temporal protocol: correction permits same-path or incomplete "
+                f"replacement identity: {phrase}"
+            )
 
-    return len(relative_files)
+    if "complete the material-feedback section of the practitioner workbook" in normalized_combined:
+        errors.append(
+            "temporal protocol: route references removed practitioner-workbook "
+            "material-feedback section"
+        )
+
+    return errors
+
+
+def validate_temporal_freeze_protocol(
+    errors: list[str], content_overrides: dict[str, str] | None = None
+) -> int:
+    """Check packet 1.2.2's static temporal-order invariants."""
+
+    packet = ROOT / "testing/ai-ready-data-reader-value-v1"
+    contents: dict[str, str] = {}
+    for relative in TEMPORAL_PROTOCOL_FILES:
+        path = packet / relative
+        if not path.is_file():
+            errors.append(f"temporal protocol: missing {path.relative_to(ROOT)}")
+            continue
+        contents[relative] = path.read_text(encoding="utf-8")
+    for path in packet.rglob("*.md"):
+        relative = path.relative_to(packet).as_posix()
+        contents.setdefault(relative, path.read_text(encoding="utf-8"))
+    if content_overrides:
+        contents.update(content_overrides)
+
+    errors.extend(temporal_protocol_content_errors(contents))
+    return len(TEMPORAL_PROTOCOL_FILES)
 
 
 def markdown_links(path: Path):

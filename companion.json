@@ -23,7 +23,8 @@
     "testing/ai-ready-data-reader-value-v1/STATIC-PROTOCOL-VALIDATION.md",
     "testing/ai-ready-data-reader-value-v1/participant/00-packet-route.md",
     "testing/ai-ready-data-reader-value-v1/participant/05-one-screen-handoff.md",
-    "testing/ai-ready-data-reader-value-v1/SHA256SUMS"
+    "testing/ai-ready-data-reader-value-v1/SHA256SUMS",
+    "scripts/test_temporal_protocol_validator.py"
   ],
   "checksum_manifests": [
     "testing/ai-ready-data-reader-value-v1/SHA256SUMS"

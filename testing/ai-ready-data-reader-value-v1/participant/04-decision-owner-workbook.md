@@ -1,6 +1,6 @@
 # Stage B Decision-Owner Workbook
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.1
+**Packet:** DATA-RV-PILOT-001 version 1.2.2
 **Status:** Blank independent read-back record
 
 - Reviewer code:
@@ -15,10 +15,11 @@ Do not ask the Stage A participant to explain or repair the artifact until
 Sections 1–5 are frozen.
 
 Never silently replace a frozen workbook. For any correction after a freeze,
-preserve exact old/new immutable filenames, IDs/versions, hashes, reason,
-correction timestamp/timezone, replacement detached verification record, and
-replacement manifest in the run log. The planned Stage A live-update revision
-is not a post-freeze correction.
+preserve the old file and use a new immutable filename and a new artifact
+ID/version. Record exact old/new immutable filenames, IDs/versions, hashes,
+reason, correction timestamp/timezone, replacement detached verification
+record, and replacement manifest in the run log. The planned Stage A
+live-update revision is not a post-freeze correction.
 
 ## 1. One-screen scan
 

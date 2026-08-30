@@ -1,6 +1,6 @@
 # Stage A Practitioner Workbook
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.1
+**Packet:** DATA-RV-PILOT-001 version 1.2.2
 **Status:** Blank participant record
 
 - Participant code:
@@ -134,8 +134,9 @@ the blank handoff opens, do not write handoff completion metadata, hashes, or
 verification events back into this workbook. The facilitator records those
 later events in the external results log.
 
-If any revised frozen byte later changes, preserve the old file and record the
-exact old/new immutable filenames, IDs/versions, hashes, reason, correction
+If any revised frozen byte later changes, preserve the old file, use a new
+immutable filename and a new artifact ID/version, and record the exact old/new
+immutable filenames, IDs/versions, hashes, reason, correction
 timestamp/timezone, replacement governing manifest, and replacement detached
 record. Do not describe that post-freeze correction as the planned live-update
 revision.

@@ -1,19 +1,20 @@
 # AI-Ready Data Reader-Value Pilot Packet
 
 **Packet ID:** DATA-RV-PILOT-001
-**Version:** 1.2.1
+**Version:** 1.2.2
 **Status:** Prepared and unrun; no participant recruited or consented
 **Scenario:** Harbor Grove Housing, entirely fictional
 
-Version 1.2.1 replaces version 1.2.0's temporally self-referential freeze
-instructions. It preserves the AI-ready-data content, literal artifact
-identity, sealed delivery, and staged Stage B controls while making every
-governed freeze follow one observable order: complete artifacts, create their
-governing manifest, verify it and capture the exact event, then create a
-detached verification record. Synthetic work is defect-finding only.
-Version 1.2.0 remains preserved at source commit `6921313`; do not relabel an
-older run as 1.2.1. A 1.2.1 correction produces a new immutable artifact set,
-governing manifest, and detached record rather than overwriting old evidence.
+Version 1.2.2 preserves version 1.2.1's non-circular freeze order while making
+the release chain and correction identity explicit and executable. It preserves
+the AI-ready-data content, literal artifact identity, sealed delivery, and
+staged Stage B controls. Every governed freeze follows one observable order:
+complete artifacts, create their governing manifest, verify it and capture the
+exact event, then create a detached verification record. Synthetic work is
+defect-finding only. Version 1.2.1 remains preserved at source commit `9921757`
+and version 1.2.0 at `6921313`; do not relabel an older run as 1.2.2. A 1.2.2
+correction produces a new immutable artifact set, governing manifest, and
+detached record rather than overwriting old evidence.
 This version remains **PREPARED/UNRUN** with people and supports no
 human-validation, usability, privacy, safety, readiness, value, or
 incident-status claim.
@@ -135,16 +136,18 @@ Use these exact triples:
 | Sections 3-5 | `DATA-B-SECTIONS-3-5-DECISION-v1.md` | `DATA-B-SECTIONS-3-5-SHA256SUMS-v1.txt` | `DATA-B-SECTIONS-3-5-FREEZE-VERIFICATION-v1.md` |
 
 The next sealed phase-input manifest hashes the prior artifact, governing
-manifest, and detached record. The closing evidence manifest does the same for
-Sections 3-5. Only after the Section 2 detached record verifies may the
-executive brief and value ledger open. Keep Section 6 closed until scoring
-ends.
+manifest, and detached record. Stage B Phase 2 specifically binds every
+included revised Stage A artifact, its governing manifest, and its detached
+record, in addition to the frozen Section 1 triple. The closing evidence
+manifest does the same for Sections 3-5. Only after the Section 2 detached
+record verifies may the executive brief and value ledger open. Keep Section 6
+closed until scoring ends.
 
-A correction after any freeze must preserve the prior artifact and use a new
-immutable filename. Record exact old/new filenames, IDs/versions, hashes,
-reason, correction timestamp/timezone, replacement governing manifest, and
-replacement detached record. Never describe a later correction as the planned
-live-update revision.
+A correction after any freeze must preserve the prior artifact and use both a
+new immutable filename and a new artifact ID/version. Record exact old/new
+filenames, IDs/versions, hashes, reason, correction timestamp/timezone,
+replacement governing manifest, and replacement detached record. Never
+describe a later correction as the planned live-update revision.
 
 The first calibration round uses a different person for Stage B. Keep the
 Stage A participant unavailable during the initial read-back.

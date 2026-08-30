@@ -1,6 +1,6 @@
 # Participant Packet Route
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.1
+**Packet:** DATA-RV-PILOT-001 version 1.2.2
 **Status:** Prepared and unrun with people
 
 This file controls the read order. Use `UNKNOWN`, `UNASSIGNED`, or `STOP` when
@@ -86,14 +86,14 @@ Pre-session only: complete and close
     record. Do not edit the handoff after hashing.
 13. The next sealed phase input manifest hashes each supplied governed
     artifact, its governing manifest, and its detached verification record.
-    Complete the material-feedback section of the practitioner workbook only
-    if doing so does not alter an already governed workbook; otherwise collect
-    feedback in the run log.
+    Collect all material feedback in the external results and deviation log;
+    do not reopen or append to the governed practitioner workbook or handoff.
 
 If a revised frozen byte changes after step 11, preserve the old file and use a
-new immutable filename. Record exact old/new filenames, IDs/versions, hashes,
-reason, correction timestamp/timezone, replacement governing manifest, and
-replacement detached record before the corrected set may continue.
+new immutable filename and a new artifact ID/version. Record exact old/new
+filenames, IDs/versions, hashes, reason, correction timestamp/timezone,
+replacement governing manifest, and replacement detached record before the
+corrected set may continue.
 
 ## Stage B exact read order
 
@@ -145,10 +145,13 @@ completed artifact, its governing manifest, and its later detached verification
 record. The closing evidence manifest does the same for Sections 3-5. A
 governing manifest never hashes itself or its later record, and a governed
 artifact never embeds its own hash or a future verification timestamp.
+Stage B Phase 2 must bind both the frozen Section 1 triple and every included
+revised Stage A artifact plus its governing manifest and detached record.
 
 Keep the Stage A participant unavailable until Stage B Sections 1-5 are frozen.
 Never silently replace a frozen artifact. A correction after any freeze must
-preserve the previous file and record exact old/new immutable filenames,
-IDs/versions, hashes, reason, correction timestamp/timezone, replacement
-governing manifest, and replacement detached record. A governing manifest
-hashes completed governed files, never itself or its later record.
+preserve the previous file and use a new immutable filename and a new artifact
+ID/version. Record exact old/new immutable filenames, IDs/versions, hashes,
+reason, correction timestamp/timezone, replacement governing manifest, and
+replacement detached record. A governing manifest hashes completed governed
+files, never itself or its later record.

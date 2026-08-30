@@ -1,6 +1,6 @@
 # Detached Freeze-Verification Record Template
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.1
+**Packet:** DATA-RV-PILOT-001 version 1.2.2
 **Status:** Blank detached template; create an instance only after its governing
 manifest has been verified
 
@@ -84,6 +84,7 @@ manifest or this observed verification event.
 
 After this record is complete, do not edit it or any governed file. A
 correction preserves the old artifact set, manifest, and record, then creates a
-new immutable replacement set with new IDs/versions or filenames, a new
-governing manifest, and a new detached record. Record the reason and correction
-timestamp/timezone in the run log, not by modifying the old record.
+new immutable replacement set with a new immutable filename and a new artifact
+ID/version for every corrected artifact, a new governing manifest, and a new
+detached record. Record the reason and correction timestamp/timezone in the run
+log, not by modifying the old record.

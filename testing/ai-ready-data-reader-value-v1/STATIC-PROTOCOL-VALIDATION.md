@@ -1,6 +1,6 @@
 # Static Temporal-Protocol Validation
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.1
+**Packet:** DATA-RV-PILOT-001 version 1.2.2
 **Review date:** 2026-08-29
 **Result:** PASS for static source instructions after repository validation
 **Evidence class:** Local static inspection, not a participant run
@@ -27,21 +27,27 @@ sequence in all five governed scopes:
 Static checks also reject the legacy revised-record identity, future freeze
 timestamps and self-hash fields in governed templates, and the old
 checksum-reference fields that would require an artifact to predict its own
-post-hash evidence.
+post-hash evidence. Per-file semantic clauses now enforce manifest exclusion,
+ordered completion and verification, release-manifest triple binding, and
+immutable correction identity. Negative mutation tests prove the validator
+rejects instructions that require a manifest to hash itself or its later
+record, allow a correction to reuse a filename, or omit the revised Stage A
+triple from the Stage B Phase 2 release record.
 
 ## Commands used
 
 - `python3 scripts/validate_repository.py`
+- `python3 scripts/test_temporal_protocol_validator.py`
 - `sha256sum -c SHA256SUMS` from the packet directory
 - targeted `rg` searches for the legacy identity, stale self-reference fields,
   version drift, incomplete task markers, and the complete/manifest/verify/
   detached-record ordering language
 - `git diff --check`
 
-The repository validator contains packet-specific temporal protocol checks so
-later drift fails local validation. The packet's checked-in `SHA256SUMS`
-includes this note and every other prepared source-packet file, excluding the
-manifest itself.
+The repository validator contains packet-specific temporal protocol checks,
+and the executable negative fixtures check representative adversarial drift.
+The packet's checked-in `SHA256SUMS` includes this note and every other prepared
+source-packet file, excluding the manifest itself.
 
 ## Boundary
 

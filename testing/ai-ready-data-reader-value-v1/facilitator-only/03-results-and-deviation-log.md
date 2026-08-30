@@ -1,6 +1,6 @@
 # Results and Deviation Log
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.1
+**Packet:** DATA-RV-PILOT-001 version 1.2.2
 **Status:** Blank controlled record; no result exists
 
 ## Run identity
@@ -73,7 +73,7 @@ from recollection.
 
 | Scope | Exact artifact filename(s), ID/version, completion time/timezone, state, hash | Governing manifest filename/hash | Observed manifest verification time/timezone and result | Detached record filename/hash and completion time/timezone | Next phase/evidence manifest and preserved location |
 | --- | --- | --- | --- | --- | --- |
-| Stage A revised set | required revised files; optional only if used | `DATA-A-REVISED-ARTIFACTS-SHA256SUMS-v1.txt` / | | `DATA-A-REVISED-FREEZE-VERIFICATION-v1.md` / | |
+| Stage A revised set | required revised files; optional only if used | `DATA-A-REVISED-ARTIFACTS-SHA256SUMS-v1.txt` / | | `DATA-A-REVISED-FREEZE-VERIFICATION-v1.md` / | Stage B Phase 2 input / |
 | Stage A handoff | `DATA-A-ONE-SCREEN-HANDOFF-v1.md`; `HANDOFF COMPLETE` | `DATA-A-HANDOFF-SHA256SUMS-v1.txt` / | | `DATA-A-HANDOFF-FREEZE-VERIFICATION-v1.md` / | Stage B Phase 1 input / |
 | Stage B Section 1 | `DATA-B-SECTION-1-SCAN-v1.md`; `SECTION 1 COMPLETE` | `DATA-B-SECTION-1-SHA256SUMS-v1.txt` / | | `DATA-B-SECTION-1-FREEZE-VERIFICATION-v1.md` / | Stage B Phase 2 input / |
 | Stage B Section 2 | `DATA-B-SECTION-2-DETAIL-v1.md`; `SECTION 2 COMPLETE` | `DATA-B-SECTION-2-SHA256SUMS-v1.txt` / | | `DATA-B-SECTION-2-FREEZE-VERIFICATION-v1.md` / | Stage B Phase 3 input / |
@@ -90,7 +90,8 @@ from recollection.
 
 Never overwrite a freeze. The planned live-update revision is not a correction
 of frozen revised bytes. Preserve both versions and record every later
-correction.
+correction. Every corrected artifact requires both a new immutable filename and
+a new artifact ID/version, plus a new governing manifest and detached record.
 
 | Correction ID | Reason | Correction timestamp/timezone | Preserved old artifact set, manifest, record | Exact new filename, ID/version, SHA-256 | Replacement governing manifest and detached record | Action/effect |
 | --- | --- | --- | --- | --- | --- | --- |
