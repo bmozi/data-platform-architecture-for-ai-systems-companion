@@ -15,9 +15,10 @@ completed test result.
 preflight that was useful for finding packet defects: partial cross-role
 transfer, missing exact timing, terminology density, and no dedicated field for
 the restricted-data near miss. That was internal defect-finding, not a human
-session. Version 1.1.0 contains the resulting source repairs and remains
-**Prepared and human-unrun**. Neither version establishes usability, privacy,
-safety, data readiness, business value, or practitioner benefit.
+session. Versions 1.1.0 and 1.1.1 contain earlier source and route repairs.
+Version 1.2.0 adds exact revised-artifact transfer and freeze provenance and
+remains **Prepared and human-unrun**. No version establishes usability,
+privacy, safety, data readiness, business value, or practitioner benefit.
 
 ## First pilot
 

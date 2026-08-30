@@ -1,6 +1,6 @@
 # Results and Deviation Log
 
-**Packet:** DATA-RV-PILOT-001 version 1.1.1
+**Packet:** DATA-RV-PILOT-001 version 1.2.0
 **Status:** Blank controlled record; no result exists
 
 ## Run identity
@@ -12,8 +12,8 @@
 - Facilitator:
 - Evaluator and independence disclosure:
 - Date, mode, and time:
-- Exact Stage A start before first scored file opened:
-- Exact Stage B start before first scored file opened:
+- Exact Stage A start before first scored file opened, with timezone:
+- Exact Stage B start before first scored file opened, with timezone:
 
 ## Consent, privacy, and freeze
 
@@ -38,24 +38,48 @@ first substantive artifact.
 | --- | ---: | --- | --- | --- | --- |
 | | | | | | |
 
+## Revised-detail and Stage B transfer verification
+
+- Detached freeze record completed before handoff opened: yes / no / deviation
+- Detached record exact filename/hash: `DATA-A-REVISED-FREEZE-RECORD-v1.md` /
+- Revised governing manifest exact filename/hash:
+  `DATA-A-REVISED-ARTIFACTS-SHA256SUMS-v1.txt` /
+- Manifest verified and does not list/hash itself: yes / no / deviation
+- Optional contract pre-hash state: `REVISED COMPLETE` and included / `NOT USED`
+- Any incomplete state or premature artifact self-declaration of `FROZEN`:
+  none / deviation
+
+| Handoff-linked exact local filename | Required or optional | Artifact ID/version | Completion timestamp/timezone | Pre-hash state | SHA-256 | Detached freeze status | Matched record/manifest | Supplied to Stage B under same filename |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `DATA-A-REVISED-WORKBOOK-v1.md` | required | | | `REVISED COMPLETE` | | `FROZEN` | | |
+| `DATA-A-REVISED-READINESS-ASSESSMENT-v1.md` | required | | | `REVISED COMPLETE` | | `FROZEN` | | |
+| `DATA-A-REVISED-DATA-PRODUCT-CONTRACT-v1.md` | optional | | | `REVISED COMPLETE` / `NOT USED` | | `FROZEN` / `NOT USED` | | |
+
+A rename, regenerated copy, summary, substitution, omission, missing record or
+manifest, mismatch, wrong pre-hash state, or missing detached `FROZEN` status
+for an included artifact stops detailed read-back.
+
 ## Artifact freezes
 
-| Freeze | Artifact IDs and versions | Exact time | SHA-256 or manifest reference | Preserved location |
-| --- | --- | --- | --- | --- |
-| Stage A initial detailed artifact | | | | |
-| Stage A revised detailed artifact | | | | |
-| Stage A one-screen handoff | | | | |
-| Stage B Section 1 one-screen scan | | | | |
-| Stage B Section 2 detailed read-back | | | | |
-| Stage B Sections 3-5 decision and transfer | | | | |
+| Freeze | Exact immutable filename | Artifact IDs and versions | Exact time and timezone | SHA-256 or manifest reference | Preserved location |
+| --- | --- | --- | --- | --- | --- |
+| Stage A initial detailed artifact | | | | | |
+| Stage A revised detailed artifact | | | | | |
+| Stage A detached revised freeze record | `DATA-A-REVISED-FREEZE-RECORD-v1.md` | | | | |
+| Stage A one-screen handoff | `DATA-A-ONE-SCREEN-HANDOFF-v1.md` | | | | |
+| Stage B Section 1 one-screen scan | `DATA-B-SECTION-1-SCAN-v1.md` | | | | |
+| Stage B Section 2 detailed read-back | `DATA-B-SECTION-2-DETAIL-v1.md` | | | | |
+| Stage B Sections 3-5 decision and transfer | `DATA-B-SECTIONS-3-5-DECISION-v1.md` | | | | |
 
 ## Post-freeze corrections
 
-Never overwrite a freeze. Preserve both versions and record every correction.
+Never overwrite a freeze. The planned live-update revision is not a correction
+of frozen revised bytes. Preserve both versions and record every later
+correction.
 
-| Correction ID | Prior artifact ID/hash | Exact change and reason | New artifact ID/version | New exact timestamp | New SHA-256 or manifest reference |
-| --- | --- | --- | --- | --- | --- |
-| | | | | | |
+| Correction ID | Reason | Correction timestamp/timezone | Exact old filename, ID/version, SHA-256, manifest | Exact new filename, ID/version, SHA-256, manifest | Replacement freeze record | Action/effect |
+| --- | --- | --- | --- | --- | --- | --- |
+| | | | | | | |
 
 ## Timing and interventions
 

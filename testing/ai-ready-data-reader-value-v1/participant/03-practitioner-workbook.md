@@ -1,6 +1,6 @@
 # Stage A Practitioner Workbook
 
-**Packet:** DATA-RV-PILOT-001 version 1.1.1
+**Packet:** DATA-RV-PILOT-001 version 1.2.0
 **Status:** Blank participant record
 
 - Participant code:
@@ -53,6 +53,9 @@ information may influence the named draft. Include one reason to abstain.
 
 Record the update exactly as supplied.
 
+This is the planned live-update revision that creates the first revised set.
+It is not a correction of already frozen revised bytes.
+
 - Initial answer now challenged:
 - Correct behavior now:
 - Source, index, entitlement, or citation issue:
@@ -91,15 +94,50 @@ guess.
 
 ## 7. Cross-role handoff
 
-Complete the separate [One-Screen Handoff](05-one-screen-handoff.md) after the
-live update and detailed-artifact revision. Do not invent a person or calendar
-date to make the handoff look complete.
+Before opening the handoff, save and freeze exactly:
+
+- `DATA-A-REVISED-WORKBOOK-v1.md`;
+- `DATA-A-REVISED-READINESS-ASSESSMENT-v1.md`; and
+- `DATA-A-REVISED-DATA-PRODUCT-CONTRACT-v1.md` only if the optional contract
+  was opened and completed.
+
+Each included file must record an artifact ID, version, completion
+timestamp/timezone, and pre-hash state `REVISED COMPLETE`. The optional
+contract is `REVISED COMPLETE` when used or `NOT USED` otherwise. Do not make
+an artifact self-declare `FROZEN`. Create
+`DATA-A-REVISED-ARTIFACTS-SHA256SUMS-v1.txt` without listing or hashing the
+manifest itself. Complete and verify
+`DATA-A-REVISED-FREEZE-RECORD-v1.md` from the detached record template before
+opening the blank handoff.
+
+| Exact revised filename | Required or optional | Artifact ID/version | Completion timestamp/timezone | Pre-hash state |
+| --- | --- | --- | --- | --- |
+| `DATA-A-REVISED-WORKBOOK-v1.md` | required | | | `REVISED COMPLETE` |
+| `DATA-A-REVISED-READINESS-ASSESSMENT-v1.md` | required | | | `REVISED COMPLETE` |
+| `DATA-A-REVISED-DATA-PRODUCT-CONTRACT-v1.md` | optional | | | `REVISED COMPLETE` / `NOT USED` |
+
+- Revised freeze timestamp and timezone:
+- Governing manifest filename/hash:
+- Detached freeze-record filename/hash:
+- Detached record confirms included hashes and establishes `FROZEN`: yes / no
+- No `DRAFT`, `PENDING`, `PENDING FREEZE`, `AWAITING FREEZE`, blank, or
+  equivalent incomplete state remains: yes / no
+
+Only after those checks, complete the separate [One-Screen
+Handoff](05-one-screen-handoff.md) as
+`DATA-A-ONE-SCREEN-HANDOFF-v1.md`. Do not invent a person or calendar date to
+make the handoff look complete.
 
 - One-screen handoff artifact ID/version:
 - Linked initial detailed-artifact ID/hash:
-- Linked revised detailed-artifact ID/hash:
-- One-screen handoff freeze ID/hash:
+- Literal revised-detail filenames, IDs/versions, states, and hashes:
+- One-screen handoff freeze timestamp/timezone, ID/version, hash, and manifest:
 - Any field marked `UNASSIGNED` or `UNKNOWN`:
+
+If any revised frozen byte later changes, preserve the old file and record the
+exact old/new immutable filenames, IDs/versions, hashes, reason, correction
+timestamp/timezone, replacement freeze record, and replacement manifest. Do
+not describe that post-freeze correction as the planned live-update revision.
 
 ## 8. Material feedback
 

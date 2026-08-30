@@ -1,21 +1,24 @@
 # Stage B Decision-Owner Workbook
 
-**Packet:** DATA-RV-PILOT-001 version 1.1.1
+**Packet:** DATA-RV-PILOT-001 version 1.2.0
 **Status:** Blank independent read-back record
 
 - Reviewer code:
 - Broad role and experience band, optional:
-- Stage A artifact ID/version:
-- Exact Stage B start recorded before first scored file opened:
-- End time:
+- Stage A exact revised filenames, IDs/versions, states, and hashes:
+- Exact Stage B start recorded before first scored file opened, with timezone:
+- End time and timezone:
+- Sealed Stage B input manifest:
 - Prior involvement with Stage A: none required for first calibration
 
 Do not ask the Stage A participant to explain or repair the artifact until
 Sections 1–5 are frozen.
 
 Never silently replace a frozen workbook. For any correction after a freeze,
-preserve the previous file and record the exact change, reason, new timestamp,
-and new SHA-256 hash in the run log.
+preserve exact old/new immutable filenames, IDs/versions, hashes, reason,
+correction timestamp/timezone, replacement freeze record, and replacement
+manifest in the run log. The planned Stage A live-update revision is not a
+post-freeze correction.
 
 ## 1. One-screen scan
 
@@ -36,11 +39,23 @@ Answer from that handoff alone.
 
 Freeze this scan before opening the scenario or detailed Stage A work.
 
-- Section 1 freeze timestamp:
+- Export filename: `DATA-B-SECTION-1-SCAN-v1.md`
+- Section 1 freeze timestamp and timezone:
 - Section 1 artifact ID/version:
 - Section 1 SHA-256 or manifest reference:
 
 ## 2. Detailed read-back
+
+Before answering, verify `DATA-A-REVISED-FREEZE-RECORD-v1.md`,
+`DATA-A-REVISED-ARTIFACTS-SHA256SUMS-v1.txt`, and every included
+handoff-linked revised detail. Literal filenames, IDs/versions, completion
+timestamps/timezones, pre-hash `REVISED COMPLETE` states, hashes, and
+detached-record `FROZEN` conditions must match. The optional contract must be
+consistently `NOT USED` or present as `REVISED COMPLETE` and later frozen.
+Reject a rename, regenerated copy, summary, substitution, omission, mismatch,
+premature artifact self-declaration of `FROZEN`, or absent freeze.
+
+- Revised transfer verification: pass / stop / deviation ID
 
 - What exact AI use is being considered?
 - Which information is allowed to influence it?
@@ -54,7 +69,8 @@ Freeze this scan before opening the scenario or detailed Stage A work.
 Freeze Section 2 before opening `EXECUTIVE-DECISION-BRIEF.md` or
 `VALUE-AND-EVIDENCE-LEDGER.md`.
 
-- Section 2 freeze timestamp:
+- Export filename: `DATA-B-SECTION-2-DETAIL-v1.md`
+- Section 2 freeze timestamp and timezone:
 - Section 2 artifact ID/version:
 - Section 2 SHA-256 or manifest reference:
 
@@ -92,9 +108,10 @@ evidence.
 - One-screen item that required the detailed artifacts to discover:
 - Smallest change that would improve the handoff:
 
-Freeze Sections 3-5 together before any debrief or Stage A explanation.
+Export Sections 3-5 together as `DATA-B-SECTIONS-3-5-DECISION-v1.md` and
+checksum-freeze them before any debrief or Stage A explanation.
 
-- Sections 3-5 freeze timestamp:
+- Sections 3-5 freeze timestamp and timezone:
 - Sections 3-5 artifact ID/version:
 - Sections 3-5 SHA-256 or manifest reference:
 
@@ -106,3 +123,12 @@ checksum-frozen and scoring has ended.
 - Stage A explanation that changed your interpretation:
 - Decision changed after discussion:
 - Why:
+
+## Frozen-artifact correction register
+
+Use this only for a later change to already frozen bytes, never for the planned
+live-update revision.
+
+| Section | Reason | Correction timestamp/timezone | Exact old filename, ID/version, SHA-256 | Exact new filename, ID/version, SHA-256 | Replacement freeze record and manifest |
+| --- | --- | --- | --- | --- | --- |
+| | | | | | |

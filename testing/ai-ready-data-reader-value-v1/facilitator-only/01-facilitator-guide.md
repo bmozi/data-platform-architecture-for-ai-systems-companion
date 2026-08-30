@@ -1,6 +1,6 @@
 # Facilitator Guide
 
-**Packet:** DATA-RV-PILOT-001 version 1.1.1
+**Packet:** DATA-RV-PILOT-001 version 1.2.0
 **Status:** Facilitator-only; prepared and unrun
 
 ## Purpose
@@ -43,8 +43,9 @@ sealed flat stage input. Preserve these local filenames exactly when supplied:
 `AI-READY-DATA-JOURNEY.md`, `ai-data-readiness-assessment.md`, optional
 `data-product-contract.md`, `EXECUTIVE-DECISION-BRIEF.md`, and
 `VALUE-AND-EVIDENCE-LEDGER.md`. Hash every supplied file in a run-specific
-SHA-256 manifest before the start time. Do not rely on repository-relative
-paths, and do not replace a frozen file in place.
+SHA-256 manifest before the start time. A manifest hashes other files and never
+lists or hashes itself. Do not rely on repository-relative paths, and do not
+replace a frozen file in place.
 
 ## Stage A sequence
 
@@ -58,8 +59,9 @@ paths, and do not replace a frozen file in place.
    if independently requested; remaining detailed work.
 4. Record every first open and material re-open. Recognition must finish before
    teaching or template assets open.
-5. Freeze the initial workbook and detailed artifact with IDs, versions,
-   timestamps, and SHA-256 hashes before the update.
+5. Freeze the initial workbook and detailed artifact with exact filenames,
+   IDs, versions, timestamps/timezones, SHA-256 hashes, and manifest before the
+   update.
 6. Read the update:
 
 > During a dry content check, the proposed assistant retrieved Heat Response
@@ -73,11 +75,28 @@ paths, and do not replace a frozen file in place.
 
 7. Ask only: “What may the team safely conclude or do now, and what changes in
    your artifact?”
-8. Preserve the revised workbook and detailed artifacts as a second freeze with
-   IDs, versions, timestamps, and SHA-256 hashes.
-9. Supply the blank one-screen handoff. Freeze it separately after completion
-   and verify that it links the initial and revised detailed artifact IDs.
-10. Collect material feedback only after all three freezes.
+8. Treat the live update as the planned revision that creates the first revised
+   set, not a correction of already frozen revised bytes. Save exactly
+   `DATA-A-REVISED-WORKBOOK-v1.md`,
+   `DATA-A-REVISED-READINESS-ASSESSMENT-v1.md`, and, only if used,
+   `DATA-A-REVISED-DATA-PRODUCT-CONTRACT-v1.md`. Every included detail must
+   contain its ID, version, completion timestamp/timezone, and pre-hash state
+   `REVISED COMPLETE`; the optional contract is `REVISED COMPLETE` when used or
+   `NOT USED` otherwise. No artifact may self-declare `FROZEN`.
+9. Remove every `DRAFT`, `PENDING`, `PENDING FREEZE`, `AWAITING FREEZE`, blank,
+   or equivalent incomplete state. Create
+   `DATA-A-REVISED-ARTIFACTS-SHA256SUMS-v1.txt`; it hashes exactly the included
+   revised details and does not hash itself.
+10. Complete `DATA-A-REVISED-FREEZE-RECORD-v1.md` with exact freeze
+    timestamp/timezone, filenames, IDs/versions, completion
+    timestamps/timezones, pre-hash states, hashes, optional-artifact
+    disposition, and governing manifest filename/hash. The verified manifest
+    and detached record establish `FROZEN` for included artifacts; verify them
+    before the blank handoff opens.
+11. Supply the blank one-screen handoff. Ensure its exact inventory matches the
+    detached record and manifest, complete it as
+    `DATA-A-ONE-SCREEN-HANDOFF-v1.md`, and freeze it separately.
+12. Collect material feedback only after all freezes verify.
 
 ## Stage B sequence
 
@@ -85,24 +104,32 @@ paths, and do not replace a frozen file in place.
    did not create Stage A work.
 2. Record the exact Stage B start immediately before the first scored file is
    opened.
-3. Supply the route, then the frozen one-screen handoff as the first substantive
-   artifact. Supply the decision-owner workbook and freeze its one-screen scan
-   before the scenario or detailed artifacts open.
-4. Record the Section 1 artifact ID/version, exact freeze time, and SHA-256 or
-   manifest reference. Preserve this freeze.
-5. Then supply the frozen scenario and unchanged detailed Stage A artifacts in
-   manifest order. The reviewer completes Section 2. Checksum-freeze Section 2
-   and record its artifact ID/version and exact time.
+3. Supply the route, then `DATA-A-ONE-SCREEN-HANDOFF-v1.md` as the first
+   substantive artifact. Supply the decision-owner workbook and freeze
+   `DATA-B-SECTION-1-SCAN-v1.md` before the scenario or detailed artifacts
+   open.
+4. Record the Section 1 exact filename, artifact ID/version, freeze
+   timestamp/timezone, SHA-256, and manifest reference. Preserve this freeze.
+5. Then supply `02-scenario-and-task.md`, the detached revised freeze record,
+   governing revised manifest, and every exact included handoff-linked detail.
+   Verify literal filenames, IDs/versions, completion timestamps/timezones,
+   pre-hash states, hashes, and detached freeze statuses. A rename,
+   regenerated copy, summary, substitution, omission, mismatch, or missing
+   record/manifest stops detailed read-back. Complete and checksum-freeze
+   `DATA-B-SECTION-2-DETAIL-v1.md`.
 6. Only after the Section 2 freeze, supply `EXECUTIVE-DECISION-BRIEF.md`, then
    `VALUE-AND-EVIDENCE-LEDGER.md`. Record their exact first-open times.
-7. The reviewer completes Sections 3-5. Checksum-freeze them and record the
-   artifact ID/version and exact time. Keep Section 6 closed.
+7. The reviewer completes Sections 3-5. Export and checksum-freeze
+   `DATA-B-SECTIONS-3-5-DECISION-v1.md` and record artifact ID/version,
+   timestamp/timezone, hash, and manifest. Keep Section 6 closed.
 8. Keep the Stage A participant unavailable until Stage B Sections 1-5 are
    frozen. End scoring before Section 6, explanation, or repair.
 
 If any correction is necessary after a freeze, preserve the previous file and
-log the exact change, reason, new timestamp, and new SHA-256 hash. A corrected
-artifact is a new freeze, not a silent replacement.
+log exact old/new immutable filenames, IDs/versions, hashes, reason, correction
+timestamp/timezone, replacement freeze record, and replacement manifest. A
+corrected artifact is a new freeze, not a silent replacement or the planned
+live-update revision.
 
 ## Intervention levels
 

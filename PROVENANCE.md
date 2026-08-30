@@ -59,3 +59,18 @@ and which validation or usability state actually changed.
   as a candidate reference rather than a placeholder
 - **Boundary:** synchronized constructed-example wording only; no decision,
   lineage evidence, or execution state changed
+
+## 2026-08-29 reader-value protocol provenance repair v1.2.0
+
+- **Authority:** Cross-guide synthetic protocol regression and exact-transfer
+  audit
+- **Changed:** `DATA-RV-PILOT-001` now requires literal revised-artifact
+  filenames, a governing manifest, a detached freeze record completed before
+  handoff, exact Stage B transfer, explicit optional-contract disposition, and
+  immutable post-freeze correction provenance while preserving its existing
+  sealed delivery and three Stage B freezes; revised artifacts declare
+  `REVISED COMPLETE`, and only manifest plus detached-record verification
+  establishes `FROZEN`
+- **Execution state:** `PREPARED/UNRUN`; no human participant result exists
+- **Boundary:** Source protocol hardening only; it does not establish usability,
+  privacy, safety, data readiness, incident status, or business value

@@ -1,6 +1,6 @@
 # Participant Consent and Privacy Notice
 
-**Packet:** DATA-RV-PILOT-001 version 1.1.1
+**Packet:** DATA-RV-PILOT-001 version 1.2.0
 **Status:** Blank; no consent has been obtained
 
 ## Purpose

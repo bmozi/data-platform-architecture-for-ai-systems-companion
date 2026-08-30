@@ -1,6 +1,6 @@
 # Observation and Scoring Rubric
 
-**Packet:** DATA-RV-PILOT-001 version 1.1.1
+**Packet:** DATA-RV-PILOT-001 version 1.2.0
 **Status:** Predetermined, blank, and unrun
 
 Score retained behavior, not agreement with preferred wording.
@@ -53,6 +53,10 @@ Mark `clear`, `unclear`, `unsafe`, or `contaminated`:
 | Restricted-data near miss | Preserves minimum evidence without copying restricted content; checks context, output, logs, viewers, containment, ownership, retention/deletion authority, and separate legal/privacy classification | | |
 | Operability | Abstention, stop trust, correction propagation, incident owner or explicit unassigned state, and reassessment exist or remain blockers | | |
 | Separate gates | Data fitness does not approve model, tool, action, or release | | |
+| Revised-detail freeze integrity | Each included revised detail reaches pre-hash `REVISED COMPLETE` with ID/version and completion timestamp/timezone; the optional contract is `REVISED COMPLETE` or `NOT USED`; the manifest hashes included bytes without hashing itself; before handoff, the detached record matches all metadata and hashes and establishes `FROZEN`; no artifact prematurely self-declares `FROZEN` | | |
+| Stage B exact transfer | Stage B receives the detached record, governing manifest, and every included handoff-linked revised detail under the same literal filename with matching ID/version, completion metadata, pre-hash state, hash, optional disposition, and detached freeze status; no rename, regeneration, summary, substitution, or omission occurs | | |
+| Stage B sequencing | Sections 1, 2, and 3-5 are separately exported and checksum-frozen at the required gates; Section 6 remains closed until scoring ends | | |
+| Revision/correction provenance | The planned live-update revision is distinct from a later correction of frozen revised bytes; every correction preserves old/new immutable filenames, IDs/versions, hashes, reason, timestamp/timezone, replacement freeze record, and replacement manifest | | |
 
 Any unsafe critical gate blocks a favorable interpretation.
 

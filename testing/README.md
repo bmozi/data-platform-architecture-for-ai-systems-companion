@@ -19,10 +19,11 @@ evidence-state change.
   facilitator-only materials. It has no DATA-X005 execution or transition
   authority.
 - [AI-Ready Data Reader-Value Pilot Packet](ai-ready-data-reader-value-v1/README.md)
-  — `DATA-RV-PILOT-001` version 1.1.0, a separate two-stage candidate for the
+  — `DATA-RV-PILOT-001` version 1.2.0, a separate two-stage candidate for the
   plain-language readiness journey, outside-team transfer, and decision-owner
   legibility. Stage A freezes a detailed artifact and one-screen handoff; Stage
-  B reads the handoff first and then receives the detailed artifacts. It is not
+  B reads the handoff first and then verifies the exact frozen detailed
+  artifacts, detached record, and governing manifest. It is not
   a DATA-X005 or DATA-X006 execution and inherits no result from Cedar Vale.
 
 Do not give a participant any file under a `facilitator-only` directory. Before

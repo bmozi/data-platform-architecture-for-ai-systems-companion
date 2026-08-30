@@ -1,6 +1,6 @@
 # Harbor Grove Scenario: Is This Information Ready for This AI Use?
 
-**Packet:** DATA-RV-PILOT-001 version 1.1.1
+**Packet:** DATA-RV-PILOT-001 version 1.2.0
 **Status:** Fictional, prepared, and unrun
 
 Harbor Grove Housing operates eighteen fictional apartment buildings. Resident
@@ -75,6 +75,9 @@ The named use for this review is narrower:
 
 The facilitator will provide one live update after the first artifact is
 frozen.
+
+That planned revision creates the first revised artifact set. It is not a later
+correction of already frozen revised bytes.
 
 ## Boundary
 
