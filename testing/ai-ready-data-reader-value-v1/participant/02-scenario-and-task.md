@@ -1,6 +1,6 @@
 # Harbor Grove Scenario: Is This Information Ready for This AI Use?
 
-**Packet:** DATA-RV-PILOT-001 version 1.1.0
+**Packet:** DATA-RV-PILOT-001 version 1.1.1
 **Status:** Fictional, prepared, and unrun
 
 Harbor Grove Housing operates eighteen fictional apartment buildings. Resident

@@ -1,6 +1,6 @@
 # Facilitator Guide
 
-**Packet:** DATA-RV-PILOT-001 version 1.1.0
+**Packet:** DATA-RV-PILOT-001 version 1.1.1
 **Status:** Facilitator-only; prepared and unrun
 
 ## Purpose
@@ -36,10 +36,21 @@ deviation. Do not permit terminal, repository or Git status/history commands,
 internet searches, omitted links, completed examples, or other out-of-surface
 materials.
 
+## Sealed flat delivery and provenance
+
+Before each stage, copy the exact approved immutable files into a separate
+sealed flat stage input. Preserve these local filenames exactly when supplied:
+`AI-READY-DATA-JOURNEY.md`, `ai-data-readiness-assessment.md`, optional
+`data-product-contract.md`, `EXECUTIVE-DECISION-BRIEF.md`, and
+`VALUE-AND-EVIDENCE-LEDGER.md`. Hash every supplied file in a run-specific
+SHA-256 manifest before the start time. Do not rely on repository-relative
+paths, and do not replace a frozen file in place.
+
 ## Stage A sequence
 
 1. Complete consent, privacy, authority, storage, access, retention, deletion,
-   withdrawal, and run-specific manifest prerequisites before the scored stage.
+   withdrawal, sealed flat input, and run-specific manifest prerequisites
+   before the scored stage.
 2. Record the exact Stage A start immediately before the first scored file is
    opened.
 3. Enforce and log the exact order in the participant packet route: route;
@@ -77,12 +88,21 @@ materials.
 3. Supply the route, then the frozen one-screen handoff as the first substantive
    artifact. Supply the decision-owner workbook and freeze its one-screen scan
    before the scenario or detailed artifacts open.
-4. Then supply the frozen scenario and unchanged detailed Stage A artifacts in
-   manifest order, followed by the Executive Decision Brief and Value and
-   Evidence Ledger. Record the exact open order.
-5. Keep the Stage A participant unavailable until Stage B Sections 1-5 are
-   frozen.
-6. End scoring before explanation or repair.
+4. Record the Section 1 artifact ID/version, exact freeze time, and SHA-256 or
+   manifest reference. Preserve this freeze.
+5. Then supply the frozen scenario and unchanged detailed Stage A artifacts in
+   manifest order. The reviewer completes Section 2. Checksum-freeze Section 2
+   and record its artifact ID/version and exact time.
+6. Only after the Section 2 freeze, supply `EXECUTIVE-DECISION-BRIEF.md`, then
+   `VALUE-AND-EVIDENCE-LEDGER.md`. Record their exact first-open times.
+7. The reviewer completes Sections 3-5. Checksum-freeze them and record the
+   artifact ID/version and exact time. Keep Section 6 closed.
+8. Keep the Stage A participant unavailable until Stage B Sections 1-5 are
+   frozen. End scoring before Section 6, explanation, or repair.
+
+If any correction is necessary after a freeze, preserve the previous file and
+log the exact change, reason, new timestamp, and new SHA-256 hash. A corrected
+artifact is a new freeze, not a silent replacement.
 
 ## Intervention levels
 

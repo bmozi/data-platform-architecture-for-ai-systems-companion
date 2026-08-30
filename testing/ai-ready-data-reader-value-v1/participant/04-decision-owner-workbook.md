@@ -1,6 +1,6 @@
 # Stage B Decision-Owner Workbook
 
-**Packet:** DATA-RV-PILOT-001 version 1.1.0
+**Packet:** DATA-RV-PILOT-001 version 1.1.1
 **Status:** Blank independent read-back record
 
 - Reviewer code:
@@ -12,6 +12,10 @@
 
 Do not ask the Stage A participant to explain or repair the artifact until
 Sections 1–5 are frozen.
+
+Never silently replace a frozen workbook. For any correction after a freeze,
+preserve the previous file and record the exact change, reason, new timestamp,
+and new SHA-256 hash in the run log.
 
 ## 1. One-screen scan
 
@@ -32,6 +36,10 @@ Answer from that handoff alone.
 
 Freeze this scan before opening the scenario or detailed Stage A work.
 
+- Section 1 freeze timestamp:
+- Section 1 artifact ID/version:
+- Section 1 SHA-256 or manifest reference:
+
 ## 2. Detailed read-back
 
 - What exact AI use is being considered?
@@ -42,6 +50,13 @@ Freeze this scan before opening the scenario or detailed Stage A work.
 - Who has final say on meaning, correction, operation, and the readiness
   decision? Use `UNASSIGNED` where no owner exists.
 - Which model, action, and release gates remain separate?
+
+Freeze Section 2 before opening `EXECUTIVE-DECISION-BRIEF.md` or
+`VALUE-AND-EVIDENCE-LEDGER.md`.
+
+- Section 2 freeze timestamp:
+- Section 2 artifact ID/version:
+- Section 2 SHA-256 or manifest reference:
 
 ## 3. Investment legibility
 
@@ -77,7 +92,16 @@ evidence.
 - One-screen item that required the detailed artifacts to discover:
 - Smallest change that would improve the handoff:
 
+Freeze Sections 3-5 together before any debrief or Stage A explanation.
+
+- Sections 3-5 freeze timestamp:
+- Sections 3-5 artifact ID/version:
+- Sections 3-5 SHA-256 or manifest reference:
+
 ## 6. Debrief after scoring
+
+Keep this section closed until the facilitator confirms that Sections 1-5 are
+checksum-frozen and scoring has ended.
 
 - Stage A explanation that changed your interpretation:
 - Decision changed after discussion:

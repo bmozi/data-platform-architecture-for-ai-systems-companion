@@ -1,6 +1,6 @@
 # Results and Deviation Log
 
-**Packet:** DATA-RV-PILOT-001 version 1.1.0
+**Packet:** DATA-RV-PILOT-001 version 1.1.1
 **Status:** Blank controlled record; no result exists
 
 ## Run identity
@@ -20,6 +20,8 @@
 - Consent records:
 - Storage/access/retention authority:
 - Run-specific SHA-256 manifest:
+- Sealed flat Stage A input location and manifest:
+- Sealed flat Stage B input location and manifest:
 - Prepared-source manifest match:
 - Supplied and withheld materials correct: yes / no / deviation
 - Confidentiality or privacy concern:
@@ -43,7 +45,17 @@ first substantive artifact.
 | Stage A initial detailed artifact | | | | |
 | Stage A revised detailed artifact | | | | |
 | Stage A one-screen handoff | | | | |
-| Stage B one-screen scan | | | | |
+| Stage B Section 1 one-screen scan | | | | |
+| Stage B Section 2 detailed read-back | | | | |
+| Stage B Sections 3-5 decision and transfer | | | | |
+
+## Post-freeze corrections
+
+Never overwrite a freeze. Preserve both versions and record every correction.
+
+| Correction ID | Prior artifact ID/hash | Exact change and reason | New artifact ID/version | New exact timestamp | New SHA-256 or manifest reference |
+| --- | --- | --- | --- | --- | --- |
+| | | | | | |
 
 ## Timing and interventions
 

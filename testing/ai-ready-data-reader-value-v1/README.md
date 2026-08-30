@@ -1,14 +1,16 @@
 # AI-Ready Data Reader-Value Pilot Packet
 
 **Packet ID:** DATA-RV-PILOT-001
-**Version:** 1.1.0
+**Version:** 1.1.1
 **Status:** Prepared and unrun; no participant recruited or consented
 **Scenario:** Harbor Grove Housing, entirely fictional
 
-Version 1.1.0 incorporates repairs found through a synthetic AI-operated route
-preflight of version 1.0.0. That internal run was defect-finding only. This
-version has not been run or validated with a human or practitioner and supports
-no usability, privacy, safety, readiness, or value claim.
+Version 1.1.1 is a route-and-provenance repair after synthetic regression of
+version 1.1.0. It preserves version 1.1.0's material interpretation while
+making sealed delivery portable and Stage B freezes auditable. Synthetic work
+is defect-finding only. This version remains **PREPARED/UNRUN** with people and
+supports no human-validation, usability, privacy, safety, readiness, value, or
+incident-status claim.
 
 ## What this packet tests
 
@@ -29,17 +31,19 @@ failure discovery, outside-team transfer, and management/executive legibility.
 ### Stage A — practitioner or domain/product participant
 
 Before the scored stage, complete and close the
-[Consent and privacy notice](participant/01-consent-and-privacy.md). Then
-supply only, in the order governed by the packet route:
+[Consent and privacy notice](participant/01-consent-and-privacy.md). The
+facilitator must copy the exact approved, immutable files into a sealed Stage A
+input and hash every supplied file in a run-specific manifest. Then supply
+only, in the order governed by the packet route:
 
 1. [Packet route](participant/00-packet-route.md)
 2. [Scenario and task](participant/02-scenario-and-task.md)
 3. [Practitioner workbook](participant/03-practitioner-workbook.md), Section 1
    before any teaching or template asset
-4. [AI-Ready Data Journey](../../AI-READY-DATA-JOURNEY.md)
-5. [AI-Data Readiness Assessment](../../ai-data-readiness-assessment.md)
-6. [Data-Product Contract](../../data-product-contract.md), only if the
-   participant decides it answers a separate needed question
+4. `AI-READY-DATA-JOURNEY.md`
+5. `ai-data-readiness-assessment.md`
+6. `data-product-contract.md`, only if the participant decides it answers a
+   separate needed question
 7. [One-Screen Handoff](participant/05-one-screen-handoff.md), only after the
    live update and detailed-artifact revision
 
@@ -56,15 +60,26 @@ to the detailed artifact IDs, and freeze the handoff separately.
 ### Stage B — independent manager or executive decision owner
 
 Before the scored stage, complete and close a Stage B
-[Consent and privacy notice](participant/01-consent-and-privacy.md). After the
-recorded start time, supply in the route's exact order:
+[Consent and privacy notice](participant/01-consent-and-privacy.md). The
+facilitator must copy the exact approved, immutable files and frozen Stage A
+artifacts into a separate sealed Stage B input and hash every supplied file in
+a run-specific manifest. After the recorded start time, supply in the route's
+exact order:
 
 1. [Packet route](participant/00-packet-route.md);
 2. the frozen [one-screen handoff](participant/05-one-screen-handoff.md) first;
 3. [Decision-owner workbook](participant/04-decision-owner-workbook.md);
 4. the frozen scenario and unchanged detailed Stage A artifacts;
-5. [Executive Decision Brief](../../EXECUTIVE-DECISION-BRIEF.md); and
-6. [Value and Evidence Ledger](../../VALUE-AND-EVIDENCE-LEDGER.md).
+5. `EXECUTIVE-DECISION-BRIEF.md`; and
+6. `VALUE-AND-EVIDENCE-LEDGER.md`.
+
+Stage B has three scored freezes. Complete and checksum-freeze workbook
+Section 1 from the one-screen handoff alone. Then read the scenario and detailed
+artifacts, complete Section 2, and checksum-freeze it. Only after that second
+freeze may the executive brief and value ledger open; complete Sections 3-5
+and checksum-freeze them. Keep Section 6 closed until scoring ends. A correction
+after any freeze must preserve the prior artifact and record the exact change,
+reason, new timestamp, and new SHA-256 hash.
 
 The first calibration round uses a different person for Stage B. Keep the
 Stage A participant unavailable during the initial read-back.
@@ -84,9 +99,11 @@ recruitment, consent, storage, access, retention, deletion, facilitator and
 evaluator relationships, and any required ethics, legal, privacy, or
 organizational review. Freeze and hash the exact packet and referenced assets.
 
-The checked-in `SHA256SUMS` records the prepared source packet. A run-specific
-copy must hash every supplied asset. Any byte change requires a new manifest;
-a meaning change requires a new version.
+The checked-in `SHA256SUMS` records the prepared source packet. For each stage,
+the facilitator copies the exact immutable files into its sealed flat input and
+creates a run-specific manifest that hashes every supplied file under its exact
+local filename. Any byte change requires a new manifest; a meaning change
+requires a new version.
 
 ## Evidence boundary
 

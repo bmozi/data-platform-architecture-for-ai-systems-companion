@@ -1,6 +1,6 @@
 # Observation and Scoring Rubric
 
-**Packet:** DATA-RV-PILOT-001 version 1.1.0
+**Packet:** DATA-RV-PILOT-001 version 1.1.1
 **Status:** Predetermined, blank, and unrun
 
 Score retained behavior, not agreement with preferred wording.

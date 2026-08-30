@@ -1,6 +1,6 @@
 # Participant Packet Route
 
-**Packet:** DATA-RV-PILOT-001 version 1.1.0
+**Packet:** DATA-RV-PILOT-001 version 1.1.1
 **Status:** Prepared and unrun with people
 
 This file controls the read order. Use `UNKNOWN`, `UNASSIGNED`, or `STOP` when
@@ -47,13 +47,12 @@ Pre-session only: complete and close
 3. Read the [scenario and task](02-scenario-and-task.md).
 4. Open the [practitioner workbook](03-practitioner-workbook.md) and complete
    Section 1, recognition before terminology.
-5. Read [The AI-Ready Data Journey](../../../AI-READY-DATA-JOURNEY.md).
-6. Open the
-   [AI-Data Readiness Assessment](../../../ai-data-readiness-assessment.md),
-   then complete the relevant detailed work and workbook Sections 2-4.
-7. Open the [Data-Product Contract](../../../data-product-contract.md) only if
-   you independently decide it answers a separate question. Otherwise do not
-   open it.
+5. Read the supplied local file `AI-READY-DATA-JOURNEY.md`.
+6. Open the supplied local file `ai-data-readiness-assessment.md`, then
+   complete the relevant detailed work and workbook Sections 2-4.
+7. Open the supplied local file `data-product-contract.md` only if you
+   independently decide it answers a separate question. Otherwise do not open
+   it.
 8. Freeze the initial detailed artifact (saved work product) and workbook
    before receiving the live update.
 9. Receive the live update, complete workbook Sections 5-6, revise the detailed
@@ -72,12 +71,19 @@ Pre-session only: complete and close
 2. Read this route.
 3. Read the frozen [One-Screen Handoff](05-one-screen-handoff.md) first. Do not
    open the scenario or detailed Stage A work yet.
-4. Open the [Decision-Owner Workbook](04-decision-owner-workbook.md) and
-   complete its one-screen scan from the handoff alone.
-5. Read the frozen scenario and the detailed Stage A artifacts in the order
-   listed in their frozen manifest; then complete the detailed read-back.
-6. Read the supplied Executive Decision Brief.
-7. Read the supplied Value and Evidence Ledger.
-8. Complete the bounded decision, transfer finding, and only then the debrief.
+4. Open the [Decision-Owner Workbook](04-decision-owner-workbook.md), complete
+   Section 1 from the handoff alone, and checksum-freeze Section 1 before any
+   other substantive file opens.
+5. Read the frozen scenario and detailed Stage A artifacts in the order listed
+   in their frozen manifest. Complete Section 2 and checksum-freeze it before
+   opening either decision aid.
+6. Only after the Section 2 freeze, read the supplied local file
+   `EXECUTIVE-DECISION-BRIEF.md`.
+7. Then read the supplied local file `VALUE-AND-EVIDENCE-LEDGER.md`.
+8. Complete Sections 3-5 and checksum-freeze them. Keep Section 6 closed until
+   the facilitator ends scoring.
 
 Keep the Stage A participant unavailable until Stage B Sections 1-5 are frozen.
+Never silently replace a frozen artifact. A correction after any freeze must
+preserve the previous version and record the exact change, reason, new
+timestamp, and new SHA-256 hash.
