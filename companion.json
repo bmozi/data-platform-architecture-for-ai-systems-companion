@@ -24,7 +24,11 @@
     "testing/ai-ready-data-reader-value-v1/participant/00-packet-route.md",
     "testing/ai-ready-data-reader-value-v1/participant/05-one-screen-handoff.md",
     "testing/ai-ready-data-reader-value-v1/SHA256SUMS",
+    "testing/ai-ready-data-reader-value-v1/temporal-protocol.json",
     "scripts/test_temporal_protocol_validator.py"
+  ],
+  "temporal_protocols": [
+    "testing/ai-ready-data-reader-value-v1/temporal-protocol.json"
   ],
   "checksum_manifests": [
     "testing/ai-ready-data-reader-value-v1/SHA256SUMS"

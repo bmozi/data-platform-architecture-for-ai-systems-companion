@@ -1,6 +1,6 @@
 # Stage A Practitioner Workbook
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.2
+**Packet:** DATA-RV-PILOT-001 version 1.2.3
 **Status:** Blank participant record
 
 - Participant code:
@@ -9,6 +9,8 @@
 - End time:
 - Locked supplied-file list and digital fingerprints (frozen manifest):
 - Exact file-open order is recorded by the facilitator: yes / deviation
+- Undeclared orchestration, facilitator, hidden-prompt, or run-note file
+  present: none / stop and deviation
 
 ## 1. Recognition before terminology
 

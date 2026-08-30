@@ -1,18 +1,20 @@
 # AI-Ready Data Reader-Value Pilot Packet
 
 **Packet ID:** DATA-RV-PILOT-001
-**Version:** 1.2.2
+**Version:** 1.2.3
 **Status:** Prepared and unrun; no participant recruited or consented
 **Scenario:** Harbor Grove Housing, entirely fictional
 
-Version 1.2.2 preserves version 1.2.1's non-circular freeze order while making
-the release chain and correction identity explicit and executable. It preserves
-the AI-ready-data content, literal artifact identity, sealed delivery, and
-staged Stage B controls. Every governed freeze follows one observable order:
+Version 1.2.3 preserves the non-circular freeze order while making the
+execution history auditable. Every detached record now requires attempt,
+phase, actors, facilitator, exact manifest-verification
+command/output/exit/time/timezone, and a later record-completion
+timestamp/timezone. It preserves the AI-ready-data content, literal artifact
+identity, sealed delivery, and staged Stage B controls. Every governed freeze follows one observable order:
 complete artifacts, create their governing manifest, verify it and capture the
 exact event, then create a detached verification record. Synthetic work is
 defect-finding only. Version 1.2.1 remains preserved at source commit `9921757`
-and version 1.2.0 at `6921313`; do not relabel an older run as 1.2.2. A 1.2.2
+and version 1.2.0 at `6921313`; do not relabel an older run as 1.2.3. A 1.2.3
 correction produces a new immutable artifact set, governing manifest, and
 detached record rather than overwriting old evidence.
 This version remains **PREPARED/UNRUN** with people and supports no
@@ -41,7 +43,12 @@ Before the scored stage, complete and close the
 [Consent and privacy notice](participant/01-consent-and-privacy.md). The
 facilitator must copy the exact approved, immutable files into a sealed flat
 Stage A input and hash every supplied file in a run-specific manifest that does
-not list or hash itself. Then supply
+not list or hash itself. That input may contain only route-declared files. An
+`ORCHESTRATION.md`, run note, hidden prompt, facilitator file, or other
+undeclared control file is prohibited. Orchestration and every item-level event
+stay in the external facilitator-only
+[execution and access log](facilitator-only/05-execution-and-access-log.md).
+Then supply
 only, in the order governed by the packet route:
 
 1. [Packet route](participant/00-packet-route.md)
@@ -63,9 +70,17 @@ The short Northbridge miniature embedded inside the supplied assessment, and
 inside the optional contract if opened, remains part of that supplied file.
 The linked full Northbridge examples are withheld and must not be opened.
 
-Freeze the initial detailed artifact before the live update. The planned update
-creates the first revised set; it is not a correction of already frozen revised
-bytes. Required revised-detail filenames are:
+Freeze the initial detailed artifacts before the live update as the exact
+required files `DATA-A-INITIAL-WORKBOOK-v1.md` and
+`DATA-A-INITIAL-READINESS-ASSESSMENT-v1.md`, plus
+`DATA-A-INITIAL-DATA-PRODUCT-CONTRACT-v1.md` only when the optional contract was
+used. Mark included files `INITIAL COMPLETE`, hash only them in
+`DATA-A-INITIAL-ARTIFACTS-SHA256SUMS-v1.txt`, verify that manifest, and then
+create `DATA-A-INITIAL-FREEZE-VERIFICATION-v1.md`. The verified
+`DATA-A-REVISION-PHASE-INPUT-SHA256SUMS-v1.txt` binds the exact initial
+artifacts, manifest, detached record, and live update before the update opens.
+The planned update creates the first revised set; it is not a correction of
+already frozen revised bytes. Required revised-detail filenames are:
 
 - `DATA-A-REVISED-WORKBOOK-v1.md`;
 - `DATA-A-REVISED-READINESS-ASSESSMENT-v1.md`; and
@@ -157,6 +172,8 @@ Stage A participant unavailable during the initial read-back.
 - [Facilitator guide](facilitator-only/01-facilitator-guide.md)
 - [Observation and scoring rubric](facilitator-only/02-observation-and-scoring-rubric.md)
 - [Results and deviation log](facilitator-only/03-results-and-deviation-log.md)
+- [Temporal freeze protocol and record templates](facilitator-only/04-temporal-freeze-protocol-and-record-templates.md)
+- [Execution and access log](facilitator-only/05-execution-and-access-log.md)
 
 Never supply these files before the scored stages end.
 
@@ -166,6 +183,10 @@ Before recruitment, assign an accountable execution owner and approve
 recruitment, consent, storage, access, retention, deletion, facilitator and
 evaluator relationships, and any required ethics, legal, privacy, or
 organizational review. Freeze and hash the exact packet and referenced assets.
+Retain exact manifest-verification commands, complete output, exit codes,
+actors, facilitator identities, observed timestamps/timezones, later
+record-completion timestamps/timezones, and the external item-by-item
+execution/access log.
 
 The checked-in `SHA256SUMS` records the prepared source packet. For each stage,
 the facilitator copies the exact immutable files into its sealed flat input and

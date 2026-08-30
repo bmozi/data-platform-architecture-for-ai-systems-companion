@@ -1,6 +1,6 @@
 # Results and Deviation Log
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.2
+**Packet:** DATA-RV-PILOT-001 version 1.2.3
 **Status:** Blank controlled record; no result exists
 
 ## Run identity
@@ -14,6 +14,7 @@
 - Date, mode, and time:
 - Exact Stage A start before first scored file opened, with timezone:
 - Exact Stage B start before first scored file opened, with timezone:
+- Facilitator execution/access log exact filename and SHA-256:
 
 ## Consent, privacy, and freeze
 
@@ -24,6 +25,10 @@
 - Sealed flat Stage B input location and manifest:
 - Prepared-source manifest match:
 - Supplied and withheld materials correct: yes / no / deviation
+- Declared participant-input inventory matches item by item: yes / no /
+  deviation
+- Undeclared orchestration, run note, hidden prompt, facilitator file, or other
+  control file in participant input: none / deviation ID
 - Confidentiality or privacy concern:
 - Out-of-surface command, repository/status/history inspection, omitted link,
   internet search, or extra file: none observed / deviation ID
@@ -73,11 +78,27 @@ from recollection.
 
 | Scope | Exact artifact filename(s), ID/version, completion time/timezone, state, hash | Governing manifest filename/hash | Observed manifest verification time/timezone and result | Detached record filename/hash and completion time/timezone | Next phase/evidence manifest and preserved location |
 | --- | --- | --- | --- | --- | --- |
+| Stage A initial | required `DATA-A-INITIAL-WORKBOOK-v1.md`; required `DATA-A-INITIAL-READINESS-ASSESSMENT-v1.md`; optional `DATA-A-INITIAL-DATA-PRODUCT-CONTRACT-v1.md`; `INITIAL COMPLETE` | `DATA-A-INITIAL-ARTIFACTS-SHA256SUMS-v1.txt` / | | `DATA-A-INITIAL-FREEZE-VERIFICATION-v1.md` / | `DATA-A-REVISION-PHASE-INPUT-SHA256SUMS-v1.txt` / |
 | Stage A revised set | required revised files; optional only if used | `DATA-A-REVISED-ARTIFACTS-SHA256SUMS-v1.txt` / | | `DATA-A-REVISED-FREEZE-VERIFICATION-v1.md` / | Stage B Phase 2 input / |
 | Stage A handoff | `DATA-A-ONE-SCREEN-HANDOFF-v1.md`; `HANDOFF COMPLETE` | `DATA-A-HANDOFF-SHA256SUMS-v1.txt` / | | `DATA-A-HANDOFF-FREEZE-VERIFICATION-v1.md` / | Stage B Phase 1 input / |
 | Stage B Section 1 | `DATA-B-SECTION-1-SCAN-v1.md`; `SECTION 1 COMPLETE` | `DATA-B-SECTION-1-SHA256SUMS-v1.txt` / | | `DATA-B-SECTION-1-FREEZE-VERIFICATION-v1.md` / | Stage B Phase 2 input / |
 | Stage B Section 2 | `DATA-B-SECTION-2-DETAIL-v1.md`; `SECTION 2 COMPLETE` | `DATA-B-SECTION-2-SHA256SUMS-v1.txt` / | | `DATA-B-SECTION-2-FREEZE-VERIFICATION-v1.md` / | Stage B Phase 3 input / |
 | Stage B Sections 3-5 | `DATA-B-SECTIONS-3-5-DECISION-v1.md`; `SECTIONS 3-5 COMPLETE` | `DATA-B-SECTIONS-3-5-SHA256SUMS-v1.txt` / | | `DATA-B-SECTIONS-3-5-FREEZE-VERIFICATION-v1.md` / | Closing evidence / |
+
+## Detached-record required-field audit
+
+Do not infer missing history. Each row must match the detached record and the
+facilitator execution/access log. Any blank, failed verification, output
+omission, or record completion that is not explicitly later blocks `FROZEN`.
+
+| Scope | Attempt ID | Phase | Artifact actor | Facilitator | Manifest verifier | Exact command | Complete observed output | Exit code | Verification timestamp/timezone | Record-completing actor | Later record-completion timestamp/timezone | Chronology and log match |
+| --- | --- | --- | --- | --- | --- | --- | --- | ---: | --- | --- | --- | --- |
+| Stage A initial record audit | | | | | | | | | | | | |
+| Stage A revised record audit | | | | | | | | | | | | |
+| Stage A handoff record audit | | | | | | | | | | | | |
+| Stage B Section 1 record audit | | | | | | | | | | | | |
+| Stage B Section 2 record audit | | | | | | | | | | | | |
+| Stage B Sections 3-5 record audit | | | | | | | | | | | | |
 
 - Every governing manifest excludes itself and its later detached record:
   yes / no / deviation

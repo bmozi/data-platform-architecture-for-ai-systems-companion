@@ -74,3 +74,20 @@ and which validation or usability state actually changed.
 - **Execution state:** `PREPARED/UNRUN`; no human participant result exists
 - **Boundary:** Source protocol hardening only; it does not establish usability,
   privacy, safety, data readiness, incident status, or business value
+
+## 2026-08-29 replay-evidence protocol v1.2.3
+
+- **Authority:** Collection-wide repair of defects found during synthetic
+  temporal replay and independent challenge
+- **Changed:** the previously underspecified initial freeze now has exact
+  artifact, manifest, detached-record, and next-release identities; every
+  detached record requires attempt, phase, actors, facilitator, exact
+  verification command/output/exit/time/timezone, and a separately recorded
+  later completion timestamp/timezone
+- **Added:** schema-v2 machine inventory and a facilitator-only item-level
+  execution/access log with continuity bindings; undeclared participant-input
+  orchestration is forbidden
+- **Enforcement:** the full repository positive control and ten adversarial
+  mutations validate structured and human-readable omission resistance
+- **Execution state:** `PREPARED/UNRUN`; static and synthetic defect-finding is
+  not human usability, data readiness, privacy, safety, or business-value evidence

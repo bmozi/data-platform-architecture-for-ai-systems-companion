@@ -1,6 +1,6 @@
 # Facilitator Guide
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.2
+**Packet:** DATA-RV-PILOT-001 version 1.2.3
 **Status:** Facilitator-only; prepared and unrun
 
 ## Purpose
@@ -36,6 +36,13 @@ deviation. Do not permit terminal, repository or Git status/history commands,
 internet searches, omitted links, completed examples, or other out-of-surface
 materials.
 
+Maintain the facilitator-only
+[`execution and access log`](05-execution-and-access-log.md) item by item. Log
+every manifest gate, file open or attempted access, artifact completion,
+manifest creation, manifest verification, detached-record completion, and next
+phase open with exact actor, facilitator, timestamp, timezone, filename, and
+continuity binding.
+
 ## Sealed flat delivery and provenance
 
 Before each stage, copy the exact approved immutable files into a separate
@@ -47,10 +54,15 @@ SHA-256 manifest before the start time. A manifest hashes other files and never
 lists or hashes itself. Do not rely on repository-relative paths, and do not
 replace a frozen file in place.
 
+Reject any participant input containing an undeclared `ORCHESTRATION.md`, run
+note, hidden prompt, facilitator file, or other extra control file. Keep all
+facilitation outside the sealed participant surface and prove the declared
+inventory item by item in the external access log.
+
 ## Governing freeze sequence
 
-Use this same temporal order for the revised Stage A set, the Stage A handoff,
-and each of the three Stage B exports:
+Use this same temporal order for the initial and revised Stage A sets, the
+Stage A handoff, and each of the three Stage B exports:
 
 1. Finalize every governed artifact. Its bytes must already contain the literal
    artifact ID/version, completion timestamp/timezone, complete pre-hash state,
@@ -71,6 +83,12 @@ and each of the three Stage B exports:
    governing manifest, and its detached verification record. The closing
    evidence manifest does the same for the final Stage B export.
 
+Every detached record must contain attempt ID, stage/phase,
+artifact-producing actor, facilitator, manifest verifier, exact verification
+command, complete observed output, exit code, observed verification timestamp
+and timezone, record-completing actor, and an explicit later record-completion
+timestamp and timezone. Missing evidence prevents `FROZEN`.
+
 Any change after step 3 requires an immutable replacement set with a new
 immutable filename and a new artifact ID/version for every corrected artifact,
 a new manifest, and a new detached record. Never revise the old set in place.
@@ -87,9 +105,17 @@ a new manifest, and a new detached record. Never revise the old set in place.
    if independently requested; remaining detailed work.
 4. Record every first open and material re-open. Recognition must finish before
    teaching or template assets open.
-5. Freeze the initial workbook and detailed artifact with exact filenames,
-   IDs, versions, timestamps/timezones, SHA-256 hashes, and manifest before the
-   update.
+5. Complete `DATA-A-INITIAL-WORKBOOK-v1.md` and
+   `DATA-A-INITIAL-READINESS-ASSESSMENT-v1.md`, plus
+   `DATA-A-INITIAL-DATA-PRODUCT-CONTRACT-v1.md` only when the optional contract
+   was used. Give every included file its ID/version, completion
+   timestamp/timezone, and `INITIAL COMPLETE` state. Create
+   `DATA-A-INITIAL-ARTIFACTS-SHA256SUMS-v1.txt` over only those completed
+   artifacts, verify it, and then complete
+   `DATA-A-INITIAL-FREEZE-VERIFICATION-v1.md`. Create and verify
+   `DATA-A-REVISION-PHASE-INPUT-SHA256SUMS-v1.txt` over the initial artifacts,
+   their governing manifest, detached record, and live update before opening
+   the update.
 6. Read the update:
 
 > During a dry content check, the proposed assistant retrieved Heat Response

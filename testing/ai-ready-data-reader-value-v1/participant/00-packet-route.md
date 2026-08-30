@@ -1,6 +1,6 @@
 # Participant Packet Route
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.2
+**Packet:** DATA-RV-PILOT-001 version 1.2.3
 **Status:** Prepared and unrun with people
 
 This file controls the read order. Use `UNKNOWN`, `UNASSIGNED`, or `STOP` when
@@ -28,6 +28,19 @@ deviation.
 The miniature example already embedded inside a supplied template remains part
 of that file. Do not follow its link to the comprehensive example.
 
+The sealed input contains only files declared by this route and its current
+phase release. Do not open or follow an `ORCHESTRATION.md`, run note, hidden
+prompt, facilitator file, or other undeclared control file. Its presence is a
+stop and deviation. The facilitator keeps instructions and the item-by-item
+access history outside this input.
+
+For every detached verification record named below, record the attempt ID,
+stage/phase, artifact-producing actor, facilitator, manifest verifier, exact
+verification command, complete observed output, exit code, observed
+verification timestamp and timezone, record-completing actor, and explicit
+later record-completion timestamp and timezone. A blank field, failed command,
+or missing chronological separation prevents `FROZEN` and stops release.
+
 Plain labels used here:
 
 - a **freeze** is a locked copy saved so later edits cannot replace the
@@ -53,8 +66,17 @@ Pre-session only: complete and close
 7. Open the supplied local file `data-product-contract.md` only if you
    independently decide it answers a separate question. Otherwise do not open
    it.
-8. Freeze the initial detailed artifact (saved work product) and workbook
-   before receiving the live update.
+8. Before receiving the live update, save the exact required
+   `DATA-A-INITIAL-WORKBOOK-v1.md` and
+   `DATA-A-INITIAL-READINESS-ASSESSMENT-v1.md`, plus
+   `DATA-A-INITIAL-DATA-PRODUCT-CONTRACT-v1.md` only if the optional contract
+   was used. Give each included artifact an ID/version, completion
+   timestamp/timezone, and `INITIAL COMPLETE` state. Hash only those completed
+   artifacts in `DATA-A-INITIAL-ARTIFACTS-SHA256SUMS-v1.txt`, verify it, and
+   then create `DATA-A-INITIAL-FREEZE-VERIFICATION-v1.md`. Create and verify
+   `DATA-A-REVISION-PHASE-INPUT-SHA256SUMS-v1.txt` over the initial artifacts,
+   governing manifest, detached record, and live update before opening the
+   update.
 9. Receive the live update, complete workbook Sections 5-6, revise the detailed
    artifacts. This planned revision creates the first revised set and is not a
    correction of already frozen revised bytes. Save exactly

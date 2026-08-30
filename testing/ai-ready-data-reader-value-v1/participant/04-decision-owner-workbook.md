@@ -1,6 +1,6 @@
 # Stage B Decision-Owner Workbook
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.2
+**Packet:** DATA-RV-PILOT-001 version 1.2.3
 **Status:** Blank independent read-back record
 
 - Reviewer code:
@@ -9,6 +9,8 @@
 - Exact Stage B start recorded before first scored file opened, with timezone:
 - End time and timezone:
 - Sealed Stage B input manifest:
+- Undeclared orchestration, facilitator, hidden-prompt, or run-note file
+  present: none / stop and deviation
 - Prior involvement with Stage A: none required for first calibration
 
 Do not ask the Stage A participant to explain or repair the artifact until

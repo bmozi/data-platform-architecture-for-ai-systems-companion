@@ -61,13 +61,14 @@ from a data-team slogan into a cross-functional decision. Use the
 valuable use, then exercise assumptions with the [Failure Lab](FAILURE-LAB.md)
 and [Pilot Route](PILOT-AND-USABILITY.md).
 
-The prepared reader-value packet is `DATA-RV-PILOT-001` version 1.2.2. Stage A
+The prepared reader-value packet is `DATA-RV-PILOT-001` version 1.2.3. Stage A
 freezes exact revised details through a detached record before opening its
 one-screen handoff; Stage B reads that handoff first, verifies the same literal
-files, then freezes its decision in three stages. Version 1.2.2 enforces the
-temporal order, immutable correction identity, and release-manifest bindings
-with executable negative tests. It remains unrun with people and carries no
-human or practitioner validation.
+files, then freezes its decision in three stages. Version 1.2.3 additionally
+binds replay identity, exact verification command evidence, record-completion
+chronology, and a facilitator-side execution/access log while forbidding
+undeclared participant-input orchestration. It remains unrun with people and
+carries no human or practitioner validation.
 
 ## Development boundary
 

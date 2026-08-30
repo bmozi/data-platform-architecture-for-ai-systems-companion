@@ -1,6 +1,6 @@
 # Detached Freeze-Verification Record Template
 
-**Packet:** DATA-RV-PILOT-001 version 1.2.2
+**Packet:** DATA-RV-PILOT-001 version 1.2.3
 **Status:** Blank detached template; create an instance only after its governing
 manifest has been verified
 
@@ -11,6 +11,7 @@ listed in the governing manifest whose verification it records.
 
 ## Select one exact record identity
 
+- Initial Stage A: `DATA-A-INITIAL-FREEZE-VERIFICATION-v1.md`
 - Revised Stage A: `DATA-A-REVISED-FREEZE-VERIFICATION-v1.md`
 - Stage A handoff: `DATA-A-HANDOFF-FREEZE-VERIFICATION-v1.md`
 - Stage B Section 1: `DATA-B-SECTION-1-FREEZE-VERIFICATION-v1.md`
@@ -20,16 +21,24 @@ listed in the governing manifest whose verification it records.
 
 ## Observed verification event
 
+- Attempt ID:
 - Freeze scope and phase:
 - Completed record exact local filename:
 - Record ID/version:
-- Record completion timestamp/timezone, after manifest verification:
+- Artifact-producing actor code:
+- Facilitator name/code:
+- Manifest verifier name/code and relationship:
 - Governing manifest exact local filename:
 - Governing manifest SHA-256:
-- Manifest verification command or method:
-- Manifest verification result: pass / fail
-- Observed manifest verification timestamp/timezone:
-- Verified by and relationship to the participant or author:
+- Exact manifest verification command:
+- Complete observed command output:
+- Observed command exit code:
+- Manifest verification result: pass / fail / deviation
+- Observed manifest verification timestamp:
+- Observed manifest verification timezone:
+- Record-completing actor name/code:
+- Record completion timestamp, explicitly later than manifest verification:
+- Record completion timezone:
 
 The governing manifest hashes only the completed governed artifacts listed
 below. It never lists or hashes itself or this later record. The artifact bytes
@@ -63,6 +72,9 @@ COMPLETE`, `SECTION 2 COMPLETE`, and `SECTIONS 3-5 COMPLETE`.
 - No incomplete-state marker or premature self-declared `FROZEN` remains:
   yes / no
 - This record was created only after successful manifest verification: yes / no
+- Attempt ID, phase, actors, facilitator, verification command, complete
+  observed output, exit code, verification timestamp/timezone, and later record
+  completion timestamp/timezone are all present: yes / no
 - Determination for the exact governed bytes: `FROZEN` / not established
 - Stop or deviation ID when any required answer is `no`, blank, or failed:
 
