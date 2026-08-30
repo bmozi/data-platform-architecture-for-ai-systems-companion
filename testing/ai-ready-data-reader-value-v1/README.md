@@ -1,9 +1,14 @@
 # AI-Ready Data Reader-Value Pilot Packet
 
 **Packet ID:** DATA-RV-PILOT-001
-**Version:** 1.0.0
+**Version:** 1.1.0
 **Status:** Prepared and unrun; no participant recruited or consented
 **Scenario:** Harbor Grove Housing, entirely fictional
+
+Version 1.1.0 incorporates repairs found through a synthetic AI-operated route
+preflight of version 1.0.0. That internal run was defect-finding only. This
+version has not been run or validated with a human or practitioner and supports
+no usability, privacy, safety, readiness, or value claim.
 
 ## What this packet tests
 
@@ -23,28 +28,43 @@ failure discovery, outside-team transfer, and management/executive legibility.
 
 ### Stage A — practitioner or domain/product participant
 
-Supply only:
+Before the scored stage, complete and close the
+[Consent and privacy notice](participant/01-consent-and-privacy.md). Then
+supply only, in the order governed by the packet route:
 
-1. [Consent and privacy notice](participant/01-consent-and-privacy.md)
+1. [Packet route](participant/00-packet-route.md)
 2. [Scenario and task](participant/02-scenario-and-task.md)
-3. [Practitioner workbook](participant/03-practitioner-workbook.md)
+3. [Practitioner workbook](participant/03-practitioner-workbook.md), Section 1
+   before any teaching or template asset
 4. [AI-Ready Data Journey](../../AI-READY-DATA-JOURNEY.md)
 5. [AI-Data Readiness Assessment](../../ai-data-readiness-assessment.md)
 6. [Data-Product Contract](../../data-product-contract.md), only if the
    participant decides it answers a separate needed question
+7. [One-Screen Handoff](participant/05-one-screen-handoff.md), only after the
+   live update and detailed-artifact revision
 
 Do not supply the Northbridge completion, the repository failure lab,
 facilitator-only materials, executive brief, or value ledger during Stage A.
+The short Northbridge miniature embedded inside the supplied assessment, and
+inside the optional contract if opened, remains part of that supplied file.
+The linked full Northbridge examples are withheld and must not be opened.
+
+Freeze the initial detailed artifact before the live update. After the update,
+freeze the revised detailed artifact, complete the one-screen handoff, link it
+to the detailed artifact IDs, and freeze the handoff separately.
 
 ### Stage B — independent manager or executive decision owner
 
-Supply:
+Before the scored stage, complete and close a Stage B
+[Consent and privacy notice](participant/01-consent-and-privacy.md). After the
+recorded start time, supply in the route's exact order:
 
-1. the frozen scenario;
-2. the unchanged Stage A artifact and handoff;
+1. [Packet route](participant/00-packet-route.md);
+2. the frozen [one-screen handoff](participant/05-one-screen-handoff.md) first;
 3. [Decision-owner workbook](participant/04-decision-owner-workbook.md);
-4. [Executive Decision Brief](../../EXECUTIVE-DECISION-BRIEF.md); and
-5. [Value and Evidence Ledger](../../VALUE-AND-EVIDENCE-LEDGER.md).
+4. the frozen scenario and unchanged detailed Stage A artifacts;
+5. [Executive Decision Brief](../../EXECUTIVE-DECISION-BRIEF.md); and
+6. [Value and Evidence Ledger](../../VALUE-AND-EVIDENCE-LEDGER.md).
 
 The first calibration round uses a different person for Stage B. Keep the
 Stage A participant unavailable during the initial read-back.

@@ -1,6 +1,6 @@
 # Results and Deviation Log
 
-**Packet:** DATA-RV-PILOT-001 version 1.0.0
+**Packet:** DATA-RV-PILOT-001 version 1.1.0
 **Status:** Blank controlled record; no result exists
 
 ## Run identity
@@ -12,6 +12,8 @@
 - Facilitator:
 - Evaluator and independence disclosure:
 - Date, mode, and time:
+- Exact Stage A start before first scored file opened:
+- Exact Stage B start before first scored file opened:
 
 ## Consent, privacy, and freeze
 
@@ -21,6 +23,27 @@
 - Prepared-source manifest match:
 - Supplied and withheld materials correct: yes / no / deviation
 - Confidentiality or privacy concern:
+- Out-of-surface command, repository/status/history inspection, omitted link,
+  internet search, or extra file: none observed / deviation ID
+
+## Exact file-open order
+
+Record every first open and material re-open, including optional or attempted
+opens. The route file is first scored in each stage; the Stage B handoff is the
+first substantive artifact.
+
+| Stage | Sequence | Exact time | File or attempted surface | Expected / optional / prohibited | Outcome or deviation |
+| --- | ---: | --- | --- | --- | --- |
+| | | | | | |
+
+## Artifact freezes
+
+| Freeze | Artifact IDs and versions | Exact time | SHA-256 or manifest reference | Preserved location |
+| --- | --- | --- | --- | --- |
+| Stage A initial detailed artifact | | | | |
+| Stage A revised detailed artifact | | | | |
+| Stage A one-screen handoff | | | | |
+| Stage B one-screen scan | | | | |
 
 ## Timing and interventions
 
@@ -32,6 +55,10 @@
 | A handoff | | | | |
 | B read-back | | | | |
 | B decision | | | | |
+
+| Time | Pause or participant question | Response or non-response | Gate affected | Interpretation effect |
+| --- | --- | --- | --- | --- |
+| | | | | |
 
 | Time | Exact intervention | Level | Gate affected | Interpretation effect |
 | --- | --- | --- | --- | --- |

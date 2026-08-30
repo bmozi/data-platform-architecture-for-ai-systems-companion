@@ -11,6 +11,14 @@ Use only the highest supported label: **Prepared**, **Piloted**, **Revised**,
 **Prepared**. Existing Cedar Vale materials and blank logs do not establish a
 completed test result.
 
+`DATA-RV-PILOT-001` version 1.0.0 received a synthetic, AI-operated route
+preflight that was useful for finding packet defects: partial cross-role
+transfer, missing exact timing, terminology density, and no dedicated field for
+the restricted-data near miss. That was internal defect-finding, not a human
+session. Version 1.1.0 contains the resulting source repairs and remains
+**Prepared and human-unrun**. Neither version establishes usability, privacy,
+safety, data readiness, business value, or practitioner benefit.
+
 ## First pilot
 
 1. Review the protocol boundary in [testing/README.md](testing/README.md).

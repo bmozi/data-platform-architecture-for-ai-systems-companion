@@ -1,6 +1,6 @@
 # Observation and Scoring Rubric
 
-**Packet:** DATA-RV-PILOT-001 version 1.0.0
+**Packet:** DATA-RV-PILOT-001 version 1.1.0
 **Status:** Predetermined, blank, and unrun
 
 Score retained behavior, not agreement with preferred wording.
@@ -23,10 +23,21 @@ Do not treat the total as a validated psychometric score.
 | RV-1 Recognition | Explains why “we have data” does not answer the use question | A | | |
 | RV-2 Plain understanding | Explains use-specific readiness and abstention outside data jargon | A and B | | |
 | RV-3 First useful artifact | Produces a bounded assessment with explicit unknowns and separate gates | A | | |
-| RV-4 Outside read-back | Stage B reconstructs use, scope, stop, owner, and evidence without repair | B | | |
+| RV-4 Outside read-back | Stage B reconstructs use, scope, stop, owner state, authority, evidence, and next trigger without repair | B | | |
 | RV-5 Failure discovery | Detects obsolete source, missing version, entitlement leak, and correction gap | A | | |
-| RV-6 Team transfer | Handoff yields decision, owner, readiness backlog, evidence, and next date | B | | |
+| RV-6 Team transfer | One-screen handoff yields evidence class, beneficiary/use, decision, allowed/withheld data/use, owner state and assigning authority, knowns/unknowns, unacceptable outcome, next action, and date or evidence trigger; links detailed artifacts | B | | |
 | RV-7 Decision-owner legibility | Selects a bounded state without universal readiness or invented ROI | B | | |
+
+For RV-6, an assigned owner is not required when none exists. Credit explicit
+`UNASSIGNED` only when the handoff also names the authority or trigger that will
+assign or act; credit `UNKNOWN` when the supplied facts cannot establish that
+authority. A calendar date is not required when a concrete evidence-based
+review trigger is given. Never reward an invented owner, authority, or date.
+
+Score the one-screen transfer separately from the detailed read-back: `2`
+requires the core decision to be scannable from the handoff alone, `1` means
+the detailed artifacts were needed to recover a material core item, and `0`
+means the transfer is absent, misleading, unsafe, or invented.
 
 ## Critical data-readiness gates
 
@@ -39,7 +50,8 @@ Mark `clear`, `unclear`, `unsafe`, or `contaminated`:
 | Fitness | Coverage and unknown evaluation are treated separately from availability | | |
 | Provenance | Source, version, effective date, chunk/index, citation, and correction are required | | |
 | Purpose and entitlement | Allowed policy use does not authorize resident notes or all-building access | | |
-| Operability | Abstention, stop trust, correction propagation, incident owner, and reassessment exist or remain blockers | | |
+| Restricted-data near miss | Preserves minimum evidence without copying restricted content; checks context, output, logs, viewers, containment, ownership, retention/deletion authority, and separate legal/privacy classification | | |
+| Operability | Abstention, stop trust, correction propagation, incident owner or explicit unassigned state, and reassessment exist or remain blockers | | |
 | Separate gates | Data fitness does not approve model, tool, action, or release | | |
 
 Any unsafe critical gate blocks a favorable interpretation.

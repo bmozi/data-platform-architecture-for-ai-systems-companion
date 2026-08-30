@@ -61,6 +61,13 @@ from a data-team slogan into a cross-functional decision. Use the
 valuable use, then exercise assumptions with the [Failure Lab](FAILURE-LAB.md)
 and [Pilot Route](PILOT-AND-USABILITY.md).
 
+The prepared reader-value packet is `DATA-RV-PILOT-001` version 1.1.0. Stage A
+now freezes both its detailed work and a one-screen handoff after the live
+update; Stage B reads that handoff first, then receives the frozen scenario and
+detailed artifacts. Version 1.1.0 incorporates synthetic route-preflight
+repairs. It remains unrun with people and carries no human or practitioner
+validation.
+
 ## Development boundary
 
 This is a private development companion. Constructed examples and blank test

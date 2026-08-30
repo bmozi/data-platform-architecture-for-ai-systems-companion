@@ -37,6 +37,21 @@ and which validation or usability state actually changed.
 - **Prior packet boundary:** Cedar Vale remains a separate DATA-X006 candidate
   and neither packet inherits or changes the other's evidence state
 
+## 2026-08-29 synthetic route-preflight repair
+
+- **Authority:** Author-authorized internal defect-finding for
+  `DATA-RV-PILOT-001`
+- **Version 1.0.0 evidence:** a synthetic AI-operated route preflight found
+  partial cross-role transfer, missing exact timing, terminology density, and
+  no dedicated offline restricted-data near-miss field
+- **Version 1.0.0 boundary:** the run was not a human or practitioner session
+  and supplies no usability, privacy, safety, readiness, or value claim
+- **Version 1.1.0 changes:** exact participant routing, a one-screen frozen
+  handoff, stronger observation and freeze records, plain-language labels, an
+  offline restricted-data near-miss record, and non-invention scoring rules
+- **Version 1.1.0 status:** PREPARED and UNRUN with people; no human recruitment,
+  consent, observation, validation, or result is claimed
+
 ## 2026-08-29 source-alignment terminology repair
 
 - **Authority:** Author-directed collection drift and unfinished-marker audit
