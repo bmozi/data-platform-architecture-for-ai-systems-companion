@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "title": "Architecting Data Platforms in the Age of AI Companion",
+  "title": "Data Platforms in the Age of AI Companion",
   "book_repository": "https://github.com/bmozi/architecting-data-platforms-in-the-age-of-ai",
   "source_commit": "28e7d9c",
   "required_files": [
@@ -30,6 +30,13 @@
     "testing/ai-ready-data-reader-value-v1/facilitator-only/08-synthetic-access-plan-and-config-template.md",
     "testing/ai-ready-data-reader-value-v1/SHA256SUMS",
     "testing/ai-ready-data-reader-value-v1/temporal-protocol.json",
+    "testing/ai-ready-data-reader-value-v1/promoted/1.2.9/README.md",
+    "testing/ai-ready-data-reader-value-v1/promoted/1.2.9/PROMOTION-RECORD.md",
+    "testing/ai-ready-data-reader-value-v1/promoted/1.2.9/SHA256SUMS",
+    "testing/ai-ready-data-reader-value-v1/promoted/1.2.9/DATA-A-ONE-SCREEN-HANDOFF-v2.md",
+    "testing/ai-ready-data-reader-value-v1/promoted/1.2.9/DATA-A-ONE-SCREEN-HANDOFF-v2.html",
+    "testing/ai-ready-data-reader-value-v1/promoted/1.2.9/DATA-A-ONE-SCREEN-HANDOFF-v2.pdf",
+    "testing/ai-ready-data-reader-value-v1/promoted/1.2.9/DATA-A-HANDOFF-LAYOUT-PROOF-v2.md",
     "scripts/test_temporal_protocol_validator.py",
     "scripts/test_synthetic_exact_file_access.py"
   ],

@@ -1,4 +1,7 @@
-# Architecting Data Platforms in the Age of AI — Companion
+# Data Platforms in the Age of AI — Companion
+
+**Series:** *Solution Architecture in the Age of AI — Software Engineering Field Guides*
+**Previous working title:** *Architecting Data Platforms in the Age of AI*.
 
 Turn one important number, dataset, or source into a maintained information
 promise for a named use—with meaning, ownership, lineage, quality, access, and
@@ -29,14 +32,41 @@ ready for production.
 - **The companion provides the moves:** data-product contracts, semantic-
   authority records, quality scorecards, provenance requirements, readiness
   assessments, and constructed examples.
+- **Use the book as the required learning resource:** read the relevant book
+  chapters before treating an exercise output as an architecture decision. The
+  repository intentionally does not reproduce the book's explanations,
+  tradeoffs, or narrative. A reader can inspect and try the tools without the
+  book, but the intended result—sound judgment about meaning, authority,
+  fitness, and limits—requires the book and this companion together.
 - **The book stands alone:** this repository extends *Architecting Data
-  Platforms in the Age of AI* without replacing its reasoning or narrative.
+  Platforms in the Age of AI* without replacing its reasoning or narrative;
+  neither artifact is a certification of production readiness.
+
+## Production presentation status
+
+This repository is **owner-approved for presentation and intended distribution
+of the exact reviewed package; human validation remains pending**. The deterministic
+local gate is the command in [VALIDATION.md](VALIDATION.md); it checks required
+entry points, local links, gateway language, examples, packet checksums, and
+the reader-value protocol. [PROVENANCE.md](PROVENANCE.md) records source and
+evidence boundaries, and [LICENSE-STATUS.md](LICENSE-STATUS.md) records the
+approved distribution scope. The owner decision is recorded in
+[OWNER-RELEASE-APPROVAL.md](OWNER-RELEASE-APPROVAL.md).
+
+Do not label this companion `Piloted`, `Practitioner-tested`, or `Production`
+until all of these are separately evidenced: a completed human cold-reader
+route with an independent decision owner; retained observations and any
+negative findings; a revised and repeated route where needed; approval of the
+corresponding book edition and companion terms; and final accessibility,
+security, rights, and publication review. A local validation pass proves
+repository integrity only.
 
 ## Start here
 
-Use [START-HERE.md](START-HERE.md) to take one information product through a
-thirty-minute first pass. You will name the consumer, decision, meaning, owner,
-source, and stop-trust condition, then test one proposed AI use separately.
+Use [START-HERE.md](START-HERE.md), alongside the relevant chapters of the
+book, to take one information product through a thirty-minute first pass. You
+will name the consumer, decision, meaning, owner, source, and stop-trust
+condition, then test one proposed AI use separately.
 
 ## Core assets
 
@@ -90,8 +120,8 @@ value, or real-world validation. The v1.2.7 source remains preserved at commit
 
 ## Development boundary
 
-This is a private development companion. Constructed examples and blank test
-logs are not production or usability evidence. Licensing and distribution
-remain unapproved; see [LICENSE-STATUS.md](LICENSE-STATUS.md). Source lineage is
-recorded in [PROVENANCE.md](PROVENANCE.md), and local validation is described in
-[VALIDATION.md](VALIDATION.md).
+This is an owner-approved companion package. Constructed examples and blank
+test logs are not production or usability evidence. Human learner/practitioner
+validation remains pending; see [OWNER-RELEASE-APPROVAL.md](OWNER-RELEASE-APPROVAL.md).
+Source lineage is recorded in [PROVENANCE.md](PROVENANCE.md), and local
+validation is described in [VALIDATION.md](VALIDATION.md).
