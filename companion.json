@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "title": "Data Platforms in the Age of AI Companion",
+  "title": "Data Platform Architecture for AI Systems Companion",
   "book_repository": "https://github.com/bmozi/architecting-data-platforms-in-the-age-of-ai",
   "source_commit": "28e7d9c",
   "required_files": [
@@ -44,7 +44,8 @@
     "testing/ai-ready-data-reader-value-v1/temporal-protocol.json"
   ],
   "checksum_manifests": [
-    "testing/ai-ready-data-reader-value-v1/SHA256SUMS"
+    "testing/ai-ready-data-reader-value-v1/SHA256SUMS",
+    "testing/ai-ready-data-reader-value-v1/promoted/1.2.9/SHA256SUMS"
   ],
   "gateway_assets": [
     {

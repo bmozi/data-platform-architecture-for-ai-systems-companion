@@ -8,7 +8,18 @@
   repository-governance additions
 - **Content status:** blank tools, Northbridge constructed examples, and unrun
   Cedar Vale practitioner materials retain their labels
-- **Distribution status:** private development; no public release authorized
+- **Distribution status:** owner-approved for the exact reviewed package;
+  unrestricted reuse is not authorized. See `OWNER-RELEASE-APPROVAL.md`.
+
+## 2026-08-30 owner release approval
+
+- **Authority:** John Briggs, owner and developer
+- **Approved:** licensing/rights/distribution scope, corresponding book
+  edition alignment at source commit `28e7d9c`, security/privacy disclosure,
+  accessibility risk acceptance with limitations, packaging metadata, and
+  promoted reader-value packet revision `1.2.9`
+- **Preserved boundary:** human learner/practitioner validation remains
+  `PENDING`; synthetic and local layout evidence is not human evidence
 
 ## 2026-08-29 AI-ready data and reader-value completion layer
 

@@ -4,6 +4,12 @@ Use this route to test whether a cross-functional group can make a bounded
 AI-data readiness decision without the author or facilitator supplying the
 missing judgment.
 
+The pilot is a book-plus-companion test. Participants should have the
+corresponding book available and the facilitator must record which relevant
+chapters were assigned. The packet tests whether readers can apply the book's
+reasoning through the companion; it cannot substitute for the book or prove
+that the underlying data or system is ready.
+
 ## Status ladder
 
 Use only the highest supported label: **Prepared**, **Piloted**, **Revised**,
@@ -62,3 +68,22 @@ value, platform security, or practitioner benefit.
 Repository validation, a constructed example, an author walkthrough, or an
 unrun protocol is not usability evidence. Preserve negative and boundary
 findings with successes.
+
+## Release decision rule
+
+Keep the companion in **Prepared** status until the local validator passes and
+the following external gates are closed for the exact version under review:
+
+1. A human Stage A participant completes the route and produces the bounded
+   handoff with no facilitator-supplied judgment.
+2. An independent Stage B decision owner can read back the handoff, identify a
+   material gap, and make a conditional decision; observations and failures
+   are retained in the controlled log.
+3. Any material repair is versioned and the route is repeated with a different
+   participant; no synthetic rehearsal is promoted to human evidence.
+4. The corresponding book edition, companion license, rights, accessibility,
+   security disclosure, and publication package are approved.
+
+Only then may a release record use `Practitioner-tested` or `Release-ready`.
+The exact pilot packet remains `Prepared and human-unrun` until those records
+exist.

@@ -1,5 +1,12 @@
 # Companion Index
 
+Read this repository with *Data Platform Architecture for AI Systems*. The
+book is the required learning resource for the judgment behind these tools;
+the repository is the practice surface. Start with [the book-and-companion
+contract](README.md#the-book-and-companion-contract), then use [Start
+Here](START-HERE.md). Check [production presentation status](README.md#production-presentation-status)
+before describing any result as piloted or releasable.
+
 ## By desired outcome
 
 - **I need a useful result quickly:** [thirty-minute start](START-HERE.md).
@@ -34,5 +41,6 @@ and executive routes with a concrete handoff artifact.
 - [Failure Lab](FAILURE-LAB.md)
 - [Pilot and Usability Route](PILOT-AND-USABILITY.md)
 - [Prepared AI-Ready Data Reader-Value Pilot Packet v1.2.8](testing/ai-ready-data-reader-value-v1/README.md)
+- [Promoted handoff review artifact revision 1.2.9](testing/ai-ready-data-reader-value-v1/promoted/1.2.9/README.md)
 
 See [BOOK-TO-COMPANION-MAP.md](BOOK-TO-COMPANION-MAP.md) for chapter routing.

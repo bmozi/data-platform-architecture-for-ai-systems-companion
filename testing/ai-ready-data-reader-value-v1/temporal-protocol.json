@@ -587,7 +587,7 @@
   "critical_documents": [
     {
       "path": "README.md",
-      "sha256": "0da742ce32df00305f4aded3d5d125495049d1e0e32d913c0181c59224586919"
+      "sha256": "30640cc325232cdd604d36602de606d44434d89bcf3e36fbf2e600f938644bd6"
     },
     {
       "path": "STATIC-PROTOCOL-VALIDATION.md",

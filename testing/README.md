@@ -34,6 +34,8 @@ evidence-state change.
   Human participants still use ordinary file surfaces. Helper
   compliance is not a platform-sandbox claim. It is not
   a DATA-X005 or DATA-X006 execution and inherits no result from Cedar Vale.
+  The promoted v2 handoff review artifact is retained at
+  `ai-ready-data-reader-value-v1/promoted/1.2.9/`.
 
 Do not give a participant any file under a `facilitator-only` directory. Before
 an authorized attempt, freeze and hash the exact packet, blank template

@@ -1,6 +1,6 @@
-# Data Platforms in the Age of AI — Companion
+# Data Platform Architecture for AI Systems — Companion
 
-**Series:** *Solution Architecture in the Age of AI — Software Engineering Field Guides*
+**Series:** *AI Systems Architecture Field Guides*
 **Previous working title:** *Architecting Data Platforms in the Age of AI*.
 
 Turn one important number, dataset, or source into a maintained information
@@ -38,8 +38,8 @@ ready for production.
   tradeoffs, or narrative. A reader can inspect and try the tools without the
   book, but the intended result—sound judgment about meaning, authority,
   fitness, and limits—requires the book and this companion together.
-- **The book stands alone:** this repository extends *Architecting Data
-  Platforms in the Age of AI* without replacing its reasoning or narrative;
+- **The book stands alone:** this repository extends *Data Platform
+  Architecture for AI Systems* without replacing its reasoning or narrative;
   neither artifact is a certification of production readiness.
 
 ## Production presentation status

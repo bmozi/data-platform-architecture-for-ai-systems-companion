@@ -1,4 +1,4 @@
-0da742ce32df00305f4aded3d5d125495049d1e0e32d913c0181c59224586919  ./README.md
+30640cc325232cdd604d36602de606d44434d89bcf3e36fbf2e600f938644bd6  ./README.md
 c422e47456b574755778568515780917f7512e8fa039524c1206a684247ad53f  ./STATIC-PROTOCOL-VALIDATION.md
 47d4f5ee86a58d55ac1f06de8529a568133b3dde9f2ee26056664d719e228a28  ./facilitator-only/01-facilitator-guide.md
 02afd814f1511bab5ed2c536d98c06645d79cb1a0495595630048b22e2dc8576  ./facilitator-only/02-observation-and-scoring-rubric.md
@@ -17,4 +17,4 @@ bfbad1c8c0437c40f1603755edd26f784eef5e754896e8ec2d436bee25aefd45  ./participant/
 d2fde7fa3bedf0327ad0c7b165789d416d73ab377789bdbb4e644309bc558e8d  ./participant/06-revised-artifact-freeze-record.md
 930e5b6cb5fa0ab2134941e030be2eb64292c590673021f4c79c9c0906f2c510  ./participant/07-synthetic-context-record.md
 248ba3c42c138e6503386ec3d800d56751e90a915cd24faa450206cd0870320e  ./participant/DATA-A-LIVE-UPDATE-v1.md
-2374569fe0d944dd06421fabbb244242b89cbd824647c39106707cf7a24be7ea  ./temporal-protocol.json
+e8cb219f26c3f736eaf1ec91ec41979008faacfdd3513f772f6c4f754169eca0  ./temporal-protocol.json

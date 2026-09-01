@@ -147,6 +147,15 @@ def mutate_missing_verification_output(repo: Path) -> None:
     write_protocol(repo, protocol)
 
 
+def mutate_promoted_artifact(repo: Path) -> None:
+    target = (
+        repo
+        / "testing/ai-ready-data-reader-value-v1/promoted/1.2.9"
+        / "DATA-A-ONE-SCREEN-HANDOFF-v2.md"
+    )
+    target.write_text(target.read_text(encoding="utf-8") + "\nunauthorized drift\n", encoding="utf-8")
+
+
 def mutate_missing_attempt_identity(repo: Path) -> None:
     protocol = load_protocol(repo)
     protocol["detached_record"]["required_fields"].remove("attempt_id")
@@ -550,6 +559,11 @@ def main() -> int:
     )
 
     repo_cases = [
+        (
+            "promoted-artifact-checksum",
+            mutate_promoted_artifact,
+            "checksum mismatch",
+        ),
         (
             "missing-verification-output",
             mutate_missing_verification_output,

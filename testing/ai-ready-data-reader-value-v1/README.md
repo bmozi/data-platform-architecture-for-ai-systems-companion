@@ -36,6 +36,16 @@ This version remains **PREPARED/UNRUN** with people and supports no
 human-validation, usability, privacy, safety, readiness, value, or
 incident-status claim.
 
+## Promoted review artifact
+
+The revised one-screen handoff from synthetic attempt
+`DATA-SYN-20260830-007` is preserved as immutable promotion revision `1.2.9`
+under [promoted/1.2.9](promoted/1.2.9/README.md). This promotion makes the
+v2 layout artifact available through the official packet tree without changing
+the packet's `PREPARED/UNRUN` evidence state. A future approved packet version
+must bind the promoted files in a new governing manifest and update all literal
+protocol identities together.
+
 ## What this packet tests
 
 This packet asks whether the plain-language AI-ready data journey helps a

@@ -16,6 +16,7 @@ MANIFEST = ROOT / "companion.json"
 LINK_PATTERN = re.compile(r"!?\[[^\]]*\]\(([^)]+)\)")
 COMMIT_PATTERN = re.compile(r"^[0-9a-f]{7,40}$")
 CHECKSUM_PATTERN = re.compile(r"^([0-9a-f]{64})  (.+)$")
+INDEPENDENT_PACKET_SUBDIRECTORIES = {"promoted"}
 PACKET_ID = "DATA-RV-PILOT-001"
 PACKET_VERSION = "1.2.8"
 TEMPORAL_SCHEMA_VERSION = 7
@@ -157,6 +158,13 @@ GOVERNED_OR_SCORED_SOURCE_FILES = [
     "participant/04-decision-owner-workbook.md",
     "participant/05-one-screen-handoff.md",
 ]
+
+
+def belongs_to_independent_subpackage(path: Path, packet: Path) -> bool:
+    """Return true when a path is governed by its own nested manifest."""
+
+    relative = path.relative_to(packet)
+    return bool(relative.parts) and relative.parts[0] in INDEPENDENT_PACKET_SUBDIRECTORIES
 
 
 def normalized(text: str) -> str:
@@ -868,6 +876,8 @@ def validate_temporal_freeze_protocol(
             continue
         contents[relative] = path.read_text(encoding="utf-8")
     for path in packet.rglob("*.md"):
+        if belongs_to_independent_subpackage(path, packet):
+            continue
         relative = path.relative_to(packet).as_posix()
         contents.setdefault(relative, path.read_text(encoding="utf-8"))
     if content_overrides:
@@ -1726,7 +1736,9 @@ def validate_temporal_protocol_json(errors: list[str]) -> int:
 
     critical = protocol.get("critical_documents", [])
     expected_markdown = {
-        path.relative_to(packet).as_posix() for path in packet.rglob("*.md")
+        path.relative_to(packet).as_posix()
+        for path in packet.rglob("*.md")
+        if not belongs_to_independent_subpackage(path, packet)
     }
     found_markdown = {
         item.get("path") for item in critical if isinstance(item, dict)
@@ -1852,6 +1864,7 @@ def main() -> int:
             if path.is_file()
             and path != checksum_path
             and "__pycache__" not in path.parts
+            and not belongs_to_independent_subpackage(path, checksum_path.parent)
         }
         for unlisted in sorted(packet_files - listed_targets):
             errors.append(

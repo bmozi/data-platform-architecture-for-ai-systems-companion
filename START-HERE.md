@@ -1,7 +1,19 @@
 # Start Here: One Information Promise in Thirty Minutes
 
+**Reader route:** Complete the thirty-minute exercise output first. The
+facilitator-only freeze, manifest, and evidence protocol is a separate route
+for controlled pilots; do not open it until the first-pass artifact is done.
+
 Choose one number, dataset, feature set, document source, or retrieval corpus
 that matters to a real person or decision. Do not begin with the platform.
+
+## Before you begin
+
+Use this route with *Data Platform Architecture for AI Systems*. Read the
+relevant chapter or chapters first: this repository supplies worksheets and
+decision moves, while the book supplies the reasoning needed to interpret
+tradeoffs and challenge a result. Without the book, treat the output as a
+draft hypothesis for discussion, not as a production or release decision.
 
 ## 0–5 minutes: name the use
 
@@ -41,3 +53,7 @@ bounded AI-use question—not a universal trust label. Continue with the
 [completed contract](examples/northbridge-data-product-contract-v1.md), the
 [readiness example](examples/northbridge-ai-data-readiness-assessment-v1.md),
 and the semantic, quality, provenance, and access decisions they expose.
+
+For a team decision, use the [Pilot and Usability Route](PILOT-AND-USABILITY.md)
+after this first pass. A completed worksheet is not evidence that the route is
+usable, the data is fit, or a production release is authorized.
