@@ -245,3 +245,12 @@ and which validation or usability state actually changed.
   future-end protections, six freeze chains/full-route distinction, and all
   human, data-readiness, real-world, privacy, safety, ROI, and business-value
   states remain `PREPARED/UNRUN` or `UNRUN` as applicable
+
+## 2026-09-01 Northbridge data-structures teaching bridge
+
+- **Authority:** John Briggs's Corollary Warehousing assessment and direct
+  author instruction to deepen the five-book teaching connection
+- **Use:** Constructed lesson connecting Pandas-style aggregation to meaning,
+  freshness, provenance, utilization, and permitted-use boundaries
+- **Boundary:** `PLANNED/UNRUN`; no data fitness, usability, capacity,
+  production, or business-result claim is established

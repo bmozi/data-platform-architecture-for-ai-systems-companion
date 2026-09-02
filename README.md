@@ -77,6 +77,7 @@ condition, then test one proposed AI use separately.
 | Make fitness evidence executable | [Quality-Evidence Scorecard](quality-evidence-scorecard.md) |
 | Preserve source and transformation history | [Provenance Requirements](provenance-requirements.md) |
 | Assess one bounded AI use | [AI-Data Readiness Assessment](ai-data-readiness-assessment.md) |
+| Separate fast aggregation from trusted meaning | [Northbridge Data-Structures Architecture Bridge](examples/northbridge-data-structures-architecture-bridge.md) |
 
 Use [INDEX.md](INDEX.md) for role- and outcome-based routes and
 [BOOK-TO-COMPANION-MAP.md](BOOK-TO-COMPANION-MAP.md) to reconnect each tool to
