@@ -43,4 +43,6 @@ and executive routes with a concrete handoff artifact.
 - [Prepared AI-Ready Data Reader-Value Pilot Packet v1.2.8](testing/ai-ready-data-reader-value-v1/README.md)
 - [Promoted handoff review artifact revision 1.2.9](testing/ai-ready-data-reader-value-v1/promoted/1.2.9/README.md)
 
+- [Responsible Amplification and Possible Futures Card](examples/responsible-amplification-and-possible-futures-card.md)
+
 See [BOOK-TO-COMPANION-MAP.md](BOOK-TO-COMPANION-MAP.md) for chapter routing.

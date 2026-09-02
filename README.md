@@ -119,6 +119,15 @@ people and carries no human, practitioner, data-readiness, safety, business-
 value, or real-world validation. The v1.2.7 source remains preserved at commit
 `a4b88a34d11a267a140e5bf67c69f4bc68a1d43a`.
 
+## Imagine and shape what comes next
+
+Use the [Responsible Amplification and Possible Futures
+Card](examples/responsible-amplification-and-possible-futures-card.md) to begin
+with a beneficial possibility, trace bias and consequences through the whole
+system, compare three plausible futures, and turn one future signal into a
+reversible present decision. It is `PLANNED/UNRUN` and does not prove a
+forecast, fairness, safety, legality, effectiveness, or reader learning.
+
 ## Development boundary
 
 This is an owner-approved companion package. Constructed examples and blank
