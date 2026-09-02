@@ -1,8 +1,6 @@
 # Data Platform Architecture for AI Systems — Companion
 
 **Series:** *AI Systems Architecture Field Guides*
-**Previous working title:** *Architecting Data Platforms in the Age of AI*.
-
 Turn one important number, dataset, or source into a maintained information
 promise for a named use—with meaning, ownership, lineage, quality, access, and
 stop-trust conditions visible.
@@ -92,7 +90,7 @@ from a data-team slogan into a cross-functional decision. Use the
 valuable use, then exercise assumptions with the [Failure Lab](FAILURE-LAB.md)
 and [Pilot Route](PILOT-AND-USABILITY.md).
 
-The prepared reader-value packet is `DATA-RV-PILOT-001` version 1.2.8. Stage A
+The governed source packet is `DATA-RV-PILOT-001` version 1.2.8, with the promoted review artifact recorded as revision 1.2.9. Stage A
 freezes exact revised details through a detached record before opening its
 one-screen handoff; Stage B reads that handoff first, verifies the same literal
 files only after Section 1 freezes, then freezes its decision in three stages.
@@ -128,10 +126,28 @@ system, compare three plausible futures, and turn one future signal into a
 reversible present decision. It is `PLANNED/UNRUN` and does not prove a
 forecast, fairness, safety, legality, effectiveness, or reader learning.
 
-## Development boundary
+## Evidence and use boundary
 
-This is an owner-approved companion package. Constructed examples and blank
-test logs are not production or usability evidence. Human learner/practitioner
-validation remains pending; see [OWNER-RELEASE-APPROVAL.md](OWNER-RELEASE-APPROVAL.md).
-Source lineage is recorded in [PROVENANCE.md](PROVENANCE.md), and local
-validation is described in [VALIDATION.md](VALIDATION.md).
+This is the public reader companion to *Data Platform Architecture for AI Systems*. It provides
+editable tools and constructed examples; it does not certify a design,
+implementation, organization, or AI system as safe, lawful, effective, or
+production-ready. Preserve every `constructed`, `scenario`, `planned`,
+`unrun`, `observed`, `tested`, `reported`, `inferred`, and `unknown`
+label when adapting the material.
+
+Written content is available under
+[CC BY 4.0](LICENSE-CONTENT), and executable code is available under the
+[Apache License 2.0](LICENSE-CODE). Source lineage is recorded in
+[PROVENANCE.md](PROVENANCE.md); local integrity checks are documented in
+[VALIDATION.md](VALIDATION.md). Human learner and practitioner validation
+remains a separate evidence gate.
+
+## Continue through the series
+
+The five public companions follow the same evidence-bounded field-guide model:
+
+1. [API Architecture for AI Systems](https://github.com/bmozi/api-architecture-for-ai-systems-companion)
+2. [Event-Driven Architecture for AI Systems](https://github.com/bmozi/event-driven-architecture-for-ai-systems-companion)
+3. [Durable Workflows for AI Systems](https://github.com/bmozi/durable-workflows-for-ai-systems-companion)
+4. [Data Platform Architecture for AI Systems](https://github.com/bmozi/data-platform-architecture-for-ai-systems-companion)
+5. [Agentic Systems Architecture](https://github.com/bmozi/agentic-systems-architecture-companion)

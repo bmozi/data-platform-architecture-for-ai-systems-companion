@@ -1,15 +1,22 @@
-# License and Distribution Status
+# License and distribution status
 
-**Status:** Owner-approved for presentation and intended distribution of the
-approved package; all rights reserved except for that owner authorization.
+**Status:** Owner-approved for public distribution.
 
-The owner approval in [OWNER-RELEASE-APPROVAL.md](OWNER-RELEASE-APPROVAL.md)
-authorizes distribution of the exact reviewed package through the intended
-book-and-companion channels. It does not grant unrestricted permission to
-redistribute, publish, sell, train on, or incorporate these materials into a
-product. No separate open-source or commercial reuse license is granted.
+**Public-release decision:** 2026-09-02
+**Owner:** John Briggs
+**Companion:** *Data Platform Architecture for AI Systems*
 
-The owner reviewed content ownership, third-party material, attribution,
-security/privacy disclosure, distribution scope, and the corresponding book
-edition. Accessibility limitations and the absence of human learner/
-practitioner validation remain explicitly disclosed in the approval record.
+The repository uses a deliberate dual-license model:
+
+- written content, worksheets, templates, examples, and other creative material
+  are licensed under Creative Commons Attribution 4.0 International; and
+- executable code and machine-executable configuration are licensed under the
+  Apache License 2.0.
+
+The controlling scope notice is [LICENSE](LICENSE), with the applicable terms
+in [LICENSE-CONTENT](LICENSE-CONTENT) and [LICENSE-CODE](LICENSE-CODE).
+
+These licenses authorize reuse within their terms. They do not certify the
+materials as secure, accessible, legally sufficient, production-ready, or
+effective for a particular reader or organization. Constructed and unrun
+evidence labels remain in force after redistribution or adaptation.

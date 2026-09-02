@@ -40,4 +40,4 @@ evidence-state change.
 Do not give a participant any file under a `facilitator-only` directory. Before
 an authorized attempt, freeze and hash the exact packet, blank template
 versions, allowed references, and response location. The controlled
-[experiment register](https://github.com/bmozi/architecting-data-platforms-in-the-age-of-ai/blob/main/EXPERIMENT-REGISTER.md) remains authoritative.
+the book's experiment register remains authoritative.

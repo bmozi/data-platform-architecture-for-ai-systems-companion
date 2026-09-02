@@ -1,10 +1,14 @@
 {
   "schema_version": 1,
   "title": "Data Platform Architecture for AI Systems Companion",
-  "book_repository": "https://github.com/bmozi/architecting-data-platforms-in-the-age-of-ai",
+  "book_title": "Data Platform Architecture for AI Systems",
+  "repository": "https://github.com/bmozi/data-platform-architecture-for-ai-systems-companion",
   "source_commit": "28e7d9c",
   "required_files": [
     "README.md",
+    "LICENSE",
+    "LICENSE-CONTENT",
+    "LICENSE-CODE",
     "START-HERE.md",
     "INDEX.md",
     "BOOK-TO-COMPANION-MAP.md",

@@ -64,3 +64,15 @@ HUMAN-VALIDATION-PENDING`
 
 **Accountable approval:** John Briggs, owner and developer
 **Recorded:** 2026-08-30
+
++## Public-release licensing update
+
+**Recorded:** 2026-09-02
+**Decision:** `APPROVED FOR PUBLIC DISTRIBUTION`
+
+The owner authorizes this companion repository to be publicly available under
+the dual-license terms recorded in `LICENSE`, `LICENSE-CONTENT`, and
+`LICENSE-CODE`. This update supersedes an earlier all-rights-reserved
+distribution posture only to the extent expressly granted by those license
+files. All evidence, safety, accessibility, legal, and production-readiness
+boundaries above remain unchanged.
