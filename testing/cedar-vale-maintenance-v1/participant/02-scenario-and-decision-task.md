@@ -19,7 +19,7 @@ an experiment result, a safety claim, or John Briggs's experience.
 ## Your task
 
 You are reviewing whether one versioned data package is fit for one named AI
-role. Choose the **smallest useful subset** of the five working companion
+role. Choose the **smallest useful subset** of the five illustrative companion
 templates. Do not fill a template merely because it is available. For each
 chosen asset, record the bounded decision the scenario permits, what remains
 unknown, and the stop or reconsideration trigger.
@@ -37,7 +37,7 @@ The decision under review is data fitness for that role. Model behavior,
 interface design, workflow authority, physical safety, technician procedure,
 and release are separate decisions.
 
-## Working assets available
+## Illustrative assets available
 
 - [Data-Product Contract](../../../data-product-contract.md)
 - [Semantic-Authority Record](../../../semantic-authority-record.md)

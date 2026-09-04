@@ -12,7 +12,7 @@
 
 Northbridge Exchange, its roles, records, quantities, conditions, decisions,
 and outcomes are fictional scenario material. The records demonstrate how the
-five working templates can refer to one another. They do not describe John
+five illustrative field tools can refer to one another. They do not describe John
 Briggs's experience, a customer, an employer, an executed control, or an
 observed business result.
 

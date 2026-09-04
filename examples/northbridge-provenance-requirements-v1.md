@@ -5,7 +5,7 @@
 **Record ID:** NBX-PVR-001
 **Record version:** 1.0.0
 **Template:** [Provenance Requirements](../provenance-requirements.md)
-**Template source version:** Working template bytes reviewed 2026-08-29
+**Template source version:** Illustrative template bytes reviewed 2026-08-29<br>
 **Template source SHA-256:** `cb0bd8759e40bf2c3da9ecce3c4355745563ce3a9140d4e2cb781124401ddbe3`
 **Status:** `SCENARIO — insufficient; one deliberate link break; verification unrun`
 **Information product or output:** Partner NBX-P-1842 renewal evidence row and population context in NBX-PERF-3.2.1

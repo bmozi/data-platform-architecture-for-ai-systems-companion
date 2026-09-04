@@ -1,6 +1,6 @@
 # Provenance Requirements
 
-**Status:** Working template
+**Use boundary:** Illustrative field tool.<br>
 **Information product or output:**
 **Consequential use:**
 **Provenance owner:**

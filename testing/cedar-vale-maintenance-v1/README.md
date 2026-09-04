@@ -30,7 +30,7 @@ cannot satisfy DATA-X005's full unrelated-domain completion condition.
 
 ### Participant packet
 
-Supply only these files and the five unchanged working templates identified in
+Supply only these files and the five unchanged field-tool templates identified in
 the scenario:
 
 1. [Consent and privacy notice](participant/01-consent-and-privacy-notice.md)

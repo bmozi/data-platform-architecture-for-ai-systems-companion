@@ -36,6 +36,20 @@ Future changes must record the source-book commit or independent authority used,
 whether an example is genuine, anonymized, constructed, scenario, or observed,
 and which validation or usability state actually changed.
 
+## 2026-09-03 reader-facing status and license alignment
+
+- **Authority:** Direct John Briggs instruction for the five *AI Systems
+  Architecture Field Guides* and their reader-facing companions
+- **Changed:** replaced development-stage labels with stable illustrative-tool
+  and production-fitness boundaries; aligned `TERMS.md` with the owner-approved
+  public dual-license scope already recorded in `LICENSE`, `LICENSE-STATUS.md`,
+  and `OWNER-RELEASE-APPROVAL.md`; clarified that these licenses govern copies
+  distributed from this repository and do not relicense the book or its
+  embedded companion-source copies
+- **Preserved boundary:** constructed, planned, unrun, synthetic, observed, and
+  unknown evidence states remain unchanged; licensing does not certify legal,
+  security, privacy, accessibility, practitioner, or production fitness
+
 ## 2026-08-29 reader-value pilot candidate
 
 - **Authority:** Portfolio API/Data pilot program and reader-value completion

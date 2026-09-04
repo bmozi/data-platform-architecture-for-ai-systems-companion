@@ -53,7 +53,7 @@ for the full application and its unresolved evidence.
 - **Separate gate:** an authority, model, agent, workflow, tool, or release
   decision this data assessment cannot make.
 
-**Status:** Working template
+**Use boundary:** Illustrative field tool.<br>
 **Named AI use:**
 **Decision or action supported:**
 **System and release stage:**

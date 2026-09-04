@@ -38,7 +38,7 @@ ready for production.
   fitness, and limits—requires the book and this companion together.
 - **The book stands alone:** this repository extends *Data Platform
   Architecture for AI Systems* without replacing its reasoning or narrative;
-  neither artifact is a certification of production readiness.
+  neither artifact certifies production fitness.
 
 ## Production presentation status
 
@@ -130,8 +130,8 @@ forecast, fairness, safety, legality, effectiveness, or reader learning.
 
 This is the public reader companion to *Data Platform Architecture for AI Systems*. It provides
 editable tools and constructed examples; it does not certify a design,
-implementation, organization, or AI system as safe, lawful, effective, or
-production-ready. Preserve every `constructed`, `scenario`, `planned`,
+implementation, organization, or AI system as safe, lawful, effective, or fit
+for production. Preserve every `constructed`, `scenario`, `planned`,
 `unrun`, `observed`, `tested`, `reported`, `inferred`, and `unknown`
 label when adapting the material.
 

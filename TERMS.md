@@ -1,23 +1,23 @@
-# Working Companion Terms
+# Companion Use and Distribution Terms
 
-**Status:** Internal development restriction; not a final reader license and
-not approved for external distribution
+**Use boundary:** Illustrative field tools; not certification or proof of
+production fitness.
 
 Copyright © 2026 John Briggs. All rights reserved.
 
-The companion templates, worksheets, examples, and related files in this
-working repository are unpublished development materials. They may be copied
-or adapted only for authorized internal authoring, editorial review, technical
-review, and practitioner-test preparation within this project. They may not be
-published, sold, sublicensed, redistributed, or represented as a production-
-ready method or certified control.
+Copies of written content, worksheets, templates, examples, and related
+creative material distributed in this repository are available under the
+[Creative Commons Attribution 4.0 International License](LICENSE-CONTENT).
+Executable code and machine-executable configuration are available under the
+[Apache License 2.0](LICENSE-CODE). The controlling scope notice is
+[LICENSE](LICENSE). These licenses do not relicense the book or embedded
+companion source maintained in the book repository.
 
-These working terms do not establish that a companion asset is correct,
-complete, safe, usable, legally sufficient, or fit for a particular purpose.
+These terms do not establish that a companion asset is correct, complete, safe,
+usable, legally sufficient, or fit for a particular purpose or production use.
 Constructed or scenario examples remain teaching fixtures, not empirical
 evidence or John Briggs history.
 
-A final reader or enterprise-use license requires explicit John Briggs
-approval and qualified legal review before any external companion distribution.
-If final approved terms differ, the later approved terms supersede this
-internal restriction for the materials and versions they identify.
+Reuse must follow the applicable license, preserve required attribution and
+notices, and retain evidence-state labels. License permission does not create
+legal, security, privacy, accessibility, or organizational approval.

@@ -67,5 +67,5 @@ A blank or completed log does not by itself establish effectiveness.
 
 This record may support a bounded decision about the tested asset version,
 task, participant role, and supplied context. It does not establish universal
-practitioner usability, completeness, effectiveness, safety, author approval,
-or publication readiness.
+practitioner usability, completeness, effectiveness, safety, certification, or
+production fitness.

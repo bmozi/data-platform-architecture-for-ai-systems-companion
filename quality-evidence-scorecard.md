@@ -2,7 +2,7 @@
 
 <!-- markdownlint-disable MD013 -->
 
-**Status:** Working template; revision 2; practitioner tests remain unrun
+**Use boundary:** Illustrative field tool, revision 2; testing unrun.<br>
 **Data product and version:**
 **Consumer use:**
 **Decision owner:**

@@ -5,7 +5,7 @@
 **Record ID:** NBX-SAR-001
 **Record version:** 1.0.0
 **Template:** [Semantic-Authority Record](../semantic-authority-record.md)
-**Template source version:** Working template bytes reviewed 2026-08-29
+**Template source version:** Illustrative template bytes reviewed 2026-08-29<br>
 **Template source SHA-256:** `6a9bf8c05722fcd56a0f61d266dae3cd1f2fd624474b3d3c4dad471f9f6cd11b`
 **Status:** `SCENARIO — conditionally approved; translation unresolved`
 **Term, field, measure, or concept:** `on_time_for_renewal`

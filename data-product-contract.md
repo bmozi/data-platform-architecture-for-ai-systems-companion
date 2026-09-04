@@ -47,7 +47,7 @@ for the comprehensive record and its constructed evidence boundary.
 - **Stop-trust condition:** evidence that tells consumers to pause, narrow, or
   reject use until the problem is resolved.
 
-**Status:** Working template
+**Use boundary:** Illustrative field tool.<br>
 **Product name and version:**
 **Contract owner:**
 **Effective date:**

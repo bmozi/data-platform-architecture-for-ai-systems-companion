@@ -1,6 +1,6 @@
 # Semantic-Authority Record
 
-**Status:** Working template
+**Use boundary:** Illustrative field tool.<br>
 **Term, field, measure, or concept:**
 **Record version:**
 **Effective interval:**

@@ -5,7 +5,7 @@
 **Record ID:** NBX-ADR-001
 **Record version:** 1.0.0
 **Template:** [AI-Data Readiness Assessment](../ai-data-readiness-assessment.md)
-**Template source version:** Working template bytes reviewed 2026-08-29
+**Template source version:** Illustrative template bytes reviewed 2026-08-29<br>
 **Template source SHA-256:** `ce26ff34047d1ddad2a289aa30bec132b99bb7dcf3472dd3bf8d4e7726cc2a7d`
 **Status:** `SCENARIO — deferred data-fitness decision; all evaluation unrun`
 **Named AI use:** Generate a draft evidence summary from NBX-PERF-3.2.1 for an authorized human renewal reviewer

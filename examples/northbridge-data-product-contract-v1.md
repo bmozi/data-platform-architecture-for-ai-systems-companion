@@ -5,7 +5,7 @@
 **Record ID:** NBX-DPC-001
 **Record version:** 1.0.0
 **Template:** [Data-Product Contract](../data-product-contract.md)
-**Template source version:** Working template bytes reviewed 2026-08-29
+**Template source version:** Illustrative template bytes reviewed 2026-08-29<br>
 **Template source SHA-256:** `9263865f63a936d0afb113b3153df70f7443dc76e3601a0019efc65b66224a05`
 **Status:** `SCENARIO — conditionally approved`; not observed or executed
 **Product name and version:** Northbridge Quarterly Partner-Renewal Evidence Product, NBX-PERF-3.2.1

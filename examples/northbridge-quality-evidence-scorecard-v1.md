@@ -5,7 +5,7 @@
 **Record ID:** NBX-QES-001
 **Record version:** 1.0.0
 **Template:** [Quality-Evidence Scorecard](../quality-evidence-scorecard.md)
-**Template source version:** Revision 2 working template
+**Template source version:** Revision 2 illustrative template<br>
 **Template source SHA-256:** `2f84e13d131da06771011ab694ce1abce0f94d8f15591019a2858bf3545a7d16`
 **Status:** `SCENARIO — authored failing condition; all protocols unrun`
 **Data product and version:** NBX-PERF-3.2.1

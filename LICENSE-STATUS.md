@@ -17,6 +17,6 @@ The controlling scope notice is [LICENSE](LICENSE), with the applicable terms
 in [LICENSE-CONTENT](LICENSE-CONTENT) and [LICENSE-CODE](LICENSE-CODE).
 
 These licenses authorize reuse within their terms. They do not certify the
-materials as secure, accessible, legally sufficient, production-ready, or
+materials as secure, accessible, legally sufficient, fit for production, or
 effective for a particular reader or organization. Constructed and unrun
 evidence labels remain in force after redistribution or adaptation.
