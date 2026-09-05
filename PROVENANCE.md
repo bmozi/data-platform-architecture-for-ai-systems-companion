@@ -281,3 +281,11 @@ and which validation or usability state actually changed.
 - **Boundary:** AI-assisted working learning material; `PLANNED/UNRUN`. A
   completed card is a scenario and decision record, not prediction, fairness,
   safety, legal, environmental, economic, usability, or effectiveness evidence.
+
+## September 5, 2026 teaching-route addition
+
+`CHAPTER-PRACTICE.md` adds a route from revised chapter practice to the five
+canonical forms and a new fictional maintenance-report exercise. The 100-machine
+population, 95 present records, and late-arrival change are authored scenario
+facts. No practitioner session or production result is claimed. Existing
+controlled pilot packets, hashes, examples, and evidence states are unchanged.

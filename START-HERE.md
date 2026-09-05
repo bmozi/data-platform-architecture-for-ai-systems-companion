@@ -57,3 +57,5 @@ and the semantic, quality, provenance, and access decisions they expose.
 For a team decision, use the [Pilot and Usability Route](PILOT-AND-USABILITY.md)
 after this first pass. A completed worksheet is not evidence that the route is
 usable, the data is fit, or a production release is authorized.
+
+For supplied practice after each chapter, use the [chapter practice route](CHAPTER-PRACTICE.md). It includes an unrelated maintenance-report exercise and worked response.

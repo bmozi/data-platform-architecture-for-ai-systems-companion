@@ -1,5 +1,9 @@
 # Source Alignment and Permitted Drift
 
+**Current aligned book source:** `e6418c390d1e345448470f4b403c0162470c4872` (September 5, 2026).
+The local improvement snapshot is now committed. Earlier provenance entries
+retain their original dates and evidence states; practitioner testing remains open.
+
 **Book source:** `bmozi/architecting-data-platforms-in-the-age-of-ai`,
 `companion/`
 **Original standalone seed:** book commit `28e7d9c`

@@ -3,7 +3,7 @@
   "title": "Data Platform Architecture for AI Systems Companion",
   "book_title": "Data Platform Architecture for AI Systems",
   "repository": "https://github.com/bmozi/data-platform-architecture-for-ai-systems-companion",
-  "source_commit": "28e7d9c",
+  "source_commit": "e6418c390d1e345448470f4b403c0162470c4872",
   "required_files": [
     "README.md",
     "LICENSE",
