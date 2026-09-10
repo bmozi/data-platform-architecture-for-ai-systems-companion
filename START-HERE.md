@@ -59,3 +59,8 @@ after this first pass. A completed worksheet is not evidence that the route is
 usable, the data is fit, or a production release is authorized.
 
 For supplied practice after each chapter, use the [chapter practice route](CHAPTER-PRACTICE.md). It includes an unrelated maintenance-report exercise and worked response.
+
+## September 9 reader-review practice
+
+[Derive and correct the supplied review queue](examples/current-edition-queue-practice.md) with supplied fictional facts.
+This extends the revised book without changing older pilot evidence.

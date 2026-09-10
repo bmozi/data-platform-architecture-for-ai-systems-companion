@@ -151,3 +151,8 @@ The five public companions follow the same evidence-bounded field-guide model:
 3. [Durable Workflows for AI Systems](https://github.com/bmozi/durable-workflows-for-ai-systems-companion)
 4. [Data Platform Architecture for AI Systems](https://github.com/bmozi/data-platform-architecture-for-ai-systems-companion)
 5. [Agentic Systems Architecture](https://github.com/bmozi/agentic-systems-architecture-companion)
+
+## September 9 reader-review practice
+
+[Derive and correct the supplied review queue](examples/current-edition-queue-practice.md) with supplied fictional facts.
+This extends the revised book without changing older pilot evidence.

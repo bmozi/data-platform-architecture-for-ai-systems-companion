@@ -39,5 +39,4 @@ evidence-state change.
 
 Do not give a participant any file under a `facilitator-only` directory. Before
 an authorized attempt, freeze and hash the exact packet, blank template
-versions, allowed references, and response location. The controlled
-the book's experiment register remains authoritative.
+versions, allowed references, and response location. The book's experiment register remains authoritative.

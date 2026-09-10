@@ -46,3 +46,8 @@ and executive routes with a concrete handoff artifact.
 - [Responsible Amplification and Possible Futures Card](examples/responsible-amplification-and-possible-futures-card.md)
 
 See [BOOK-TO-COMPANION-MAP.md](BOOK-TO-COMPANION-MAP.md) for chapter routing.
+
+## September 9 reader-review practice
+
+[Derive and correct the supplied review queue](examples/current-edition-queue-practice.md) with supplied fictional facts.
+This extends the revised book without changing older pilot evidence.

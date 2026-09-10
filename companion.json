@@ -3,7 +3,7 @@
   "title": "Data Platform Architecture for AI Systems Companion",
   "book_title": "Data Platform Architecture for AI Systems",
   "repository": "https://github.com/bmozi/data-platform-architecture-for-ai-systems-companion",
-  "source_commit": "e6418c390d1e345448470f4b403c0162470c4872",
+  "source_commit": "4674e6c17fdfcfa2424996c9863bcc5c2705fb9b",
   "required_files": [
     "README.md",
     "LICENSE",
@@ -56,14 +56,26 @@
     {
       "path": "data-product-contract.md",
       "first_pass": "Ten-minute first contract",
-      "required_language": ["Plain-language vocabulary", "Outside-team comprehension test"],
-      "examples": ["examples/northbridge-data-product-contract-v1.md"]
+      "required_language": [
+        "Plain-language vocabulary",
+        "Outside-team comprehension test"
+      ],
+      "examples": [
+        "examples/northbridge-data-product-contract-v1.md"
+      ]
     },
     {
       "path": "ai-data-readiness-assessment.md",
       "first_pass": "Ten-minute first assessment",
-      "required_language": ["Plain-language vocabulary", "Outside-team comprehension test"],
-      "examples": ["examples/northbridge-ai-data-readiness-assessment-v1.md"]
+      "required_language": [
+        "Plain-language vocabulary",
+        "Outside-team comprehension test"
+      ],
+      "examples": [
+        "examples/northbridge-ai-data-readiness-assessment-v1.md"
+      ]
     }
-  ]
+  ],
+  "alignment_date": "2026-09-09",
+  "alignment_scope": "Revised reader lessons, active companion tools, shared examples, routes, and dependency integrity; human learning untested"
 }

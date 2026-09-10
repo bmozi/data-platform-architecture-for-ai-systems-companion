@@ -289,3 +289,13 @@ canonical forms and a new fictional maintenance-report exercise. The 100-machine
 population, 95 present records, and late-arrival change are authored scenario
 facts. No practitioner session or production result is claimed. Existing
 controlled pilot packets, hashes, examples, and evidence states are unchanged.
+
+## September 9, 2026 book and companion alignment
+
+Author-directed alignment restored active edition tools previously missing
+from this public companion and added the linked current-edition practice route.
+The new practice supplies the revised book's scenario facts in an editable
+exercise; it does not reproduce the manuscript's full instruction. Older
+constructed examples and checksum-locked pilot packets retain their original
+unknowns, results, and evidence states. Validation is local; human sessions
+remain zero.

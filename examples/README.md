@@ -65,5 +65,5 @@ copy the exact files and their pinned governed-template bytes into the
 controlled evidence package, calculate SHA-256 digests, record the tool and
 command used, and preserve those frozen bytes.
 
-The the book's experiment register remains authoritative
+The book's experiment register remains authoritative
 for DATA-X005 and DATA-X006. These examples do not change its `unrun` state.
