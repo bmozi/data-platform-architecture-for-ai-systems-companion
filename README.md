@@ -40,25 +40,6 @@ ready for production.
   Architecture for AI Systems* without replacing its reasoning or narrative;
   neither artifact certifies production fitness.
 
-## Production presentation status
-
-This repository is **owner-approved for presentation and intended distribution
-of the exact reviewed package; human validation remains pending**. The deterministic
-local gate is the command in [VALIDATION.md](VALIDATION.md); it checks required
-entry points, local links, gateway language, examples, packet checksums, and
-the reader-value protocol. [PROVENANCE.md](PROVENANCE.md) records source and
-evidence boundaries, and [LICENSE-STATUS.md](LICENSE-STATUS.md) records the
-approved distribution scope. The owner decision is recorded in
-[OWNER-RELEASE-APPROVAL.md](OWNER-RELEASE-APPROVAL.md).
-
-Do not label this companion `Piloted`, `Practitioner-tested`, or `Production`
-until all of these are separately evidenced: a completed human cold-reader
-route with an independent decision owner; retained observations and any
-negative findings; a revised and repeated route where needed; approval of the
-corresponding book edition and companion terms; and final accessibility,
-security, rights, and publication review. A local validation pass proves
-repository integrity only.
-
 ## Start here
 
 Use [START-HERE.md](START-HERE.md), alongside the relevant chapters of the
@@ -90,32 +71,9 @@ from a data-team slogan into a cross-functional decision. Use the
 valuable use, then exercise assumptions with the [Failure Lab](FAILURE-LAB.md)
 and [Pilot Route](PILOT-AND-USABILITY.md).
 
-The governed source packet is `DATA-RV-PILOT-001` version 1.2.8, with the promoted review artifact recorded as revision 1.2.9. Stage A
-freezes exact revised details through a detached record before opening its
-one-screen handoff; Stage B reads that handoff first, verifies the same literal
-files only after Section 1 freezes, then freezes its decision in three stages.
-Version 1.2.8 responds to retained synthetic attempt
-`DATA-SYN-20260830-006`, whose semantically useful handoff failed the literal
-layout gate at two pages and 640 reader-facing words. The redesigned blank uses
-five budgeted reader sections, a 335-word target, eight compact immutable
-provenance lines, non-clickable exact-filename pointers, and no copied-detail
-table. The handoff triple is the only Stage A evidence in Phase 1; the route
-and blank Section 1 workbook remain allowed. Revised detail first becomes
-available in Phase 2. Version 1.2.8 preserves v1.2.7's exact phase-input
-manifest binding, v1.2.6's synthetic-only pre-run checksum-bound exact-file
-helper, v1.2.5's full-route and one-page layout controls, and v1.2.4's exact
-immutable Stage A live update and optional-contract branch. Each per-phase
-config binds its exact verified sealed-input manifest filename/path/hash, and the helper
-rehashes and parses that manifest and proves exact member/hash equality on
-every invocation before it reads a target. Human participants still use
-ordinary file surfaces without terminal or repository access. Helper
-procedural compliance is not sandbox or cross-process security proof;
-technical platform restriction is `NOT ESTABLISHED` unless separately
-demonstrated. Six scored freeze chains do not alone establish full-route
-completion. The packet remains unrun with
-people and carries no human, practitioner, data-readiness, safety, business-
-value, or real-world validation. The v1.2.7 source remains preserved at commit
-`a4b88a34d11a267a140e5bf67c69f4bc68a1d43a`.
+Human practitioner validation remains pending. Facilitators can find the
+retained packet versions, freeze controls, and synthetic limitations in
+[Facilitator Protocol History](FACILITATOR-PROTOCOL-HISTORY.md).
 
 ## Imagine and shape what comes next
 
@@ -125,6 +83,25 @@ with a beneficial possibility, trace bias and consequences through the whole
 system, compare three plausible futures, and turn one future signal into a
 reversible present decision. It is `PLANNED/UNRUN` and does not prove a
 forecast, fairness, safety, legality, effectiveness, or reader learning.
+
+## Production presentation status
+
+This repository is **owner-approved for presentation and intended distribution
+of the exact reviewed package; human validation remains pending**. The deterministic
+local gate is the command in [VALIDATION.md](VALIDATION.md); it checks required
+entry points, local links, gateway language, examples, packet checksums, and
+the reader-value protocol. [PROVENANCE.md](PROVENANCE.md) records source and
+evidence boundaries, and [LICENSE-STATUS.md](LICENSE-STATUS.md) records the
+approved distribution scope. The owner decision is recorded in
+[OWNER-RELEASE-APPROVAL.md](OWNER-RELEASE-APPROVAL.md).
+
+Do not label this companion `Piloted`, `Practitioner-tested`, or `Production`
+until all of these are separately evidenced: a completed human cold-reader
+route with an independent decision owner; retained observations and any
+negative findings; a revised and repeated route where needed; approval of the
+corresponding book edition and companion terms; and final accessibility,
+security, rights, and publication review. A local validation pass proves
+repository integrity only.
 
 ## Evidence and use boundary
 

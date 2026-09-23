@@ -3,7 +3,7 @@
   "title": "Data Platform Architecture for AI Systems Companion",
   "book_title": "Data Platform Architecture for AI Systems",
   "repository": "https://github.com/bmozi/data-platform-architecture-for-ai-systems-companion",
-  "source_commit": "4674e6c17fdfcfa2424996c9863bcc5c2705fb9b",
+  "source_commit": "3e404a430c00c03ecc07fb576dea55b987dd0e3f",
   "required_files": [
     "README.md",
     "LICENSE",
@@ -76,6 +76,6 @@
       ]
     }
   ],
-  "alignment_date": "2026-09-09",
-  "alignment_scope": "Revised reader lessons, active companion tools, shared examples, routes, and dependency integrity; human learning untested"
+  "alignment_date": "2026-09-23",
+  "alignment_scope": "Committed book source and active shared assets checked; distribution differences explicitly recorded; human learning untested"
 }

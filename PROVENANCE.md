@@ -299,3 +299,21 @@ exercise; it does not reproduce the manuscript's full instruction. Older
 constructed examples and checksum-locked pilot packets retain their original
 unknowns, results, and evidence states. Validation is local; human sessions
 remain zero.
+
+
+## September 12, 2026 — reader entry simplification
+
+AI-assisted editorial change authorized by John Briggs. README now presents the
+first reader result before presentation administration. The full existing
+packet-version and freeze-control paragraph is preserved verbatim in
+[FACILITATOR-PROTOCOL-HISTORY.md](FACILITATOR-PROTOCOL-HISTORY.md). No packet,
+example, approval, seal, or human-validation state was changed.
+
+
+## September 23, 2026 — committed source reconciliation
+
+John authorized review, commit and push of local book and companion work.
+The current source pin is `3e404a430c00c03ecc07fb576dea55b987dd0e3f`. Shared-file comparison and the
+collection registry retain explicit distribution differences; the September 12
+facilitator relocations are now classified. Frozen study packets remain intact.
+This records repository alignment, not human learning or retailer publication.
