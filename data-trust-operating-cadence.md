@@ -1,4 +1,4 @@
-# Data Trust Operating Cadence {.field-tool-long-title}
+# Data Trust Operating Cadence
 
 **Use boundary:** Illustrative field tool; operating validation unrun.
 **Use with:** the [Data Meaning, Provenance, and Permitted-Use Contract](data-meaning-provenance-and-permitted-use-contract.md), not instead of it.
@@ -9,6 +9,10 @@ Data products fail quietly when a quality alert, a contested definition, a
 policy change, or an AI-answer failure belongs to nobody. This illustrative
 30-minute weekly cadence gives one named information use a place to surface its
 unfinished consequence.
+
+An urgent stop-trust condition follows its incident or escalation path
+immediately; it does not wait for the weekly meeting. Use the cadence to
+review unresolved work, recurring problems, and reopening evidence.
 
 ## Role card
 

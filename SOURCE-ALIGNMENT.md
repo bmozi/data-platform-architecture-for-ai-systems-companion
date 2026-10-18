@@ -55,3 +55,24 @@ match unless explicitly classified, and standalone-only paths fit declared
 distribution categories. Repository validation and source alignment do not
 prove usability, AI readiness, data quality, business value, or publication
 readiness.
+
+## October 18, 2026 paired working revision
+
+Urgent stop-trust conditions follow incident handling immediately; the weekly cadence does not delay containment.
+
+These changes match the revised embedded companion in the local book working
+tree. The September commit above remains the last recorded committed source;
+this note does not invent a new commit pin or claim publication, practitioner
+validation, or author approval. Historical prepared packets retain their
+evidence states.
+
+The public cadence omits the print-only Pandoc heading class; its teaching is
+unchanged.
+
+## October 18, 2026 — Committed source alignment
+
+Current companion source pin: `d71c68822b1e041e92ee81fbc01d20bebe607644` in `architecting-data-platforms-in-the-age-of-ai`.
+The reviewed book revision is committed and synchronized. This entry supersedes
+the working-copy status above; earlier entries remain historical. Shared
+content and explicit distribution differences passed the collection validator.
+This records source alignment, not a reader trial or Amazon publication.
